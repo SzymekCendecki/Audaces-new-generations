@@ -1,0 +1,82 @@
+//reset
+*{
+  margin: 0;
+  padding: 0;
+}
+
+html, body {
+  width: 100%;
+  height: 100%;
+}
+
+//grid
+.row:before, .row:after{
+    content: "";
+    display: table;
+    clear: both;
+}
+
+[class*='col-']{
+  float: left;
+  min-height: 1px;
+  width: 100%/12;
+  padding: 12px;
+}
+
+@for $i from 1 through 12 {
+  .col-#{$i} { width: (100%/12)*$i; }
+}
+
+
+//wysokość nagłówka i stopki
+header, footer{
+  height: 5vh;
+}
+
+//wysokość nawigacji, części głównej i alertowej
+nav, #mainPart, #alerts{
+    height: 78vh;
+}
+
+.border{
+  border: 1px solid black;
+}
+
+.grid-display{
+  width: 1300px;
+  margin: 0 auto;
+  display: flex;
+  justify-content: space-between;
+  flex-wrap: wrap;
+}
+
+//style dla intra
+
+body{
+  background: lightgray;
+}
+
+#mainPart{
+  h2{
+    margin-top: 25vh;
+    text-align: center;
+    color: navy;
+    font-size: 5em;
+    font-family: 'Titan One', cursive;
+    font-style: italic;
+    text-shadow: 0 1px 0 #0040ff,
+                 0 2px 0 #0080ff,
+                 0 3px 0 #00bfff,
+                 0 4px 0 #00ffff,
+  }
+
+  h3{
+    font-size: 1.5em;
+    text-align: center;
+    font-style: italic;
+    font-family: 'Fredoka One', cursive;
+    text-shadow: 0 1px 0 darkgray,
+                 0 2px 0 gray,
+                 0 3px 0 lightgray;
+  }
+}
