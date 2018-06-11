@@ -1,2 +1,5 @@
 ﻿10 czerwca 2018 - wersja 0.0.1
 Rozpoczęcie pracy nad poprawianiem projektu Audaces - serce ze stali. Ta wersja roboczo nazywa się Audaces - next generations.
+
+11 czerwca 2018 - wersja 0.0.2
+Dołożona została animacja znikającej nazwy studia oraz pojawiającego się tytułu gry.
