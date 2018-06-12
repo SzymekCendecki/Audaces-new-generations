@@ -38,10 +38,7 @@ nav, #mainPart, #alerts{
     height: 78vh;
 }
 
-.border{
-  border: 1px solid black;
-}
-
+//style dla głównego kontenera zawierającego header, nav, mainPart, alert i footer
 .grid-display{
   width: 1300px;
   margin: 0 auto;
@@ -51,7 +48,6 @@ nav, #mainPart, #alerts{
 }
 
 //style dla intra
-
 body{
   background: lightgray;
 }
@@ -80,4 +76,32 @@ body{
                  0 3px 0 #787878,
                  0 4px 0 #9f9f9f;
   }
+}
+
+//style dla tytułu gry
+.medievalText{
+  font-family: 'MedievalSharp', cursive;
+  text-align: center;
+}
+
+.gameTitle{
+  color: green;
+  font-weight: bold;
+  font-size: 7em;
+  margin-top: 22vh;
+  font-style: italic;
+  text-shadow: 0 1px 0 #66FF00,
+               0 2px 0 #99FF33,
+               0 3px 0 #CCFF66,
+               0 4px 0 #FFFF99,
+}
+
+.subGameTitle{
+  font-weight: bold;
+  font-size: 2.5em;
+  font-style: italic;
+  text-shadow: 0 1px 0 #484848,
+               0 2px 0 #606060,
+               0 3px 0 #787878,
+               0 4px 0 #9f9f9f;
 }

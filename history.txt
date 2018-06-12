@@ -3,3 +3,6 @@ Rozpoczęcie pracy nad poprawianiem projektu Audaces - serce ze stali. Ta wersja
 
 11 czerwca 2018 - wersja 0.0.2
 Dołożona została animacja znikającej nazwy studia oraz pojawiającego się tytułu gry.
+
+12 czerwca 2018 - wersja 0.0.3
+Dodane zostały komentarze do kodu, tytuł i podtytuł gry, animacje, kolory, nowa czcionka - intro ukończone.

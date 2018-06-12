@@ -85,10 +85,15 @@ document.addEventListener("DOMContentLoaded", function () {
 
   //pokazanie tytułu i podtytułu gry
   setTimeout(function () {
-    $("#studioTitle h2").replaceWith("<h2>Audaces</h2>");
-    $("#studioTitle h3").replaceWith("<h3>serce z żelaza</h3>");
+    $("#studioTitle h2").replaceWith("<p class='medievalText gameTitle'>Audaces</p>");
+    $("#studioTitle h3").replaceWith("<p class='medievalText subGameTitle'>serce z żelaza</p>");
     $("#studioTitle").fadeIn(6000);
+    $("#studioTitle").delay(2000).fadeOut(6000);
   }, 6200);
+
+  setTimeout(function () {
+    $("body").css("backgroundColor", "beige");
+  }, 19000);
 });
 
 /***/ })
