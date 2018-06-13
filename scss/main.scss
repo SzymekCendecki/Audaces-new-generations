@@ -105,3 +105,113 @@ body{
                0 3px 0 #787878,
                0 4px 0 #9f9f9f;
 }
+
+//style dla nawigacji i nagłówka
+nav{
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  align-content: flex-start;
+}
+
+#titleGameHeader{
+  width: 100%;
+  font-family: 'MedievalSharp', cursive;
+  text-align: center;
+  color: green;
+  font-weight: bold;
+  font-size: 1.7em;
+  font-style: italic;
+  text-shadow: 0 1px 0 #66FF00,
+               0 2px 0 #99FF33,
+               0 3px 0 #CCFF66,
+               0 4px 0 #FFFF99;
+}
+
+#subTitleGameHeader{
+  width: 100%;
+  text-align: center;
+  font-weight: bold;
+  font-style: italic;
+  color: black;
+  font-size: 0.7em;
+  text-shadow: 0 1px 0 lightgray,
+                0 2px 0 #fff;
+}
+
+//podstawowy styl dla przycisku
+.basicBtn{
+  width: 40%;
+  height: 7%;
+  font-weight: bold;
+  font-size: 1.05em;
+  text-shadow: 1px 1px white;
+}
+
+//dodatkowe style dla przycisków pierwszego menu
+.btnInfo{
+  background: linear-gradient(#FFF, #FF8C00);
+  box-shadow: 0 1px 0 #606060,
+              0 2px 0 #606060,
+               0 3px 0 #838383,
+               0 4px 0 #838383,
+               0 5px 0 #a6a6a6,
+               0 5px 0 #a6a6a6,
+               0 6px 0 #ededed,
+               0 7px 0 #ededed;
+}
+
+.btnLicence{
+  background: linear-gradient(#FFF, #8A2BE2);
+  box-shadow: 0 1px 0 #606060,
+              0 2px 0 #606060,
+               0 3px 0 #838383,
+               0 4px 0 #838383,
+               0 5px 0 #a6a6a6,
+               0 5px 0 #a6a6a6,
+               0 6px 0 #ededed,
+               0 7px 0 #ededed;
+}
+
+.btnTutorial{
+   background: linear-gradient(#FFF, #BDB76B);
+   margin-top: 1.75vh;
+   box-shadow: 0 1px 0 #606060,
+               0 2px 0 #606060,
+                0 3px 0 #838383,
+                0 4px 0 #838383,
+                0 5px 0 #a6a6a6,
+                0 5px 0 #a6a6a6,
+                0 6px 0 #ededed,
+                0 7px 0 #ededed;
+ }
+
+.btnNewGame{
+  background: linear-gradient(#FFF, green);
+  margin-top: 1.75vh;
+  box-shadow: 0 1px 0 #606060,
+              0 2px 0 #606060,
+               0 3px 0 #838383,
+               0 4px 0 #838383,
+               0 5px 0 #a6a6a6,
+               0 5px 0 #a6a6a6,
+               0 6px 0 #ededed,
+               0 7px 0 #ededed;
+}
+
+.btnInfo:hover, .btnLicence:hover, .btnTutorial:hover, .btnNewGame:hover{
+  color: white;
+  text-shadow: 1px 1px black;
+}
+
+.btnInfo:active, .btnLicence:active, .btnTutorial:active, .btnNewGame:active{
+  transform: translate(0, 4px);
+  box-shadow:  0 1px 0 #a6a6a6,
+               0 2px 0 #a6a6a6,
+               0 3px 0 #ededed,
+               0 4px 0 #ededed;
+}
+//likwidacja niebieskiego obramowania, gdy wciska się przycisk
+.btnInfo:focus, .btnLicence:focus, .btnTutorial:focus, .btnNewGame:focus{
+  outline: none;
+}

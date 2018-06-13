@@ -6,3 +6,6 @@ Dołożona została animacja znikającej nazwy studia oraz pojawiającego się t
 
 12 czerwca 2018 - wersja 0.0.3
 Dodane zostały komentarze do kodu, tytuł i podtytuł gry, animacje, kolory, nowa czcionka - intro ukończone.
+
+13 czerwca 2018 - wersja 0.0.4
+Dodane przyciski pierwszego menu oraz tytuł gry w nagłówku.
