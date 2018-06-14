@@ -9,3 +9,6 @@ Dodane zostały komentarze do kodu, tytuł i podtytuł gry, animacje, kolory, no
 
 13 czerwca 2018 - wersja 0.0.4
 Dodane przyciski pierwszego menu oraz tytuł gry w nagłówku.
+
+14 czerwca 2018 - wersja 0.0.5
+Dodane funkcje dla przycisków info, licencja, tutorial oraz nowa wersja tekstu dla info i tutoriala, właściwe dla tej wersji gry, zostały poprawione literówki w licencji.

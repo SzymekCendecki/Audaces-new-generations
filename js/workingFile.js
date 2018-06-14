@@ -1,3 +1,5 @@
+let intro = require("./firstMenu.js");
+
 document.addEventListener("DOMContentLoaded", () => {
 console.log("NIEWIERNE PSY RULEZ!!!!");
 
@@ -45,8 +47,28 @@ setTimeout(()=>{
     $("#licence").addClass("btnLicence");
     $("#tutorial").addClass("btnTutorial");
     $("#newGame").addClass("btnNewGame");
+		createNewElementAppend("p", "textHello", intro.textHello, $("#mainPart"));
+		$("#textHello").addClass("basicText");
 }, 20000);
 
+//funkcje dla pierwszego menu
+$("#info").on("click", () =>{
+	$("#mainPart").children("p").remove();
+  createNewElementAppend("p", "textInfo", intro.textInfo, $("#mainPart"));
+	$("#textInfo").addClass("basicText");
+});
+
+$("#licence").on("click", () =>{
+	$("#mainPart").children("p").remove();
+  createNewElementAppend("p", "textLicence", intro.textLicence, $("#mainPart"));
+	$("#textLicence").addClass("basicText");
+});
+
+$("#tutorial").on("click", () =>{
+	$("#mainPart").children("p").remove();
+  createNewElementAppend("p", "textTutorial", intro.textTutorial, $("#mainPart"));
+	$("#textTutorial").addClass("basicText");
+});
 
 
 });
