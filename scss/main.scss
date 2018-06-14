@@ -204,7 +204,7 @@ nav{
   text-shadow: 1px 1px black;
 }
 
-.btnInfo:active, .btnLicence:active, .btnTutorial:active, .btnNewGame:active{
+.btnInfo:active, .btnLicence:active, .btnTutorial:active, .btnNewGame:active, #prev:active, #next:active{
   transform: translate(0, 4px);
   box-shadow:  0 1px 0 #a6a6a6,
                0 2px 0 #a6a6a6,
@@ -223,4 +223,24 @@ nav{
   margin-top: 2%;
   font-size: 1.3em;
   text-shadow: 1px 1px white;
+}
+
+//style dla przycisków kreatora - poprzedni i następny
+#next, #prev{
+  box-shadow: 0 1px 0 #606060,
+              0 2px 0 #606060,
+               0 3px 0 #838383,
+               0 4px 0 #838383,
+               0 5px 0 #a6a6a6,
+               0 5px 0 #a6a6a6,
+               0 6px 0 #ededed,
+               0 7px 0 #ededed;
+}
+
+#prev{
+  background: linear-gradient(gold, chocolate);
+}
+
+#next{
+  background: linear-gradient(greenyellow, green);
 }

@@ -12,3 +12,6 @@ Dodane przyciski pierwszego menu oraz tytuł gry w nagłówku.
 
 14 czerwca 2018 - wersja 0.0.5
 Dodane funkcje dla przycisków info, licencja, tutorial oraz nowa wersja tekstu dla info i tutoriala, właściwe dla tej wersji gry, zostały poprawione literówki w licencji.
+
+14 czerwca 2018 - wersja 0.0.6
+Dodana została funkcja do przycisku Nowa Gra - usuwa przyciki i tekst z pierwszego menu oraz dodaje dwa przyciski slidera.

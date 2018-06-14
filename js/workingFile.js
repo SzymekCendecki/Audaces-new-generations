@@ -70,5 +70,14 @@ $("#tutorial").on("click", () =>{
 	$("#textTutorial").addClass("basicText");
 });
 
+//przycisk nowej gry - tworzenie kretora postaci
+$("#newGame").on("click", () =>{
+	$("#mainPart").children("p").remove();
+	$("nav").children("button").remove();
+	createNewElementAppend("button", "prev", "poprzedni", $("nav"));
+	createNewElementAppend("button", "next", "następny", $("nav"));
+	$("#prev, #next").addClass("basicBtn");
+});
+
 
 });

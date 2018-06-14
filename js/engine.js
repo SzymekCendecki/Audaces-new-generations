@@ -77,7 +77,7 @@ module.exports = __webpack_require__(1);
 "use strict";
 
 
-var intro = __webpack_require__(3);
+var intro = __webpack_require__(2);
 
 document.addEventListener("DOMContentLoaded", function () {
   console.log("NIEWIERNE PSY RULEZ!!!!");
@@ -148,11 +148,19 @@ document.addEventListener("DOMContentLoaded", function () {
     createNewElementAppend("p", "textTutorial", intro.textTutorial, $("#mainPart"));
     $("#textTutorial").addClass("basicText");
   });
+
+  //przycisk nowej gry - tworzenie kretora postaci
+  $("#newGame").on("click", function () {
+    $("#mainPart").children("p").remove();
+    $("nav").children("button").remove();
+    createNewElementAppend("button", "prev", "poprzedni", $("nav"));
+    createNewElementAppend("button", "next", "następny", $("nav"));
+    $("#prev, #next").addClass("basicBtn");
+  });
 });
 
 /***/ }),
-/* 2 */,
-/* 3 */
+/* 2 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
