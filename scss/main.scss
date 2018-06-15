@@ -149,6 +149,10 @@ nav{
 }
 
 //dodatkowe style dla przycisków pierwszego menu
+.btnInfo, .btnLicence, .btnTutorial, .btnNewGame{
+  z-index: 0;
+}
+
 .btnInfo{
   background: linear-gradient(#FFF, #FF8C00);
   box-shadow: 0 1px 0 #606060,
@@ -204,15 +208,17 @@ nav{
   text-shadow: 1px 1px black;
 }
 
-.btnInfo:active, .btnLicence:active, .btnTutorial:active, .btnNewGame:active, #prev:active, #next:active{
+//"symoulacja" wciśnięcia przycisków
+.btnInfo:active, .btnLicence:active, .btnTutorial:active, .btnNewGame:active, #name:active, #race:active, #occupation:active, #features:active, #features2:active, #equipment:active, #skills:active, #infoCreator:active, #acceptName:active{
   transform: translate(0, 4px);
   box-shadow:  0 1px 0 #a6a6a6,
                0 2px 0 #a6a6a6,
                0 3px 0 #ededed,
                0 4px 0 #ededed;
 }
+
 //likwidacja niebieskiego obramowania, gdy wciska się przycisk
-.btnInfo:focus, .btnLicence:focus, .btnTutorial:focus, .btnNewGame:focus{
+.btnInfo:focus, .btnLicence:focus, .btnTutorial:focus, .btnNewGame:focus, #acceptName:focus{
   outline: none;
 }
 
@@ -225,8 +231,9 @@ nav{
   text-shadow: 1px 1px white;
 }
 
-//style dla przycisków kreatora - poprzedni i następny
-#next, #prev{
+//style dla przycisków kreatora postaci
+#name, #race, #occupation, #features, #features2, #equipment, #skills, #infoCreator{
+  z-index: 1;
   box-shadow: 0 1px 0 #606060,
               0 2px 0 #606060,
                0 3px 0 #838383,
@@ -237,10 +244,55 @@ nav{
                0 7px 0 #ededed;
 }
 
-#prev{
-  background: linear-gradient(gold, chocolate);
+#occupation, #features, #features2, #equipment, #skills, #infoCreator{
+  margin-top: 1.5vh;
 }
 
-#next{
-  background: linear-gradient(greenyellow, green);
+#name{ background: linear-gradient(#CC99FF, #9900CC); }
+#race{ background: linear-gradient(#FF0033, #990033); }
+#occupation{ background: linear-gradient(#66CCCC, #006666); }
+#features{ background: linear-gradient(#66CC66, #339966); }
+#features2{ background: linear-gradient(#66CC33, #006600); }
+#equipment{ background: linear-gradient(#CCFF00, #666600); font-size: 0.85em; }
+#skills{ background: linear-gradient(#CCCC99, #666633); font-size: 0.77em; }
+#infoCreator{ background: linear-gradient(#878787, #3A3A3A); }
+
+.goldUnderline{
+  text-decoration: underline;
+  text-decoration-color: gold;
+}
+
+//style dla części nadawania imienia
+#nameDescription{
+  margin-top: 2%;
+  font-weight: bold;
+  font-size: 1.1em;
+}
+
+#giveName{
+  margin-top: 5%;
+  margin-left: 25%;
+  height: 4.6%;
+  text-align: center;
+  font-weight: bold;
+  font-size: 1.1em;
+}
+
+#acceptName{
+  width: 20%;
+  height: 6.5%;
+  background: linear-gradient(#33FF00, #006600);
+  color: white;
+  text-shadow: 1px 1px black;
+  font-weight: bold;
+  font-size: 1.1em;
+  margin-left: 5%;
+  box-shadow: 0 1px 0 #606060,
+              0 2px 0 #606060,
+               0 3px 0 #838383,
+               0 4px 0 #838383,
+               0 5px 0 #a6a6a6,
+               0 5px 0 #a6a6a6,
+               0 6px 0 #ededed,
+               0 7px 0 #ededed;
 }

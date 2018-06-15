@@ -78,85 +78,106 @@ module.exports = __webpack_require__(1);
 
 
 var intro = __webpack_require__(2);
+var heroCreator = __webpack_require__(3);
 
 document.addEventListener("DOMContentLoaded", function () {
-  console.log("NIEWIERNE PSY RULEZ!!!!");
+	console.log("NIEWIERNE PSY RULEZ!!!!");
 
-  //funkcja, która tworzy nowy element DOM
-  function createNewElementAppend(nameElement, idName, text, whereAppend) {
-    var newElement = document.createElement(nameElement);
-    newElement.id = idName;
-    newElement.innerText = text;
-    whereAppend.append(newElement);
-  }
+	//funkcja, która tworzy nowy element DOM
+	function createNewElementAppend(nameElement, idName, text, whereAppend) {
+		var newElement = document.createElement(nameElement);
+		newElement.id = idName;
+		newElement.innerText = text;
+		whereAppend.append(newElement);
+	}
 
-  //utworzenie przycisków pierwszego menu
-  createNewElementAppend("p", "titleGameHeader", "AUDACES", $("header"));
-  createNewElementAppend("p", "subTitleGameHeader", "serce ze stali", $("#titleGameHeader"));
-  createNewElementAppend("button", "info", "info", $("nav"));
-  createNewElementAppend("button", "licence", "licencja", $("nav"));
-  createNewElementAppend("button", "tutorial", "tutorial", $("nav"));
-  createNewElementAppend("button", "newGame", "Nowa Gra", $("nav"));
+	//utworzenie przycisków pierwszego menu
+	createNewElementAppend("p", "titleGameHeader", "AUDACES", $("header"));
+	createNewElementAppend("p", "subTitleGameHeader", "serce ze stali", $("#titleGameHeader"));
+	createNewElementAppend("button", "info", "info", $("nav"));
+	createNewElementAppend("button", "licence", "licencja", $("nav"));
+	createNewElementAppend("button", "tutorial", "tutorial", $("nav"));
+	createNewElementAppend("button", "newGame", "Nowa Gra", $("nav"));
 
-  //showanie przycisków pierszego menu
-  $("#info, #licence, #tutorial, #newGame, #titleGameHeader, #subTitleGameHeader").hide();
+	//utworzenie przycisków kreatora
+	createNewElementAppend("button", "name", "imię", $("nav"));
+	createNewElementAppend("button", "race", "rasa", $("nav"));
+	createNewElementAppend("button", "occupation", "profesja", $("nav"));
+	createNewElementAppend("button", "features", "cechy", $("nav"));
+	createNewElementAppend("button", "features2", "cechy 2", $("nav"));
+	createNewElementAppend("button", "equipment", "ekwipunek", $("nav"));
+	createNewElementAppend("button", "skills", "umiejętności", $("nav"));
+	createNewElementAppend("button", "infoCreator", "info", $("nav"));
 
-  //schowanie i usunięcie nazwy studia oraz sentencji
-  $("#studioTitle").fadeOut(6000);
+	//showanie przycisków pierszego menu
+	$("#info, #licence, #tutorial, #newGame, #titleGameHeader, #subTitleGameHeader").hide();
 
-  //pokazanie tytułu i podtytułu gry
-  setTimeout(function () {
-    $("#studioTitle h2").replaceWith("<p class='medievalText gameTitle'>Audaces</p>");
-    $("#studioTitle h3").replaceWith("<p class='medievalText subGameTitle'>serce z żelaza</p>");
-    $("#studioTitle").fadeIn(6000);
-    $("#studioTitle").delay(2000).fadeOut(6000);
-  }, 6200);
+	//schowanie przycisków kreatora
+	$("#name, #race, #occupation, #features, #features2, #equipment, #skills, #infoCreator").hide();
 
-  //zmiana koloru tła na beżowy
-  setTimeout(function () {
-    $("body").css("backgroundColor", "beige");
-  }, 19000);
+	//schowanie i usunięcie nazwy studia oraz sentencji
+	$("#studioTitle").fadeOut(6000);
 
-  //usunięcie diva o id studioTitle
-  setTimeout(function () {
-    $("#studioTitle").remove();
-    $("#titleGameHeader, #subTitleGameHeader").fadeIn(1500);
-    $("#info, #licence, #tutorial, #newGame").fadeIn(1500).addClass("basicBtn");
-    $("#info").addClass("btnInfo");
-    $("#licence").addClass("btnLicence");
-    $("#tutorial").addClass("btnTutorial");
-    $("#newGame").addClass("btnNewGame");
-    createNewElementAppend("p", "textHello", intro.textHello, $("#mainPart"));
-    $("#textHello").addClass("basicText");
-  }, 20000);
+	//pokazanie tytułu i podtytułu gry
+	setTimeout(function () {
+		$("#studioTitle h2").replaceWith("<p class='medievalText gameTitle'>Audaces</p>");
+		$("#studioTitle h3").replaceWith("<p class='medievalText subGameTitle'>serce z żelaza</p>");
+		$("#studioTitle").fadeIn(6000);
+		$("#studioTitle").delay(2000).fadeOut(6000);
+	}, 6200);
 
-  //funkcje dla pierwszego menu
-  $("#info").on("click", function () {
-    $("#mainPart").children("p").remove();
-    createNewElementAppend("p", "textInfo", intro.textInfo, $("#mainPart"));
-    $("#textInfo").addClass("basicText");
-  });
+	//zmiana koloru tła na beżowy
+	setTimeout(function () {
+		$("body").css("backgroundColor", "beige");
+	}, 19000);
 
-  $("#licence").on("click", function () {
-    $("#mainPart").children("p").remove();
-    createNewElementAppend("p", "textLicence", intro.textLicence, $("#mainPart"));
-    $("#textLicence").addClass("basicText");
-  });
+	//usunięcie diva o id studioTitle
+	setTimeout(function () {
+		$("#studioTitle").remove();
+		$("#titleGameHeader, #subTitleGameHeader").fadeIn(1500);
+		$("#info, #licence, #tutorial, #newGame").fadeIn(1500).addClass("basicBtn");
+		$("#info").addClass("btnInfo");
+		$("#licence").addClass("btnLicence");
+		$("#tutorial").addClass("btnTutorial");
+		$("#newGame").addClass("btnNewGame");
+		createNewElementAppend("p", "textHello", intro.textHello, $("#mainPart"));
+		$("#textHello").addClass("basicText");
+	}, 20000);
 
-  $("#tutorial").on("click", function () {
-    $("#mainPart").children("p").remove();
-    createNewElementAppend("p", "textTutorial", intro.textTutorial, $("#mainPart"));
-    $("#textTutorial").addClass("basicText");
-  });
+	//funkcje dla pierwszego menu
+	$("#info").on("click", function () {
+		$("#mainPart").children("p").remove();
+		createNewElementAppend("p", "textInfo", intro.textInfo, $("#mainPart"));
+		$("#textInfo").addClass("basicText");
+	});
 
-  //przycisk nowej gry - tworzenie kretora postaci
-  $("#newGame").on("click", function () {
-    $("#mainPart").children("p").remove();
-    $("nav").children("button").remove();
-    createNewElementAppend("button", "prev", "poprzedni", $("nav"));
-    createNewElementAppend("button", "next", "następny", $("nav"));
-    $("#prev, #next").addClass("basicBtn");
-  });
+	$("#licence").on("click", function () {
+		$("#mainPart").children("p").remove();
+		createNewElementAppend("p", "textLicence", intro.textLicence, $("#mainPart"));
+		$("#textLicence").addClass("basicText");
+	});
+
+	$("#tutorial").on("click", function () {
+		$("#mainPart").children("p").remove();
+		createNewElementAppend("p", "textTutorial", intro.textTutorial, $("#mainPart"));
+		$("#textTutorial").addClass("basicText");
+	});
+
+	//przycisk nowej gry - tworzenie kretora postaci
+	$("#newGame").on("click", function () {
+		$("#mainPart").children("p").remove();
+		$("#info, #licence, #tutorial, #newGame").fadeOut();
+		$("#name, #race, #occupation, #features, #features2, #equipment, #skills, #infoCreator").fadeIn();
+		$("#name, #race, #occupation, #features, #features2, #equipment, #skills, #infoCreator").addClass("basicBtn");
+
+		$("#name").on("click", function () {
+			createNewElementAppend("p", "nameTitle", heroCreator.nameTitle, $("#mainPart"));
+			createNewElementAppend("p", "nameDescription", heroCreator.nameDescription, $("#mainPart"));
+			$("#nameTitle").addClass("goldUnderline basicText");
+			createNewElementAppend("input", "giveName", "", $("#mainPart"));
+			createNewElementAppend("button", "acceptName", "zatwierdź", $("#mainPart"));
+		});
+	});
 });
 
 /***/ }),
@@ -177,6 +198,16 @@ module.exports.textLicence = "UMOWA LICENCYJNA UŻYTKOWNIKA APLIKACJI AUDACES (o
 
 //tekst dla tutorialu
 module.exports.textTutorial = "Początek gry. Ekran składa się z powitania oraz czterech przycisków. Po wciśnięciu przycisku Info, Licencja lub Tutorial obok pojawi się odpowiednia informacja. Po wciśnięciu przycisku Nowa gra, użytkownik rozpocznie grę. Po rozpoczęciu gry, użytkownik będzie mógł stworzyć swoją. Po stworzeniu postaci, użytkownik przejdze do gry. Ekran będzie podzielony na część z przyciskami, główną, w której będzie rozgrywała się gra oraz na część z komunikatami. Część z przyciskami będzie posiadała przyciski umożliwiające dostęp do cech postaci, ekwipunku, umiejętności itd. oraz do opcji, które będzie mógł wybrać w trakcie gry. W głównej części pojawi się główna gra. Na jej podstawie gracz będzie mógł dokonywać wyborów z listy przycików. W części komunikatów będą pojawiać się komunikaty dotyczące podjętych działań.";
+
+/***/ }),
+/* 3 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+module.exports.nameTitle = "Wybór imienia.";
+module.exports.nameDescription = "Wpisz w pole niżej swoje imię oraz wciśnij przycisk 'zatwierdź'. Możesz wpisać tylko litery, cyfry nie będą barne pod uwagę. Imię można zmieniać dowolną ilość razy.";
 
 /***/ })
 /******/ ]);

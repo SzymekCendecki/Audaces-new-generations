@@ -15,3 +15,6 @@ Dodane funkcje dla przycisków info, licencja, tutorial oraz nowa wersja tekstu 
 
 14 czerwca 2018 - wersja 0.0.6
 Dodana została funkcja do przycisku Nowa Gra - usuwa przyciki i tekst z pierwszego menu oraz dodaje dwa przyciski slidera.
+
+15 czerwca 2018 - wersja 0.0.7
+Usunięto dwa przyciski od slidera - zrezygnowano ze slidera jako kreatora postaci. Dodano przyciski kreatora postaci. Przeorganizowano kod, aby ułatwić późniejsze tworzenie gry.

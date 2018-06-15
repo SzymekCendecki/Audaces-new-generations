@@ -1,4 +1,5 @@
 let intro = require("./firstMenu.js");
+let heroCreator = require("./heroCreator.js");
 
 document.addEventListener("DOMContentLoaded", () => {
 console.log("NIEWIERNE PSY RULEZ!!!!");
@@ -19,8 +20,21 @@ function createNewElementAppend(nameElement, idName, text, whereAppend){
   createNewElementAppend("button", "tutorial", "tutorial", $("nav"));
   createNewElementAppend("button", "newGame", "Nowa Gra", $("nav"));
 
+	//utworzenie przycisków kreatora
+	createNewElementAppend("button", "name", "imię", $("nav"));
+	createNewElementAppend("button", "race", "rasa", $("nav"));
+	createNewElementAppend("button", "occupation", "profesja", $("nav"));
+	createNewElementAppend("button", "features", "cechy", $("nav"));
+	createNewElementAppend("button", "features2", "cechy 2", $("nav"));
+	createNewElementAppend("button", "equipment", "ekwipunek", $("nav"));
+	createNewElementAppend("button", "skills", "umiejętności", $("nav"));
+	createNewElementAppend("button", "infoCreator", "info", $("nav"));
+
 //showanie przycisków pierszego menu
 $("#info, #licence, #tutorial, #newGame, #titleGameHeader, #subTitleGameHeader").hide();
+
+//schowanie przycisków kreatora
+$("#name, #race, #occupation, #features, #features2, #equipment, #skills, #infoCreator").hide();
 
 //schowanie i usunięcie nazwy studia oraz sentencji
 $("#studioTitle").fadeOut(6000);
@@ -73,10 +87,17 @@ $("#tutorial").on("click", () =>{
 //przycisk nowej gry - tworzenie kretora postaci
 $("#newGame").on("click", () =>{
 	$("#mainPart").children("p").remove();
-	$("nav").children("button").remove();
-	createNewElementAppend("button", "prev", "poprzedni", $("nav"));
-	createNewElementAppend("button", "next", "następny", $("nav"));
-	$("#prev, #next").addClass("basicBtn");
+	$("#info, #licence, #tutorial, #newGame").fadeOut();
+	$("#name, #race, #occupation, #features, #features2, #equipment, #skills, #infoCreator").fadeIn();
+	$("#name, #race, #occupation, #features, #features2, #equipment, #skills, #infoCreator").addClass("basicBtn");
+
+	$("#name").on("click", function(){
+		createNewElementAppend("p", "nameTitle", heroCreator.nameTitle, $("#mainPart"));
+		createNewElementAppend("p", "nameDescription", heroCreator.nameDescription, $("#mainPart"));
+		$("#nameTitle").addClass("goldUnderline basicText");
+		createNewElementAppend("input", "giveName", "", $("#mainPart"));
+		createNewElementAppend("button", "acceptName", "zatwierdź", $("#mainPart"));
+	});
 });
 
 
