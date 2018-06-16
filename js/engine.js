@@ -109,6 +109,16 @@ document.addEventListener("DOMContentLoaded", function () {
 	createNewElementAppend("button", "skills", "umiejętności", $("nav"));
 	createNewElementAppend("button", "infoCreator", "info", $("nav"));
 
+	//tablice
+	// tablica postaci 0 - imię, 1 - rasa, 2 - profesja, 3 - siła, 4 - wytrzymałość, 5 - zręczność, 6 - inteligencja, 7 - charyzma, 8 - płeć, 9 - kolor włosów, 10 - kolor oczu, 11 - waga, 12 - wzrost, 13 - kolor skóry
+	var hero = [];
+
+	//tablica ekwipunku max 5 elementów
+	var equip = [];
+
+	//tablica umiejętności max 3 elementy
+	var skills = [];
+
 	//showanie przycisków pierszego menu
 	$("#info, #licence, #tutorial, #newGame, #titleGameHeader, #subTitleGameHeader").hide();
 
@@ -165,20 +175,85 @@ document.addEventListener("DOMContentLoaded", function () {
 
 	//przycisk nowej gry - tworzenie kretora postaci
 	$("#newGame").on("click", function () {
-		$("#mainPart").children("p").remove();
+		$("#mainPart").empty();
 		$("#info, #licence, #tutorial, #newGame").fadeOut();
 		$("#name, #race, #occupation, #features, #features2, #equipment, #skills, #infoCreator").fadeIn();
 		$("#name, #race, #occupation, #features, #features2, #equipment, #skills, #infoCreator").addClass("basicBtn");
 
+		//tworzenie czerwonych paragrafów w części alertowej - zmieniają kolor na zielony po wybraniu
+		createNewElementAppend("p", "nameAlert", heroCreator.nameAlert, $("#alerts"));
+		createNewElementAppend("p", "raceAlert", heroCreator.raceAlert, $("#alerts"));
+		$("#nameAlert, #raceAlert").addClass("redText");
+
+		//zdarzenia dla przycisku imię (name)
 		$("#name").on("click", function () {
+			$("#mainPart").empty();
 			createNewElementAppend("p", "nameTitle", heroCreator.nameTitle, $("#mainPart"));
-			createNewElementAppend("p", "nameDescription", heroCreator.nameDescription, $("#mainPart"));
 			$("#nameTitle").addClass("goldUnderline basicText");
+			createNewElementAppend("p", "nameDescription", heroCreator.nameDescription, $("#mainPart"));
 			createNewElementAppend("input", "giveName", "", $("#mainPart"));
 			createNewElementAppend("button", "acceptName", "zatwierdź", $("#mainPart"));
-		});
-	});
-});
+			$("#acceptName").on("click", function () {
+				var nameInput = $("#giveName").val().replace(/\d/g, '');
+				if (nameInput == "") {
+					$("#nameAlert").addClass("redText");
+				} else {
+					hero.splice(0, 1, nameInput);
+					$("#nameAlert").addClass("greenText");
+				}
+			});
+		}); //koniec zdarzeń dla przycisku imię
+
+		//zdarzenia dla przyciku rasa (race)
+		$("#race").on("click", function () {
+			$("#mainPart").empty();
+			createNewElementAppend("p", "raceTitle", heroCreator.raceTitle, $("#mainPart"));
+			$("#raceTitle").addClass("goldUnderline basicText");
+
+			createNewElementAppend("p", "raceDescription", heroCreator.raceDescription, $("#mainPart"));
+
+			createNewElementAppend("button", "human", "człowiek", $("#mainPart"));
+			createNewElementAppend("button", "elv", "elf", $("#mainPart"));
+			createNewElementAppend("button", "dwarf", "krasnolud", $("#mainPart"));
+			createNewElementAppend("button", "orc", "ork", $("#mainPart"));
+
+			$("#human, #elv, #dwarf, #orc").addClass("basicBtn");
+
+			createNewElementAppend("p", "choosenRaceDescription", "", $("#mainPart"));
+
+			$("#human").on("click", function () {
+				hero.splice(1, 1, "człowiek");
+				$("#raceAlert").addClass("greenText");
+				$("#choosenRaceDescription").text(heroCreator.human);
+			});
+
+			$("#elv").on("click", function () {
+				hero.splice(1, 1, "elf");
+				$("#raceAlert").addClass("greenText");
+				$("#choosenRaceDescription").text(heroCreator.elv);
+			});
+
+			$("#dwarf").on("click", function () {
+				hero.splice(1, 1, "krasnolud");
+				$("#raceAlert").addClass("greenText");
+				$("#choosenRaceDescription").text(heroCreator.dwarf);
+			});
+
+			$("#orc").on("click", function () {
+				hero.splice(1, 1, "ork");
+				$("#raceAlert").addClass("greenText");
+				$("#choosenRaceDescription").text(heroCreator.orc);
+			});
+		}); //koniec zdarzeń dla przycisku rasa
+
+
+		//zdarzenia dla przyciku profesja (occupation)
+		$("#occupation").on("click", function () {
+			$("#mainPart").empty();
+		}); //koniec zdarzeń dla przycisku profesja
+	}); //koniec przycisku nowa gra (newGame)
+
+}); //koniec DOMContentLoaded
 
 /***/ }),
 /* 2 */
@@ -206,8 +281,26 @@ module.exports.textTutorial = "Początek gry. Ekran składa się z powitania ora
 "use strict";
 
 
+//tekst dla wyboru imienia
 module.exports.nameTitle = "Wybór imienia.";
 module.exports.nameDescription = "Wpisz w pole niżej swoje imię oraz wciśnij przycisk 'zatwierdź'. Możesz wpisać tylko litery, cyfry nie będą barne pod uwagę. Imię można zmieniać dowolną ilość razy.";
+
+//tekst dla wyboru rasy
+module.exports.raceTitle = "Wybór rasy.";
+module.exports.raceDescription = "Poniżej znajdują się cztery przyciski. Dzięki nim wybierzesz rasę, która Cię interesuje. Po klinkięciu w przycisk pojawi się krótki opis wybranej rasy.";
+
+//opis wybranych ras
+module.exports.human = "Człowiek jedna z najbardziej licznych ras (ustępują jedynie goblinom). Są wszechstronni i wszędobylscy, dlatego też można spotkać ich na wszystkich kontynentach, parających się różnymi profesjami. Podstawowe cechy: wzrost: 150 - 210cm, waga: 40 - 120kg, kolor oczu: najczęściej piwne, szare, brązowe, kolor skóry: od białego do czarnego (wraz z odcieniami), żółta, czerwona, kolor włosów: każdy, wiek: do 100 lat, profesja: każda.";
+
+module.exports.elv = "Elfy to bardzo uzdolnieni czarodzieje. Pomimo olbrzymich umiejętności magicznych, są równie biegli w posługiwaniu się łukiem. Są długowieczni, przez co omyłkowo uznawani są za nieśmiertelnych. Podstawowe cechy: wzrost: 180 - 210cm, waga: 40 - 90kg, kolor oczu: każdy, kolor skóry: każdy, kolor włosów: każdy, wiek: do 1500 lat, profesja: każda, z predyspozycjami do bycia czarodziejem.";
+
+module.exports.dwarf = "Przez swoje specyficzne podejście do rzeczywistości, postrzegani są jako najardziej chamowata rasa świata. Jednakże są wyśmienitymi kowalami, górnikami i wojownikami. Bardzo uczuleni na punkcie krasnoludzkich kobiet, honoru oraz swoich bród. Podstawowe cechy: wzrost: 100 - 145cm, waga: 70 - 100kg, kolor oczu: każdy, kolor skóry: każdy, kolor włosów: każdy, wiek: do 500 lat, profesja: każda, z predyspozycjami do bycia wojownikiem.";
+
+module.exports.orc = "Orki to niezwykle wojownicza rasa. Są w głównej mierze koczownikami, z kastowym podziałem społeczeństwa. Są niechętni każdemu rodzajowi magii, za wyjątkiem magii szamańskiej, do której odnoszą się z nieufnością. Podstawowe cechy: wzrost: 180 - 220cm, waga: 100 - 150kg, kolor oczu: każdy, kolor skóry: każdy, kolor włosów: każdy, wiek: do 80 lat, profesja: każda, z predyspozycjami do bycia wojownikiem.";
+
+//tekst dla alertu wyboru imienia, rasy
+module.exports.nameAlert = "Wybór imienia.";
+module.exports.raceAlert = "Wybór rasy.";
 
 /***/ })
 /******/ ]);

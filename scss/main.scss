@@ -262,13 +262,15 @@ nav{
   text-decoration-color: gold;
 }
 
-//style dla części nadawania imienia
-#nameDescription{
+//style dla części opisowej w kreatorze postaci.
+#nameDescription, #raceDescription, #choosenRaceDescription{
   margin-top: 2%;
   font-weight: bold;
   font-size: 1.1em;
+  text-indent: 3%;
 }
 
+//style dla części nadawania imienia
 #giveName{
   margin-top: 5%;
   margin-left: 25%;
@@ -295,4 +297,15 @@ nav{
                0 5px 0 #a6a6a6,
                0 6px 0 #ededed,
                0 7px 0 #ededed;
+}
+
+//kolor czcionki
+.redText{
+  color: red;
+  font-weight: bold;
+}
+
+.greenText{
+  color: green;
+  font-weight: bold;
 }

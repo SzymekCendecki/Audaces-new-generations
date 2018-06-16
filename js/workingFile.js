@@ -30,6 +30,16 @@ function createNewElementAppend(nameElement, idName, text, whereAppend){
 	createNewElementAppend("button", "skills", "umiejętności", $("nav"));
 	createNewElementAppend("button", "infoCreator", "info", $("nav"));
 
+	//tablice
+	// tablica postaci 0 - imię, 1 - rasa, 2 - profesja, 3 - siła, 4 - wytrzymałość, 5 - zręczność, 6 - inteligencja, 7 - charyzma, 8 - płeć, 9 - kolor włosów, 10 - kolor oczu, 11 - waga, 12 - wzrost, 13 - kolor skóry
+	let hero = [];
+
+	//tablica ekwipunku max 5 elementów
+	let equip = [];
+
+	//tablica umiejętności max 3 elementy
+	let skills = [];
+
 //showanie przycisków pierszego menu
 $("#info, #licence, #tutorial, #newGame, #titleGameHeader, #subTitleGameHeader").hide();
 
@@ -86,19 +96,83 @@ $("#tutorial").on("click", () =>{
 
 //przycisk nowej gry - tworzenie kretora postaci
 $("#newGame").on("click", () =>{
-	$("#mainPart").children("p").remove();
+	$("#mainPart").empty();
 	$("#info, #licence, #tutorial, #newGame").fadeOut();
 	$("#name, #race, #occupation, #features, #features2, #equipment, #skills, #infoCreator").fadeIn();
 	$("#name, #race, #occupation, #features, #features2, #equipment, #skills, #infoCreator").addClass("basicBtn");
 
-	$("#name").on("click", function(){
+//tworzenie czerwonych paragrafów w części alertowej - zmieniają kolor na zielony po wybraniu
+	createNewElementAppend("p", "nameAlert", heroCreator.nameAlert, $("#alerts"));
+	createNewElementAppend("p", "raceAlert", heroCreator.raceAlert, $("#alerts"));
+	$("#nameAlert, #raceAlert").addClass("redText");
+
+//zdarzenia dla przycisku imię (name)
+	$("#name").on("click", ()=>{
+		$("#mainPart").empty();
 		createNewElementAppend("p", "nameTitle", heroCreator.nameTitle, $("#mainPart"));
-		createNewElementAppend("p", "nameDescription", heroCreator.nameDescription, $("#mainPart"));
 		$("#nameTitle").addClass("goldUnderline basicText");
+		createNewElementAppend("p", "nameDescription", heroCreator.nameDescription, $("#mainPart"));
 		createNewElementAppend("input", "giveName", "", $("#mainPart"));
 		createNewElementAppend("button", "acceptName", "zatwierdź", $("#mainPart"));
-	});
-});
+		$("#acceptName").on("click", () =>{
+			let nameInput = $("#giveName").val().replace(/\d/g,'');
+			if(nameInput == ""){
+				$("#nameAlert").addClass("redText");
+			}else{
+			hero.splice(0, 1, nameInput);
+			$("#nameAlert").addClass("greenText");
+		}
+		});
+	});//koniec zdarzeń dla przycisku imię
+
+	//zdarzenia dla przyciku rasa (race)
+	$("#race").on("click", ()=>{
+		$("#mainPart").empty();
+		createNewElementAppend("p", "raceTitle", heroCreator.raceTitle, $("#mainPart"));
+		$("#raceTitle").addClass("goldUnderline basicText");
+
+		createNewElementAppend("p", "raceDescription", heroCreator.raceDescription, $("#mainPart"));
+
+		createNewElementAppend("button", "human", "człowiek", $("#mainPart"));
+		createNewElementAppend("button", "elv", "elf", $("#mainPart"));
+		createNewElementAppend("button", "dwarf", "krasnolud", $("#mainPart"));
+		createNewElementAppend("button", "orc", "ork", $("#mainPart"));
+
+		$("#human, #elv, #dwarf, #orc").addClass("basicBtn");
+
+		createNewElementAppend("p", "choosenRaceDescription", "", $("#mainPart"));
+
+		$("#human").on("click", ()=>{
+				hero.splice(1, 1, "człowiek");
+				$("#raceAlert").addClass("greenText");
+				$("#choosenRaceDescription").text(heroCreator.human);
+		});
+
+		$("#elv").on("click", ()=>{
+				hero.splice(1, 1, "elf");
+				$("#raceAlert").addClass("greenText");
+				$("#choosenRaceDescription").text(heroCreator.elv);
+		});
+
+		$("#dwarf").on("click", ()=>{
+				hero.splice(1, 1, "krasnolud");
+				$("#raceAlert").addClass("greenText");
+				$("#choosenRaceDescription").text(heroCreator.dwarf);
+		});
+
+		$("#orc").on("click", ()=>{
+				hero.splice(1, 1, "ork");
+				$("#raceAlert").addClass("greenText");
+				$("#choosenRaceDescription").text(heroCreator.orc);
+		});
+	});//koniec zdarzeń dla przycisku rasa
 
 
-});
+//zdarzenia dla przyciku profesja (occupation)
+	$("#occupation").on("click", ()=>{
+		$("#mainPart").empty();
+	});//koniec zdarzeń dla przycisku profesja
+}); //koniec przycisku nowa gra (newGame)
+
+
+});//koniec DOMContentLoaded
