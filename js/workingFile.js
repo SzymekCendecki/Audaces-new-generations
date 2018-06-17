@@ -105,7 +105,8 @@ $("#newGame").on("click", () =>{
 	createNewElementAppend("p", "nameAlert", heroCreator.nameAlert, $("#alerts"));
 	createNewElementAppend("p", "raceAlert", heroCreator.raceAlert, $("#alerts"));
 	createNewElementAppend("p", "occupationAlert", heroCreator.occupationAlert, $("#alerts"));
-	$("#nameAlert, #raceAlert, #occupationAlert").addClass("redText");
+	createNewElementAppend("p", "featuresAlert", heroCreator.featuresAlert, $("#alerts"));
+	$("#nameAlert, #raceAlert, #occupationAlert, #featuresAlert").addClass("redText");
 
 //zdarzenia dla przycisku imię (name)
 	$("#name").on("click", ()=>{
@@ -189,12 +190,56 @@ $("#newGame").on("click", () =>{
 		});
 
 		$("#wizard").on("click", ()=>{
-				hero.splice(2, 1, "czrodziej");
+				hero.splice(2, 1, "czarodziej");
 				$("#occupationAlert").addClass("greenText");
 				$("#choosenDescription").text(heroCreator.wizard);
 		});
-
 	});//koniec zdarzeń dla przycisku profesja
+
+//przycisk cech część piewrsza - wybieranie siły, wytrzymałości, zręczności, inteligencji i charyzmy
+	$("#features").on("click", function(){
+			$("#mainPart").empty();
+			createNewElementAppend("p", "featuresTitle", heroCreator.featuresTitle, $("#mainPart"));
+			$("#feautresTitle").addClass("goldUnderline basicText");
+			createNewElementAppend("p", "featuresDescription", heroCreator.featuresDescription, $("#mainPart"));
+			createNewElementAppend("button", "force", "siła", $("#mainPart"));
+			createNewElementAppend("button", "strength", "wytrzymałość", $("#mainPart"));
+			createNewElementAppend("button", "dexterity", "zręczność", $("#mainPart"));
+			createNewElementAppend("button", "intelligence", "inteligencja", $("#mainPart"));
+			createNewElementAppend("button", "charisma", "charyzma", $("#mainPart"));
+			$("#force, #strength, #dexterity, #intelligence, #charisma").addClass("basicBtn");
+			createNewElementAppend("p", "choosenDescription", "", $("#mainPart"));
+
+			$("#force").on("click", ()=>{
+				 	let randomForcePoints = Math.round(Math.random()*50);
+					hero.splice(3, 1, randomForcePoints);
+					$("#choosenDescription").text(heroCreator.force);
+			});
+
+			$("#strenght").on("click", ()=>{
+					let randomStrengthPoints = Math.round(Math.random()*50);
+					hero.splice(4, 1, randomStrengthPoints);
+					$("#choosenDescription").text(heroCreator.strength);
+			});
+
+			$("#dexterity").on("click", ()=>{
+					let randomDexterityPoints = Math.round(Math.random()*50);
+					hero.splice(5, 1, randomDexterityPoints);
+					$("#choosenDescription").text(heroCreator.dexterity);
+			});
+
+			$("#intelligence").on("click", ()=>{
+					let randomIntelligencePoints = Math.round(Math.random()*50);
+					hero.splice(6, 1, randomIntelligencePoints);
+					$("#choosenDescription").text(heroCreator.intelligence);
+			});
+
+			$("#charisma").on("click", ()=>{
+					let randomCharismaPoints = Math.round(Math.random()*50);
+					hero.splice(7, 1, randomCharismaPoints);
+					$("#choosenDescription").text(heroCreator.charisma);
+			});
+	});//koniec zdarzeń dla przycisku cech (features) - siły, wytrzymałości, zręczności inteligencji i charyzmy
 }); //koniec przycisku nowa gra (newGame)
 
 

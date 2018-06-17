@@ -81,199 +81,245 @@ var intro = __webpack_require__(2);
 var heroCreator = __webpack_require__(3);
 
 document.addEventListener("DOMContentLoaded", function () {
-	console.log("NIEWIERNE PSY RULEZ!!!!");
+		console.log("NIEWIERNE PSY RULEZ!!!!");
 
-	//funkcja, która tworzy nowy element DOM
-	function createNewElementAppend(nameElement, idName, text, whereAppend) {
-		var newElement = document.createElement(nameElement);
-		newElement.id = idName;
-		newElement.innerText = text;
-		whereAppend.append(newElement);
-	}
+		//funkcja, która tworzy nowy element DOM
+		function createNewElementAppend(nameElement, idName, text, whereAppend) {
+				var newElement = document.createElement(nameElement);
+				newElement.id = idName;
+				newElement.innerText = text;
+				whereAppend.append(newElement);
+		}
 
-	//utworzenie przycisków pierwszego menu
-	createNewElementAppend("p", "titleGameHeader", "AUDACES", $("header"));
-	createNewElementAppend("p", "subTitleGameHeader", "serce ze stali", $("#titleGameHeader"));
-	createNewElementAppend("button", "info", "info", $("nav"));
-	createNewElementAppend("button", "licence", "licencja", $("nav"));
-	createNewElementAppend("button", "tutorial", "tutorial", $("nav"));
-	createNewElementAppend("button", "newGame", "Nowa Gra", $("nav"));
+		//utworzenie przycisków pierwszego menu
+		createNewElementAppend("p", "titleGameHeader", "AUDACES", $("header"));
+		createNewElementAppend("p", "subTitleGameHeader", "serce ze stali", $("#titleGameHeader"));
+		createNewElementAppend("button", "info", "info", $("nav"));
+		createNewElementAppend("button", "licence", "licencja", $("nav"));
+		createNewElementAppend("button", "tutorial", "tutorial", $("nav"));
+		createNewElementAppend("button", "newGame", "Nowa Gra", $("nav"));
 
-	//utworzenie przycisków kreatora
-	createNewElementAppend("button", "name", "imię", $("nav"));
-	createNewElementAppend("button", "race", "rasa", $("nav"));
-	createNewElementAppend("button", "occupation", "profesja", $("nav"));
-	createNewElementAppend("button", "features", "cechy", $("nav"));
-	createNewElementAppend("button", "features2", "cechy 2", $("nav"));
-	createNewElementAppend("button", "equipment", "ekwipunek", $("nav"));
-	createNewElementAppend("button", "skills", "umiejętności", $("nav"));
-	createNewElementAppend("button", "infoCreator", "info", $("nav"));
+		//utworzenie przycisków kreatora
+		createNewElementAppend("button", "name", "imię", $("nav"));
+		createNewElementAppend("button", "race", "rasa", $("nav"));
+		createNewElementAppend("button", "occupation", "profesja", $("nav"));
+		createNewElementAppend("button", "features", "cechy", $("nav"));
+		createNewElementAppend("button", "features2", "cechy 2", $("nav"));
+		createNewElementAppend("button", "equipment", "ekwipunek", $("nav"));
+		createNewElementAppend("button", "skills", "umiejętności", $("nav"));
+		createNewElementAppend("button", "infoCreator", "info", $("nav"));
 
-	//tablice
-	// tablica postaci 0 - imię, 1 - rasa, 2 - profesja, 3 - siła, 4 - wytrzymałość, 5 - zręczność, 6 - inteligencja, 7 - charyzma, 8 - płeć, 9 - kolor włosów, 10 - kolor oczu, 11 - waga, 12 - wzrost, 13 - kolor skóry
-	var hero = [];
+		//tablice
+		// tablica postaci 0 - imię, 1 - rasa, 2 - profesja, 3 - siła, 4 - wytrzymałość, 5 - zręczność, 6 - inteligencja, 7 - charyzma, 8 - płeć, 9 - kolor włosów, 10 - kolor oczu, 11 - waga, 12 - wzrost, 13 - kolor skóry
+		var hero = [];
 
-	//tablica ekwipunku max 5 elementów
-	var equip = [];
+		//tablica ekwipunku max 5 elementów
+		var equip = [];
 
-	//tablica umiejętności max 3 elementy
-	var skills = [];
+		//tablica umiejętności max 3 elementy
+		var skills = [];
 
-	//showanie przycisków pierszego menu
-	$("#info, #licence, #tutorial, #newGame, #titleGameHeader, #subTitleGameHeader").hide();
+		//showanie przycisków pierszego menu
+		$("#info, #licence, #tutorial, #newGame, #titleGameHeader, #subTitleGameHeader").hide();
 
-	//schowanie przycisków kreatora
-	$("#name, #race, #occupation, #features, #features2, #equipment, #skills, #infoCreator").hide();
+		//schowanie przycisków kreatora
+		$("#name, #race, #occupation, #features, #features2, #equipment, #skills, #infoCreator").hide();
 
-	//schowanie i usunięcie nazwy studia oraz sentencji
-	$("#studioTitle").fadeOut(6000);
+		//schowanie i usunięcie nazwy studia oraz sentencji
+		$("#studioTitle").fadeOut(6000);
 
-	//pokazanie tytułu i podtytułu gry
-	setTimeout(function () {
-		$("#studioTitle h2").replaceWith("<p class='medievalText gameTitle'>Audaces</p>");
-		$("#studioTitle h3").replaceWith("<p class='medievalText subGameTitle'>serce z żelaza</p>");
-		$("#studioTitle").fadeIn(6000);
-		$("#studioTitle").delay(2000).fadeOut(6000);
-	}, 6200);
+		//pokazanie tytułu i podtytułu gry
+		setTimeout(function () {
+				$("#studioTitle h2").replaceWith("<p class='medievalText gameTitle'>Audaces</p>");
+				$("#studioTitle h3").replaceWith("<p class='medievalText subGameTitle'>serce z żelaza</p>");
+				$("#studioTitle").fadeIn(6000);
+				$("#studioTitle").delay(2000).fadeOut(6000);
+		}, 6200);
 
-	//zmiana koloru tła na beżowy
-	setTimeout(function () {
-		$("body").css("backgroundColor", "beige");
-	}, 19000);
+		//zmiana koloru tła na beżowy
+		setTimeout(function () {
+				$("body").css("backgroundColor", "beige");
+		}, 19000);
 
-	//usunięcie diva o id studioTitle
-	setTimeout(function () {
-		$("#studioTitle").remove();
-		$("#titleGameHeader, #subTitleGameHeader").fadeIn(1500);
-		$("#info, #licence, #tutorial, #newGame").fadeIn(1500).addClass("basicBtn");
-		$("#info").addClass("btnInfo");
-		$("#licence").addClass("btnLicence");
-		$("#tutorial").addClass("btnTutorial");
-		$("#newGame").addClass("btnNewGame");
-		createNewElementAppend("p", "textHello", intro.textHello, $("#mainPart"));
-		$("#textHello").addClass("basicText");
-	}, 20000);
+		//usunięcie diva o id studioTitle
+		setTimeout(function () {
+				$("#studioTitle").remove();
+				$("#titleGameHeader, #subTitleGameHeader").fadeIn(1500);
+				$("#info, #licence, #tutorial, #newGame").fadeIn(1500).addClass("basicBtn");
+				$("#info").addClass("btnInfo");
+				$("#licence").addClass("btnLicence");
+				$("#tutorial").addClass("btnTutorial");
+				$("#newGame").addClass("btnNewGame");
+				createNewElementAppend("p", "textHello", intro.textHello, $("#mainPart"));
+				$("#textHello").addClass("basicText");
+		}, 20000);
 
-	//funkcje dla pierwszego menu
-	$("#info").on("click", function () {
-		$("#mainPart").children("p").remove();
-		createNewElementAppend("p", "textInfo", intro.textInfo, $("#mainPart"));
-		$("#textInfo").addClass("basicText");
-	});
+		//funkcje dla pierwszego menu
+		$("#info").on("click", function () {
+				$("#mainPart").children("p").remove();
+				createNewElementAppend("p", "textInfo", intro.textInfo, $("#mainPart"));
+				$("#textInfo").addClass("basicText");
+		});
 
-	$("#licence").on("click", function () {
-		$("#mainPart").children("p").remove();
-		createNewElementAppend("p", "textLicence", intro.textLicence, $("#mainPart"));
-		$("#textLicence").addClass("basicText");
-	});
+		$("#licence").on("click", function () {
+				$("#mainPart").children("p").remove();
+				createNewElementAppend("p", "textLicence", intro.textLicence, $("#mainPart"));
+				$("#textLicence").addClass("basicText");
+		});
 
-	$("#tutorial").on("click", function () {
-		$("#mainPart").children("p").remove();
-		createNewElementAppend("p", "textTutorial", intro.textTutorial, $("#mainPart"));
-		$("#textTutorial").addClass("basicText");
-	});
+		$("#tutorial").on("click", function () {
+				$("#mainPart").children("p").remove();
+				createNewElementAppend("p", "textTutorial", intro.textTutorial, $("#mainPart"));
+				$("#textTutorial").addClass("basicText");
+		});
 
-	//przycisk nowej gry - tworzenie kretora postaci
-	$("#newGame").on("click", function () {
-		$("#mainPart").empty();
-		$("#info, #licence, #tutorial, #newGame").fadeOut();
-		$("#name, #race, #occupation, #features, #features2, #equipment, #skills, #infoCreator").fadeIn();
-		$("#name, #race, #occupation, #features, #features2, #equipment, #skills, #infoCreator").addClass("basicBtn");
+		//przycisk nowej gry - tworzenie kretora postaci
+		$("#newGame").on("click", function () {
+				$("#mainPart").empty();
+				$("#info, #licence, #tutorial, #newGame").fadeOut();
+				$("#name, #race, #occupation, #features, #features2, #equipment, #skills, #infoCreator").fadeIn();
+				$("#name, #race, #occupation, #features, #features2, #equipment, #skills, #infoCreator").addClass("basicBtn");
 
-		//tworzenie czerwonych paragrafów w części alertowej - zmieniają kolor na zielony po wybraniu
-		createNewElementAppend("p", "nameAlert", heroCreator.nameAlert, $("#alerts"));
-		createNewElementAppend("p", "raceAlert", heroCreator.raceAlert, $("#alerts"));
-		createNewElementAppend("p", "occupationAlert", heroCreator.occupationAlert, $("#alerts"));
-		$("#nameAlert, #raceAlert, #occupationAlert").addClass("redText");
+				//tworzenie czerwonych paragrafów w części alertowej - zmieniają kolor na zielony po wybraniu
+				createNewElementAppend("p", "nameAlert", heroCreator.nameAlert, $("#alerts"));
+				createNewElementAppend("p", "raceAlert", heroCreator.raceAlert, $("#alerts"));
+				createNewElementAppend("p", "occupationAlert", heroCreator.occupationAlert, $("#alerts"));
+				createNewElementAppend("p", "featuresAlert", heroCreator.featuresAlert, $("#alerts"));
+				$("#nameAlert, #raceAlert, #occupationAlert, #featuresAlert").addClass("redText");
 
-		//zdarzenia dla przycisku imię (name)
-		$("#name").on("click", function () {
-			$("#mainPart").empty();
-			createNewElementAppend("p", "nameTitle", heroCreator.nameTitle, $("#mainPart"));
-			$("#nameTitle").addClass("goldUnderline basicText");
-			createNewElementAppend("p", "nameDescription", heroCreator.nameDescription, $("#mainPart"));
-			createNewElementAppend("input", "giveName", "", $("#mainPart"));
-			createNewElementAppend("button", "acceptName", "zatwierdź", $("#mainPart"));
-			$("#acceptName").on("click", function () {
-				var nameInput = $("#giveName").val().replace(/\d/g, '');
-				if (nameInput == "") {
-					$("#nameAlert").addClass("redText");
-				} else {
-					hero.splice(0, 1, nameInput);
-					$("#nameAlert").addClass("greenText");
-				}
-			});
-		}); //koniec zdarzeń dla przycisku imię
+				//zdarzenia dla przycisku imię (name)
+				$("#name").on("click", function () {
+						$("#mainPart").empty();
+						createNewElementAppend("p", "nameTitle", heroCreator.nameTitle, $("#mainPart"));
+						$("#nameTitle").addClass("goldUnderline basicText");
+						createNewElementAppend("p", "nameDescription", heroCreator.nameDescription, $("#mainPart"));
+						createNewElementAppend("input", "giveName", "", $("#mainPart"));
+						createNewElementAppend("button", "acceptName", "zatwierdź", $("#mainPart"));
+						$("#acceptName").on("click", function () {
+								var nameInput = $("#giveName").val().replace(/\d/g, '');
+								if (nameInput == "") {
+										$("#nameAlert").addClass("redText");
+								} else {
+										hero.splice(0, 1, nameInput);
+										$("#nameAlert").addClass("greenText");
+								}
+						});
+				}); //koniec zdarzeń dla przycisku imię
 
-		//zdarzenia dla przyciku rasa (race)
-		$("#race").on("click", function () {
-			$("#mainPart").empty();
-			createNewElementAppend("p", "raceTitle", heroCreator.raceTitle, $("#mainPart"));
-			$("#raceTitle").addClass("goldUnderline basicText");
-			createNewElementAppend("p", "raceDescription", heroCreator.raceDescription, $("#mainPart"));
-			createNewElementAppend("button", "human", "człowiek", $("#mainPart"));
-			createNewElementAppend("button", "elv", "elf", $("#mainPart"));
-			createNewElementAppend("button", "dwarf", "krasnolud", $("#mainPart"));
-			createNewElementAppend("button", "orc", "ork", $("#mainPart"));
-			$("#human, #elv, #dwarf, #orc").addClass("basicBtn");
-			createNewElementAppend("p", "choosenDescription", "", $("#mainPart"));
+				//zdarzenia dla przyciku rasa (race)
+				$("#race").on("click", function () {
+						$("#mainPart").empty();
+						createNewElementAppend("p", "raceTitle", heroCreator.raceTitle, $("#mainPart"));
+						$("#raceTitle").addClass("goldUnderline basicText");
+						createNewElementAppend("p", "raceDescription", heroCreator.raceDescription, $("#mainPart"));
+						createNewElementAppend("button", "human", "człowiek", $("#mainPart"));
+						createNewElementAppend("button", "elv", "elf", $("#mainPart"));
+						createNewElementAppend("button", "dwarf", "krasnolud", $("#mainPart"));
+						createNewElementAppend("button", "orc", "ork", $("#mainPart"));
+						$("#human, #elv, #dwarf, #orc").addClass("basicBtn");
+						createNewElementAppend("p", "choosenDescription", "", $("#mainPart"));
 
-			$("#human").on("click", function () {
-				hero.splice(1, 1, "człowiek");
-				$("#raceAlert").addClass("greenText");
-				$("#choosenDescription").text(heroCreator.human);
-			});
+						$("#human").on("click", function () {
+								hero.splice(1, 1, "człowiek");
+								$("#raceAlert").addClass("greenText");
+								$("#choosenDescription").text(heroCreator.human);
+						});
 
-			$("#elv").on("click", function () {
-				hero.splice(1, 1, "elf");
-				$("#raceAlert").addClass("greenText");
-				$("#choosenDescription").text(heroCreator.elv);
-			});
+						$("#elv").on("click", function () {
+								hero.splice(1, 1, "elf");
+								$("#raceAlert").addClass("greenText");
+								$("#choosenDescription").text(heroCreator.elv);
+						});
 
-			$("#dwarf").on("click", function () {
-				hero.splice(1, 1, "krasnolud");
-				$("#raceAlert").addClass("greenText");
-				$("#choosenDescription").text(heroCreator.dwarf);
-			});
+						$("#dwarf").on("click", function () {
+								hero.splice(1, 1, "krasnolud");
+								$("#raceAlert").addClass("greenText");
+								$("#choosenDescription").text(heroCreator.dwarf);
+						});
 
-			$("#orc").on("click", function () {
-				hero.splice(1, 1, "ork");
-				$("#raceAlert").addClass("greenText");
-				$("#choosenDescription").text(heroCreator.orc);
-			});
-		}); //koniec zdarzeń dla przycisku rasa
+						$("#orc").on("click", function () {
+								hero.splice(1, 1, "ork");
+								$("#raceAlert").addClass("greenText");
+								$("#choosenDescription").text(heroCreator.orc);
+						});
+				}); //koniec zdarzeń dla przycisku rasa
 
-		//zdarzenia dla przyciku profesja (occupation)
-		$("#occupation").on("click", function () {
-			$("#mainPart").empty();
-			createNewElementAppend("p", "occupationTitle", heroCreator.occupationTitle, $("#mainPart"));
-			$("#occupationTitle").addClass("goldUnderline basicText");
-			createNewElementAppend("p", "occupationDescription", heroCreator.occupationDescription, $("#mainPart"));
-			createNewElementAppend("button", "warrior", "wojownik", $("#mainPart"));
-			createNewElementAppend("button", "criminal", "złoczyńca", $("#mainPart"));
-			createNewElementAppend("button", "wizard", "czarodziej", $("#mainPart"));
-			$("#warrior, #criminal, #wizard").addClass("basicBtn");
-			createNewElementAppend("p", "choosenDescription", "", $("#mainPart"));
+				//zdarzenia dla przyciku profesja (occupation)
+				$("#occupation").on("click", function () {
+						$("#mainPart").empty();
+						createNewElementAppend("p", "occupationTitle", heroCreator.occupationTitle, $("#mainPart"));
+						$("#occupationTitle").addClass("goldUnderline basicText");
+						createNewElementAppend("p", "occupationDescription", heroCreator.occupationDescription, $("#mainPart"));
+						createNewElementAppend("button", "warrior", "wojownik", $("#mainPart"));
+						createNewElementAppend("button", "criminal", "złoczyńca", $("#mainPart"));
+						createNewElementAppend("button", "wizard", "czarodziej", $("#mainPart"));
+						$("#warrior, #criminal, #wizard").addClass("basicBtn");
+						createNewElementAppend("p", "choosenDescription", "", $("#mainPart"));
 
-			$("#warrior").on("click", function () {
-				hero.splice(2, 1, "wojownik");
-				$("#occupationAlert").addClass("greenText");
-				$("#choosenDescription").text(heroCreator.warrior);
-			});
+						$("#warrior").on("click", function () {
+								hero.splice(2, 1, "wojownik");
+								$("#occupationAlert").addClass("greenText");
+								$("#choosenDescription").text(heroCreator.warrior);
+						});
 
-			$("#criminal").on("click", function () {
-				hero.splice(2, 1, "złoczyńca");
-				$("#occupationAlert").addClass("greenText");
-				$("#choosenDescription").text(heroCreator.criminal);
-			});
+						$("#criminal").on("click", function () {
+								hero.splice(2, 1, "złoczyńca");
+								$("#occupationAlert").addClass("greenText");
+								$("#choosenDescription").text(heroCreator.criminal);
+						});
 
-			$("#wizard").on("click", function () {
-				hero.splice(2, 1, "czrodziej");
-				$("#occupationAlert").addClass("greenText");
-				$("#choosenDescription").text(heroCreator.wizard);
-			});
-		}); //koniec zdarzeń dla przycisku profesja
-	}); //koniec przycisku nowa gra (newGame)
+						$("#wizard").on("click", function () {
+								hero.splice(2, 1, "czarodziej");
+								$("#occupationAlert").addClass("greenText");
+								$("#choosenDescription").text(heroCreator.wizard);
+						});
+				}); //koniec zdarzeń dla przycisku profesja
+
+				//przycisk cech część piewrsza - wybieranie siły, wytrzymałości, zręczności, inteligencji i charyzmy
+				$("#features").on("click", function () {
+						$("#mainPart").empty();
+						createNewElementAppend("p", "featuresTitle", heroCreator.featuresTitle, $("#mainPart"));
+						$("#feautresTitle").addClass("goldUnderline basicText");
+						createNewElementAppend("p", "featuresDescription", heroCreator.featuresDescription, $("#mainPart"));
+						createNewElementAppend("button", "force", "siła", $("#mainPart"));
+						createNewElementAppend("button", "strength", "wytrzymałość", $("#mainPart"));
+						createNewElementAppend("button", "dexterity", "zręczność", $("#mainPart"));
+						createNewElementAppend("button", "intelligence", "inteligencja", $("#mainPart"));
+						createNewElementAppend("button", "charisma", "charyzma", $("#mainPart"));
+						$("#force, #strength, #dexterity, #intelligence, #charisma").addClass("basicBtn");
+						createNewElementAppend("p", "choosenDescription", "", $("#mainPart"));
+
+						$("#force").on("click", function () {
+								var randomForcePoints = Math.round(Math.random() * 50);
+								hero.splice(3, 1, randomForcePoints);
+								$("#choosenDescription").text(heroCreator.force);
+						});
+
+						$("#strenght").on("click", function () {
+								var randomStrengthPoints = Math.round(Math.random() * 50);
+								hero.splice(4, 1, randomStrengthPoints);
+								$("#choosenDescription").text(heroCreator.strength);
+						});
+
+						$("#dexterity").on("click", function () {
+								var randomDexterityPoints = Math.round(Math.random() * 50);
+								hero.splice(5, 1, randomDexterityPoints);
+								$("#choosenDescription").text(heroCreator.dexterity);
+						});
+
+						$("#intelligence").on("click", function () {
+								var randomIntelligencePoints = Math.round(Math.random() * 50);
+								hero.splice(6, 1, randomIntelligencePoints);
+								$("#choosenDescription").text(heroCreator.intelligence);
+						});
+
+						$("#charisma").on("click", function () {
+								var randomCharismaPoints = Math.round(Math.random() * 50);
+								hero.splice(7, 1, randomCharismaPoints);
+								$("#choosenDescription").text(heroCreator.charisma);
+						});
+				}); //koniec zdarzeń dla przycisku cech (features) - siły, wytrzymałości, zręczności inteligencji i charyzmy
+		}); //koniec przycisku nowa gra (newGame)
 
 }); //koniec DOMContentLoaded
 
@@ -343,6 +389,13 @@ module.exports.wizard = "Czarodziej to brzmi dumnie. Po wielu latach spędzonych
 
 //tekst dla wyboru profesji
 module.exports.occupationAlert = "Wybierz profesję.";
+
+//---------------------------------------LOSOWANIE CECH-------------------------------------------------------//
+module.exports.featuresTitle = "Losowanie cech.";
+module.exports.featuresDescription = "Poniżej znajduje się pięć przycisków, dzięki którym wylosujesz wysokość cech, które będą odzwierciedlały fizyczne i psychiczne atrybuty Twojej postaci.";
+
+//tekst dla losowania cech
+module.exports.featuresAlert = "Wylosuj cechy.";
 
 /***/ })
 /******/ ]);
