@@ -26,4 +26,4 @@ Dodane puste tablice, do których będą dodawane wybory użytkownika, podczas t
 Dodano wybieranie profesji - jeszcze brak synchronizacji z pozostałymi wyborami.
 
 17 czerwca 2018 - wersja 0.1.0
-Dodano losowanie cech - siły, wytrzymałości, zręczności, inteligncji i charyzmy - bez walidacji koloru w oknie alertowym.
+Dodano losowanie cech - siły, wytrzymałości, zręczności, inteligencji i charyzmy - bez walidacji koloru w oknie alertowym.
