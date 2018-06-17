@@ -104,7 +104,8 @@ $("#newGame").on("click", () =>{
 //tworzenie czerwonych paragrafów w części alertowej - zmieniają kolor na zielony po wybraniu
 	createNewElementAppend("p", "nameAlert", heroCreator.nameAlert, $("#alerts"));
 	createNewElementAppend("p", "raceAlert", heroCreator.raceAlert, $("#alerts"));
-	$("#nameAlert, #raceAlert").addClass("redText");
+	createNewElementAppend("p", "occupationAlert", heroCreator.occupationAlert, $("#alerts"));
+	$("#nameAlert, #raceAlert, #occupationAlert").addClass("redText");
 
 //zdarzenia dla przycisku imię (name)
 	$("#name").on("click", ()=>{
@@ -130,47 +131,69 @@ $("#newGame").on("click", () =>{
 		$("#mainPart").empty();
 		createNewElementAppend("p", "raceTitle", heroCreator.raceTitle, $("#mainPart"));
 		$("#raceTitle").addClass("goldUnderline basicText");
-
 		createNewElementAppend("p", "raceDescription", heroCreator.raceDescription, $("#mainPart"));
-
 		createNewElementAppend("button", "human", "człowiek", $("#mainPart"));
 		createNewElementAppend("button", "elv", "elf", $("#mainPart"));
 		createNewElementAppend("button", "dwarf", "krasnolud", $("#mainPart"));
 		createNewElementAppend("button", "orc", "ork", $("#mainPart"));
-
 		$("#human, #elv, #dwarf, #orc").addClass("basicBtn");
-
-		createNewElementAppend("p", "choosenRaceDescription", "", $("#mainPart"));
+		createNewElementAppend("p", "choosenDescription", "", $("#mainPart"));
 
 		$("#human").on("click", ()=>{
 				hero.splice(1, 1, "człowiek");
 				$("#raceAlert").addClass("greenText");
-				$("#choosenRaceDescription").text(heroCreator.human);
+				$("#choosenDescription").text(heroCreator.human);
 		});
 
 		$("#elv").on("click", ()=>{
 				hero.splice(1, 1, "elf");
 				$("#raceAlert").addClass("greenText");
-				$("#choosenRaceDescription").text(heroCreator.elv);
+				$("#choosenDescription").text(heroCreator.elv);
 		});
 
 		$("#dwarf").on("click", ()=>{
 				hero.splice(1, 1, "krasnolud");
 				$("#raceAlert").addClass("greenText");
-				$("#choosenRaceDescription").text(heroCreator.dwarf);
+				$("#choosenDescription").text(heroCreator.dwarf);
 		});
 
 		$("#orc").on("click", ()=>{
 				hero.splice(1, 1, "ork");
 				$("#raceAlert").addClass("greenText");
-				$("#choosenRaceDescription").text(heroCreator.orc);
+				$("#choosenDescription").text(heroCreator.orc);
 		});
 	});//koniec zdarzeń dla przycisku rasa
-
 
 //zdarzenia dla przyciku profesja (occupation)
 	$("#occupation").on("click", ()=>{
 		$("#mainPart").empty();
+		createNewElementAppend("p", "occupationTitle", heroCreator.occupationTitle, $("#mainPart"));
+		$("#occupationTitle").addClass("goldUnderline basicText");
+		createNewElementAppend("p", "occupationDescription", heroCreator.occupationDescription, $("#mainPart"));
+		createNewElementAppend("button", "warrior", "wojownik", $("#mainPart"));
+		createNewElementAppend("button", "criminal", "złoczyńca", $("#mainPart"));
+		createNewElementAppend("button", "wizard", "czarodziej", $("#mainPart"));
+		$("#warrior, #criminal, #wizard").addClass("basicBtn");
+		createNewElementAppend("p", "choosenDescription", "", $("#mainPart"));
+
+		$("#warrior").on("click", ()=>{
+				hero.splice(2, 1, "wojownik");
+				$("#occupationAlert").addClass("greenText");
+				$("#choosenDescription").text(heroCreator.warrior);
+		});
+
+		$("#criminal").on("click", ()=>{
+				hero.splice(2, 1, "złoczyńca");
+				$("#occupationAlert").addClass("greenText");
+				$("#choosenDescription").text(heroCreator.criminal);
+		});
+
+		$("#wizard").on("click", ()=>{
+				hero.splice(2, 1, "czrodziej");
+				$("#occupationAlert").addClass("greenText");
+				$("#choosenDescription").text(heroCreator.wizard);
+		});
+
 	});//koniec zdarzeń dla przycisku profesja
 }); //koniec przycisku nowa gra (newGame)
 

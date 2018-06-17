@@ -183,7 +183,8 @@ document.addEventListener("DOMContentLoaded", function () {
 		//tworzenie czerwonych paragrafów w części alertowej - zmieniają kolor na zielony po wybraniu
 		createNewElementAppend("p", "nameAlert", heroCreator.nameAlert, $("#alerts"));
 		createNewElementAppend("p", "raceAlert", heroCreator.raceAlert, $("#alerts"));
-		$("#nameAlert, #raceAlert").addClass("redText");
+		createNewElementAppend("p", "occupationAlert", heroCreator.occupationAlert, $("#alerts"));
+		$("#nameAlert, #raceAlert, #occupationAlert").addClass("redText");
 
 		//zdarzenia dla przycisku imię (name)
 		$("#name").on("click", function () {
@@ -209,47 +210,68 @@ document.addEventListener("DOMContentLoaded", function () {
 			$("#mainPart").empty();
 			createNewElementAppend("p", "raceTitle", heroCreator.raceTitle, $("#mainPart"));
 			$("#raceTitle").addClass("goldUnderline basicText");
-
 			createNewElementAppend("p", "raceDescription", heroCreator.raceDescription, $("#mainPart"));
-
 			createNewElementAppend("button", "human", "człowiek", $("#mainPart"));
 			createNewElementAppend("button", "elv", "elf", $("#mainPart"));
 			createNewElementAppend("button", "dwarf", "krasnolud", $("#mainPart"));
 			createNewElementAppend("button", "orc", "ork", $("#mainPart"));
-
 			$("#human, #elv, #dwarf, #orc").addClass("basicBtn");
-
-			createNewElementAppend("p", "choosenRaceDescription", "", $("#mainPart"));
+			createNewElementAppend("p", "choosenDescription", "", $("#mainPart"));
 
 			$("#human").on("click", function () {
 				hero.splice(1, 1, "człowiek");
 				$("#raceAlert").addClass("greenText");
-				$("#choosenRaceDescription").text(heroCreator.human);
+				$("#choosenDescription").text(heroCreator.human);
 			});
 
 			$("#elv").on("click", function () {
 				hero.splice(1, 1, "elf");
 				$("#raceAlert").addClass("greenText");
-				$("#choosenRaceDescription").text(heroCreator.elv);
+				$("#choosenDescription").text(heroCreator.elv);
 			});
 
 			$("#dwarf").on("click", function () {
 				hero.splice(1, 1, "krasnolud");
 				$("#raceAlert").addClass("greenText");
-				$("#choosenRaceDescription").text(heroCreator.dwarf);
+				$("#choosenDescription").text(heroCreator.dwarf);
 			});
 
 			$("#orc").on("click", function () {
 				hero.splice(1, 1, "ork");
 				$("#raceAlert").addClass("greenText");
-				$("#choosenRaceDescription").text(heroCreator.orc);
+				$("#choosenDescription").text(heroCreator.orc);
 			});
 		}); //koniec zdarzeń dla przycisku rasa
-
 
 		//zdarzenia dla przyciku profesja (occupation)
 		$("#occupation").on("click", function () {
 			$("#mainPart").empty();
+			createNewElementAppend("p", "occupationTitle", heroCreator.occupationTitle, $("#mainPart"));
+			$("#occupationTitle").addClass("goldUnderline basicText");
+			createNewElementAppend("p", "occupationDescription", heroCreator.occupationDescription, $("#mainPart"));
+			createNewElementAppend("button", "warrior", "wojownik", $("#mainPart"));
+			createNewElementAppend("button", "criminal", "złoczyńca", $("#mainPart"));
+			createNewElementAppend("button", "wizard", "czarodziej", $("#mainPart"));
+			$("#warrior, #criminal, #wizard").addClass("basicBtn");
+			createNewElementAppend("p", "choosenDescription", "", $("#mainPart"));
+
+			$("#warrior").on("click", function () {
+				hero.splice(2, 1, "wojownik");
+				$("#occupationAlert").addClass("greenText");
+				$("#choosenDescription").text(heroCreator.warrior);
+			});
+
+			$("#criminal").on("click", function () {
+				hero.splice(2, 1, "złoczyńca");
+				$("#occupationAlert").addClass("greenText");
+				$("#choosenDescription").text(heroCreator.criminal);
+			});
+
+			$("#wizard").on("click", function () {
+				hero.splice(2, 1, "czrodziej");
+				$("#occupationAlert").addClass("greenText");
+				$("#choosenDescription").text(heroCreator.wizard);
+			});
 		}); //koniec zdarzeń dla przycisku profesja
 	}); //koniec przycisku nowa gra (newGame)
 
@@ -281,10 +303,16 @@ module.exports.textTutorial = "Początek gry. Ekran składa się z powitania ora
 "use strict";
 
 
+//-----------------------------------------Imię------------------------------------------------------------//
+
 //tekst dla wyboru imienia
 module.exports.nameTitle = "Wybór imienia.";
 module.exports.nameDescription = "Wpisz w pole niżej swoje imię oraz wciśnij przycisk 'zatwierdź'. Możesz wpisać tylko litery, cyfry nie będą barne pod uwagę. Imię można zmieniać dowolną ilość razy.";
 
+//tekst dla alertu wyboru imienia
+module.exports.nameAlert = "Wybierz imię.";
+
+//-------------------------------------------RASA--------------------------------------------------------//
 //tekst dla wyboru rasy
 module.exports.raceTitle = "Wybór rasy.";
 module.exports.raceDescription = "Poniżej znajdują się cztery przyciski. Dzięki nim wybierzesz rasę, która Cię interesuje. Po klinkięciu w przycisk pojawi się krótki opis wybranej rasy.";
@@ -298,9 +326,23 @@ module.exports.dwarf = "Przez swoje specyficzne podejście do rzeczywistości, p
 
 module.exports.orc = "Orki to niezwykle wojownicza rasa. Są w głównej mierze koczownikami, z kastowym podziałem społeczeństwa. Są niechętni każdemu rodzajowi magii, za wyjątkiem magii szamańskiej, do której odnoszą się z nieufnością. Podstawowe cechy: wzrost: 180 - 220cm, waga: 100 - 150kg, kolor oczu: każdy, kolor skóry: każdy, kolor włosów: każdy, wiek: do 80 lat, profesja: każda, z predyspozycjami do bycia wojownikiem.";
 
-//tekst dla alertu wyboru imienia, rasy
-module.exports.nameAlert = "Wybór imienia.";
-module.exports.raceAlert = "Wybór rasy.";
+//tekst dla alertu wyboru rasy
+module.exports.raceAlert = "Wybierz rasę.";
+
+//--------------------------------------PROFESJA--------------------------------------------------------------//
+//tekst dla wyboru profesji
+module.exports.occupationTitle = "Wybór profesji.";
+module.exports.occupationDescription = "Poniżej znajdują się trzy przyciski. Dzięki nim wybierzesz profesję, która Cię interesuje. Po klinkięciu w przycisk pojawi się krótki opis wybranej profesji.";
+
+//opis wybranych ras
+module.exports.warrior = "Wojownicy to specjaliści we władaniu każdą bronią białą bronią. Są podstawą wszystkich armii świata, ale także mogą podróżwać samotni lub w niewielkich grupach. Wielu idących drogą wojownika zdobyło sławę w bitwach czy pogromcy smoków. Będąc wojownikiem zwiedzisz świat.";
+
+module.exports.criminal = "Trucizny. Pułapki. Skrytobójstwo. To wszystko i wiele innych rzeczy zapewni Tobie droga złoczyńcy. Już w każdym mniejszym miasteczku, są odpowiednie organizacje, które wyszkolą Cię na nieustraszonego rzezimieszka.";
+
+module.exports.wizard = "Czarodziej to brzmi dumnie. Po wielu latach spędzonych na nauce. Będzie wzbudzał szacunek swoją tylko osobą, a wrogowie będą uciekać w panice przed Twoimi kulami ognia.";
+
+//tekst dla wyboru profesji
+module.exports.occupationAlert = "Wybierz profesję.";
 
 /***/ })
 /******/ ]);

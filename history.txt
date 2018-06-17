@@ -21,3 +21,7 @@ Usunięto dwa przyciski od slidera - zrezygnowano ze slidera jako kreatora posta
 
 16 czerwca 2018 - wersja 0.0.8
 Dodane puste tablice, do których będą dodawane wybory użytkownika, podczas tworzenia postaci. Dodana została walidacja dodawania imienia - nie można wpisać imienia jako liczby oraz gra ignoruje liczby w podanym imieniu. Dodane zostało samo wybieranie ras (oraz ich opisy). Donane zostały dwa pragrafy w oknie komunikacji, które zmieniają kolor z czerwonego na zielony w momencie wyboru przez użytkownika, odpowiedniej opcji - potrzebne to jest dla walidacji oraz informacji dla użytkownika, co ma jeszcze do wybrania.
+
+
+17 czerwca 2018 - wersja 0.0.9
+Dodano wybieranie profesji.
