@@ -31,8 +31,14 @@ function createNewElementAppend(nameElement, idName, text, whereAppend){
 	createNewElementAppend("button", "infoCreator", "info", $("nav"));
 
 	//tablice
-	// tablica postaci 0 - imię, 1 - rasa, 2 - profesja, 3 - siła, 4 - wytrzymałość, 5 - zręczność, 6 - inteligencja, 7 - charyzma, 8 - płeć, 9 - kolor włosów, 10 - kolor oczu, 11 - waga, 12 - wzrost, 13 - kolor skóry
+	// tablica postaci 0 - imię, 1 - rasa, 2 - profesja
 	let hero = [];
+
+	//wylosowanych punktów cech 0 - siła, 1 - wytrzymałość, 2 - zręczność, 3 - inteligencja, 4 - charyzma
+	let randomFeatures = [];
+
+	//tablica dla wybieralnych cech postaci 0 - płeć, 1 - kolor włosów, 2 - kolor oczu, 3 - waga, 4 - wzrost, 5 - kolor skóry
+	let choosenFeatures = [];
 
 	//tablica ekwipunku max 5 elementów
 	let equip = [];
@@ -106,7 +112,8 @@ $("#newGame").on("click", () =>{
 	createNewElementAppend("p", "raceAlert", heroCreator.raceAlert, $("#alerts"));
 	createNewElementAppend("p", "occupationAlert", heroCreator.occupationAlert, $("#alerts"));
 	createNewElementAppend("p", "featuresAlert", heroCreator.featuresAlert, $("#alerts"));
-	$("#nameAlert, #raceAlert, #occupationAlert, #featuresAlert").addClass("redText");
+	createNewElementAppend("p", "features2Alert", heroCreator.features2Alert, $("#alerts"));
+	$("#nameAlert, #raceAlert, #occupationAlert, #featuresAlert, #features2Alert").addClass("redText");
 
 //zdarzenia dla przycisku imię (name)
 	$("#name").on("click", ()=>{
@@ -200,7 +207,7 @@ $("#newGame").on("click", () =>{
 	$("#features").on("click", function(){
 			$("#mainPart").empty();
 			createNewElementAppend("p", "featuresTitle", heroCreator.featuresTitle, $("#mainPart"));
-			$("#feautresTitle").addClass("goldUnderline basicText");
+			$("#featuresTitle").addClass("goldUnderline basicText");
 			createNewElementAppend("p", "featuresDescription", heroCreator.featuresDescription, $("#mainPart"));
 			createNewElementAppend("button", "force", "siła", $("#mainPart"));
 			createNewElementAppend("button", "strength", "wytrzymałość", $("#mainPart"));
@@ -211,35 +218,266 @@ $("#newGame").on("click", () =>{
 			createNewElementAppend("p", "choosenDescription", "", $("#mainPart"));
 
 			$("#force").on("click", ()=>{
-				 	let randomForcePoints = Math.round(Math.random()*50);
-					hero.splice(3, 1, randomForcePoints);
-					$("#choosenDescription").text(heroCreator.force);
+				let randomForcePoints = Math.round(Math.random()*50);
+			  randomFeatures.splice(0, 1, randomForcePoints);
+			  $("#choosenDescription").text(heroCreator.force);
+			  if( randomFeatures.length < 5 ){ $("#featuresAlert").addClass("redText");
+			  }else{ $("#featuresAlert").addClass("greenText"); }
 			});
 
-			$("#strenght").on("click", ()=>{
+			$("#strength").on("click", ()=>{
 					let randomStrengthPoints = Math.round(Math.random()*50);
-					hero.splice(4, 1, randomStrengthPoints);
+					randomFeatures.splice(1, 1, randomStrengthPoints);
 					$("#choosenDescription").text(heroCreator.strength);
+					if( randomFeatures.length < 5 ){ $("#feautresAlert").addClass("redText");
+					}else if(randomFeatures.length == 5){$("#featuresAlert").addClass("greenText"); }
 			});
 
 			$("#dexterity").on("click", ()=>{
 					let randomDexterityPoints = Math.round(Math.random()*50);
-					hero.splice(5, 1, randomDexterityPoints);
+					randomFeatures.splice(2, 1, randomDexterityPoints);
 					$("#choosenDescription").text(heroCreator.dexterity);
+					if( randomFeatures.length < 5 ){ $("#featuresAlert").addClass("redText");
+				}else if(randomFeatures.length == 5){ $("#featuresAlert").addClass("greenText"); }
 			});
 
 			$("#intelligence").on("click", ()=>{
 					let randomIntelligencePoints = Math.round(Math.random()*50);
-					hero.splice(6, 1, randomIntelligencePoints);
+					randomFeatures.splice(3, 1, randomIntelligencePoints);
 					$("#choosenDescription").text(heroCreator.intelligence);
+					if( randomFeatures.length < 5 ){ $("#featuresAlert").addClass("redText");
+					}else if(randomFeatures.length == 5){ $("#featuresAlert").addClass("greenText"); }
 			});
 
 			$("#charisma").on("click", ()=>{
 					let randomCharismaPoints = Math.round(Math.random()*50);
-					hero.splice(7, 1, randomCharismaPoints);
+					randomFeatures.splice(4, 1, randomCharismaPoints);
 					$("#choosenDescription").text(heroCreator.charisma);
+					if( randomFeatures.length < 5 ){
+							$("#featuresAlert").addClass("redText");
+					}else if(randomFeatures.length == 5){
+							$("#featuresAlert").addClass("greenText");
+					}
 			});
 	});//koniec zdarzeń dla przycisku cech (features) - siły, wytrzymałości, zręczności inteligencji i charyzmy
+
+//zdarzenia dla przycisku cechy 2 - płeć, kolor włosów, oczu, skóry, waga, wzrost,
+$("#features2").on("click", ()=>{
+		$("#mainPart").empty();
+		createNewElementAppend("p", "features2Title", heroCreator.features2Title, $("#mainPart"));
+		$("#features2Title").addClass("goldUnderline basicText");
+		createNewElementAppend("p", "features2Description", heroCreator.features2Description, $("#mainPart"));
+		createNewElementAppend("div", "features2Main", "", $("#mainPart"));
+
+		createNewElementAppend("p", "features2MainSex", "Płeć", $("#features2Main"));
+		createNewElementAppend("button", "features2MainWomen", "Kobieta", $("#features2Main"));
+		createNewElementAppend("button", "features2MainMen", "Mężczyzna", $("#features2Main"));
+		createNewElementAppend("button", "features2MainOther", "Nie wiadomo", $("#features2Main"));
+
+		$("#features2MainWomen, #features2MainMen, #features2MainOther").addClass("btnsFeatures2");
+		$("#features2MainWomen").on("click",()=>{
+			choosenFeatures.splice(0, 1, "kobieta");
+			if( choosenFeatures.length < 6){
+				$("#features2Alert").addClass("redText");
+			}else if(choosenFeatures.length == 6){
+				$("#features2Alert").addClass("greenText");
+			}
+		});
+
+		$("#features2MainMen").on("click",()=>{
+			choosenFeatures.splice(0, 1, "mężczyzna");
+			if( choosenFeatures.length < 6){
+				$("#features2Alert").addClass("redText");
+			}else if(choosenFeatures.length == 6){
+				$("#features2Alert").addClass("greenText");
+			}
+		});
+
+		$("#features2MainOther").on("click",()=>{
+			choosenFeatures.splice(0, 1, "nie wiadomo");
+			if( choosenFeatures.length < 6){
+				$("#features2Alert").addClass("redText");
+			}else if(choosenFeatures.length == 6){
+				$("#features2Alert").addClass("greenText");
+			}
+		});
+
+		createNewElementAppend("p", "features2MainHair", "Kolor włosów", $("#features2Main"));
+		createNewElementAppend("button", "features2MainBlond", "blond", $("#features2Main"));
+		createNewElementAppend("button", "features2MainRed", "rude", $("#features2Main"));
+		createNewElementAppend("button", "features2MainBlack", "czarne", $("#features2Main"));
+		createNewElementAppend("button", "features2MainDyed", "farbowane", $("#features2Main"));
+
+		$("#features2MainBlond, #features2MainRed, #features2MainBlack, #features2MainDyed").addClass("btnsFeatures2");
+
+		$("#features2MainBlond").on("click",()=>{
+			choosenFeatures.splice(1, 1, "blond");
+			if( choosenFeatures.length < 6){
+				$("#features2Alert").addClass("redText");
+			}else if(choosenFeatures.length == 6){
+				$("#features2Alert").addClass("greenText");
+			}
+		});
+
+		$("#features2MainRed").on("click",()=>{
+			choosenFeatures.splice(1, 1, "rude");
+			if( choosenFeatures.length < 6){
+				$("#features2Alert").addClass("redText");
+			}else if(choosenFeatures.length == 6){
+				$("#features2Alert").addClass("greenText");
+			}
+		});
+
+		$("#features2MainBlack").on("click",()=>{
+			choosenFeatures.splice(1, 1, "czarne");
+			if( choosenFeatures.length < 6){
+				$("#features2Alert").addClass("redText");
+			}else if(choosenFeatures.length == 6){
+				$("#features2Alert").addClass("greenText");
+			}
+		});
+
+		$("#features2MainDyed").on("click",()=>{
+			choosenFeatures.splice(1, 1, "farbowane");
+			if( choosenFeatures.length < 6){
+				$("#features2Alert").addClass("redText");
+			}else if(choosenFeatures.length == 6){
+				$("#features2Alert").addClass("greenText");
+			}
+		});
+
+		createNewElementAppend("p", "features2MainEyes", "Kolor oczu", $("#features2Main"));
+		createNewElementAppend("button", "features2MainHazel", "piwne", $("#features2Main"));
+		createNewElementAppend("button", "features2MainGrey", "szare", $("#features2Main"));
+		createNewElementAppend("button", "features2MainBrown", "brązowe", $("#features2Main"));
+		createNewElementAppend("button", "features2MainBlue", "niebieskie", $("#features2Main"));
+
+		$("#features2MainHazel, #features2MainGrey, #features2MainBrown, #features2MainBlue").addClass("btnsFeatures2");
+
+		$("#features2MainHazel").on("click",()=>{ choosenFeatures.splice(2, 1, "piwne");
+			if( choosenFeatures.length < 6){ $("#features2Alert").addClass("redText");
+		}else if(choosenFeatures.length == 6){ $("#features2Alert").addClass("greenText"); }
+		});
+
+		$("#features2MainGrey").on("click",()=>{ choosenFeatures.splice(2, 1, "szare");
+			if( choosenFeatures.length < 6){ $("#features2Alert").addClass("redText");
+		}else if(choosenFeatures.length == 6){ $("#features2Alert").addClass("greenText"); }
+		});
+
+		$("#features2MainBrown").on("click",()=>{ choosenFeatures.splice(2, 1, "brązowe");
+			if( choosenFeatures.length < 6){ $("#features2Alert").addClass("redText");
+		}else if(choosenFeatures.length == 6){ $("#features2Alert").addClass("greenText"); }
+		});
+
+		$("#features2MainBlue").on("click",()=>{ choosenFeatures.splice(2, 1, "niebieskie");
+			if( choosenFeatures.length < 6){ $("#features2Alert").addClass("redText");
+		}else if(choosenFeatures.length == 6){ $("#features2Alert").addClass("greenText"); }
+		});
+
+		createNewElementAppend("p", "features2MainSkins", "Kolor skóry", $("#features2Main"));
+		createNewElementAppend("button", "features2MainWhite", "biała", $("#features2Main"));
+		createNewElementAppend("button", "features2MainBrownSkin", "brązowa", $("#features2Main"));
+		createNewElementAppend("button", "features2MainBlack", "czarna", $("#features2Main"));
+		createNewElementAppend("button", "features2MainRed", "czerwona", $("#features2Main"));
+		createNewElementAppend("button", "features2MainYellow", "żółta", $("#features2Main"));
+		createNewElementAppend("button", "features2MainGreen", "zielona", $("#features2Main"));
+		createNewElementAppend("button", "features2MainTawny", "brunatna", $("#features2Main"));
+		createNewElementAppend("button", "features2MainAzure", "błękitna", $("#features2Main"));
+
+		$("#features2MainWhite, #features2MainBrown, #features2MainBrownSkin, #features2MainBlack, #features2MainRed, #features2MainYellow, #features2MainGreen, #features2MainTawny, #features2MainAzure").addClass("btnsFeatures2");
+
+		$("#features2MainWhite").on("click",()=>{ choosenFeatures.splice(3, 1, "biała");
+			if( choosenFeatures.length < 6){ $("#features2Alert").addClass("redText");
+		}else if(choosenFeatures.length == 6){ $("#features2Alert").addClass("greenText"); }
+		});
+
+		$("#features2MainBrownSkin").on("click",()=>{ choosenFeatures.splice(3, 1, "brązowa");
+			if( choosenFeatures.length < 6){ $("#features2Alert").addClass("redText");
+		}else if(choosenFeatures.length == 6){ $("#features2Alert").addClass("greenText"); }
+		});
+
+		$("#features2MainBlack").on("click",()=>{ choosenFeatures.splice(3, 1, "czarna");
+			if( choosenFeatures.length < 6 ){ $("#features2Alert").addClass("redText");
+		}else if(choosenFeatures.length == 6){ $("#features2Alert").addClass("greenText"); }
+		});
+
+		$("#features2MainRed").on("click",()=>{ choosenFeatures.splice(3, 1, "czerwona");
+			if( choosenFeatures.length < 6 ){ $("#features2Alert").addClass("redText");
+		}else if(choosenFeatures.length == 6){ $("#features2Alert").addClass("greenText"); }
+		});
+
+		$("#features2MainYellow").on("click",()=>{ choosenFeatures.splice(3, 1, "żółta");
+			if( choosenFeatures.length < 6 ){ $("#features2Alert").addClass("redText");
+		}else if(choosenFeatures.length == 6){ $("#features2Alert").addClass("greenText"); }
+		});
+
+		$("#features2MainGreen").on("click",()=>{ choosenFeatures.splice(3, 1, "zielona");
+			if( choosenFeatures.length < 6 ){ $("#features2Alert").addClass("redText");
+		}else if(choosenFeatures.length == 6){ $("#features2Alert").addClass("greenText"); }
+		});
+
+		$("#features2MainTawny").on("click",()=>{ choosenFeatures.splice(3, 1, "brunatna");
+			if( choosenFeatures.length < 6 ){ $("#features2Alert").addClass("redText");
+		}else if(choosenFeatures.length == 6){ $("#features2Alert").addClass("greenText"); }
+		});
+
+		$("#features2MainAzure").on("click",()=>{ choosenFeatures.splice(3, 1, "błękitna");
+			if( choosenFeatures.length < 6 ){ $("#features2Alert").addClass("redText");
+		}else if(choosenFeatures.length == 6){ $("#features2Alert").addClass("greenText"); }
+		});
+
+		createNewElementAppend("p", "features2MainWeight", "Waga", $("#features2Main"));
+		createNewElementAppend("button", "features2MainUnderweight", "niedowaga", $("#features2Main"));
+		createNewElementAppend("button", "features2MainNormalweight", "normalna", $("#features2Main"));
+		createNewElementAppend("button", "features2MainOverweight", "nadwaga", $("#features2Main"));
+
+		$("#features2MainUnderweight, #features2MainNormalweight, #features2MainOverweight").addClass("btnsFeatures2");
+
+		$("#features2MainUnderweight").on("click",()=>{ choosenFeatures.splice(4, 1, "niedowaga");
+			if( choosenFeatures.length < 6 ){ $("#features2Alert").addClass("redText");
+		}else if(choosenFeatures.length == 6){ $("#features2Alert").addClass("greenText"); }
+		});
+
+		$("#features2MainNormalweight").on("click",()=>{ choosenFeatures.splice(4, 1, "normalna");
+			if( choosenFeatures.length < 6 ){ $("#features2Alert").addClass("redText");
+		}else if(choosenFeatures.length == 6){ $("#features2Alert").addClass("greenText"); }
+		});
+
+		$("#features2MainOverweight").on("click",()=>{ choosenFeatures.splice(4, 1, "nadwaga");
+			if( choosenFeatures.length < 6){ $("#features2Alert").addClass("redText");
+		}else if(choosenFeatures.length == 6){ $("#features2Alert").addClass("greenText"); }
+		});
+
+		createNewElementAppend("p", "features2MainGrowth", "Wzrost", $("#features2Main"));
+		createNewElementAppend("button", "features2MainShort", "niski", $("#features2Main"));
+		createNewElementAppend("button", "features2MainNormalGrowth", "normalny", $("#features2Main"));
+		createNewElementAppend("button", "features2MainTall", "wysoki", $("#features2Main"));
+
+		$("#features2MainShort, #features2MainNormalGrowth, #features2MainTall").addClass("btnsFeatures2");
+
+		$("#features2MainShort").on("click",()=>{ choosenFeatures.splice(5, 1, "niski");
+			if( choosenFeatures.length < 6){ $("#features2Alert").addClass("redText");
+		}else if(choosenFeatures.length == 6){ $("#features2Alert").addClass("greenText"); }
+		});
+
+		$("#features2MainNormalGrowth").on("click",()=>{ choosenFeatures.splice(5, 1, "normalny");
+			if( choosenFeatures.length < 6){ $("#features2Alert").addClass("redText");
+		}else if(choosenFeatures.length == 6){ $("#features2Alert").addClass("greenText"); }
+		});
+
+		$("#features2MainTall").on("click",()=>{ choosenFeatures.splice(5, 1, "wysoki");
+			if( choosenFeatures.length < 6){ $("#features2Alert").addClass("redText");
+		}else if(choosenFeatures.length == 6){ $("#features2Alert").addClass("greenText"); }
+		});
+});//koniec zdarzeń dla przycisku cechy 2 (features2)
+
+//zdarzenia dla przycisku info
+$("#infoCreator").on("click", () =>{
+	console.log(hero);
+	console.log(randomFeatures);
+	console.log(choosenFeatures);
+});//koniec zdarzeń dla przycisku info
+
 }); //koniec przycisku nowa gra (newGame)
 
 

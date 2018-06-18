@@ -39,9 +39,18 @@ module.exports.wizard = "Czarodziej to brzmi dumnie. Po wielu latach spędzonych
 //tekst dla wyboru profesji
 module.exports.occupationAlert = "Wybierz profesję.";
 
-//---------------------------------------LOSOWANIE CECH-------------------------------------------------------//
+//---------------------------CECHY część I -LOSOWANIE CECH------------------------------------------------------//
 module.exports.featuresTitle = "Losowanie cech.";
 module.exports.featuresDescription = "Poniżej znajduje się pięć przycisków, dzięki którym wylosujesz wysokość cech, które będą odzwierciedlały fizyczne i psychiczne atrybuty Twojej postaci.";
 
 //tekst dla losowania cech
 module.exports.featuresAlert = "Wylosuj cechy.";
+
+
+//---------------------------WYBÓR CECH część II---------------------------------------------------------------//
+
+module.exports.features2Title = "Wybór cech.";
+module.exports.features2Description = "W tej części kreatora należy wybrać płeć, kolor włosów, oczu, skóry, wagę i wzrost. Poniżej są przyciski dzięki, którym należy to zrobić.";
+
+//tekst dla wybierania cech
+module.exports.features2Alert = "Wybierz cechy.";

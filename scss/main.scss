@@ -263,7 +263,7 @@ nav{
 }
 
 //style dla części opisowej w kreatorze postaci.
-#nameDescription, #raceDescription, #occupationDescription, #choosenDescription{
+#nameDescription, #raceDescription, #occupationDescription, #choosenDescription, #featuresDescription, #features2Description{
   margin-top: 2%;
   font-weight: bold;
   font-size: 1.1em;
@@ -308,4 +308,28 @@ nav{
 .greenText{
   color: green;
   font-weight: bold;
+}
+
+//style dla features2Main - wybór cech koloru skóry, oczu, włosów, wagi, wzrostu i płci
+#features2Main{
+  display: flex;
+  justify-content: space-evenly;
+  flex-wrap: wrap;
+}
+
+#features2MainSex, #features2MainHair, #features2MainEyes, #features2MainSkins, #features2MainWeight, #features2MainGrowth{
+  width: 100%;
+  text-align: center;
+  margin-top: 1.5%;
+  font-weight: bold;
+  text-decoration: underline;
+  text-decoration-color: gold;
+  font-size: 1.2em;
+}
+
+.btnsFeatures2{
+  width: 24%;
+  height: 25px;
+  font-weight: bold;
+  font-size: 1.05em;
 }
