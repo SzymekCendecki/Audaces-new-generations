@@ -34,4 +34,4 @@ Dodano wybieranie cech postaci - płci, wagi, wzrostu, koloru oczu, skóry, wło
 Dodano wyświetlanie w konsoli wyników wyborów - tymczasowo.
 
 19 czerwca 2018 - wersja 0.1.2
-Optymalizja pliku workingFile.js - wprowadzenie funkcji argumentowych, dzięki którym zmniejszono ilość linii kodu ("wagę" pliku). Zwiększyła się czytelność kodu.
+Optymalizacja pliku workingFile.js - wprowadzenie funkcji argumentowych, dzięki którym zmniejszono ilość linii kodu ("wagę" pliku). Zwiększyła się czytelność kodu.
