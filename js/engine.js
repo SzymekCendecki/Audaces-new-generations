@@ -99,6 +99,16 @@ document.addEventListener("DOMContentLoaded", function () {
 				});
 		}
 
+		//funkcja optymalizująca tworzenie inputów
+		function createNewInputAppend(nameElement, name, id, value, type, whereAppend) {
+				var newElement = document.createElement(nameElement);
+				newElement.type = type;
+				newElement.name = name;
+				newElement.id = id;
+				newElement.value = value;
+				whereAppend.append(newElement);
+		}
+
 		//utworzenie przycisków pierwszego menu
 		createNewElementAppend("p", "titleGameHeader", "AUDACES", $("header"));
 		createNewElementAppend("p", "subTitleGameHeader", "serce ze stali", $("#titleGameHeader"));
@@ -409,6 +419,45 @@ document.addEventListener("DOMContentLoaded", function () {
 						features2($("#features2MainTall"), 5, "wysoki");
 				}); //koniec zdarzeń dla przycisku cechy 2 (features2)
 
+				//zdarzenia dla przycisku ekwipunek
+				$("#equipment").on("click", function () {
+						$("#mainPart").empty();
+
+						//elementy wyboru ekwipunku
+						createNewElementAppend("p", "equipmentTitle", heroCreator.equipmentTitle, $("#mainPart"));
+						$("#equipmentTitle").addClass("goldUnderline basicText");
+						createNewElementAppend("p", "equipmentDescription", heroCreator.equipmentDescription, $("#mainPart"));
+
+						createNewElementAppend("div", "weapon", "", $("#mainPart"));
+						createNewElementAppend("p", "weaponTitle", "broń", $("#weapon"));
+
+						//funkcje tworzenia elementów wybierania ekwipunku
+						createNewInputAppend("input", "item", "dagger", "sztylet", "checkbox", $("#weapon"));
+						createNewElementAppend("div", "daggerTitle", "sztylet", $("#weapon"));
+
+						createNewInputAppend("input", "item", "woddenStick", "drewniana pałka", "checkbox", $("#weapon"));
+						createNewElementAppend("div", "woddenStickTitle", "drewniana pałka", $("#weapon"));
+
+						createNewInputAppend("input", "item", "shortSword", "krótki miecz", "checkbox", $("#weapon"));
+						createNewElementAppend("div", "shortSwordTitle", "krótki miecz", $("#weapon"));
+
+						createNewInputAppend("input", "item", "sabre", "szabla", "checkbox", $("#weapon"));
+						createNewElementAppend("div", "sabreTitle", "szabla", $("#weapon"));
+
+						createNewInputAppend("input", "item", "spear", "włócznia", "checkbox", $("#weapon"));
+						createNewElementAppend("div", "spearTitle", "włócznia", $("#weapon"));
+
+						createNewInputAppend("input", "item", "slingshot", "proca", "checkbox", $("#weapon"));
+						createNewElementAppend("div", "slingshotTitle", "proca", $("#weapon"));
+
+						createNewInputAppend("input", "item", "bow", "łuk", "checkbox", $("#weapon"));
+						createNewElementAppend("div", "bowTitle", "łuk", $("#weapon"));
+
+						$("#dagger, #daggerTitle, #woddenStick, #woddenStickTitle, #shortSword, #shortSwordTitle, #sabre, #sabreTitle, #spear, #spearTitle, #slingshot, #slingshotTitle, #bow, #bowTitle").addClass("floatLeft");
+
+						createNewElementAppend("p", "choosenDescription", "", $("#mainPart"));
+				});
+
 				//zdarzenia dla przycisku info - w kreatorze postaci
 				$("#infoCreator").on("click", function () {
 						console.log(hero);
@@ -493,12 +542,15 @@ module.exports.featuresDescription = "Poniżej znajduje się pięć przycisków,
 module.exports.featuresAlert = "Wylosuj cechy.";
 
 //---------------------------WYBÓR CECH część II---------------------------------------------------------------//
-
 module.exports.features2Title = "Wybór cech.";
 module.exports.features2Description = "W tej części kreatora należy wybrać płeć, kolor włosów, oczu, skóry, wagę i wzrost. Poniżej są przyciski dzięki, którym należy to zrobić.";
 
 //tekst dla wybierania cech
 module.exports.features2Alert = "Wybierz cechy.";
+
+//------------------------------WYBÓR EKWIPUNKU-----------------------------------------------------------------//
+module.exports.equipmentTitle = "Wybór ekwipunku.";
+module.exports.equipmentDescription = "Możesz wybrać maksymalnie pięć rzeczy.";
 
 /***/ })
 /******/ ]);

@@ -263,7 +263,7 @@ nav{
 }
 
 //style dla części opisowej w kreatorze postaci.
-#nameDescription, #raceDescription, #occupationDescription, #choosenDescription, #featuresDescription, #features2Description{
+#nameDescription, #raceDescription, #occupationDescription, #choosenDescription, #featuresDescription, #features2Description, #equipmentDescription{
   margin-top: 2%;
   font-weight: bold;
   font-size: 1.1em;
@@ -332,4 +332,8 @@ nav{
   height: 25px;
   font-weight: bold;
   font-size: 1.05em;
+}
+
+.floatLeft{
+  float: left;
 }

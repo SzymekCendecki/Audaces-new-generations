@@ -48,9 +48,12 @@ module.exports.featuresAlert = "Wylosuj cechy.";
 
 
 //---------------------------WYBÓR CECH część II---------------------------------------------------------------//
-
 module.exports.features2Title = "Wybór cech.";
 module.exports.features2Description = "W tej części kreatora należy wybrać płeć, kolor włosów, oczu, skóry, wagę i wzrost. Poniżej są przyciski dzięki, którym należy to zrobić.";
 
 //tekst dla wybierania cech
 module.exports.features2Alert = "Wybierz cechy.";
+
+//------------------------------WYBÓR EKWIPUNKU-----------------------------------------------------------------//
+module.exports.equipmentTitle = "Wybór ekwipunku.";
+module.exports.equipmentDescription = "Możesz wybrać maksymalnie pięć rzeczy.";
