@@ -30,7 +30,8 @@ Dodano losowanie cech - siły, wytrzymałości, zręczności, inteligncji i char
 
 18 czerwca 2018 - wersja 0.1.1
 Usunięto z tablicy hero losowane punkty cech i cechy wybieralne i przeniesiono je do nowych tablic, co umożliwi łatwiejszą zmianę koloru alertu featuresAlert i features2Alet z zielonego na czerwony (prawdopodobnie pomoże to przy dalszej walidacji).
-
 Dodano wybieranie cech postaci - płci, wagi, wzrostu, koloru oczu, skóry, włosów.
-
 Dodano wyświetlanie w konsoli wyników wyborów - tymczasowo.
+
+19 czerwca 2018 - wersja 0.1.2
+Optymalizja pliku workingFile.js - wprowadzenie funkcji argumentowych, dzięki którym zmniejszono ilość linii kodu ("wagę" pliku). Zwiększyła się czytelność kodu.
