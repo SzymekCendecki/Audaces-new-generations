@@ -5,28 +5,40 @@ document.addEventListener("DOMContentLoaded", () => {
 console.log("NIEWIERNE PSY RULEZ!!!!");
 
 //funkcja, która tworzy nowy element DOM
-function createNewElementAppend(nameElement, idName, text, whereAppend){
+function createNewElementAppend(nameElement, idName, text, whereAppend, addedClass){
 		let newElement = document.createElement(nameElement);
 		newElement.id = idName;
 		newElement.innerText = text;
 		whereAppend.append(newElement);
-	}
-
-//funkcja optymalizująca wybieranie rasy i profesji
-	function clickRaceOccupation(element, text, number, sourceDescription, alert){
-		element.on("click", ()=>{ hero.splice(number, 1, text); alert.addClass("greenText");
-		$("#choosenDescription").text(sourceDescription); });
+		newElement.classList.add(addedClass);
+		newElement.classList.remove("undefined");
 	}
 
 //funkcja optymalizująca tworzenie inputów
-	function createNewInputAppend(nameElement, name, id, value, type, whereAppend){
+	function createNewInputAppend(nameElement, name, id, value, type, whereAppend, addedClass){
 			let newElement = document.createElement(nameElement);
 			newElement.type = type;
 			newElement.name = name;
 			newElement.id = id;
 			newElement.value = value;
 			whereAppend.append(newElement);
+			newElement.classList.add(addedClass);
+			newElement.classList.remove("undefined");
 		}
+
+	//funkcja optymalizująca wyświetlanie pozostałych (innych) elementów wybory rzeczy z ekwipunku
+		function arrayEquip(arrayENG, arrayPL, type, addClass){
+			for (let i= 0; i<arrayPL.length; i++){
+				createNewInputAppend("input", "item", arrayENG[i], arrayPL[i], type, $("#weapon"), addClass);
+				createNewElementAppend("div", arrayENG[i], arrayPL[i], $("#weapon"), addClass);
+			}
+		}
+
+		//funkcja optymalizująca wybieranie rasy i profesji
+			function clickRaceOccupation(element, text, number, sourceDescription, alert){
+				element.on("click", ()=>{ hero.splice(number, 1, text); alert.addClass("greenText");
+				$("#choosenDescription").text(sourceDescription); });
+			}
 
 //utworzenie przycisków pierwszego menu
   createNewElementAppend("p", "titleGameHeader", "AUDACES", $("header"));
@@ -58,6 +70,24 @@ function createNewElementAppend(nameElement, idName, text, whereAppend){
 
 	//tablica ekwipunku max 5 elementów
 	let equip = [];
+
+	//tablice wybierania EKWIPUNKU
+	//broń
+	let equipWeaponPL = ["sztylet", "drewniana pałka", "krótki miecz", "szabla", "włócznia", "proca", "łuk"];
+	let equipWeaponENG = ["dagger", "woddenStick", "shortSword", "sabre", "spear", "slingshot", "bow"];
+
+	//zbroje
+	let equipArmorPL = ["przeszywanica", "skórzana", "ćwiekowana"];
+	let equipArmorENG = ["gambison", "leather", "studded"];
+
+	//tarcze
+	let equipShieldPL = ["puklerz", "mała drewniana", "mała metalowa"];
+	let equipShieldENG = ["buckler", "smallWooden", "smallMetal"];
+
+	//pozostały ekwipunek
+	let equipOtherPL = ["hubka i krzesiwo", "mieszek", "skórzany pas", "igły i nici", "tuba na pergaminy", "pęk piór do pisania", "pergamniny 5szt.", "zwykłe ubranie", "płaszcz", "fikuśna czapka", "torba podróżna", "sakwa", "koc", "namiot", "drewniana miska", "drewniana łyżka", "pochodnia", "lampa oliwna", "kaganek", "lina 5m"];
+
+	let equipOtherENG = ["tinders", "moneyBag", "leatherBelt", "needlesThread", "tubeParchments", "penWriting", "parchments5pieces", "ordinaryClothing", "coat", "fussyHat", "travelBag", "purse", "blanket", "tent", "woodenBowl", "woodenSpoon", "torch", "oliveLamp", "oilLamp", "rope5m"];
 
 	//tablica umiejętności max 3 elementy
 	let skills = [];
@@ -128,6 +158,7 @@ $("#newGame").on("click", () =>{
 		createNewElementAppend("p", "nameTitle", heroCreator.nameTitle, $("#mainPart"));
 		$("#nameTitle").addClass("goldUnderline basicText");
 		createNewElementAppend("p", "nameDescription", heroCreator.nameDescription, $("#mainPart"));
+		
 		createNewElementAppend("input", "giveName", "", $("#mainPart"));
 		createNewElementAppend("button", "acceptName", "zatwierdź", $("#mainPart"));
 
@@ -146,6 +177,8 @@ $("#newGame").on("click", () =>{
 		createNewElementAppend("p", "raceTitle", heroCreator.raceTitle, $("#mainPart"));
 		$("#raceTitle").addClass("goldUnderline basicText");
 		createNewElementAppend("p", "raceDescription", heroCreator.raceDescription, $("#mainPart"));
+
+
 		createNewElementAppend("button", "human", "człowiek", $("#mainPart"));
 		createNewElementAppend("button", "elv", "elf", $("#mainPart"));
 		createNewElementAppend("button", "dwarf", "krasnolud", $("#mainPart"));
@@ -168,6 +201,7 @@ $("#newGame").on("click", () =>{
 		createNewElementAppend("p", "occupationTitle", heroCreator.occupationTitle, $("#mainPart"));
 		$("#occupationTitle").addClass("goldUnderline basicText");
 		createNewElementAppend("p", "occupationDescription", heroCreator.occupationDescription, $("#mainPart"));
+
 		createNewElementAppend("button", "warrior", "wojownik", $("#mainPart"));
 		createNewElementAppend("button", "criminal", "złoczyńca", $("#mainPart"));
 		createNewElementAppend("button", "wizard", "czarodziej", $("#mainPart"));
@@ -329,33 +363,46 @@ $("#features2").on("click", ()=>{
 				$("#equipmentTitle").addClass("goldUnderline basicText");
 				createNewElementAppend("p", "equipmentDescription", heroCreator.equipmentDescription, $("#mainPart"));
 
+				//funkcje tworzenia elementów wybierania ekwipunku
+
+				//broń
 				createNewElementAppend("div", "weapon", "", $("#mainPart"));
 				createNewElementAppend("p", "weaponTitle", "broń", $("#weapon"));
 
-				//funkcje tworzenia elementów wybierania ekwipunku
-					createNewInputAppend("input", "item", "dagger", "sztylet", "checkbox", $("#weapon"));
-					createNewElementAppend("div", "daggerTitle", "sztylet", $("#weapon"));
+				arrayEquip(equipWeaponENG, equipWeaponPL, "checkbox", "floatLeft");
 
-					createNewInputAppend("input", "item", "woddenStick", "drewniana pałka", "checkbox", $("#weapon"));
-					createNewElementAppend("div", "woddenStickTitle", "drewniana pałka", $("#weapon"));
+				//czyszczenie floatów
+				createNewElementAppend("p", "clearFloat", "", $("#weapon"));
+				$("#clearFloat").addClass("clearFloat");
 
-					createNewInputAppend("input", "item", "shortSword", "krótki miecz", "checkbox", $("#weapon"));
-					createNewElementAppend("div", "shortSwordTitle", "krótki miecz", $("#weapon"));
+				//zbroja
+				createNewElementAppend("div", "armor", "", $("#mainPart"));
+				createNewElementAppend("p", "armorTitle", "zbroja", $("#weapon"));
 
-					createNewInputAppend("input", "item", "sabre", "szabla", "checkbox", $("#weapon"));
-					createNewElementAppend("div", "sabreTitle", "szabla", $("#weapon"));
+				arrayEquip(equipArmorENG, equipArmorPL, "checkbox", "floatLeft");
 
-					createNewInputAppend("input", "item", "spear", "włócznia", "checkbox", $("#weapon"));
-					createNewElementAppend("div", "spearTitle", "włócznia", $("#weapon"));
+				//czyszczenie floatów
+				createNewElementAppend("p", "clearFloat2", "", $("#weapon"));
+				$("#clearFloat2").addClass("clearFloat");
 
-					createNewInputAppend("input", "item", "slingshot", "proca", "checkbox", $("#weapon"));
-					createNewElementAppend("div", "slingshotTitle", "proca", $("#weapon"));
+				//tarcza
+				createNewElementAppend("div", "shield", "", $("#mainPart"));
+				createNewElementAppend("p", "shieldTitle", "tarcza", $("#weapon"));
 
-					createNewInputAppend("input", "item", "bow", "łuk", "checkbox", $("#weapon"));
-					createNewElementAppend("div", "bowTitle", "łuk", $("#weapon"));
+				arrayEquip(equipShieldENG, equipShieldPL, "checkbox", "floatLeft");
 
-					$("#dagger, #daggerTitle, #woddenStick, #woddenStickTitle, #shortSword, #shortSwordTitle, #sabre, #sabreTitle, #spear, #spearTitle, #slingshot, #slingshotTitle, #bow, #bowTitle").addClass("floatLeft");
+				//czyszczenie floatów
+				createNewElementAppend("p", "clearFloat3", "", $("#weapon"));
+				$("#clearFloat3").addClass("clearFloat");
 
+				//inne elementy wybieralne ekwipunku
+				createNewElementAppend("div", "otherEquip", "", $("#mainPart"));
+				createNewElementAppend("p", "otherEquipTitle", "inne", $("#weapon"));
+
+				//funkcja wyświetlania pozostałych (innych) elementów do wyboru
+				arrayEquip(equipOtherENG, equipOtherPL, "checkbox", "floatLeft");
+
+				//paragraf do wyświetlania opisu wybranego elementu ekwipunku
 				createNewElementAppend("p", "choosenDescription", "", $("#mainPart"));
 		});
 
