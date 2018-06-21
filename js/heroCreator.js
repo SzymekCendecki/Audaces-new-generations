@@ -1,5 +1,22 @@
-//-----------------------------------------Imię------------------------------------------------------------//
+//----------------------------------------tablice wybieranie ekwipunku ----------------------------------------//
+//broń
+module.exports.equipWeaponPL = ["sztylet", "drewniana pałka", "krótki miecz", "szabla", "włócznia", "proca", "łuk"];
+module.exports.equipWeaponENG = ["dagger", "woddenStick", "shortSword", "sabre", "spear", "slingshot", "bow"];
 
+//zbroje
+module.exports.equipArmorPL = ["przeszywanica", "skórzana", "ćwiekowana"];
+module.exports.equipArmorENG = ["gambison", "leather", "studded"];
+
+//tarcze
+module.exports.equipShieldPL = ["puklerz", "mała drewniana", "mała metalowa"];
+module.exports.equipShieldENG = ["buckler", "smallWooden", "smallMetal"];
+
+//pozostały ekwipunek
+module.exports.equipOtherPL = ["kostur", "mieszek", "torba podróżna", "sakwa", "plecak", "manierka", "sagan", "koc", "tuba na perg.", "pęk piór do pis.", "pergamniny 5szt.", "zwykłe ubranie", "fikuśna czapka", "płaszcz", "skórzany pas",  "igły i nici", "derka", "namiot", "drewniana miska", "drewniana łyżka", "pochodnia", "lampa oliwna", "kaganek", "lina 5m", "hubka i krzesiwo"];
+
+module.exports.equipOtherENG = ["stick", "moneyBag", "travelBag", "purse", "backpack", "canteen", "pot", "blanket", "tubeParchments", "penWriting", "parchments5pieces", "ordinaryClothing", "fussyHat", "coat", "leatherBelt", "needlesThread", "saddleCloth", "tent", "woodenBowl", "woodenSpoon", "torch", "oliveLamp", "oilLamp", "rope5m", "tinders"];
+
+//-----------------------------------------Imię------------------------------------------------------------//
 //tekst dla wyboru imienia
 module.exports.nameTitle = "Wybór imienia.";
 module.exports.nameDescription = "Wpisz w pole niżej swoje imię oraz wciśnij przycisk 'zatwierdź'. Możesz wpisać tylko litery, cyfry nie będą barne pod uwagę. Imię można zmieniać dowolną ilość razy.";
@@ -57,3 +74,6 @@ module.exports.features2Alert = "Wybierz cechy.";
 //------------------------------WYBÓR EKWIPUNKU-----------------------------------------------------------------//
 module.exports.equipmentTitle = "Wybór ekwipunku.";
 module.exports.equipmentDescription = "Możesz wybrać maksymalnie pięć rzeczy.";
+
+//tekst dla wybierania cech
+module.exports.equipmentAlert = "Wybierz ekwipunek.";

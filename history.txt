@@ -41,3 +41,6 @@ Początek tworzenia wybierania ekwipunku (na razie tylko lista broni).
 
 20 czerwca 2018 - wersja 0.1.4
 Tworzenie wybierania ekwipunku ciąg dalszy. Dodane zostały lista tarcz, zbroi oraz  innych przedmiotów. Plik workingFile ponownie został zoptymalizowany - dodane są funkcje (z pętlami i tablicami), aby łatwiej było tworzyć listy z możliwościami wyboru. Optymalizacja ponownie poprawiła nieco czytelność kodu oraz ułatwiła jego tworzenie. Brak jeszcze funkcji walidacji oraz funkcji odpowiedzialnych za obsługę zdarzeń.
+
+21 czerwca 2018 - werja 0.1.5
+Nowa wersja wybierania ekwipunku. Można wybierać ekwipunek, jest walidacja, nie ma możliwości usuwania, i wybierania ponownie.

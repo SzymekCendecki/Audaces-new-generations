@@ -105,14 +105,6 @@ document.addEventListener("DOMContentLoaded", function () {
 		newElement.classList.remove("undefined");
 	}
 
-	//funkcja optymalizująca wyświetlanie pozostałych (innych) elementów wybory rzeczy z ekwipunku
-	function arrayEquip(arrayENG, arrayPL, type, addClass) {
-		for (var i = 0; i < arrayPL.length; i++) {
-			createNewInputAppend("input", "item", arrayENG[i], arrayPL[i], type, $("#weapon"), addClass);
-			createNewElementAppend("div", arrayENG[i], arrayPL[i], $("#weapon"), addClass);
-		}
-	}
-
 	//funkcja optymalizująca wybieranie rasy i profesji
 	function clickRaceOccupation(element, text, number, sourceDescription, alert) {
 		element.on("click", function () {
@@ -151,24 +143,6 @@ document.addEventListener("DOMContentLoaded", function () {
 
 	//tablica ekwipunku max 5 elementów
 	var equip = [];
-
-	//tablice wybierania EKWIPUNKU
-	//broń
-	var equipWeaponPL = ["sztylet", "drewniana pałka", "krótki miecz", "szabla", "włócznia", "proca", "łuk"];
-	var equipWeaponENG = ["dagger", "woddenStick", "shortSword", "sabre", "spear", "slingshot", "bow"];
-
-	//zbroje
-	var equipArmorPL = ["przeszywanica", "skórzana", "ćwiekowana"];
-	var equipArmorENG = ["gambison", "leather", "studded"];
-
-	//tarcze
-	var equipShieldPL = ["puklerz", "mała drewniana", "mała metalowa"];
-	var equipShieldENG = ["buckler", "smallWooden", "smallMetal"];
-
-	//pozostały ekwipunek
-	var equipOtherPL = ["hubka i krzesiwo", "mieszek", "skórzany pas", "igły i nici", "tuba na pergaminy", "pęk piór do pisania", "pergamniny 5szt.", "zwykłe ubranie", "płaszcz", "fikuśna czapka", "torba podróżna", "sakwa", "koc", "namiot", "drewniana miska", "drewniana łyżka", "pochodnia", "lampa oliwna", "kaganek", "lina 5m"];
-
-	var equipOtherENG = ["tinders", "moneyBag", "leatherBelt", "needlesThread", "tubeParchments", "penWriting", "parchments5pieces", "ordinaryClothing", "coat", "fussyHat", "travelBag", "purse", "blanket", "tent", "woodenBowl", "woodenSpoon", "torch", "oliveLamp", "oilLamp", "rope5m"];
 
 	//tablica umiejętności max 3 elementy
 	var skills = [];
@@ -233,7 +207,8 @@ document.addEventListener("DOMContentLoaded", function () {
 		createNewElementAppend("p", "occupationAlert", heroCreator.occupationAlert, $("#alerts"));
 		createNewElementAppend("p", "featuresAlert", heroCreator.featuresAlert, $("#alerts"));
 		createNewElementAppend("p", "features2Alert", heroCreator.features2Alert, $("#alerts"));
-		$("#nameAlert, #raceAlert, #occupationAlert, #featuresAlert, #features2Alert").addClass("redText");
+		createNewElementAppend("p", "equipmentAlert", heroCreator.equipmentAlert, $("#alerts"));
+		$("#nameAlert, #raceAlert, #occupationAlert, #featuresAlert, #features2Alert, #equipmentAlert").addClass("redText");
 
 		//zdarzenia dla przycisku imię (name)
 		$("#name").on("click", function () {
@@ -310,6 +285,7 @@ document.addEventListener("DOMContentLoaded", function () {
 			createNewElementAppend("p", "featuresTitle", heroCreator.featuresTitle, $("#mainPart"));
 			$("#featuresTitle").addClass("goldUnderline basicText");
 			createNewElementAppend("p", "featuresDescription", heroCreator.featuresDescription, $("#mainPart"));
+
 			createNewElementAppend("button", "force", "siła", $("#mainPart"));
 			createNewElementAppend("button", "strength", "wytrzymałość", $("#mainPart"));
 			createNewElementAppend("button", "dexterity", "zręczność", $("#mainPart"));
@@ -347,6 +323,7 @@ document.addEventListener("DOMContentLoaded", function () {
 			createNewElementAppend("p", "features2Title", heroCreator.features2Title, $("#mainPart"));
 			$("#features2Title").addClass("goldUnderline basicText");
 			createNewElementAppend("p", "features2Description", heroCreator.features2Description, $("#mainPart"));
+
 			createNewElementAppend("div", "features2Main", "", $("#mainPart"));
 			createNewElementAppend("p", "features2MainSex", "Płeć", $("#features2Main"));
 			createNewElementAppend("button", "features2MainWomen", "Kobieta", $("#features2Main"));
@@ -461,54 +438,118 @@ document.addEventListener("DOMContentLoaded", function () {
 			$("#equipmentTitle").addClass("goldUnderline basicText");
 			createNewElementAppend("p", "equipmentDescription", heroCreator.equipmentDescription, $("#mainPart"));
 
-			//funkcje tworzenia elementów wybierania ekwipunku
+			createNewElementAppend("p", "weaponTitle", "broń", $("#mainPart"), "bold");
+
+			function chooseItem(whatClick, whatPush) {
+				whatClick.on("click", function () {
+					if (equip.length < 5) {
+						equip.push(whatPush);
+						$("#choosenDescription").text(createNewElementAppend("button", whatPush, whatPush, $("#choosenDescription")));
+
+						var allBtnRemove = document.querySelectorAll("#choosenDescription button");
+						console.log(allBtnRemove);
+					} else {
+						createNewElementAppend("p", "equipmentAlert", "", $("#choosenDescription"));
+						$("#equipmentAlert").text("Już zostało wybrane pięć przedmiotów");
+					}
+				});
+			}
 
 			//broń
-			createNewElementAppend("div", "weapon", "", $("#mainPart"));
-			createNewElementAppend("p", "weaponTitle", "broń", $("#weapon"));
+			createNewElementAppend("button", heroCreator.equipWeaponENG[0], heroCreator.equipWeaponPL[0], $("#mainPart"), "bold");chooseItem($("#dagger"), "sztylet");
 
-			arrayEquip(equipWeaponENG, equipWeaponPL, "checkbox", "floatLeft");
+			createNewElementAppend("button", heroCreator.equipWeaponENG[1], heroCreator.equipWeaponPL[1], $("#mainPart"), "bold");chooseItem($("#woddenStick"), "drewniana pałka");
 
-			//czyszczenie floatów
-			createNewElementAppend("p", "clearFloat", "", $("#weapon"));
-			$("#clearFloat").addClass("clearFloat");
+			createNewElementAppend("button", heroCreator.equipWeaponENG[2], heroCreator.equipWeaponPL[2], $("#mainPart"), "bold");chooseItem($("#shortSword"), "krótki miecz");
 
-			//zbroja
-			createNewElementAppend("div", "armor", "", $("#mainPart"));
-			createNewElementAppend("p", "armorTitle", "zbroja", $("#weapon"));
+			createNewElementAppend("button", heroCreator.equipWeaponENG[3], heroCreator.equipWeaponPL[3], $("#mainPart"), "bold");chooseItem($("#sabre"), "szabla");
 
-			arrayEquip(equipArmorENG, equipArmorPL, "checkbox", "floatLeft");
+			createNewElementAppend("button", heroCreator.equipWeaponENG[4], heroCreator.equipWeaponPL[4], $("#mainPart"), "bold");chooseItem($("#spear"), "włócznia");
 
-			//czyszczenie floatów
-			createNewElementAppend("p", "clearFloat2", "", $("#weapon"));
-			$("#clearFloat2").addClass("clearFloat");
+			createNewElementAppend("button", heroCreator.equipWeaponENG[5], heroCreator.equipWeaponPL[5], $("#mainPart"), "bold");chooseItem($("#slingshot"), "proca");
 
-			//tarcza
-			createNewElementAppend("div", "shield", "", $("#mainPart"));
-			createNewElementAppend("p", "shieldTitle", "tarcza", $("#weapon"));
+			createNewElementAppend("button", heroCreator.equipWeaponENG[6], heroCreator.equipWeaponPL[6], $("#mainPart"), "bold");chooseItem($("#bow"), "łuk");
 
-			arrayEquip(equipShieldENG, equipShieldPL, "checkbox", "floatLeft");
+			//zbroje
+			createNewElementAppend("p", "armorTitle", "zbroje", $("#mainPart"), "bold");
 
-			//czyszczenie floatów
-			createNewElementAppend("p", "clearFloat3", "", $("#weapon"));
-			$("#clearFloat3").addClass("clearFloat");
+			createNewElementAppend("button", heroCreator.equipArmorENG[0], heroCreator.equipArmorPL[0], $("#mainPart"), "bold");chooseItem($("#gambison"), "przeszywanica");
 
-			//inne elementy wybieralne ekwipunku
-			createNewElementAppend("div", "otherEquip", "", $("#mainPart"));
-			createNewElementAppend("p", "otherEquipTitle", "inne", $("#weapon"));
+			createNewElementAppend("button", heroCreator.equipArmorENG[1], heroCreator.equipArmorPL[1], $("#mainPart"), "bold");chooseItem($("#leather"), "skórzana");
 
-			//funkcja wyświetlania pozostałych (innych) elementów do wyboru
-			arrayEquip(equipOtherENG, equipOtherPL, "checkbox", "floatLeft");
+			createNewElementAppend("button", heroCreator.equipArmorENG[2], heroCreator.equipArmorPL[2], $("#mainPart"), "bold");chooseItem($("#studded"), "ćwiekowana");
+
+			//tarcze
+			createNewElementAppend("p", "shieldTitle", "tarcze", $("#mainPart"), "bold");
+
+			createNewElementAppend("button", heroCreator.equipShieldENG[0], heroCreator.equipShieldPL[0], $("#mainPart"), "bold");chooseItem($("#buckler"), "puklerz");
+
+			createNewElementAppend("button", heroCreator.equipShieldENG[1], heroCreator.equipShieldPL[1], $("#mainPart"), "bold");chooseItem($("#smallWooden"), "mała drewniana");
+
+			createNewElementAppend("button", heroCreator.equipShieldENG[2], heroCreator.equipShieldPL[2], $("#mainPart"), "bold");chooseItem($("#smallMetal"), "mała metalowa");
+
+			//inne
+			createNewElementAppend("p", "otherTitle", "inne", $("#mainPart"), "bold");
+
+			createNewElementAppend("button", heroCreator.equipOtherENG[0], heroCreator.equipOtherPL[0], $("#mainPart"), "bold");chooseItem($("#stick"), "kostur");
+
+			createNewElementAppend("button", heroCreator.equipOtherENG[1], heroCreator.equipOtherPL[1], $("#mainPart"), "bold");chooseItem($("#moneyBag"), "mieszek");
+
+			createNewElementAppend("button", heroCreator.equipOtherENG[2], heroCreator.equipOtherPL[2], $("#mainPart"), "bold");chooseItem($("#travelBag"), "torba podróżna");
+
+			createNewElementAppend("button", heroCreator.equipOtherENG[3], heroCreator.equipOtherPL[3], $("#mainPart"), "bold");chooseItem($("#purse"), "sakwa");
+
+			createNewElementAppend("button", heroCreator.equipOtherENG[4], heroCreator.equipOtherPL[4], $("#mainPart"), "bold");chooseItem($("#backpack"), "plecak");
+
+			createNewElementAppend("button", heroCreator.equipOtherENG[5], heroCreator.equipOtherPL[5], $("#mainPart"), "bold");chooseItem($("#canteen"), "manierka");
+
+			createNewElementAppend("button", heroCreator.equipOtherENG[6], heroCreator.equipOtherPL[6], $("#mainPart"), "bold");chooseItem($("#pot"), "sagan");
+
+			createNewElementAppend("button", heroCreator.equipOtherENG[7], heroCreator.equipOtherPL[7], $("#mainPart"), "bold");chooseItem($("#blanket"), "koc");
+
+			createNewElementAppend("button", heroCreator.equipOtherENG[8], heroCreator.equipOtherPL[8], $("#mainPart"), "bold");chooseItem($("#tubeParchments"), "tuba na pergaminy");
+
+			createNewElementAppend("button", heroCreator.equipOtherENG[9], heroCreator.equipOtherPL[9], $("#mainPart"), "bold");chooseItem($("#penWriting"), "pęk piór do pisania");
+
+			createNewElementAppend("button", heroCreator.equipOtherENG[10], heroCreator.equipOtherPL[10], $("#mainPart"), "bold");chooseItem($("#parchments5pieces"), "pergaminy 5szt.");
+
+			createNewElementAppend("button", heroCreator.equipOtherENG[11], heroCreator.equipOtherPL[11], $("#mainPart"), "bold");chooseItem($("#ordinaryClothing"), "zwykłe ubranie");
+
+			createNewElementAppend("button", heroCreator.equipOtherENG[12], heroCreator.equipOtherPL[12], $("#mainPart"), "bold");chooseItem($("#fussyHat"), "fikuśna czapka");
+
+			createNewElementAppend("button", heroCreator.equipOtherENG[13], heroCreator.equipOtherPL[13], $("#mainPart"), "bold");chooseItem($("#coat"), "płaszcz");
+
+			createNewElementAppend("button", heroCreator.equipOtherENG[14], heroCreator.equipOtherPL[14], $("#mainPart"), "bold");chooseItem($("#leatherBelt"), "skórzany pas");
+
+			createNewElementAppend("button", heroCreator.equipOtherENG[15], heroCreator.equipOtherPL[15], $("#mainPart"), "bold");chooseItem($("#needlesThread"), "igły i nici");
+
+			createNewElementAppend("button", heroCreator.equipOtherENG[16], heroCreator.equipOtherPL[16], $("#mainPart"), "bold");chooseItem($("#saddleCloth"), "derka");
+
+			createNewElementAppend("button", heroCreator.equipOtherENG[17], heroCreator.equipOtherPL[17], $("#mainPart"), "bold");chooseItem($("#tent"), "namiot");
+
+			createNewElementAppend("button", heroCreator.equipOtherENG[18], heroCreator.equipOtherPL[18], $("#mainPart"), "bold");chooseItem($("#woodenBowl"), "drewniana miska");
+
+			createNewElementAppend("button", heroCreator.equipOtherENG[19], heroCreator.equipOtherPL[19], $("#mainPart"), "bold");chooseItem($("#woodenSpoon"), "drewniana łyżka");
+
+			createNewElementAppend("button", heroCreator.equipOtherENG[20], heroCreator.equipOtherPL[20], $("#mainPart"), "bold");chooseItem($("#torch"), "pochodnia");
+
+			createNewElementAppend("button", heroCreator.equipOtherENG[21], heroCreator.equipOtherPL[21], $("#mainPart"), "bold");chooseItem($("#oliveLamp"), "lampa oliwna");
+
+			createNewElementAppend("button", heroCreator.equipOtherENG[22], heroCreator.equipOtherPL[22], $("#mainPart"), "bold");chooseItem($("#oilLamp"), "kaganek");
+
+			createNewElementAppend("button", heroCreator.equipOtherENG[23], heroCreator.equipOtherPL[23], $("#mainPart"), "bold");chooseItem($("#rope5m"), "lina 5m");
+
+			createNewElementAppend("button", heroCreator.equipOtherENG[24], heroCreator.equipOtherPL[24], $("#mainPart"), "bold");chooseItem($("#tinders"), "hubka i krzesiwo");
+
+			$("#dagger, #woddenStick, #shortSword, #sabre, #spear, #slingshot, #bow, #gambison, #leather, #studded, #buckler, #smallWooden, #smallMetal, #stick, #moneyBag, #travelBag, #purse, #backpack, #canteen, #pot, #blanket, #tubeParchments, #penWriting, #parchments5pieces, #ordinaryClothing, #fussyHat, #coat, #leatherBelt, #needlesThread, #saddleCloth, #tent, #woodenBowl, #woodenSpoon, #torch, #oliveLamp, #oilLamp, #rope5m, #tinders").addClass("width15");
 
 			//paragraf do wyświetlania opisu wybranego elementu ekwipunku
 			createNewElementAppend("p", "choosenDescription", "", $("#mainPart"));
-		});
+		}); //koniec zdarzeń dla ekipunku
 
 		//zdarzenia dla przycisku info - w kreatorze postaci
 		$("#infoCreator").on("click", function () {
-			console.log(hero);
-			console.log(randomFeatures);
-			console.log(choosenFeatures);
+			console.log(equip);
 		}); //koniec zdarzeń dla przycisku info - w kreatorze postaci
 	}); //koniec przycisku nowa gra (newGame)
 }); //koniec DOMContentLoaded
@@ -539,8 +580,25 @@ module.exports.textTutorial = "Początek gry. Ekran składa się z powitania ora
 "use strict";
 
 
-//-----------------------------------------Imię------------------------------------------------------------//
+//----------------------------------------tablice wybieranie ekwipunku ----------------------------------------//
+//broń
+module.exports.equipWeaponPL = ["sztylet", "drewniana pałka", "krótki miecz", "szabla", "włócznia", "proca", "łuk"];
+module.exports.equipWeaponENG = ["dagger", "woddenStick", "shortSword", "sabre", "spear", "slingshot", "bow"];
 
+//zbroje
+module.exports.equipArmorPL = ["przeszywanica", "skórzana", "ćwiekowana"];
+module.exports.equipArmorENG = ["gambison", "leather", "studded"];
+
+//tarcze
+module.exports.equipShieldPL = ["puklerz", "mała drewniana", "mała metalowa"];
+module.exports.equipShieldENG = ["buckler", "smallWooden", "smallMetal"];
+
+//pozostały ekwipunek
+module.exports.equipOtherPL = ["kostur", "mieszek", "torba podróżna", "sakwa", "plecak", "manierka", "sagan", "koc", "tuba na perg.", "pęk piór do pis.", "pergamniny 5szt.", "zwykłe ubranie", "fikuśna czapka", "płaszcz", "skórzany pas", "igły i nici", "derka", "namiot", "drewniana miska", "drewniana łyżka", "pochodnia", "lampa oliwna", "kaganek", "lina 5m", "hubka i krzesiwo"];
+
+module.exports.equipOtherENG = ["stick", "moneyBag", "travelBag", "purse", "backpack", "canteen", "pot", "blanket", "tubeParchments", "penWriting", "parchments5pieces", "ordinaryClothing", "fussyHat", "coat", "leatherBelt", "needlesThread", "saddleCloth", "tent", "woodenBowl", "woodenSpoon", "torch", "oliveLamp", "oilLamp", "rope5m", "tinders"];
+
+//-----------------------------------------Imię------------------------------------------------------------//
 //tekst dla wyboru imienia
 module.exports.nameTitle = "Wybór imienia.";
 module.exports.nameDescription = "Wpisz w pole niżej swoje imię oraz wciśnij przycisk 'zatwierdź'. Możesz wpisać tylko litery, cyfry nie będą barne pod uwagę. Imię można zmieniać dowolną ilość razy.";
@@ -597,6 +655,9 @@ module.exports.features2Alert = "Wybierz cechy.";
 //------------------------------WYBÓR EKWIPUNKU-----------------------------------------------------------------//
 module.exports.equipmentTitle = "Wybór ekwipunku.";
 module.exports.equipmentDescription = "Możesz wybrać maksymalnie pięć rzeczy.";
+
+//tekst dla wybierania cech
+module.exports.equipmentAlert = "Wybierz ekwipunek.";
 
 /***/ })
 /******/ ]);
