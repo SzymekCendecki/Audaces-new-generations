@@ -442,12 +442,22 @@ document.addEventListener("DOMContentLoaded", function () {
 
 			function chooseItem(whatClick, whatPush) {
 				whatClick.on("click", function () {
-					if (equip.length < 5) {
+					if (equip.length <= 4) {
 						equip.push(whatPush);
 						$("#choosenDescription").text(createNewElementAppend("button", whatPush, whatPush, $("#choosenDescription")));
 
-						var allBtnRemove = document.querySelectorAll("#choosenDescription button");
+						var allBtnRemove = document.querySelectorAll("#choosenDescription button"),
+						    i = void 0;
 						console.log(allBtnRemove);
+
+						for (i = 0; i < allBtnRemove.length; i++) {
+							allBtnRemove[i].addEventListener("click", function (e) {
+								if (equip.indexOf(this.id) !== -1) {
+									equip.splice(equip.indexOf(this.id), 1);
+									this.remove();
+								}
+							});
+						}
 					} else {
 						createNewElementAppend("p", "equipmentAlert", "", $("#choosenDescription"));
 						$("#equipmentAlert").text("Już zostało wybrane pięć przedmiotów");

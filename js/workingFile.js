@@ -343,12 +343,21 @@ $("#features2").on("click", ()=>{
 
 			function chooseItem(whatClick, whatPush){
 						whatClick.on("click", () =>{
-								if(equip.length < 5){
+								if(equip.length <= 4){
 										equip.push(whatPush);
 										$("#choosenDescription").text(createNewElementAppend("button", whatPush, whatPush, $("#choosenDescription")));
 
-										let allBtnRemove = document.querySelectorAll("#choosenDescription button");
+										let allBtnRemove = document.querySelectorAll("#choosenDescription button"), i;
 										console.log(allBtnRemove);
+
+										for(i=0; i<allBtnRemove.length; i++){
+											allBtnRemove[i].addEventListener("click", function(e) {
+													if(equip.indexOf(this.id) !== -1){
+															equip.splice(equip.indexOf(this.id), 1);
+															this.remove();
+														}
+												});
+										}
 								}else{
 									createNewElementAppend("p", "equipmentAlert", "", $("#choosenDescription"));
 									$("#equipmentAlert").text("Już zostało wybrane pięć przedmiotów");
