@@ -441,29 +441,41 @@ document.addEventListener("DOMContentLoaded", function () {
 			createNewElementAppend("p", "weaponTitle", "broń", $("#mainPart"), "bold");
 
 			function chooseItem(whatClick, whatPush) {
+
 				whatClick.on("click", function () {
 					if (equip.length <= 4) {
 						equip.push(whatPush);
-						$("#choosenDescription").text(createNewElementAppend("button", whatPush, whatPush, $("#choosenDescription")));
+						$("#alerts #equipmentAlert").removeClass("redText");
+						$("#alerts #equipmentAlert").addClass("greenText");
+						$("#btnToRemove").text(createNewElementAppend("button", whatPush, whatPush, $("#btnToRemove")));
 
-						var allBtnRemove = document.querySelectorAll("#choosenDescription button"),
+						$("#btnToRemove").find("button").addClass("width15 bold");
+
+						var allBtnRemove = document.querySelectorAll("#btnToRemove button"),
 						    i = void 0;
-						console.log(allBtnRemove);
 
 						for (i = 0; i < allBtnRemove.length; i++) {
+
 							allBtnRemove[i].addEventListener("click", function (e) {
 								if (equip.indexOf(this.id) !== -1) {
 									equip.splice(equip.indexOf(this.id), 1);
 									this.remove();
 								}
+								if (equip.length === 0) {
+									$("#alerts #equipmentAlert").removeClass("greenText");
+									$("#alerts #equipmentAlert").addClass("redText");
+								} else if (equip.length < 5) {
+									$("#subAlert").text("").removeClass("redText");
+								}
 							});
 						}
 					} else {
-						createNewElementAppend("p", "equipmentAlert", "", $("#choosenDescription"));
-						$("#equipmentAlert").text("Już zostało wybrane pięć przedmiotów");
+						$("#subAlert").text("Już zostało wybrane pięć przedmiotów").addClass("redText");
 					}
 				});
 			}
+			//	createNewElementAppend("p", "btnToRemove", "", $("choosenDescription"));
+			//	createNewElementAppend("p", "subAlert", "", $("choosenDescription"))
 
 			//broń
 			createNewElementAppend("button", heroCreator.equipWeaponENG[0], heroCreator.equipWeaponPL[0], $("#mainPart"), "bold");chooseItem($("#dagger"), "sztylet");
@@ -555,6 +567,11 @@ document.addEventListener("DOMContentLoaded", function () {
 
 			//paragraf do wyświetlania opisu wybranego elementu ekwipunku
 			createNewElementAppend("p", "choosenDescription", "", $("#mainPart"));
+			createNewElementAppend("p", "btnToRemoveTitle", "Przedmioty do usunięcia", $("#choosenDescription"));
+			createNewElementAppend("p", "btnToRemove", "", $("#choosenDescription"));
+			createNewElementAppend("p", "subAlert", "", $("#choosenDescription"));
+
+			$("#btnToRemoveTitle").addClass("goldUnderline bold");
 		}); //koniec zdarzeń dla ekipunku
 
 		//zdarzenia dla przycisku info - w kreatorze postaci

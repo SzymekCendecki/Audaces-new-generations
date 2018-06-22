@@ -47,3 +47,6 @@ Nowa wersja wybierania ekwipunku. Można wybierać ekwipunek, jest walidacja, ni
 
 21 czerwca 2018 - wersja 0.1.6
 Dodawaniaie i usuwanie przedmiotów ekwipunku działa poprawnie. Potrzbe jeszcze odrobina ostylowania do zakończenia części z wybieraniem ekwipunku.
+
+22 czewca 2018 - wersja 0.1.7
+Dodana zmiana koloru alertu dla wybierania ekwipunku. Dla braku wybranych przedmiotów kolor czerwony, zielony dla chociaż jednego wybranego przedmiotów. Poprawiony błąd z przyciskami służącymi do usuwania elementów z tablicy oraz wyświetlaniem komunikatu, z informacją o przekroczeniu ilości wybranych przedmiotów. Dodano podstawowy wygląd dla usuwanych przycisków (wybranych przedmiotów);
