@@ -208,7 +208,8 @@ document.addEventListener("DOMContentLoaded", function () {
 		createNewElementAppend("p", "featuresAlert", heroCreator.featuresAlert, $("#alerts"));
 		createNewElementAppend("p", "features2Alert", heroCreator.features2Alert, $("#alerts"));
 		createNewElementAppend("p", "equipmentAlert", heroCreator.equipmentAlert, $("#alerts"));
-		$("#nameAlert, #raceAlert, #occupationAlert, #featuresAlert, #features2Alert, #equipmentAlert").addClass("redText");
+		createNewElementAppend("p", "skillAlert", heroCreator.skillsAlert, $("#alerts"));
+		$("#nameAlert, #raceAlert, #occupationAlert, #featuresAlert, #features2Alert, #equipmentAlert, #skillAlert").addClass("redText");
 
 		//zdarzenia dla przycisku imię (name)
 		$("#name").on("click", function () {
@@ -437,33 +438,28 @@ document.addEventListener("DOMContentLoaded", function () {
 			createNewElementAppend("p", "equipmentTitle", heroCreator.equipmentTitle, $("#mainPart"));
 			$("#equipmentTitle").addClass("goldUnderline basicText");
 			createNewElementAppend("p", "equipmentDescription", heroCreator.equipmentDescription, $("#mainPart"));
-
 			createNewElementAppend("p", "weaponTitle", "broń", $("#mainPart"), "bold");
 
 			function chooseItem(whatClick, whatPush) {
-
 				whatClick.on("click", function () {
 					if (equip.length <= 4) {
 						equip.push(whatPush);
-						$("#alerts #equipmentAlert").removeClass("redText");
-						$("#alerts #equipmentAlert").addClass("greenText");
-						$("#btnToRemove").text(createNewElementAppend("button", whatPush, whatPush, $("#btnToRemove")));
+						$("#alerts #equipmentAlert").removeClass("redText");$("#alerts #equipmentAlert").addClass("greenText");
 
+						$("#btnToRemove").text(createNewElementAppend("button", whatPush, whatPush, $("#btnToRemove")));
 						$("#btnToRemove").find("button").addClass("width15 bold");
 
 						var allBtnRemove = document.querySelectorAll("#btnToRemove button"),
 						    i = void 0;
 
 						for (i = 0; i < allBtnRemove.length; i++) {
-
 							allBtnRemove[i].addEventListener("click", function (e) {
 								if (equip.indexOf(this.id) !== -1) {
 									equip.splice(equip.indexOf(this.id), 1);
 									this.remove();
 								}
 								if (equip.length === 0) {
-									$("#alerts #equipmentAlert").removeClass("greenText");
-									$("#alerts #equipmentAlert").addClass("redText");
+									$("#alerts #equipmentAlert").removeClass("greenText");$("#alerts #equipmentAlert").addClass("redText");
 								} else if (equip.length < 5) {
 									$("#subAlert").text("").removeClass("redText");
 								}
@@ -474,93 +470,54 @@ document.addEventListener("DOMContentLoaded", function () {
 					}
 				});
 			}
-			//	createNewElementAppend("p", "btnToRemove", "", $("choosenDescription"));
-			//	createNewElementAppend("p", "subAlert", "", $("choosenDescription"))
 
 			//broń
 			createNewElementAppend("button", heroCreator.equipWeaponENG[0], heroCreator.equipWeaponPL[0], $("#mainPart"), "bold");chooseItem($("#dagger"), "sztylet");
-
 			createNewElementAppend("button", heroCreator.equipWeaponENG[1], heroCreator.equipWeaponPL[1], $("#mainPart"), "bold");chooseItem($("#woddenStick"), "drewniana pałka");
-
 			createNewElementAppend("button", heroCreator.equipWeaponENG[2], heroCreator.equipWeaponPL[2], $("#mainPart"), "bold");chooseItem($("#shortSword"), "krótki miecz");
-
 			createNewElementAppend("button", heroCreator.equipWeaponENG[3], heroCreator.equipWeaponPL[3], $("#mainPart"), "bold");chooseItem($("#sabre"), "szabla");
-
 			createNewElementAppend("button", heroCreator.equipWeaponENG[4], heroCreator.equipWeaponPL[4], $("#mainPart"), "bold");chooseItem($("#spear"), "włócznia");
-
 			createNewElementAppend("button", heroCreator.equipWeaponENG[5], heroCreator.equipWeaponPL[5], $("#mainPart"), "bold");chooseItem($("#slingshot"), "proca");
-
 			createNewElementAppend("button", heroCreator.equipWeaponENG[6], heroCreator.equipWeaponPL[6], $("#mainPart"), "bold");chooseItem($("#bow"), "łuk");
 
 			//zbroje
 			createNewElementAppend("p", "armorTitle", "zbroje", $("#mainPart"), "bold");
-
 			createNewElementAppend("button", heroCreator.equipArmorENG[0], heroCreator.equipArmorPL[0], $("#mainPart"), "bold");chooseItem($("#gambison"), "przeszywanica");
-
 			createNewElementAppend("button", heroCreator.equipArmorENG[1], heroCreator.equipArmorPL[1], $("#mainPart"), "bold");chooseItem($("#leather"), "skórzana");
-
 			createNewElementAppend("button", heroCreator.equipArmorENG[2], heroCreator.equipArmorPL[2], $("#mainPart"), "bold");chooseItem($("#studded"), "ćwiekowana");
 
 			//tarcze
 			createNewElementAppend("p", "shieldTitle", "tarcze", $("#mainPart"), "bold");
-
 			createNewElementAppend("button", heroCreator.equipShieldENG[0], heroCreator.equipShieldPL[0], $("#mainPart"), "bold");chooseItem($("#buckler"), "puklerz");
-
 			createNewElementAppend("button", heroCreator.equipShieldENG[1], heroCreator.equipShieldPL[1], $("#mainPart"), "bold");chooseItem($("#smallWooden"), "mała drewniana");
-
 			createNewElementAppend("button", heroCreator.equipShieldENG[2], heroCreator.equipShieldPL[2], $("#mainPart"), "bold");chooseItem($("#smallMetal"), "mała metalowa");
 
 			//inne
 			createNewElementAppend("p", "otherTitle", "inne", $("#mainPart"), "bold");
-
 			createNewElementAppend("button", heroCreator.equipOtherENG[0], heroCreator.equipOtherPL[0], $("#mainPart"), "bold");chooseItem($("#stick"), "kostur");
-
 			createNewElementAppend("button", heroCreator.equipOtherENG[1], heroCreator.equipOtherPL[1], $("#mainPart"), "bold");chooseItem($("#moneyBag"), "mieszek");
-
 			createNewElementAppend("button", heroCreator.equipOtherENG[2], heroCreator.equipOtherPL[2], $("#mainPart"), "bold");chooseItem($("#travelBag"), "torba podróżna");
-
 			createNewElementAppend("button", heroCreator.equipOtherENG[3], heroCreator.equipOtherPL[3], $("#mainPart"), "bold");chooseItem($("#purse"), "sakwa");
-
 			createNewElementAppend("button", heroCreator.equipOtherENG[4], heroCreator.equipOtherPL[4], $("#mainPart"), "bold");chooseItem($("#backpack"), "plecak");
-
 			createNewElementAppend("button", heroCreator.equipOtherENG[5], heroCreator.equipOtherPL[5], $("#mainPart"), "bold");chooseItem($("#canteen"), "manierka");
-
 			createNewElementAppend("button", heroCreator.equipOtherENG[6], heroCreator.equipOtherPL[6], $("#mainPart"), "bold");chooseItem($("#pot"), "sagan");
-
 			createNewElementAppend("button", heroCreator.equipOtherENG[7], heroCreator.equipOtherPL[7], $("#mainPart"), "bold");chooseItem($("#blanket"), "koc");
-
 			createNewElementAppend("button", heroCreator.equipOtherENG[8], heroCreator.equipOtherPL[8], $("#mainPart"), "bold");chooseItem($("#tubeParchments"), "tuba na pergaminy");
-
 			createNewElementAppend("button", heroCreator.equipOtherENG[9], heroCreator.equipOtherPL[9], $("#mainPart"), "bold");chooseItem($("#penWriting"), "pęk piór do pisania");
-
 			createNewElementAppend("button", heroCreator.equipOtherENG[10], heroCreator.equipOtherPL[10], $("#mainPart"), "bold");chooseItem($("#parchments5pieces"), "pergaminy 5szt.");
-
 			createNewElementAppend("button", heroCreator.equipOtherENG[11], heroCreator.equipOtherPL[11], $("#mainPart"), "bold");chooseItem($("#ordinaryClothing"), "zwykłe ubranie");
-
 			createNewElementAppend("button", heroCreator.equipOtherENG[12], heroCreator.equipOtherPL[12], $("#mainPart"), "bold");chooseItem($("#fussyHat"), "fikuśna czapka");
-
 			createNewElementAppend("button", heroCreator.equipOtherENG[13], heroCreator.equipOtherPL[13], $("#mainPart"), "bold");chooseItem($("#coat"), "płaszcz");
-
 			createNewElementAppend("button", heroCreator.equipOtherENG[14], heroCreator.equipOtherPL[14], $("#mainPart"), "bold");chooseItem($("#leatherBelt"), "skórzany pas");
-
 			createNewElementAppend("button", heroCreator.equipOtherENG[15], heroCreator.equipOtherPL[15], $("#mainPart"), "bold");chooseItem($("#needlesThread"), "igły i nici");
-
 			createNewElementAppend("button", heroCreator.equipOtherENG[16], heroCreator.equipOtherPL[16], $("#mainPart"), "bold");chooseItem($("#saddleCloth"), "derka");
-
 			createNewElementAppend("button", heroCreator.equipOtherENG[17], heroCreator.equipOtherPL[17], $("#mainPart"), "bold");chooseItem($("#tent"), "namiot");
-
 			createNewElementAppend("button", heroCreator.equipOtherENG[18], heroCreator.equipOtherPL[18], $("#mainPart"), "bold");chooseItem($("#woodenBowl"), "drewniana miska");
-
 			createNewElementAppend("button", heroCreator.equipOtherENG[19], heroCreator.equipOtherPL[19], $("#mainPart"), "bold");chooseItem($("#woodenSpoon"), "drewniana łyżka");
-
 			createNewElementAppend("button", heroCreator.equipOtherENG[20], heroCreator.equipOtherPL[20], $("#mainPart"), "bold");chooseItem($("#torch"), "pochodnia");
-
 			createNewElementAppend("button", heroCreator.equipOtherENG[21], heroCreator.equipOtherPL[21], $("#mainPart"), "bold");chooseItem($("#oliveLamp"), "lampa oliwna");
-
 			createNewElementAppend("button", heroCreator.equipOtherENG[22], heroCreator.equipOtherPL[22], $("#mainPart"), "bold");chooseItem($("#oilLamp"), "kaganek");
-
 			createNewElementAppend("button", heroCreator.equipOtherENG[23], heroCreator.equipOtherPL[23], $("#mainPart"), "bold");chooseItem($("#rope5m"), "lina 5m");
-
 			createNewElementAppend("button", heroCreator.equipOtherENG[24], heroCreator.equipOtherPL[24], $("#mainPart"), "bold");chooseItem($("#tinders"), "hubka i krzesiwo");
 
 			$("#dagger, #woddenStick, #shortSword, #sabre, #spear, #slingshot, #bow, #gambison, #leather, #studded, #buckler, #smallWooden, #smallMetal, #stick, #moneyBag, #travelBag, #purse, #backpack, #canteen, #pot, #blanket, #tubeParchments, #penWriting, #parchments5pieces, #ordinaryClothing, #fussyHat, #coat, #leatherBelt, #needlesThread, #saddleCloth, #tent, #woodenBowl, #woodenSpoon, #torch, #oliveLamp, #oilLamp, #rope5m, #tinders").addClass("width15");
@@ -572,11 +529,111 @@ document.addEventListener("DOMContentLoaded", function () {
 			createNewElementAppend("p", "subAlert", "", $("#choosenDescription"));
 
 			$("#btnToRemoveTitle").addClass("goldUnderline bold");
-		}); //koniec zdarzeń dla ekipunku
+		}); //koniec zdarzeń dla kreatora postaci - ekipunku
+
+		//początek zdarzeń dla przycisku umiejętności - kreator postaci
+		$("#skills").on("click", function () {
+			$("#mainPart").empty();
+
+			//elementy wyboru umiejętności
+			createNewElementAppend("p", "skillsTitle", heroCreator.skillsTitle, $("#mainPart"));
+			$("#skillsTitle").addClass("goldUnderline basicText");
+			createNewElementAppend("p", "skillsDescription", heroCreator.skillsDescription, $("#mainPart"));
+
+			function chooseSkill(whatClick, whatPush) {
+				whatClick.on("click", function () {
+					if (skills.indexOf(whatPush) !== -1) {
+						$("#subAlert").text("Nie możesz wybrać drugi raz tej samej umiejętności.").addClass("redText");
+						setTimeout(function () {
+							$("#subAlert").text("").removeClass("redText");
+						}, 7000);
+					} else if (skills.length <= 2) {
+						skills.push(whatPush);
+						$("#alerts #skillAlert").removeClass("redText");$("#alerts #skillAlert").addClass("greenText");
+						$("#btnToRemove").text(createNewElementAppend("button", whatPush, whatPush, $("#btnToRemove")));
+						$("#btnToRemove").find("button").addClass("width15 bold");
+
+						var allBtnRemove = document.querySelectorAll("#btnToRemove button"),
+						    i = void 0;
+
+						for (i = 0; i < allBtnRemove.length; i++) {
+							allBtnRemove[i].addEventListener("click", function (e) {
+								if (skills.indexOf(this.id) !== -1) {
+									skills.splice(skills.indexOf(this.id), 1);
+									this.remove();
+								}
+								if (skills.length === 0) {
+									$("#alerts #skillAlert").removeClass("greenText");$("#alerts #skillAlert").addClass("redText");
+								} else if (skills.length < 3) {
+									$("#subAlert").text("").removeClass("redText");
+								}
+							});
+						}
+					} else {
+						$("#subAlert").text("Już zostały wybrane trzy umiejętności.").addClass("redText");
+					}
+				});
+			}
+
+			//umiejętności wojownika
+			createNewElementAppend("p", "warriorTitle", "wojownik", $("#mainPart"), "bold");
+			createNewElementAppend("button", heroCreator.warriorENG[0], heroCreator.warriorPL[0], $("#mainPart"), "bold");chooseSkill($("#survival"), "szt. przetrwania");
+			createNewElementAppend("button", heroCreator.warriorENG[1], heroCreator.warriorPL[1], $("#mainPart"), "bold");chooseSkill($("#discipline"), "dyscyplina");
+			createNewElementAppend("button", heroCreator.warriorENG[2], heroCreator.warriorPL[2], $("#mainPart"), "bold");chooseSkill($("#argumentation"), "dowodzenie");
+			createNewElementAppend("button", heroCreator.warriorENG[3], heroCreator.warriorPL[3], $("#mainPart"), "bold");chooseSkill($("#impactShield"), "uderzenie tarczą");
+			createNewElementAppend("button", heroCreator.warriorENG[4], heroCreator.warriorPL[4], $("#mainPart"), "bold");chooseSkill($("#horsebackRiding"), "jeździectwo");
+			createNewElementAppend("button", heroCreator.warriorENG[5], heroCreator.warriorPL[5], $("#mainPart"), "bold");chooseSkill($("#dagger"), "sztylet");
+			createNewElementAppend("button", heroCreator.warriorENG[6], heroCreator.warriorPL[6], $("#mainPart"), "bold");chooseSkill($("#shortSword"), "krótki miecz");
+			createNewElementAppend("button", heroCreator.warriorENG[7], heroCreator.warriorPL[7], $("#mainPart"), "bold");chooseSkill($("#sabre"), "szabla");
+			createNewElementAppend("button", heroCreator.warriorENG[8], heroCreator.warriorPL[8], $("#mainPart"), "bold");chooseSkill($("#spear"), "włócznia");
+			createNewElementAppend("button", heroCreator.warriorENG[9], heroCreator.warriorPL[9], $("#mainPart"), "bold");chooseSkill($("#bow"), "łuk");
+			createNewElementAppend("button", heroCreator.warriorENG[6], heroCreator.warriorPL[6], $("#mainPart"), "bold");chooseSkill($("#buckler"), "puklerz");
+			createNewElementAppend("button", heroCreator.warriorENG[7], heroCreator.warriorPL[7], $("#mainPart"), "bold");chooseSkill($("#smallWoodenShield"), "mała tarcza drew.");
+			createNewElementAppend("button", heroCreator.warriorENG[8], heroCreator.warriorPL[8], $("#mainPart"), "bold");chooseSkill($("#smallMetalShield"), "mała tarcza metal.");
+
+			//umiejętności złoczyńca
+			createNewElementAppend("p", "criminalTitle", "złoczyńca", $("#mainPart"), "bold");
+			createNewElementAppend("button", heroCreator.criminalENG[0], heroCreator.criminalPL[0], $("#mainPart"), "bold");chooseSkill($("#poison"), "trucizny");
+			createNewElementAppend("button", heroCreator.criminalENG[1], heroCreator.criminalPL[1], $("#mainPart"), "bold");chooseSkill($("#climb"), "wspinaczka");
+			createNewElementAppend("button", heroCreator.criminalENG[2], heroCreator.criminalPL[2], $("#mainPart"), "bold");chooseSkill($("#acting"), "aktorstwo");
+			createNewElementAppend("button", heroCreator.criminalENG[3], heroCreator.criminalPL[3], $("#mainPart"), "bold");chooseSkill($("#acrobatics"), "akrobatyka");
+			createNewElementAppend("button", heroCreator.criminalENG[4], heroCreator.criminalPL[4], $("#mainPart"), "bold");chooseSkill($("#traps"), "pułapki");
+			createNewElementAppend("button", heroCreator.criminalENG[5], heroCreator.criminalPL[5], $("#mainPart"), "bold");chooseSkill($("#sneak"), "skradanie się");
+			createNewElementAppend("button", heroCreator.criminalENG[6], heroCreator.criminalPL[6], $("#mainPart"), "bold");chooseSkill($("#theft"), "kradzież");
+			createNewElementAppend("button", heroCreator.criminalENG[7], heroCreator.criminalPL[7], $("#mainPart"), "bold");chooseSkill($("#dodge"), "uniki");
+			createNewElementAppend("button", heroCreator.criminalENG[8], heroCreator.criminalPL[8], $("#mainPart"), "bold");chooseSkill($("#bluff"), "blefowanie");
+			createNewElementAppend("button", heroCreator.criminalENG[9], heroCreator.criminalPL[9], $("#mainPart"), "bold");chooseSkill($("#poison"), "trucizny");
+			createNewElementAppend("button", heroCreator.criminalENG[10], heroCreator.criminalPL[10], $("#mainPart"), "bold");chooseSkill($("#woddenStick"), "drewniana pałka");
+
+			//umiejętności złoczyńca
+			createNewElementAppend("p", "wizardTitle", "czarodziej", $("#mainPart"), "bold");
+			createNewElementAppend("button", heroCreator.wizardENG[0], heroCreator.wizardPL[0], $("#mainPart"), "bold");chooseSkill($("#writingRead"), "pisanie i czytanie");
+			createNewElementAppend("button", heroCreator.wizardENG[1], heroCreator.wizardPL[1], $("#mainPart"), "bold");chooseSkill($("#summonOvertake"), "przyw./odp. demona");
+			createNewElementAppend("button", heroCreator.wizardENG[2], heroCreator.wizardPL[2], $("#mainPart"), "bold");chooseSkill($("#divination"), "wróżbiarstwo");
+			createNewElementAppend("button", heroCreator.wizardENG[3], heroCreator.wizardPL[3], $("#mainPart"), "bold");chooseSkill($("#healig"), "leczenie ran");
+			createNewElementAppend("button", heroCreator.wizardENG[4], heroCreator.wizardPL[4], $("#mainPart"), "bold");chooseSkill($("#castSpell"), "rzucanie czarów");
+			createNewElementAppend("button", heroCreator.wizardENG[5], heroCreator.wizardPL[5], $("#mainPart"), "bold");chooseSkill($("#createPotion"), "tworz. eliksirów");
+			createNewElementAppend("button", heroCreator.wizardENG[6], heroCreator.wizardPL[6], $("#mainPart"), "bold");chooseSkill($("#createMagItem"), "tworz. mag. przedmiotów");
+			createNewElementAppend("button", heroCreator.wizardENG[7], heroCreator.wizardPL[7], $("#mainPart"), "bold");chooseSkill($("#createBalm"), "tworzenie maści");
+			createNewElementAppend("button", heroCreator.wizardENG[8], heroCreator.wizardPL[8], $("#mainPart"), "bold");chooseSkill($("#createRunes"), "tworzenie run");
+			createNewElementAppend("button", heroCreator.wizardENG[9], heroCreator.wizardPL[9], $("#mainPart"), "bold");chooseSkill($("#astrology"), "pisanie i czytanie");
+			createNewElementAppend("button", heroCreator.wizardENG[0], heroCreator.wizardPL[0], $("#mainPart"), "bold");chooseSkill($("#herbalism"), "zielarstwo");
+
+			//paragraf do wyświetlania opisu wybranej umiejętności
+			$("#mainPart button").addClass("width15");
+
+			// cżęść do usuwania wybranej umiejętności i komunikacji o błędzie
+			createNewElementAppend("p", "choosenDescription", "", $("#mainPart"));
+			createNewElementAppend("p", "btnToRemoveTitle", "Przedmioty do usunięcia", $("#choosenDescription"));
+			createNewElementAppend("p", "btnToRemove", "", $("#choosenDescription"));
+			createNewElementAppend("p", "subAlert", "", $("#choosenDescription"));
+
+			$("#btnToRemoveTitle").addClass("goldUnderline bold");
+		}); //koniec zdarzeń dla kreatora postaci - umiejętności
 
 		//zdarzenia dla przycisku info - w kreatorze postaci
 		$("#infoCreator").on("click", function () {
-			console.log(equip);
+			console.log(skills);
 		}); //koniec zdarzeń dla przycisku info - w kreatorze postaci
 	}); //koniec przycisku nowa gra (newGame)
 }); //koniec DOMContentLoaded
@@ -607,7 +664,7 @@ module.exports.textTutorial = "Początek gry. Ekran składa się z powitania ora
 "use strict";
 
 
-//----------------------------------------tablice wybieranie ekwipunku ----------------------------------------//
+//----------------------------------------tablice dla wybierania ekwipunku ----------------------------------------//
 //broń
 module.exports.equipWeaponPL = ["sztylet", "drewniana pałka", "krótki miecz", "szabla", "włócznia", "proca", "łuk"];
 module.exports.equipWeaponENG = ["dagger", "woddenStick", "shortSword", "sabre", "spear", "slingshot", "bow"];
@@ -624,6 +681,22 @@ module.exports.equipShieldENG = ["buckler", "smallWooden", "smallMetal"];
 module.exports.equipOtherPL = ["kostur", "mieszek", "torba podróżna", "sakwa", "plecak", "manierka", "sagan", "koc", "tuba na perg.", "pęk piór do pis.", "pergamniny 5szt.", "zwykłe ubranie", "fikuśna czapka", "płaszcz", "skórzany pas", "igły i nici", "derka", "namiot", "drewniana miska", "drewniana łyżka", "pochodnia", "lampa oliwna", "kaganek", "lina 5m", "hubka i krzesiwo"];
 
 module.exports.equipOtherENG = ["stick", "moneyBag", "travelBag", "purse", "backpack", "canteen", "pot", "blanket", "tubeParchments", "penWriting", "parchments5pieces", "ordinaryClothing", "fussyHat", "coat", "leatherBelt", "needlesThread", "saddleCloth", "tent", "woodenBowl", "woodenSpoon", "torch", "oliveLamp", "oilLamp", "rope5m", "tinders"];
+
+//---------------------------------------------tablice dla wybierania umiejętności --------------------------------------------//
+//umiejętności dla wojownika
+module.exports.warriorPL = ["szt.przetrwania", "dyscyplina", "dowodzenie", "uderzenie tarczą", "jeździectwo", "sztylet", "krótki miecz", "szabla", "włócznia", "łuk", "puklerz", "mała tarcza drewniana", "mała tarcza metalowa"];
+
+module.exports.warriorENG = ["survival", "discipline", "argumentation", "impactShield", "horsebackRiding", "dagger", "shortSword", "sabre", "spear", "bow", "buckler", "smallWoodenShield", "smallMetalShield"];
+
+//umiejętności dla złoczyńcy
+module.exports.criminalPL = ["trucizny", "wspinaczka", "aktorstwo", "akrobatyka", "pułapki", "skradanie się", "kradzież", "uniki", "blefowanie", "drewniana pałka"];
+
+module.exports.criminalENG = ["poison", "climb", "acting", "acrobatics", "traps", "sneak", "theft", "dodge", "bluff", "woddenStick"];
+
+//umiejętności dla czarodzieja
+module.exports.wizardPL = ["pisanie i czytanie", "przyw./odp. demona", "wróżbiarstwo", "leczenie ran", "rzuczanie czarów", "tworz. eliksirów", "tworz.mag. przedm.", "tworzenie maści", "tworzenie runów", "astrologia", "zielarstwo"];
+
+module.exports.wizardENG = ["writingRead", "summonOvertake", "divination", "healing", "castSpell", "createPotion", "createMagItem", "createBalm", "createRunes", "astrology", "herbalism"];
 
 //-----------------------------------------Imię------------------------------------------------------------//
 //tekst dla wyboru imienia
@@ -681,10 +754,16 @@ module.exports.features2Alert = "Wybierz cechy.";
 
 //------------------------------WYBÓR EKWIPUNKU-----------------------------------------------------------------//
 module.exports.equipmentTitle = "Wybór ekwipunku.";
-module.exports.equipmentDescription = "Możesz wybrać maksymalnie pięć rzeczy.";
+module.exports.equipmentDescription = "Ta część podzielona jest zasadniczo na dwie części. W pierwszej możesz wybrać (w sumie) pięć rzeczy z kategorii: broń, zbroje, tarcze i inne. W drugiej części dzięki przyciskom, będzie można usunąć wcześniej wybrane przedmioty.";
 
 //tekst dla wybierania cech
 module.exports.equipmentAlert = "Wybierz ekwipunek.";
+
+//-----------------------------WYBÓR UMIEJĘTNOŚCI--------------------------------------------------------------------//
+module.exports.skillsTitle = "Wybór umiejętności";
+module.exports.skillsDescription = "Ta część podzielona jest zasadniczo na dwie części. W pierwszej możesz wybrać (w sumie) 3 umiejętności z kategorii: wojownik, złoczyńca i czarodziej. W drugiej części dzięki przyciskom, będzie można usunąć wcześniej wybrane umiejętności.";
+
+module.exports.skillsAlert = "Wybierz umiejętności";
 
 /***/ })
 /******/ ]);

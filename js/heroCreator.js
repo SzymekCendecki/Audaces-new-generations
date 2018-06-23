@@ -1,4 +1,4 @@
-//----------------------------------------tablice wybieranie ekwipunku ----------------------------------------//
+//----------------------------------------tablice dla wybierania ekwipunku ----------------------------------------//
 //broń
 module.exports.equipWeaponPL = ["sztylet", "drewniana pałka", "krótki miecz", "szabla", "włócznia", "proca", "łuk"];
 module.exports.equipWeaponENG = ["dagger", "woddenStick", "shortSword", "sabre", "spear", "slingshot", "bow"];
@@ -15,6 +15,22 @@ module.exports.equipShieldENG = ["buckler", "smallWooden", "smallMetal"];
 module.exports.equipOtherPL = ["kostur", "mieszek", "torba podróżna", "sakwa", "plecak", "manierka", "sagan", "koc", "tuba na perg.", "pęk piór do pis.", "pergamniny 5szt.", "zwykłe ubranie", "fikuśna czapka", "płaszcz", "skórzany pas",  "igły i nici", "derka", "namiot", "drewniana miska", "drewniana łyżka", "pochodnia", "lampa oliwna", "kaganek", "lina 5m", "hubka i krzesiwo"];
 
 module.exports.equipOtherENG = ["stick", "moneyBag", "travelBag", "purse", "backpack", "canteen", "pot", "blanket", "tubeParchments", "penWriting", "parchments5pieces", "ordinaryClothing", "fussyHat", "coat", "leatherBelt", "needlesThread", "saddleCloth", "tent", "woodenBowl", "woodenSpoon", "torch", "oliveLamp", "oilLamp", "rope5m", "tinders"];
+
+//---------------------------------------------tablice dla wybierania umiejętności --------------------------------------------//
+//umiejętności dla wojownika
+module.exports.warriorPL = ["szt.przetrwania", "dyscyplina", "dowodzenie", "uderzenie tarczą", "jeździectwo", "sztylet", "krótki miecz", "szabla", "włócznia", "łuk", "puklerz", "mała tarcza drewniana", "mała tarcza metalowa"];
+
+module.exports.warriorENG = ["survival", "discipline", "argumentation", "impactShield", "horsebackRiding", "dagger", "shortSword", "sabre", "spear", "bow", "buckler", "smallWoodenShield", "smallMetalShield"];
+
+//umiejętności dla złoczyńcy
+module.exports.criminalPL = ["trucizny", "wspinaczka", "aktorstwo", "akrobatyka", "pułapki", "skradanie się", "kradzież", "uniki", "blefowanie", "drewniana pałka"];
+
+module.exports.criminalENG = ["poison", "climb", "acting", "acrobatics", "traps", "sneak", "theft", "dodge", "bluff", "woddenStick"];
+
+//umiejętności dla czarodzieja
+module.exports.wizardPL = ["pisanie i czytanie", "przyw./odp. demona", "wróżbiarstwo", "leczenie ran", "rzuczanie czarów", "tworz. eliksirów", "tworz.mag. przedm.", "tworzenie maści", "tworzenie runów", "astrologia", "zielarstwo"];
+
+module.exports.wizardENG = ["writingRead", "summonOvertake", "divination", "healing", "castSpell", "createPotion", "createMagItem", "createBalm", "createRunes", "astrology", "herbalism"];
 
 //-----------------------------------------Imię------------------------------------------------------------//
 //tekst dla wyboru imienia
@@ -63,7 +79,6 @@ module.exports.featuresDescription = "Poniżej znajduje się pięć przycisków,
 //tekst dla losowania cech
 module.exports.featuresAlert = "Wylosuj cechy.";
 
-
 //---------------------------WYBÓR CECH część II---------------------------------------------------------------//
 module.exports.features2Title = "Wybór cech.";
 module.exports.features2Description = "W tej części kreatora należy wybrać płeć, kolor włosów, oczu, skóry, wagę i wzrost. Poniżej są przyciski dzięki, którym należy to zrobić.";
@@ -73,7 +88,13 @@ module.exports.features2Alert = "Wybierz cechy.";
 
 //------------------------------WYBÓR EKWIPUNKU-----------------------------------------------------------------//
 module.exports.equipmentTitle = "Wybór ekwipunku.";
-module.exports.equipmentDescription = "Możesz wybrać maksymalnie pięć rzeczy.";
+module.exports.equipmentDescription = "Ta część podzielona jest zasadniczo na dwie części. W pierwszej możesz wybrać (w sumie) pięć rzeczy z kategorii: broń, zbroje, tarcze i inne. W drugiej części dzięki przyciskom, będzie można usunąć wcześniej wybrane przedmioty.";
 
 //tekst dla wybierania cech
 module.exports.equipmentAlert = "Wybierz ekwipunek.";
+
+//-----------------------------WYBÓR UMIEJĘTNOŚCI--------------------------------------------------------------------//
+module.exports.skillsTitle = "Wybór umiejętności";
+module.exports.skillsDescription = "Ta część podzielona jest zasadniczo na dwie części. W pierwszej możesz wybrać (w sumie) 3 umiejętności z kategorii: wojownik, złoczyńca i czarodziej. W drugiej części dzięki przyciskom, będzie można usunąć wcześniej wybrane umiejętności.";
+
+module.exports.skillsAlert = "Wybierz umiejętności";
