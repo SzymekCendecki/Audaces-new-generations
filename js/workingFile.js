@@ -209,6 +209,7 @@ $("#newGame").on("click", () =>{
 			//funkcja optymalizująca losowanie cechy
 			function randomPointsFeatures(element, name, number, source){
 				element.on("click", ()=>{ let name = Math.round(Math.random()*50);
+					console.log(name);
 					randomFeatures.splice(number, 1, name); $("#choosenDescription").text(source);
 					if( randomFeatures.length < 5 ){$("#featuresAlert").addClass("redText");
 					}else{ $("#featuresAlert").addClass("greenText"); } });
@@ -413,7 +414,7 @@ createNewElementAppend("button", heroCreator.equipOtherENG[22], heroCreator.equi
 createNewElementAppend("button", heroCreator.equipOtherENG[23], heroCreator.equipOtherPL[23], $("#mainPart"), "bold"); chooseItem($("#rope5m"), "lina 5m");
 createNewElementAppend("button", heroCreator.equipOtherENG[24], heroCreator.equipOtherPL[24], $("#mainPart"), "bold"); chooseItem($("#tinders"), "hubka i krzesiwo");
 
-$("#dagger, #woddenStick, #shortSword, #sabre, #spear, #slingshot, #bow, #gambison, #leather, #studded, #buckler, #smallWooden, #smallMetal, #stick, #moneyBag, #travelBag, #purse, #backpack, #canteen, #pot, #blanket, #tubeParchments, #penWriting, #parchments5pieces, #ordinaryClothing, #fussyHat, #coat, #leatherBelt, #needlesThread, #saddleCloth, #tent, #woodenBowl, #woodenSpoon, #torch, #oliveLamp, #oilLamp, #rope5m, #tinders").addClass("width15");
+$("#mainPart button").addClass("width15");
 
 	//paragraf do wyświetlania opisu wybranego elementu ekwipunku
 	createNewElementAppend("p", "choosenDescription", "", $("#mainPart"));
@@ -506,7 +507,6 @@ createNewElementAppend("button", heroCreator.wizardENG[0], heroCreator.wizardPL[
 //paragraf do wyświetlania opisu wybranej umiejętności
 $("#mainPart button").addClass("width15");
 
-
 // cżęść do usuwania wybranej umiejętności i komunikacji o błędzie
 createNewElementAppend("p", "choosenDescription", "", $("#mainPart"));
 createNewElementAppend("p", "btnToRemoveTitle", "Przedmioty do usunięcia", $("#choosenDescription"));
@@ -514,12 +514,40 @@ createNewElementAppend("p", "btnToRemove", "", $("#choosenDescription"));
 createNewElementAppend("p", "subAlert", "", $("#choosenDescription"));
 
 $("#btnToRemoveTitle").addClass("goldUnderline bold");
-
 });//koniec zdarzeń dla kreatora postaci - umiejętności
 
 //zdarzenia dla przycisku info - w kreatorze postaci
 $("#infoCreator").on("click", () =>{
-	console.log(skills);
+	$("#mainPart").empty();
+
+	createNewElementAppend("p", "infoTitle", heroCreator.infoTitle, $("#mainPart"));
+	$("#infoTitle").addClass("goldUnderline basicText");
+	createNewElementAppend("p", "infoDescription", heroCreator.infoDescription, $("#mainPart"));
+
+//funkcja optymaliująca tworzenie elementów informacji zbiorczej
+	function infoCreator(titleId, textTitle, nameInfoSubId, what){
+		createNewElementAppend("p", titleId, textTitle, $("#mainPart"));
+		if( what === undefined){
+			createNewElementAppend("p", nameInfoSubId, "nie wybrano", $("#mainPart"));
+			$("#" + nameInfoSubId).addClass("redText");
+	}else {
+		 createNewElementAppend("p", nameInfoSubId, what, $("#mainPart"));
+		 $("#" + nameInfoSubId).addClass("greenText");
+	 }
+ }
+
+	infoCreator("nameInfo", "imię", "nameInfoSub", hero[0]);
+	infoCreator("raceInfo", "rasa", "raceInfoSub", hero[1]);
+	infoCreator("occupationInfo", "profesja", "occupationInfoSub", hero[2]);
+
+//miejsce dla funkcji walidacji punktów cech postaci, ze względu na profesję, rasę i wylosowane cechy
+
+	infoCreator("equipInfo", "ekwipunek", "equipInfoSub", equip);
+	infoCreator("skillsInfo", "umiejętności", "skillsInfoSub", skills);
+
+	$("#nameInfo, #raceInfo, #occupationInfo, #forceInfo, #strengthInfo, #dexterityInfo, #intelligenceInfo, #charismaInfo, #equipInfo, #skillsInfo").addClass("infoTitles");
+
+	$("#nameInfoSub, #raceInfoSub, #occupationInfoSub, #forceInfoSub, #strengthInfoSub, #dexterityInfoSub, #intelligenceInfoSub, #charismaInfoSub, #equipInfoSub, #skillsInfoSub").addClass("infoTitles");
 
 });//koniec zdarzeń dla przycisku info - w kreatorze postaci
 }); //koniec przycisku nowa gra (newGame)

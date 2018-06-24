@@ -263,7 +263,7 @@ nav{
 }
 
 //style dla części opisowej w kreatorze postaci.
-#nameDescription, #raceDescription, #occupationDescription, #choosenDescription, #featuresDescription, #features2Description, #equipmentDescription, #skillsDescription{
+#nameDescription, #raceDescription, #occupationDescription, #choosenDescription, #featuresDescription, #features2Description, #equipmentDescription, #skillsDescription, #infoDescription{
   margin-top: 2%;
   font-weight: bold;
   font-size: 1.1em;
@@ -300,15 +300,8 @@ nav{
 }
 
 //kolor czcionki
-.redText{
-  color: red;
-  font-weight: bold;
-}
-
-.greenText{
-  color: green;
-  font-weight: bold;
-}
+.redText{ color: red; font-weight: bold; }
+.greenText{ color: green; font-weight: bold; }
 
 //style dla features2Main - wybór cech koloru skóry, oczu, włosów, wagi, wzrostu i płci
 #features2Main{
@@ -334,19 +327,20 @@ nav{
   font-size: 1.05em;
 }
 
-.floatLeft{
-  float: left;
-}
+.floatLeft{ float: left; }
+.clearFloat{ clear: both; }
+.bold{ font-weight: bold; }
+.width15{ width: 15%; }
 
-.clearFloat{
-  clear: both;
-}
-
-.bold{
+#nameInfo, #raceInfo, #occupationInfo, #forceInfo, #strengthInfo, #dexterityInfo, #intelligenceInfo, #charismaInfo, #equipInfo, #skillsInfo{
+  text-align: center;
   font-weight: bold;
+  font-size: 1.1em;
 }
 
-
-.width15{
-  width: 15%;
+#nameInfoSub, #raceInfoSub, #occupationInfoSub, #forceInfoSub, #strengthInfoSub, #dexterityInfoSub, #intelligenceInfoSub, #charismaInfoSub, #equipInfoSub, #skillsInfoSub{
+  text-align: center;
+  font-weight: bold;
+  font-size: 1.3em;
+  padding: 5px 0 5px 0;
 }

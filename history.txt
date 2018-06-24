@@ -53,3 +53,6 @@ Dodana zmiana koloru alertu dla wybierania ekwipunku. Dla braku wybranych przedm
 
 23 czerwca 2018 - wersja 0.1.8
 Ulepszony opis w kreatorze postaci - części wybierania ekwipunku. Dodana została część umożliwiająca wybieranie umiejętności.
+
+24 czerwca 2018 - wersja 0.1.9
+Drobna optymalizacja pliku workingFile - zamiast znajdowania wszystkich przycisków po id - użycie krótszej formy i znalezienie wszystkich przycisków po tagu button - w części wybiernia ekwipunku (mainPart). Rozpoczęto tworzenie ostatniej części - info (informacja zbiorcza o postaci). Sumowanie wylosowanych punktów cech oraz punktów rasowych i punktów prfesji, wraz z częściową walidacją oczekuje na implementacje w kodzie.

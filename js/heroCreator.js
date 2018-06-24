@@ -1,4 +1,4 @@
-//----------------------------------------tablice dla wybierania ekwipunku ----------------------------------------//
+//--------------------------------tablice dla wybierania ekwipunku ------------------------------//
 //broń
 module.exports.equipWeaponPL = ["sztylet", "drewniana pałka", "krótki miecz", "szabla", "włócznia", "proca", "łuk"];
 module.exports.equipWeaponENG = ["dagger", "woddenStick", "shortSword", "sabre", "spear", "slingshot", "bow"];
@@ -16,7 +16,7 @@ module.exports.equipOtherPL = ["kostur", "mieszek", "torba podróżna", "sakwa",
 
 module.exports.equipOtherENG = ["stick", "moneyBag", "travelBag", "purse", "backpack", "canteen", "pot", "blanket", "tubeParchments", "penWriting", "parchments5pieces", "ordinaryClothing", "fussyHat", "coat", "leatherBelt", "needlesThread", "saddleCloth", "tent", "woodenBowl", "woodenSpoon", "torch", "oliveLamp", "oilLamp", "rope5m", "tinders"];
 
-//---------------------------------------------tablice dla wybierania umiejętności --------------------------------------------//
+//---------------------------tablice dla wybierania umiejętności -------------------------------//
 //umiejętności dla wojownika
 module.exports.warriorPL = ["szt.przetrwania", "dyscyplina", "dowodzenie", "uderzenie tarczą", "jeździectwo", "sztylet", "krótki miecz", "szabla", "włócznia", "łuk", "puklerz", "mała tarcza drewniana", "mała tarcza metalowa"];
 
@@ -32,7 +32,7 @@ module.exports.wizardPL = ["pisanie i czytanie", "przyw./odp. demona", "wróżbi
 
 module.exports.wizardENG = ["writingRead", "summonOvertake", "divination", "healing", "castSpell", "createPotion", "createMagItem", "createBalm", "createRunes", "astrology", "herbalism"];
 
-//-----------------------------------------Imię------------------------------------------------------------//
+//-----------------------------------Imię-------------------------------------------------------//
 //tekst dla wyboru imienia
 module.exports.nameTitle = "Wybór imienia.";
 module.exports.nameDescription = "Wpisz w pole niżej swoje imię oraz wciśnij przycisk 'zatwierdź'. Możesz wpisać tylko litery, cyfry nie będą barne pod uwagę. Imię można zmieniać dowolną ilość razy.";
@@ -40,7 +40,7 @@ module.exports.nameDescription = "Wpisz w pole niżej swoje imię oraz wciśnij 
 //tekst dla alertu wyboru imienia
 module.exports.nameAlert = "Wybierz imię.";
 
-//-------------------------------------------RASA--------------------------------------------------------//
+//-------------------------------------------RASA------------------------------------------------//
 //tekst dla wyboru rasy
 module.exports.raceTitle = "Wybór rasy.";
 module.exports.raceDescription = "Poniżej znajdują się cztery przyciski. Dzięki nim wybierzesz rasę, która Cię interesuje. Po klinkięciu w przycisk pojawi się krótki opis wybranej rasy.";
@@ -57,7 +57,7 @@ module.exports.orc = "Orki to niezwykle wojownicza rasa. Są w głównej mierze 
 //tekst dla alertu wyboru rasy
 module.exports.raceAlert = "Wybierz rasę.";
 
-//--------------------------------------PROFESJA--------------------------------------------------------------//
+//--------------------------------------PROFESJA-------------------------------------------------//
 //tekst dla wyboru profesji
 module.exports.occupationTitle = "Wybór profesji.";
 module.exports.occupationDescription = "Poniżej znajdują się trzy przyciski. Dzięki nim wybierzesz profesję, która Cię interesuje. Po klinkięciu w przycisk pojawi się krótki opis wybranej profesji.";
@@ -72,29 +72,33 @@ module.exports.wizard = "Czarodziej to brzmi dumnie. Po wielu latach spędzonych
 //tekst dla wyboru profesji
 module.exports.occupationAlert = "Wybierz profesję.";
 
-//---------------------------CECHY część I -LOSOWANIE CECH------------------------------------------------------//
+//---------------------------CECHY część I -LOSOWANIE CECH---------------------------------------//
 module.exports.featuresTitle = "Losowanie cech.";
 module.exports.featuresDescription = "Poniżej znajduje się pięć przycisków, dzięki którym wylosujesz wysokość cech, które będą odzwierciedlały fizyczne i psychiczne atrybuty Twojej postaci.";
 
 //tekst dla losowania cech
 module.exports.featuresAlert = "Wylosuj cechy.";
 
-//---------------------------WYBÓR CECH część II---------------------------------------------------------------//
+//---------------------------WYBÓR CECH część II--------------------------------------------------//
 module.exports.features2Title = "Wybór cech.";
 module.exports.features2Description = "W tej części kreatora należy wybrać płeć, kolor włosów, oczu, skóry, wagę i wzrost. Poniżej są przyciski dzięki, którym należy to zrobić.";
 
 //tekst dla wybierania cech
 module.exports.features2Alert = "Wybierz cechy.";
 
-//------------------------------WYBÓR EKWIPUNKU-----------------------------------------------------------------//
+//------------------------------WYBÓR EKWIPUNKU------------------------------------------------//
 module.exports.equipmentTitle = "Wybór ekwipunku.";
 module.exports.equipmentDescription = "Ta część podzielona jest zasadniczo na dwie części. W pierwszej możesz wybrać (w sumie) pięć rzeczy z kategorii: broń, zbroje, tarcze i inne. W drugiej części dzięki przyciskom, będzie można usunąć wcześniej wybrane przedmioty.";
 
 //tekst dla wybierania cech
 module.exports.equipmentAlert = "Wybierz ekwipunek.";
 
-//-----------------------------WYBÓR UMIEJĘTNOŚCI--------------------------------------------------------------------//
-module.exports.skillsTitle = "Wybór umiejętności";
+//-----------------------------WYBÓR UMIEJĘTNOŚCI------------------------------------------------//
+module.exports.skillsTitle = "Wybór umiejętności.";
 module.exports.skillsDescription = "Ta część podzielona jest zasadniczo na dwie części. W pierwszej możesz wybrać (w sumie) 3 umiejętności z kategorii: wojownik, złoczyńca i czarodziej. W drugiej części dzięki przyciskom, będzie można usunąć wcześniej wybrane umiejętności.";
 
 module.exports.skillsAlert = "Wybierz umiejętności";
+
+//-------------------------INFORMACJA ZBIORCZA ------------------------------------------------//
+module.exports.infoTitle = "Twoja postać.";
+module.exports.infoDescription = "Poniżej znajdują się Twoje wybory. W tej sekcji możesz je sprawdzić oraz zastanowić się nad dokonanymi wyborami."
