@@ -641,29 +641,43 @@ document.addEventListener("DOMContentLoaded", function () {
 			createNewElementAppend("p", "infoDescription", heroCreator.infoDescription, $("#mainPart"));
 
 			//funkcja optymaliująca tworzenie elementów informacji zbiorczej
-			function infoCreator(titleId, textTitle, nameInfoSubId, what) {
-				createNewElementAppend("p", titleId, textTitle, $("#mainPart"));
+			function infoCreator(titleId, textTitle, nameInfoSubId, what, where) {
+				createNewElementAppend("p", titleId, textTitle, where);
 				if (what === undefined) {
-					createNewElementAppend("p", nameInfoSubId, "nie wybrano", $("#mainPart"));
+					createNewElementAppend("p", nameInfoSubId, "nie wybrano", where);
 					$("#" + nameInfoSubId).addClass("redText");
 				} else {
-					createNewElementAppend("p", nameInfoSubId, what, $("#mainPart"));
+					createNewElementAppend("p", nameInfoSubId, what, where);
 					$("#" + nameInfoSubId).addClass("greenText");
 				}
 			}
 
-			infoCreator("nameInfo", "imię", "nameInfoSub", hero[0]);
-			infoCreator("raceInfo", "rasa", "raceInfoSub", hero[1]);
-			infoCreator("occupationInfo", "profesja", "occupationInfoSub", hero[2]);
+			//część pierwsza
+			createNewElementAppend("div", "divInfoOne", "", $("#mainPart"));
+			//imię
+			createNewElementAppend("div", "nameResult", "", $("#divInfoOne"));
+			infoCreator("nameInfo", "imię", "nameInfoSub", hero[0], $("#nameResult"));
+			//rasa
+			createNewElementAppend("div", "raceResult", "", $("#divInfoOne"));
+			infoCreator("raceInfo", "rasa", "raceInfoSub", hero[1], $("#raceResult"));
+			//profesja
+			createNewElementAppend("div", "occupationResult", "", $("#divInfoOne"));
+			infoCreator("occupationInfo", "profesja", "occupationInfoSub", hero[2], $("#occupationResult"));
+
+			//$("#part1").addClass("");
+
+			//infoCreator("nameInfo", "imię", "nameInfoSub", hero[0]);
+			//infoCreator("raceInfo", "rasa", "raceInfoSub", hero[1]);
+			//infoCreator("occupationInfo", "profesja", "occupationInfoSub", hero[2]);
 
 			//miejsce dla funkcji walidacji punktów cech postaci, ze względu na profesję, rasę i wylosowane cechy
 
-			infoCreator("equipInfo", "ekwipunek", "equipInfoSub", equip);
-			infoCreator("skillsInfo", "umiejętności", "skillsInfoSub", skills);
+			//	infoCreator("equipInfo", "ekwipunek", "equipInfoSub", equip);
+			//	infoCreator("skillsInfo", "umiejętności", "skillsInfoSub", skills);
 
-			$("#nameInfo, #raceInfo, #occupationInfo, #forceInfo, #strengthInfo, #dexterityInfo, #intelligenceInfo, #charismaInfo, #equipInfo, #skillsInfo").addClass("infoTitles");
+			//	$("#nameInfo, #raceInfo, #occupationInfo, #forceInfo, #strengthInfo, #dexterityInfo, #intelligenceInfo, #charismaInfo, #equipInfo, #skillsInfo").addClass("infoTitles");
 
-			$("#nameInfoSub, #raceInfoSub, #occupationInfoSub, #forceInfoSub, #strengthInfoSub, #dexterityInfoSub, #intelligenceInfoSub, #charismaInfoSub, #equipInfoSub, #skillsInfoSub").addClass("infoTitles");
+			//	$("#nameInfoSub, #raceInfoSub, #occupationInfoSub, #forceInfoSub, #strengthInfoSub, #dexterityInfoSub, #intelligenceInfoSub, #charismaInfoSub, #equipInfoSub, #skillsInfoSub").addClass("infoTitles");
 		}); //koniec zdarzeń dla przycisku info - w kreatorze postaci
 	}); //koniec przycisku nowa gra (newGame)
 }); //koniec DOMContentLoaded

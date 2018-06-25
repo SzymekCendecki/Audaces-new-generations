@@ -332,15 +332,25 @@ nav{
 .bold{ font-weight: bold; }
 .width15{ width: 15%; }
 
-#nameInfo, #raceInfo, #occupationInfo, #forceInfo, #strengthInfo, #dexterityInfo, #intelligenceInfo, #charismaInfo, #equipInfo, #skillsInfo{
-  text-align: center;
-  font-weight: bold;
-  font-size: 1.1em;
+#divInfoOne{
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-around;
 }
 
-#nameInfoSub, #raceInfoSub, #occupationInfoSub, #forceInfoSub, #strengthInfoSub, #dexterityInfoSub, #intelligenceInfoSub, #charismaInfoSub, #equipInfoSub, #skillsInfoSub{
+#nameResult, #raceResult, #occupationResult{
   text-align: center;
+  width: 30%;
   font-weight: bold;
-  font-size: 1.3em;
-  padding: 5px 0 5px 0;
+
+#nameInfo, #raceInfo, #occupationInfo{
+  padding-top: 5px;
+  font-size: 1.1em;
+  text-decoration: underline;
+  text-decoration-color: navy;
+}
+
+#nameInfoSub, #raceInfoSub, #occupationInfoSub{
+    font-size: 1.25em;
+}
 }
