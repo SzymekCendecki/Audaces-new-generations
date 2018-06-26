@@ -28,8 +28,55 @@ function createNewInputAppend(nameElement, name, id, value, type, whereAppend, a
 
 		//funkcja optymalizująca wybieranie rasy i profesji
 			function clickRaceOccupation(element, text, number, sourceDescription, alert){
-				element.on("click", ()=>{ hero.splice(number, 1, text); alert.addClass("greenText");
-				$("#choosenDescription").text(sourceDescription); });
+				element.on("click", ()=>{
+					hero.splice(number, 1, text);
+					alert.addClass("greenText");
+				$("#choosenDescription").text(sourceDescription);
+
+				if(text === "wojownik"){
+					choosenOccupation.splice(0, 1, 5);
+					choosenOccupation.splice(1, 1, 5);
+					choosenOccupation.splice(2, 1, 0);
+					choosenOccupation.splice(3, 1, 0);
+					choosenOccupation.splice(4, 1, 0);
+				}else if(text === "złoczyńca"){
+					choosenOccupation.splice(0, 1, 0);
+					choosenOccupation.splice(1, 1, 0);
+					choosenOccupation.splice(2, 1, 10);
+					choosenOccupation.splice(3, 1, 0);
+					choosenOccupation.splice(4, 1, 0);
+				}else if(text === "czarodziej"){
+					choosenOccupation.splice(0, 1, 0);
+					choosenOccupation.splice(1, 1, 0);
+					choosenOccupation.splice(2, 1, 0);
+					choosenOccupation.splice(3, 1, 5);
+					choosenOccupation.splice(4, 1, 5);
+				}else if(text === "człowiek"){
+					choosenRace.splice(0, 1, 0);
+					choosenRace.splice(1, 1, 0);
+					choosenRace.splice(2, 1, 0);
+					choosenRace.splice(3, 1, 0);
+					choosenRace.splice(4, 1, 0);
+				}else if(text === "elf"){
+					choosenRace.splice(0, 1, -5);
+					choosenRace.splice(1, 1, -5);
+					choosenRace.splice(2, 1, 0);
+					choosenRace.splice(3, 1, 0);
+					choosenRace.splice(4, 1, 0);
+				}else if(text === "krasnolud"){
+					choosenRace.splice(0, 1, 4);
+					choosenRace.splice(1, 1, 4);
+					choosenRace.splice(2, 1, 0);
+					choosenRace.splice(3, 1, -2);
+					choosenRace.splice(4, 1, -3);
+				}else if(text === "ork"){
+					choosenRace.splice(0, 1, 5);
+					choosenRace.splice(1, 1, 5);
+					choosenRace.splice(2, 1, 0);
+					choosenRace.splice(3, 1, -5);
+					choosenRace.splice(4, 1, -5);
+				}
+			 });
 			}
 
 //utworzenie przycisków pierwszego menu
@@ -54,7 +101,7 @@ function createNewInputAppend(nameElement, name, id, value, type, whereAppend, a
 	// tablica postaci 0 - imię, 1 - rasa, 2 - profesja
 	let hero = [];
 
-	//wylosowanych punktów cech 0 - siła, 1 - wytrzymałość, 2 - zręczność, 3 - inteligencja, 4 - charyzma
+	//tablica wylosowanych punktów cech 0 - siła, 1 - wytrzymałość, 2 - zręczność, 3 - inteligencja, 4 - charyzma
 	let randomFeatures = [];
 
 	//tablica dla wybieralnych cech postaci 0 - płeć, 1 - kolor włosów, 2 - kolor oczu, 3 - waga, 4 - wzrost, 5 - kolor skóry
@@ -65,6 +112,23 @@ function createNewInputAppend(nameElement, name, id, value, type, whereAppend, a
 
 	//tablica umiejętności max 3 elementy
 	let skills = [];
+
+	//tablice ze modyfikatorami rasy i profesji - dla określenia ostatecznej ilości punktów postaci
+	let warrior = [5, 5, 0, 0, 0];
+	let criminal = [0, 0, 10, 0, 0];
+	let wizard = [0, 0, 0, 5, 5];
+
+	let human = [0, 0, 0, 0, 0];
+	let elf = [-5, -5, 0, 5, 5];
+	let dwarf = [4, 4, 0, -2, -3];
+	let orc = [5, 5, 0, -5, -5];
+
+//tablice pomocnicze dla walidacji wylosowanych punktów cech, rasy i pofesji
+	let choosenOccupation = [];
+	let choosenRace = [];
+
+	//tablica dla cech postaci (losowanych + modyfikatory)
+	let heroFeatures = [];
 
 //showanie przycisków pierszego menu
 $("#info, #licence, #tutorial, #newGame, #titleGameHeader, #subTitleGameHeader").hide();
@@ -490,8 +554,8 @@ $("#skills").on("click", ()=>{
 		createNewElementAppend("button", heroCreator.criminalENG[9], heroCreator.criminalPL[9], $("#mainPart"), "bold"); 	chooseSkill($("#poison"), "trucizny");
 		createNewElementAppend("button", heroCreator.criminalENG[10], heroCreator.criminalPL[10], $("#mainPart"), "bold"); 	chooseSkill($("#woddenStick"), "drewniana pałka");
 
-		//umiejętności złoczyńca
-		createNewElementAppend("p", "wizardTitle", "czarodziej", $("#mainPart"), "bold");
+//umiejętności złoczyńca
+createNewElementAppend("p", "wizardTitle", "czarodziej", $("#mainPart"), "bold");
 createNewElementAppend("button", heroCreator.wizardENG[0], heroCreator.wizardPL[0], $("#mainPart"), "bold"); 	chooseSkill($("#writingRead"), "pisanie i czytanie");
 createNewElementAppend("button", heroCreator.wizardENG[1], heroCreator.wizardPL[1], $("#mainPart"), "bold"); 	chooseSkill($("#summonOvertake"), "przyw./odp. demona");
 createNewElementAppend("button", heroCreator.wizardENG[2], heroCreator.wizardPL[2], $("#mainPart"), "bold"); 	chooseSkill($("#divination"), "wróżbiarstwo");
@@ -507,7 +571,7 @@ createNewElementAppend("button", heroCreator.wizardENG[0], heroCreator.wizardPL[
 //paragraf do wyświetlania opisu wybranej umiejętności
 $("#mainPart button").addClass("width15");
 
-// cżęść do usuwania wybranej umiejętności i komunikacji o błędzie
+// część do usuwania wybranej umiejętności i komunikacji o błędzie
 createNewElementAppend("p", "choosenDescription", "", $("#mainPart"));
 createNewElementAppend("p", "btnToRemoveTitle", "Przedmioty do usunięcia", $("#choosenDescription"));
 createNewElementAppend("p", "btnToRemove", "", $("#choosenDescription"));
@@ -536,7 +600,7 @@ $("#infoCreator").on("click", () =>{
 	 }
  }
 
-//część pierwsza
+//część pierwsza - imię, rasa i profesja
 	createNewElementAppend("div", "divInfoOne", "", $("#mainPart"));
 //imię
 	createNewElementAppend("div", "nameResult", "", $("#divInfoOne"));
@@ -548,6 +612,73 @@ $("#infoCreator").on("click", () =>{
 	createNewElementAppend("div", "occupationResult", "", $("#divInfoOne"));
 	infoCreator("occupationInfo", "profesja", "occupationInfoSub", hero[2], $("#occupationResult"));
 
+//część druga - losowane cechy
+//funkcja
+function resultRandomFeatures(features, race, occupation, where, tablePosition){
+	if(isNaN(features) && isNaN(race) && isNaN(occupation)){//nie ma żadnej
+     $("#choosenDescription").text("Nie wylosowana cecha, nie wybrana rasa, nie wybrana profesja.");
+	}else if(!isNaN(features) && isNaN(race) && isNaN(occupation)){// jest tylko cecha
+		let forceResult = features;
+			heroFeatures.splice(tablePosition, 1, forceResult);
+	 	 	where.text(heroFeatures[0]);
+	}else if(!isNaN(features) && !isNaN(race) && isNaN(occupation)){// jest cecha + rasa
+		let forceResult = features + race;
+			heroFeatures.splice(tablePosition, 1, forceResult);
+	 		where.text(heroFeatures[0]);
+	}else if(isNaN(features) && !isNaN(race) && isNaN(occupation)){// jest rasa
+		let forceResult = race;
+			heroFeatures.splice(tablePosition, 1, forceResult);
+	 		where.text(heroFeatures[0]);
+	}else if(isNaN(features) && !isNaN(race) && !isNaN(occupation)){// jest rasa + profesja
+		let forceResult = race + occupation;
+			heroFeatures.splice(tablePosition, 1, forceResult);
+	 		where.text(heroFeatures[0]);
+	}else if(isNaN(features) && isNaN(race) && !isNaN(occupation)){// jest profesja
+		let forceResult = occupation;
+			heroFeatures.splice(tablePosition, 1, forceResult);
+	 		where.text(heroFeatures[0]);
+	}else if(!isNaN(features) && isNaN(race) && !isNaN(occupation)){// jest cecha + profesja
+		let forceResult = features + profesja;
+			heroFeatures.splice(tablePosition, 1, forceResult);
+	 		where.text(heroFeatures[0]);
+	}else if(!isNaN(features) && !isNaN(race) && !isNaN(occupation)){ //cecha + rasa + profesja
+		let forceResult = features + race + occupation;
+			heroFeatures.splice(tablePosition, 1, forceResult);
+			where.text(heroFeatures[0]);
+	}
+}
+
+createNewElementAppend("div", "divInfoTwo", "", $("#mainPart"));
+
+//siła
+createNewElementAppend("div", "forceResult", "", $("#divInfoTwo"));
+infoCreator("forceInfo", "siła", "forceInfoSub", "nie wylosowano", $("#forceResult"));
+resultRandomFeatures(randomFeatures[0], choosenRace[0], choosenOccupation[0], $("#forceInfoSub"), 0);
+
+//	let choosenOccupation = [];
+//	let choosenRace = [];
+
+//wytrzymałość
+createNewElementAppend("div", "strengthResult", "", $("#divInfoTwo"));
+infoCreator("strengthInfo", "wytrzymałość", "strengthInfoSub", "nie wylosowano", $("#strengthResult"));
+resultRandomFeatures(randomFeatures[1], choosenRace[1], choosenOccupation[1], $("#strengthInfoSub"), 1);
+
+//zręczność
+createNewElementAppend("div", "dexterityResult", "", $("#divInfoTwo"));
+infoCreator("dexterityInfo", "zręczność", "dexterityInfoSub", "nie wylosowano", $("#dexterityResult"));
+resultRandomFeatures(randomFeatures[2], choosenRace[2], choosenOccupation[2], $("#dexterityInfoSub"), 2);
+
+//inteligencja
+createNewElementAppend("div", "intelligenceResult", "inteligencja", $("#divInfoTwo"));
+infoCreator("intelligenceInfo", "inteligencja", "intelligenceInfoSub", "nie wylosowano", $("#intelligenceResult"));
+resultRandomFeatures(randomFeatures[3], choosenRace[3], choosenOccupation[3], $("#intelligenceInfoSub"), 3);
+
+//charyzma
+createNewElementAppend("div", "charismaResult", "charyzma", $("#divInfoTwo"));
+infoCreator("chaismaInfo", "charyzma", "charismaInfoSub", "nie wylosowano", $("#charismaResult"));
+resultRandomFeatures(randomFeatures[4], choosenRace[4], choosenOccupation[4], $("#charismaInfoSub"), 4);
+
+createNewElementAppend("p", "choosenDescription", "", $("#mainPart"));
 //$("#part1").addClass("");
 
 	//infoCreator("nameInfo", "imię", "nameInfoSub", hero[0]);

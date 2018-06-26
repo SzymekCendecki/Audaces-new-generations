@@ -332,7 +332,7 @@ nav{
 .bold{ font-weight: bold; }
 .width15{ width: 15%; }
 
-#divInfoOne{
+#divInfoOne, #divInfoTwo{
   display: flex;
   flex-wrap: wrap;
   justify-content: space-around;
