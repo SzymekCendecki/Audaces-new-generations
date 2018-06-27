@@ -99,10 +99,10 @@ function createNewInputAppend(nameElement, name, id, value, type, whereAppend, a
 
 	//tablice
 	// tablica postaci 0 - imię, 1 - rasa, 2 - profesja
-	let hero = [];
+	let hero = ["nie wybrano", "nie wybrano", "nie wybrano"];
 
 	//tablica wylosowanych punktów cech 0 - siła, 1 - wytrzymałość, 2 - zręczność, 3 - inteligencja, 4 - charyzma
-	let randomFeatures = [];
+	let randomFeatures = [0, 0, 0, 0, 0];
 
 	//tablica dla wybieralnych cech postaci 0 - płeć, 1 - kolor włosów, 2 - kolor oczu, 3 - waga, 4 - wzrost, 5 - kolor skóry
 	let choosenFeatures = [];
@@ -126,9 +126,6 @@ function createNewInputAppend(nameElement, name, id, value, type, whereAppend, a
 //tablice pomocnicze dla walidacji wylosowanych punktów cech, rasy i pofesji
 	let choosenOccupation = [];
 	let choosenRace = [];
-
-	//tablica dla cech postaci (losowanych + modyfikatory)
-	let heroFeatures = [];
 
 //showanie przycisków pierszego menu
 $("#info, #licence, #tutorial, #newGame, #titleGameHeader, #subTitleGameHeader").hide();
@@ -618,33 +615,33 @@ function resultRandomFeatures(features, race, occupation, where, tablePosition){
 	if(isNaN(features) && isNaN(race) && isNaN(occupation)){//nie ma żadnej
      $("#choosenDescription").text("Nie wylosowana cecha, nie wybrana rasa, nie wybrana profesja.");
 	}else if(!isNaN(features) && isNaN(race) && isNaN(occupation)){// jest tylko cecha
-		let forceResult = features;
-			heroFeatures.splice(tablePosition, 1, forceResult);
-	 	 	where.text(heroFeatures[0]);
+		let result = features;
+			randomFeatures.splice(tablePosition, 1, result);
+	 	 	where.text(result);
 	}else if(!isNaN(features) && !isNaN(race) && isNaN(occupation)){// jest cecha + rasa
-		let forceResult = features + race;
-			heroFeatures.splice(tablePosition, 1, forceResult);
-	 		where.text(heroFeatures[0]);
+		let result = features + race;
+			randomFeatures.splice(tablePosition, 1, result);
+	 		where.text(result);
 	}else if(isNaN(features) && !isNaN(race) && isNaN(occupation)){// jest rasa
-		let forceResult = race;
-			heroFeatures.splice(tablePosition, 1, forceResult);
-	 		where.text(heroFeatures[0]);
+		let result = race;
+			randomFeatures.splice(tablePosition, 1, result);
+	 		where.text(result);
 	}else if(isNaN(features) && !isNaN(race) && !isNaN(occupation)){// jest rasa + profesja
-		let forceResult = race + occupation;
-			heroFeatures.splice(tablePosition, 1, forceResult);
-	 		where.text(heroFeatures[0]);
+		let result = race + occupation;
+			randomFeatures.splice(tablePosition, 1, result);
+	 		where.text(result);
 	}else if(isNaN(features) && isNaN(race) && !isNaN(occupation)){// jest profesja
-		let forceResult = occupation;
-			heroFeatures.splice(tablePosition, 1, forceResult);
-	 		where.text(heroFeatures[0]);
+		let result = occupation;
+			randomFeatures.splice(tablePosition, 1, result);
+	 		where.text(result);
 	}else if(!isNaN(features) && isNaN(race) && !isNaN(occupation)){// jest cecha + profesja
-		let forceResult = features + profesja;
-			heroFeatures.splice(tablePosition, 1, forceResult);
-	 		where.text(heroFeatures[0]);
+		let result = features + occupation;
+			randomFeatures.splice(tablePosition, 1, result);
+	 		where.text(result);
 	}else if(!isNaN(features) && !isNaN(race) && !isNaN(occupation)){ //cecha + rasa + profesja
-		let forceResult = features + race + occupation;
-			heroFeatures.splice(tablePosition, 1, forceResult);
-			where.text(heroFeatures[0]);
+		let result = features + race + occupation;
+			randomFeatures.splice(tablePosition, 1, result);
+			where.text(result);
 	}
 }
 
@@ -669,12 +666,12 @@ infoCreator("dexterityInfo", "zręczność", "dexterityInfoSub", "nie wylosowano
 resultRandomFeatures(randomFeatures[2], choosenRace[2], choosenOccupation[2], $("#dexterityInfoSub"), 2);
 
 //inteligencja
-createNewElementAppend("div", "intelligenceResult", "inteligencja", $("#divInfoTwo"));
+createNewElementAppend("div", "intelligenceResult", "", $("#divInfoTwo"));
 infoCreator("intelligenceInfo", "inteligencja", "intelligenceInfoSub", "nie wylosowano", $("#intelligenceResult"));
 resultRandomFeatures(randomFeatures[3], choosenRace[3], choosenOccupation[3], $("#intelligenceInfoSub"), 3);
 
 //charyzma
-createNewElementAppend("div", "charismaResult", "charyzma", $("#divInfoTwo"));
+createNewElementAppend("div", "charismaResult", "", $("#divInfoTwo"));
 infoCreator("chaismaInfo", "charyzma", "charismaInfoSub", "nie wylosowano", $("#charismaResult"));
 resultRandomFeatures(randomFeatures[4], choosenRace[4], choosenOccupation[4], $("#charismaInfoSub"), 4);
 

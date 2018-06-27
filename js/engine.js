@@ -178,10 +178,10 @@ document.addEventListener("DOMContentLoaded", function () {
 
 	//tablice
 	// tablica postaci 0 - imię, 1 - rasa, 2 - profesja
-	var hero = [];
+	var hero = ["nie wybrano", "nie wybrano", "nie wybrano"];
 
 	//tablica wylosowanych punktów cech 0 - siła, 1 - wytrzymałość, 2 - zręczność, 3 - inteligencja, 4 - charyzma
-	var randomFeatures = [];
+	var randomFeatures = [0, 0, 0, 0, 0];
 
 	//tablica dla wybieralnych cech postaci 0 - płeć, 1 - kolor włosów, 2 - kolor oczu, 3 - waga, 4 - wzrost, 5 - kolor skóry
 	var choosenFeatures = [];
@@ -205,9 +205,6 @@ document.addEventListener("DOMContentLoaded", function () {
 	//tablice pomocnicze dla walidacji wylosowanych punktów cech, rasy i pofesji
 	var choosenOccupation = [];
 	var choosenRace = [];
-
-	//tablica dla cech postaci (losowanych + modyfikatory)
-	var heroFeatures = [];
 
 	//showanie przycisków pierszego menu
 	$("#info, #licence, #tutorial, #newGame, #titleGameHeader, #subTitleGameHeader").hide();
@@ -734,39 +731,39 @@ document.addEventListener("DOMContentLoaded", function () {
 					$("#choosenDescription").text("Nie wylosowana cecha, nie wybrana rasa, nie wybrana profesja.");
 				} else if (!isNaN(features) && isNaN(race) && isNaN(occupation)) {
 					// jest tylko cecha
-					var forceResult = features;
-					heroFeatures.splice(tablePosition, 1, forceResult);
-					where.text(heroFeatures[0]);
+					var result = features;
+					randomFeatures.splice(tablePosition, 1, result);
+					where.text(result);
 				} else if (!isNaN(features) && !isNaN(race) && isNaN(occupation)) {
 					// jest cecha + rasa
-					var _forceResult = features + race;
-					heroFeatures.splice(tablePosition, 1, _forceResult);
-					where.text(heroFeatures[0]);
+					var _result = features + race;
+					randomFeatures.splice(tablePosition, 1, _result);
+					where.text(_result);
 				} else if (isNaN(features) && !isNaN(race) && isNaN(occupation)) {
 					// jest rasa
-					var _forceResult2 = race;
-					heroFeatures.splice(tablePosition, 1, _forceResult2);
-					where.text(heroFeatures[0]);
+					var _result2 = race;
+					randomFeatures.splice(tablePosition, 1, _result2);
+					where.text(_result2);
 				} else if (isNaN(features) && !isNaN(race) && !isNaN(occupation)) {
 					// jest rasa + profesja
-					var _forceResult3 = race + occupation;
-					heroFeatures.splice(tablePosition, 1, _forceResult3);
-					where.text(heroFeatures[0]);
+					var _result3 = race + occupation;
+					randomFeatures.splice(tablePosition, 1, _result3);
+					where.text(_result3);
 				} else if (isNaN(features) && isNaN(race) && !isNaN(occupation)) {
 					// jest profesja
-					var _forceResult4 = occupation;
-					heroFeatures.splice(tablePosition, 1, _forceResult4);
-					where.text(heroFeatures[0]);
+					var _result4 = occupation;
+					randomFeatures.splice(tablePosition, 1, _result4);
+					where.text(_result4);
 				} else if (!isNaN(features) && isNaN(race) && !isNaN(occupation)) {
 					// jest cecha + profesja
-					var _forceResult5 = features + profesja;
-					heroFeatures.splice(tablePosition, 1, _forceResult5);
-					where.text(heroFeatures[0]);
+					var _result5 = features + occupation;
+					randomFeatures.splice(tablePosition, 1, _result5);
+					where.text(_result5);
 				} else if (!isNaN(features) && !isNaN(race) && !isNaN(occupation)) {
 					//cecha + rasa + profesja
-					var _forceResult6 = features + race + occupation;
-					heroFeatures.splice(tablePosition, 1, _forceResult6);
-					where.text(heroFeatures[0]);
+					var _result6 = features + race + occupation;
+					randomFeatures.splice(tablePosition, 1, _result6);
+					where.text(_result6);
 				}
 			}
 
@@ -791,12 +788,12 @@ document.addEventListener("DOMContentLoaded", function () {
 			resultRandomFeatures(randomFeatures[2], choosenRace[2], choosenOccupation[2], $("#dexterityInfoSub"), 2);
 
 			//inteligencja
-			createNewElementAppend("div", "intelligenceResult", "inteligencja", $("#divInfoTwo"));
+			createNewElementAppend("div", "intelligenceResult", "", $("#divInfoTwo"));
 			infoCreator("intelligenceInfo", "inteligencja", "intelligenceInfoSub", "nie wylosowano", $("#intelligenceResult"));
 			resultRandomFeatures(randomFeatures[3], choosenRace[3], choosenOccupation[3], $("#intelligenceInfoSub"), 3);
 
 			//charyzma
-			createNewElementAppend("div", "charismaResult", "charyzma", $("#divInfoTwo"));
+			createNewElementAppend("div", "charismaResult", "", $("#divInfoTwo"));
 			infoCreator("chaismaInfo", "charyzma", "charismaInfoSub", "nie wylosowano", $("#charismaResult"));
 			resultRandomFeatures(randomFeatures[4], choosenRace[4], choosenOccupation[4], $("#charismaInfoSub"), 4);
 
