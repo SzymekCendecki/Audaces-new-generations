@@ -140,8 +140,8 @@ document.addEventListener("DOMContentLoaded", function () {
 				choosenRace.splice(0, 1, -5);
 				choosenRace.splice(1, 1, -5);
 				choosenRace.splice(2, 1, 0);
-				choosenRace.splice(3, 1, 0);
-				choosenRace.splice(4, 1, 0);
+				choosenRace.splice(3, 1, 5);
+				choosenRace.splice(4, 1, 5);
 			} else if (text === "krasnolud") {
 				choosenRace.splice(0, 1, 4);
 				choosenRace.splice(1, 1, 4);
@@ -205,6 +205,9 @@ document.addEventListener("DOMContentLoaded", function () {
 	//tablice pomocnicze dla walidacji wylosowanych punktów cech, rasy i pofesji
 	var choosenOccupation = [];
 	var choosenRace = [];
+
+	//suma wszystkich punktów
+	var amountAllPoint = [];
 
 	//showanie przycisków pierszego menu
 	$("#info, #licence, #tutorial, #newGame, #titleGameHeader, #subTitleGameHeader").hide();
@@ -702,13 +705,8 @@ document.addEventListener("DOMContentLoaded", function () {
 			//funkcja optymaliująca tworzenie elementów informacji zbiorczej
 			function infoCreator(titleId, textTitle, nameInfoSubId, what, where) {
 				createNewElementAppend("p", titleId, textTitle, where);
-				if (what === undefined) {
-					createNewElementAppend("p", nameInfoSubId, "nie wybrano", where);
-					$("#" + nameInfoSubId).addClass("redText");
-				} else {
-					createNewElementAppend("p", nameInfoSubId, what, where);
-					$("#" + nameInfoSubId).addClass("greenText");
-				}
+				createNewElementAppend("p", nameInfoSubId, what, where);
+				$("#" + nameInfoSubId).addClass("redText");
 			}
 
 			//część pierwsza - imię, rasa i profesja
@@ -724,7 +722,7 @@ document.addEventListener("DOMContentLoaded", function () {
 			infoCreator("occupationInfo", "profesja", "occupationInfoSub", hero[2], $("#occupationResult"));
 
 			//część druga - losowane cechy
-			//funkcja
+			//funkcja optymalizująca zliczanie punktów cech
 			function resultRandomFeatures(features, race, occupation, where, tablePosition) {
 				if (isNaN(features) && isNaN(race) && isNaN(occupation)) {
 					//nie ma żadnej
@@ -732,37 +730,37 @@ document.addEventListener("DOMContentLoaded", function () {
 				} else if (!isNaN(features) && isNaN(race) && isNaN(occupation)) {
 					// jest tylko cecha
 					var result = features;
-					randomFeatures.splice(tablePosition, 1, result);
+					amountAllPoint.splice(tablePosition, 1, result);
 					where.text(result);
 				} else if (!isNaN(features) && !isNaN(race) && isNaN(occupation)) {
 					// jest cecha + rasa
 					var _result = features + race;
-					randomFeatures.splice(tablePosition, 1, _result);
+					amountAllPoint.splice(tablePosition, 1, _result);
 					where.text(_result);
 				} else if (isNaN(features) && !isNaN(race) && isNaN(occupation)) {
 					// jest rasa
 					var _result2 = race;
-					randomFeatures.splice(tablePosition, 1, _result2);
+					amountAllPoint.splice(tablePosition, 1, _result2);
 					where.text(_result2);
 				} else if (isNaN(features) && !isNaN(race) && !isNaN(occupation)) {
 					// jest rasa + profesja
 					var _result3 = race + occupation;
-					randomFeatures.splice(tablePosition, 1, _result3);
+					amountAllPoint.splice(tablePosition, 1, _result3);
 					where.text(_result3);
 				} else if (isNaN(features) && isNaN(race) && !isNaN(occupation)) {
 					// jest profesja
 					var _result4 = occupation;
-					randomFeatures.splice(tablePosition, 1, _result4);
+					amountAllPoint.splice(tablePosition, 1, _result4);
 					where.text(_result4);
 				} else if (!isNaN(features) && isNaN(race) && !isNaN(occupation)) {
 					// jest cecha + profesja
 					var _result5 = features + occupation;
-					randomFeatures.splice(tablePosition, 1, _result5);
+					amountAllPoint.splice(tablePosition, 1, _result5);
 					where.text(_result5);
 				} else if (!isNaN(features) && !isNaN(race) && !isNaN(occupation)) {
 					//cecha + rasa + profesja
 					var _result6 = features + race + occupation;
-					randomFeatures.splice(tablePosition, 1, _result6);
+					amountAllPoint.splice(tablePosition, 1, _result6);
 					where.text(_result6);
 				}
 			}
@@ -773,9 +771,6 @@ document.addEventListener("DOMContentLoaded", function () {
 			createNewElementAppend("div", "forceResult", "", $("#divInfoTwo"));
 			infoCreator("forceInfo", "siła", "forceInfoSub", "nie wylosowano", $("#forceResult"));
 			resultRandomFeatures(randomFeatures[0], choosenRace[0], choosenOccupation[0], $("#forceInfoSub"), 0);
-
-			//	let choosenOccupation = [];
-			//	let choosenRace = [];
 
 			//wytrzymałość
 			createNewElementAppend("div", "strengthResult", "", $("#divInfoTwo"));
@@ -798,6 +793,9 @@ document.addEventListener("DOMContentLoaded", function () {
 			resultRandomFeatures(randomFeatures[4], choosenRace[4], choosenOccupation[4], $("#charismaInfoSub"), 4);
 
 			createNewElementAppend("p", "choosenDescription", "", $("#mainPart"));
+
+			console.log(choosenRace);
+			console.log(choosenOccupation);
 			//$("#part1").addClass("");
 
 			//infoCreator("nameInfo", "imię", "nameInfoSub", hero[0]);

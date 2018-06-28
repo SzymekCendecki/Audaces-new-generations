@@ -65,3 +65,6 @@ Funkcja zliczająca punkty cech postaci w oparciu o wylosowane punkty, modyfikat
 
 27 czerwca 2018 - wersja 0.2.2
 Poprawiona funkcja zliczająca punkty wylosownych punktów cech, modfikatorów profesji i rasy. Do poprawy zmieniający się kolor alertu "Wylosuj cechy" - po losowaniu jedenej cecchy zmienia się na zielony (powinien zmienić się z czerwonego na zielony dopiero po losowaniu wszystkich pięciu cech). Wprowadzić dodatkowe informacje o niewybranych/niewulosowanych rzeczach w dolnum opisie inforamcjo zbiorczej.
+
+28 czerwca 2018 - wersja 0.2.3
+Poprawiona funkcja zliczająca punkty cech, na podstawie modyfikatorów rasy i profesji oraz wylosowanych cech. Do poprawy pozostało odpowiednia zmiana kolorów alertów oraz komunikatów - patrz poprzednia wersja.
