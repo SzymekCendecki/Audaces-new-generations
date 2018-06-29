@@ -85,75 +85,52 @@ document.addEventListener("DOMContentLoaded", function () {
 
 	//funkcja, która tworzy nowy element DOM
 	function createNewElementAppend(nameElement, idName, text, whereAppend, addedClass) {
-		var newElement = document.createElement(nameElement);
-		newElement.id = idName;
-		newElement.innerText = text;
-		whereAppend.append(newElement);
-		newElement.classList.add(addedClass);
-		newElement.classList.remove("undefined");
+		var newElement = document.createElement(nameElement);newElement.id = idName;
+		newElement.innerText = text;whereAppend.append(newElement);
+		newElement.classList.add(addedClass);newElement.classList.remove("undefined");
 	}
 
 	//funkcja optymalizująca tworzenie inputów
 	function createNewInputAppend(nameElement, name, id, value, type, whereAppend, addedClass) {
-		var newElement = document.createElement(nameElement);
-		newElement.type = type;
-		newElement.name = name;
-		newElement.id = id;
-		newElement.value = value;
-		whereAppend.append(newElement);
-		newElement.classList.add(addedClass);
+		var newElement = document.createElement(nameElement);newElement.type = type;
+		newElement.name = name;newElement.id = id;newElement.value = value;
+		whereAppend.append(newElement);newElement.classList.add(addedClass);
 		newElement.classList.remove("undefined");
 	}
 
 	//funkcja optymalizująca wybieranie rasy i profesji
 	function clickRaceOccupation(element, text, number, sourceDescription, alert) {
 		element.on("click", function () {
-			hero.splice(number, 1, text);
-			alert.addClass("greenText");
+			hero.splice(number, 1, text);alert.addClass("greenText");
 			$("#choosenDescription").text(sourceDescription);
 
 			if (text === "wojownik") {
 				choosenOccupation.splice(0, 1, 5);
-				choosenOccupation.splice(1, 1, 5);
-				choosenOccupation.splice(2, 1, 0);
-				choosenOccupation.splice(3, 1, 0);
-				choosenOccupation.splice(4, 1, 0);
+				choosenOccupation.splice(1, 1, 5);choosenOccupation.splice(2, 1, 0);choosenOccupation.splice(3, 1, 0);choosenOccupation.splice(4, 1, 0);
 			} else if (text === "złoczyńca") {
 				choosenOccupation.splice(0, 1, 0);
-				choosenOccupation.splice(1, 1, 0);
-				choosenOccupation.splice(2, 1, 10);
-				choosenOccupation.splice(3, 1, 0);
-				choosenOccupation.splice(4, 1, 0);
+				choosenOccupation.splice(1, 1, 0);choosenOccupation.splice(2, 1, 10);
+				choosenOccupation.splice(3, 1, 0);choosenOccupation.splice(4, 1, 0);
 			} else if (text === "czarodziej") {
 				choosenOccupation.splice(0, 1, 0);
-				choosenOccupation.splice(1, 1, 0);
-				choosenOccupation.splice(2, 1, 0);
-				choosenOccupation.splice(3, 1, 5);
-				choosenOccupation.splice(4, 1, 5);
+				choosenOccupation.splice(1, 1, 0);choosenOccupation.splice(2, 1, 0);
+				choosenOccupation.splice(3, 1, 5);choosenOccupation.splice(4, 1, 5);
 			} else if (text === "człowiek") {
 				choosenRace.splice(0, 1, 0);
-				choosenRace.splice(1, 1, 0);
-				choosenRace.splice(2, 1, 0);
-				choosenRace.splice(3, 1, 0);
-				choosenRace.splice(4, 1, 0);
+				choosenRace.splice(1, 1, 0);choosenRace.splice(2, 1, 0);
+				choosenRace.splice(3, 1, 0);choosenRace.splice(4, 1, 0);
 			} else if (text === "elf") {
 				choosenRace.splice(0, 1, -5);
-				choosenRace.splice(1, 1, -5);
-				choosenRace.splice(2, 1, 0);
-				choosenRace.splice(3, 1, 5);
-				choosenRace.splice(4, 1, 5);
+				choosenRace.splice(1, 1, -5);choosenRace.splice(2, 1, 0);
+				choosenRace.splice(3, 1, 5);choosenRace.splice(4, 1, 5);
 			} else if (text === "krasnolud") {
 				choosenRace.splice(0, 1, 4);
-				choosenRace.splice(1, 1, 4);
-				choosenRace.splice(2, 1, 0);
-				choosenRace.splice(3, 1, -2);
-				choosenRace.splice(4, 1, -3);
+				choosenRace.splice(1, 1, 4);choosenRace.splice(2, 1, 0);
+				choosenRace.splice(3, 1, -2);choosenRace.splice(4, 1, -3);
 			} else if (text === "ork") {
 				choosenRace.splice(0, 1, 5);
-				choosenRace.splice(1, 1, 5);
-				choosenRace.splice(2, 1, 0);
-				choosenRace.splice(3, 1, -5);
-				choosenRace.splice(4, 1, -5);
+				choosenRace.splice(1, 1, 5);choosenRace.splice(2, 1, 0);
+				choosenRace.splice(3, 1, -5);choosenRace.splice(4, 1, -5);
 			}
 		});
 	}
@@ -193,18 +170,13 @@ document.addEventListener("DOMContentLoaded", function () {
 	var skills = [];
 
 	//tablice ze modyfikatorami rasy i profesji - dla określenia ostatecznej ilości punktów postaci
-	var warrior = [5, 5, 0, 0, 0];
-	var criminal = [0, 0, 10, 0, 0];
-	var wizard = [0, 0, 0, 5, 5];
+	var warrior = [5, 5, 0, 0, 0];var criminal = [0, 0, 10, 0, 0];var wizard = [0, 0, 0, 5, 5];
 
-	var human = [0, 0, 0, 0, 0];
-	var elf = [-5, -5, 0, 5, 5];
-	var dwarf = [4, 4, 0, -2, -3];
-	var orc = [5, 5, 0, -5, -5];
+	var human = [0, 0, 0, 0, 0];var elf = [-5, -5, 0, 5, 5];
+	var dwarf = [4, 4, 0, -2, -3];var orc = [5, 5, 0, -5, -5];
 
 	//tablice pomocnicze dla walidacji wylosowanych punktów cech, rasy i pofesji
-	var choosenOccupation = [];
-	var choosenRace = [];
+	var choosenOccupation = [];var choosenRace = [];
 
 	//suma wszystkich punktów
 	var amountAllPoint = [];
@@ -222,8 +194,7 @@ document.addEventListener("DOMContentLoaded", function () {
 	setTimeout(function () {
 		$("#studioTitle h2").replaceWith("<p class='medievalText gameTitle'>Audaces</p>");
 		$("#studioTitle h3").replaceWith("<p class='medievalText subGameTitle'>serce z żelaza</p>");
-		$("#studioTitle").fadeIn(6000);
-		$("#studioTitle").delay(2000).fadeOut(6000);
+		$("#studioTitle").fadeIn(6000);$("#studioTitle").delay(2000).fadeOut(6000);
 	}, 6200);
 
 	//zmiana koloru tła na beżowy
@@ -233,13 +204,10 @@ document.addEventListener("DOMContentLoaded", function () {
 
 	//usunięcie diva o id studioTitle
 	setTimeout(function () {
-		$("#studioTitle").remove();
-		$("#titleGameHeader, #subTitleGameHeader").fadeIn(1500);
+		$("#studioTitle").remove();$("#titleGameHeader, #subTitleGameHeader").fadeIn(1500);
 		$("#info, #licence, #tutorial, #newGame").fadeIn(1500).addClass("basicBtn");
-		$("#info").addClass("btnInfo");
-		$("#licence").addClass("btnLicence");
-		$("#tutorial").addClass("btnTutorial");
-		$("#newGame").addClass("btnNewGame");
+		$("#info").addClass("btnInfo");$("#licence").addClass("btnLicence");
+		$("#tutorial").addClass("btnTutorial");$("#newGame").addClass("btnNewGame");
 		createNewElementAppend("p", "textHello", intro.textHello, $("#mainPart"));
 		$("#textHello").addClass("basicText");
 	}, 20000);
@@ -361,11 +329,8 @@ document.addEventListener("DOMContentLoaded", function () {
 			function randomPointsFeatures(element, name, number, source) {
 				element.on("click", function () {
 					var name = Math.round(Math.random() * 50);
-					console.log(name);
 					randomFeatures.splice(number, 1, name);$("#choosenDescription").text(source);
-					if (randomFeatures.length < 5) {
-						$("#featuresAlert").addClass("redText");
-					} else {
+					$("#featuresAlert").addClass("redText");if (randomFeatures[0] !== 0 && randomFeatures[1] !== 0 && randomFeatures[2] !== 0 && randomFeatures[3] !== 0 && randomFeatures[4] !== 0) {
 						$("#featuresAlert").addClass("greenText");
 					}
 				});
@@ -399,8 +364,7 @@ document.addEventListener("DOMContentLoaded", function () {
 			//funkcja optymalizująca wybieranie drugiego zestawu cech
 			function features2(element, number, text) {
 				element.on("click", function () {
-					choosenFeatures.splice(number, 1, text);
-					if (choosenFeatures.length < 6) {
+					choosenFeatures.splice(number, 1, text);if (choosenFeatures.length < 6) {
 						$("#features2Alert").addClass("redText");
 					} else if (choosenFeatures.length == 6) {
 						$("#features2Alert").addClass("greenText");
@@ -409,9 +373,7 @@ document.addEventListener("DOMContentLoaded", function () {
 			}
 
 			//funkcje wyboru płci
-			features2($("#features2MainWomen"), 0, "kobieta");
-			features2($("#features2MainMen"), 0, "mężczyzna");
-			features2($("#features2MainOther"), 0, "nie wiadomo");
+			features2($("#features2MainWomen"), 0, "kobieta");features2($("#features2MainMen"), 0, "mężczyzna");features2($("#features2MainOther"), 0, "nie wiadomo");
 
 			//elementy wyboru koloru włosów
 			createNewElementAppend("p", "features2MainHair", "Kolor włosów", $("#features2Main"));
@@ -423,10 +385,8 @@ document.addEventListener("DOMContentLoaded", function () {
 			$("#features2MainBlond, #features2MainRed, #features2MainBlack, #features2MainDyed").addClass("btnsFeatures2");
 
 			//funkcje wyboru kolorów włosów
-			features2($("#features2MainBlond"), 1, "blond");
-			features2($("#features2MainRed"), 1, "rude");
-			features2($("#features2MainBlack"), 1, "czarne");
-			features2($("#features2MainDyed"), 1, "farbowane");
+			features2($("#features2MainBlond"), 1, "blond");features2($("#features2MainRed"), 1, "rude");
+			features2($("#features2MainBlack"), 1, "czarne");features2($("#features2MainDyed"), 1, "farbowane");
 
 			//elementy wyboru koloru oczu
 			createNewElementAppend("p", "features2MainEyes", "Kolor oczu", $("#features2Main"));
@@ -438,10 +398,8 @@ document.addEventListener("DOMContentLoaded", function () {
 			$("#features2MainHazel, #features2MainGrey, #features2MainBrown, #features2MainBlue").addClass("btnsFeatures2");
 
 			//funkcje wyboru koloru oczu
-			features2($("#features2MainHazel"), 2, "piwne");
-			features2($("#features2MainGrey"), 2, "szare");
-			features2($("#features2MainBrown"), 2, "brązowe");
-			features2($("#features2MainBlue"), 2, "niebieskie");
+			features2($("#features2MainHazel"), 2, "piwne");features2($("#features2MainGrey"), 2, "szare");
+			features2($("#features2MainBrown"), 2, "brązowe");features2($("#features2MainBlue"), 2, "niebieskie");
 
 			//elementy wyboru koloru skóry
 			createNewElementAppend("p", "features2MainSkins", "Kolor skóry", $("#features2Main"));
@@ -457,14 +415,8 @@ document.addEventListener("DOMContentLoaded", function () {
 			$("#features2MainWhite, #features2MainBrown, #features2MainBrownSkin, #features2MainBlack, #features2MainRed, #features2MainYellow, #features2MainGreen, #features2MainTawny, #features2MainAzure").addClass("btnsFeatures2");
 
 			//funkcje wyboru koloru skóry
-			features2($("#features2MainWhite"), 3, "biała");
-			features2($("#features2MainBrownSkin"), 3, "brązowa");
-			features2($("#features2MainBlack"), 3, "czarna");
-			features2($("#features2MainRed"), 3, "czerwona");
-			features2($("#features2MainYellow"), 3, "żółta");
-			features2($("#features2MainGreen"), 3, "zielona");
-			features2($("#features2MainTawny"), 3, "brunatna");
-			features2($("#features2MainAzure"), 3, "błękitna");
+			features2($("#features2MainWhite"), 3, "biała");features2($("#features2MainBrownSkin"), 3, "brązowa");features2($("#features2MainBlack"), 3, "czarna");features2($("#features2MainRed"), 3, "czerwona");features2($("#features2MainYellow"), 3, "żółta");
+			features2($("#features2MainGreen"), 3, "zielona");features2($("#features2MainTawny"), 3, "brunatna");features2($("#features2MainAzure"), 3, "błękitna");
 
 			//elementy wyboru wagi
 			createNewElementAppend("p", "features2MainWeight", "Waga", $("#features2Main"));
@@ -475,8 +427,7 @@ document.addEventListener("DOMContentLoaded", function () {
 			$("#features2MainUnderweight, #features2MainNormalweight, #features2MainOverweight").addClass("btnsFeatures2");
 
 			//funkcje wyboru wagi
-			features2($("#features2MainUnderweight"), 4, "niedowaga");
-			features2($("#features2MainNormalweight"), 4, "normalna");
+			features2($("#features2MainUnderweight"), 4, "niedowaga");features2($("#features2MainNormalweight"), 4, "normalna");
 			features2($("#features2MainOverweight"), 4, "nadwaga");
 
 			//elementy wyboru wzrostu
@@ -488,9 +439,7 @@ document.addEventListener("DOMContentLoaded", function () {
 			$("#features2MainShort, #features2MainNormalGrowth, #features2MainTall").addClass("btnsFeatures2");
 
 			//funkcje wyboru wzrostu
-			features2($("#features2MainShort"), 5, "niski");
-			features2($("#features2MainNormalGrowth"), 5, "normalny");
-			features2($("#features2MainTall"), 5, "wysoki");
+			features2($("#features2MainShort"), 5, "niski");features2($("#features2MainNormalGrowth"), 5, "normalny");features2($("#features2MainTall"), 5, "wysoki");
 		}); //koniec zdarzeń dla przycisku cechy 2 (features2)
 
 		//zdarzenia dla przycisku ekwipunek
@@ -511,15 +460,12 @@ document.addEventListener("DOMContentLoaded", function () {
 
 						$("#btnToRemove").text(createNewElementAppend("button", whatPush, whatPush, $("#btnToRemove")));
 						$("#btnToRemove").find("button").addClass("width15 bold");
-
 						var allBtnRemove = document.querySelectorAll("#btnToRemove button"),
 						    i = void 0;
-
 						for (i = 0; i < allBtnRemove.length; i++) {
 							allBtnRemove[i].addEventListener("click", function (e) {
 								if (equip.indexOf(this.id) !== -1) {
-									equip.splice(equip.indexOf(this.id), 1);
-									this.remove();
+									equip.splice(equip.indexOf(this.id), 1);this.remove();
 								}
 								if (equip.length === 0) {
 									$("#alerts #equipmentAlert").removeClass("greenText");$("#alerts #equipmentAlert").addClass("redText");
@@ -606,24 +552,19 @@ document.addEventListener("DOMContentLoaded", function () {
 			function chooseSkill(whatClick, whatPush) {
 				whatClick.on("click", function () {
 					if (skills.indexOf(whatPush) !== -1) {
-						$("#subAlert").text("Nie możesz wybrać drugi raz tej samej umiejętności.").addClass("redText");
-						setTimeout(function () {
+						$("#subAlert").text("Nie możesz wybrać drugi raz tej samej umiejętności.").addClass("redText");setTimeout(function () {
 							$("#subAlert").text("").removeClass("redText");
 						}, 7000);
 					} else if (skills.length <= 2) {
-						skills.push(whatPush);
-						$("#alerts #skillAlert").removeClass("redText");$("#alerts #skillAlert").addClass("greenText");
+						skills.push(whatPush);$("#alerts #skillAlert").removeClass("redText");$("#alerts #skillAlert").addClass("greenText");
 						$("#btnToRemove").text(createNewElementAppend("button", whatPush, whatPush, $("#btnToRemove")));
 						$("#btnToRemove").find("button").addClass("width15 bold");
-
 						var allBtnRemove = document.querySelectorAll("#btnToRemove button"),
 						    i = void 0;
-
 						for (i = 0; i < allBtnRemove.length; i++) {
 							allBtnRemove[i].addEventListener("click", function (e) {
 								if (skills.indexOf(this.id) !== -1) {
-									skills.splice(skills.indexOf(this.id), 1);
-									this.remove();
+									skills.splice(skills.indexOf(this.id), 1);this.remove();
 								}
 								if (skills.length === 0) {
 									$("#alerts #skillAlert").removeClass("greenText");$("#alerts #skillAlert").addClass("redText");
@@ -706,7 +647,11 @@ document.addEventListener("DOMContentLoaded", function () {
 			function infoCreator(titleId, textTitle, nameInfoSubId, what, where) {
 				createNewElementAppend("p", titleId, textTitle, where);
 				createNewElementAppend("p", nameInfoSubId, what, where);
-				$("#" + nameInfoSubId).addClass("redText");
+				if (what == "nie wybrano") {
+					$("#" + nameInfoSubId).addClass("redText");
+				} else if (what !== "nie wybrano") {
+					$("#" + nameInfoSubId).addClass("greenText");
+				}
 			}
 
 			//część pierwsza - imię, rasa i profesja
@@ -724,10 +669,7 @@ document.addEventListener("DOMContentLoaded", function () {
 			//część druga - losowane cechy
 			//funkcja optymalizująca zliczanie punktów cech
 			function resultRandomFeatures(features, race, occupation, where, tablePosition) {
-				if (isNaN(features) && isNaN(race) && isNaN(occupation)) {
-					//nie ma żadnej
-					$("#choosenDescription").text("Nie wylosowana cecha, nie wybrana rasa, nie wybrana profesja.");
-				} else if (!isNaN(features) && isNaN(race) && isNaN(occupation)) {
+				if (!isNaN(features) && isNaN(race) && isNaN(occupation)) {
 					// jest tylko cecha
 					var result = features;
 					amountAllPoint.splice(tablePosition, 1, result);
@@ -789,27 +731,10 @@ document.addEventListener("DOMContentLoaded", function () {
 
 			//charyzma
 			createNewElementAppend("div", "charismaResult", "", $("#divInfoTwo"));
-			infoCreator("chaismaInfo", "charyzma", "charismaInfoSub", "nie wylosowano", $("#charismaResult"));
+			infoCreator("charismaInfo", "charyzma", "charismaInfoSub", "nie wylosowano", $("#charismaResult"));
 			resultRandomFeatures(randomFeatures[4], choosenRace[4], choosenOccupation[4], $("#charismaInfoSub"), 4);
 
 			createNewElementAppend("p", "choosenDescription", "", $("#mainPart"));
-
-			console.log(choosenRace);
-			console.log(choosenOccupation);
-			//$("#part1").addClass("");
-
-			//infoCreator("nameInfo", "imię", "nameInfoSub", hero[0]);
-			//infoCreator("raceInfo", "rasa", "raceInfoSub", hero[1]);
-			//infoCreator("occupationInfo", "profesja", "occupationInfoSub", hero[2]);
-
-			//miejsce dla funkcji walidacji punktów cech postaci, ze względu na profesję, rasę i wylosowane cechy
-
-			//	infoCreator("equipInfo", "ekwipunek", "equipInfoSub", equip);
-			//	infoCreator("skillsInfo", "umiejętności", "skillsInfoSub", skills);
-
-			//	$("#nameInfo, #raceInfo, #occupationInfo, #forceInfo, #strengthInfo, #dexterityInfo, #intelligenceInfo, #charismaInfo, #equipInfo, #skillsInfo").addClass("infoTitles");
-
-			//	$("#nameInfoSub, #raceInfoSub, #occupationInfoSub, #forceInfoSub, #strengthInfoSub, #dexterityInfoSub, #intelligenceInfoSub, #charismaInfoSub, #equipInfoSub, #skillsInfoSub").addClass("infoTitles");
 		}); //koniec zdarzeń dla przycisku info - w kreatorze postaci
 	}); //koniec przycisku nowa gra (newGame)
 }); //koniec DOMContentLoaded

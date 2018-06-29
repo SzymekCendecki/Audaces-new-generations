@@ -64,7 +64,10 @@ Usunięto poprzednią wersją informacji zbiorczej oraz rozpoczęto tworzenie je
 Funkcja zliczająca punkty cech postaci w oparciu o wylosowane punkty, modyfikatory ras i profesji została zaimplementowana w kod gry. Do poprawki będzie dodanie do pustych tablic, odpowiednich zawartości, gdyż na obecną chwilę, przy losowej kolejności dodawania rzeczy wybieralnych (wylosowywalnych) dochodzi do błędów wyświetlania w części informacyjnej.
 
 27 czerwca 2018 - wersja 0.2.2
-Poprawiona funkcja zliczająca punkty wylosownych punktów cech, modfikatorów profesji i rasy. Do poprawy zmieniający się kolor alertu "Wylosuj cechy" - po losowaniu jedenej cecchy zmienia się na zielony (powinien zmienić się z czerwonego na zielony dopiero po losowaniu wszystkich pięciu cech). Wprowadzić dodatkowe informacje o niewybranych/niewulosowanych rzeczach w dolnum opisie inforamcjo zbiorczej.
+Poprawiona funkcja zliczająca punkty wylosownych punktów cech, modfikatorów profesji i rasy. Do poprawy zmieniający się kolor alertu "Wylosuj cechy" - po losowaniu jedenej cecchy zmienia się na zielony (powinien zmienić się z czerwonego na zielony dopiero po losowaniu wszystkich pięciu cech). Wprowadzić dodatkowe informacje o niewybranych/niewylosowanych rzeczach w dolnum opisie inforamcjo zbiorczej.
 
 28 czerwca 2018 - wersja 0.2.3
 Poprawiona funkcja zliczająca punkty cech, na podstawie modyfikatorów rasy i profesji oraz wylosowanych cech. Do poprawy pozostało odpowiednia zmiana kolorów alertów oraz komunikatów - patrz poprzednia wersja.
+
+29 czerwca 2018 - wersja 0.2.4
+Poprawiono zmianę koloru alertu losowanych cech - po wylosowaniu pięciu cech kolor alaertu zmienia się na zielony. Na stałe wprowadzono kolor zielony dla punktów cech postaci. Zrezygnowano z dodatkowych komunikatów dotyczących o niewykonaniu jakiś rzeczy.
