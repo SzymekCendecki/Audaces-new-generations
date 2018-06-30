@@ -101,4 +101,4 @@ module.exports.skillsAlert = "Wybierz umiejętności";
 
 //-------------------------INFORMACJA ZBIORCZA ------------------------------------------------//
 module.exports.infoTitle = "Twoja postać.";
-module.exports.infoDescription = "Poniżej znajdują się Twoje wybory. W tej sekcji możesz je sprawdzić oraz zastanowić się nad dokonanymi wyborami.";
+module.exports.infoDescription = "Poniżej znajdują się Twoje wybory. W tej sekcji możesz je sprawdzić oraz zastanowić się nad ewentualnymi zmianami. Po dokonaniu wszystkich wyborów, to po prawej stronie pod przyciskami powinien ukazać się przycisk rozpoczynający grę.";

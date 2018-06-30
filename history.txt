@@ -71,3 +71,6 @@ Poprawiona funkcja zliczająca punkty cech, na podstawie modyfikatorów rasy i p
 
 29 czerwca 2018 - wersja 0.2.4
 Poprawiono zmianę koloru alertu losowanych cech - po wylosowaniu pięciu cech kolor alaertu zmienia się na zielony. Na stałe wprowadzono kolor zielony dla punktów cech postaci. Zrezygnowano z dodatkowych komunikatów dotyczących o niewykonaniu jakiś rzeczy.
+
+30 czerwca 2018 - wersja 0.2.5
+Poprawiono wygląd części, w której zliczane są punkty cech postaci. Rozszerzono opis w informacji zbiorczej. Poprawiono zmianę koloru alertu cech wybieralnych - w zależności, czy się wszystkie wybrało, czy nie. Do poprawy: dodać przyciski do usuwania przedmiotów i umiejętności, ponieważ nie ma możliwości usunięcia rzeczy po ponownym wejściu brakuje przycisków, aby je usunąć i dokonać nowego wyboru.

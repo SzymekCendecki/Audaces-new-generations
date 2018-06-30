@@ -332,25 +332,25 @@ nav{
 .bold{ font-weight: bold; }
 .width15{ width: 15%; }
 
-#divInfoOne, #divInfoTwo{
+#divInfoOne, #divInfoTwo, #divInfoThree, #divInfoFour, #divInfoFive{
   display: flex;
   flex-wrap: wrap;
   justify-content: space-around;
 }
 
-#nameResult, #raceResult, #occupationResult{
+#nameResult, #raceResult, #occupationResult, #forceResult, #strengthResult, #dexterityResult, #intelligenceResult, #charismaResult, #sexResult, #hairResult, #eyesResult, #skinResult, #weightResult, #heightResult, #equipResult, #skillsResult{
   text-align: center;
   width: 30%;
   font-weight: bold;
 
-#nameInfo, #raceInfo, #occupationInfo{
-  padding-top: 5px;
-  font-size: 1.1em;
-  text-decoration: underline;
-  text-decoration-color: navy;
-}
+    #nameInfo, #raceInfo, #occupationInfo, #forceInfo, #strengthInfo, #dexterityInfo, #intelligenceInfo, #charismaInfo, #sexInfo, #hairInfo, #eyesInfo, #skinInfo, #weightInfo, #heightInfo, #equipInfo, #skillsInfo{
+      padding-top: 5px;
+      font-size: 1.1em;
+      text-decoration: underline;
+      text-decoration-color: navy;
+    }
 
-#nameInfoSub, #raceInfoSub, #occupationInfoSub{
-    font-size: 1.25em;
-}
+    #nameInfoSub, #raceInfoSub, #occupationInfoSub, #forceInfoSub, #strengthInfoSub, #dexterityInfoSub, #intelligenceInfoSub, #charismaInfoSub, #sexInfoSub, #hairInfoSub, #eyesInfoSub, #skinInfoSub, #weightInfoSub, #heightInfoSub, #equipInfoSub, #skillsInfoSub{
+      font-size: 1.25em;
+    }
 }
