@@ -415,45 +415,59 @@ $("#mainPart button").addClass("width15");
 	createNewElementAppend("p", "btnToRemove", "", $("#choosenDescription"));
 	createNewElementAppend("p", "subAlert", "", $("#choosenDescription"));
 
+//pętla dla przycisków usuwania przedmiotów, gdy pownownie wejdzie się w opcje wybiernia przedmiotów
 	for(let j=0; j<equip.length; j++){
 		createNewElementAppend("button", j, equip[j], $("#btnToRemove"));
-		console.log(equip[j]);
 		let allBtnRemove = document.querySelectorAll("#btnToRemove button"), i;
-			console.log(allBtnRemove[i]);
-			for(i=0; i<allBtnRemove.length; i++){
-				allBtnRemove[i].addEventListener("click", function(e) {
-					console.log(this);
-					console.log(this.id);
-				});
-		}
-	}
-
-//if(equip.indexOf(this.id) !== -1){
-//	equip.splice(equip.indexOf(this.id), 1); this.remove();
-// }
+		for(i=0; i<allBtnRemove.length; i++){	allBtnRemove[i].addEventListener("click", function(e) {
+		if(equip.indexOf($(this).text()) !== -1){	equip.splice(equip.indexOf($(this).text()), 1); this.remove();}	this.remove();});}}
 
 	$("#btnToRemoveTitle").addClass("goldUnderline bold");
 });//koniec zdarzeń dla kreatora postaci - ekipunku
 
 //początek zdarzeń dla przycisku umiejętności - kreator postaci
 $("#skills").on("click", ()=>{ $("#mainPart").empty();
-
-	 //elementy wyboru umiejętności
+	//elementy wyboru umiejętności
 		createNewElementAppend("p", "skillsTitle", heroCreator.skillsTitle, $("#mainPart"));
 		$("#skillsTitle").addClass("goldUnderline basicText");
 		createNewElementAppend("p", "skillsDescription", heroCreator.skillsDescription, $("#mainPart"));
 
-		function chooseSkill(whatClick, whatPush){ whatClick.on("click", () =>{
-		if(skills.indexOf(whatPush) !== -1){ $("#subAlert").text("Nie możesz wybrać drugi raz tej samej umiejętności.").addClass("redText"); setTimeout(function(){ $("#subAlert").text("").removeClass("redText"); }, 7000);
-	}else	if(skills.length <= 2){ skills.push(whatPush); $("#alerts #skillAlert").removeClass("redText"); 	$("#alerts #skillAlert").addClass("greenText");
-		$("#btnToRemove").text(createNewElementAppend("button", whatPush, whatPush, $("#btnToRemove")));
-		$("#btnToRemove").find("button").addClass("width15 bold");
-		let allBtnRemove = document.querySelectorAll("#btnToRemove button"), i;
-		for(i=0; i<allBtnRemove.length; i++){allBtnRemove[i].addEventListener("click", function(e) {
-		if(skills.indexOf(this.id) !== -1){skills.splice(skills.indexOf(this.id), 1); this.remove(); }
-		if(skills.length === 0){ $("#alerts #skillAlert").removeClass("greenText"); $("#alerts #skillAlert").addClass("redText"); }else if(skills.length < 3){ $("#subAlert").text("").removeClass("redText"); } }); } }else{
-		$("#subAlert").text("Już zostały wybrane trzy umiejętności.").addClass("redText");} }); }
+		function chooseSkill(whatClick, whatPush){
+		 whatClick.on("click", () =>{
+			if(skills.length <= 2){
+					console.log(whatPush);
+					if(skills.indexOf(whatPush) !== -1){
+						console.log("ta umiejętność już jest");
+						$("#subAlert").text("Ta umiejętność została już wybrana.").addClass("redText");
+					}else{
+						skills.push(whatPush);
+						createNewElementAppend("button", whatPush, whatPush, $("#btnToRemove"), "bold");
+						$("#alerts #skillAlert").removeClass("redText");
+						$("#alerts #skillAlert").addClass("greenText");
+					}
+				}else if(skills.length > 2){
+					$("#subAlert").text("Już zostały wybrane trzy umiejętności.").addClass("redText");
+				}
 
+				let allBtnRemove = document.querySelectorAll("#btnToRemove button"), i;
+			 						 for(i=0; i<allBtnRemove.length; i++){
+			 							 allBtnRemove[i].addEventListener("click", function(e) {
+			 								 if(skills.indexOf(this.id) !== -1){
+			 									 skills.splice(skills.indexOf(this.id), 1); this.remove();
+			 									}
+			 									if(skills.length === 0){
+			 										 $("#alerts #skillAlert").removeClass("greenText");
+			 										 $("#alerts #skillAlert").addClass("redText");
+			 									}else if(skills.length < 3){
+			 										$("#subAlert").text("").removeClass("redText");
+			 									}
+			 							});
+			 						}
+
+			});
+	}
+
+		console.log(skills);
 //umiejętności wojownika
 		createNewElementAppend("p", "warriorTitle", "wojownik", $("#mainPart"), "bold");
 		createNewElementAppend("button", heroCreator.warriorENG[0], heroCreator.warriorPL[0], $("#mainPart"), "bold"); 	chooseSkill($("#survival"), "szt. przetrwania");
@@ -507,7 +521,30 @@ createNewElementAppend("p", "btnToRemoveTitle", "Przedmioty do usunięcia", $("#
 createNewElementAppend("p", "btnToRemove", "", $("#choosenDescription"));
 createNewElementAppend("p", "subAlert", "", $("#choosenDescription"));
 
-$("#btnToRemoveTitle").addClass("goldUnderline bold"); });//koniec zdarzeń dla kreatora postaci - umiejętności
+
+//pętla dla przycisków usuwania umiejetności, gdy pownownie wejdzie się w opcje wybiernia umiejętności
+function skillsToRemove(skills){
+ if(skills.length > 0){
+	 for (let i=0; i<skills.length; i++){
+	 console.log(skills[i]);
+		createNewElementAppend("button", i, skills[i], $("#btnToRemove"), "bold");
+		let allBtnRemove = document.querySelectorAll("#btnToRemove button"), j;
+		for(j=0; j<allBtnRemove.length; j++){
+			allBtnRemove[j].addEventListener("click", function(e) {
+		if(skills.indexOf($(this).text()) !== -1){
+			skills.splice(equip.indexOf($(this).text()), 1);
+			this.remove();
+		}
+		 this.remove();
+
+	 });
+  }
+}
+}
+}
+skillsToRemove(skills);
+
+});//koniec zdarzeń dla kreatora postaci - umiejętności
 
 //zdarzenia dla przycisku info - w kreatorze postaci
 $("#infoCreator").on("click", () =>{ $("#mainPart").empty();
