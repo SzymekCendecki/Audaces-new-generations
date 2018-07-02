@@ -77,3 +77,6 @@ Poprawiono wygląd części, w której zliczane są punkty cech postaci. Rozszer
 
 1 lipca 2018 - wersja 0.2.6
 Dodane zostały przyciski dla usuwania przedmiotów/umiejętności, po ponownym wejściu w opcje wybierania rzeczy/umiejętności - problem - nie zmienia się kolor z czerwonego na zielony, gdy ilość rzeczy/umiejętności jest równy zero.
+
+2 lipca 2018 - wersja 0.2.7
+Drobna poprawka w "umiejętnościach" - przedmioty do usunięcia -> umiejętnoci do usunięcia.

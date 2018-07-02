@@ -455,9 +455,7 @@ document.addEventListener("DOMContentLoaded", function () {
 			function chooseItem(whatClick, whatPush) {
 				whatClick.on("click", function () {
 					if (equip.length <= 4) {
-						equip.push(whatPush);
-						$("#alerts #equipmentAlert").removeClass("redText");
-						$("#alerts #equipmentAlert").addClass("greenText");
+						equip.push(whatPush);$("#alerts #equipmentAlert").removeClass("redText");$("#alerts #equipmentAlert").addClass("greenText");
 
 						$("#btnToRemove").text(createNewElementAppend("button", whatPush, whatPush, $("#btnToRemove")));
 						$("#btnToRemove").find("button").addClass("width15 bold");
@@ -541,8 +539,7 @@ document.addEventListener("DOMContentLoaded", function () {
 
 			//pętla dla przycisków usuwania przedmiotów, gdy pownownie wejdzie się w opcje wybiernia przedmiotów
 			for (var j = 0; j < equip.length; j++) {
-				createNewElementAppend("button", j, equip[j], $("#btnToRemove"));
-				var allBtnRemove = document.querySelectorAll("#btnToRemove button"),
+				createNewElementAppend("button", j, equip[j], $("#btnToRemove"));var allBtnRemove = document.querySelectorAll("#btnToRemove button"),
 				    i = void 0;
 				for (i = 0; i < allBtnRemove.length; i++) {
 					allBtnRemove[i].addEventListener("click", function (e) {
@@ -551,10 +548,8 @@ document.addEventListener("DOMContentLoaded", function () {
 						}this.remove();
 					});
 				}
-			}
-
-			$("#btnToRemoveTitle").addClass("goldUnderline bold");
-		}); //koniec zdarzeń dla kreatora postaci - ekipunku
+			}$("#btnToRemoveTitle").addClass("goldUnderline bold");
+		}); //koniec zdarzeń dla kreatora postaci - ekwipunku
 
 		//początek zdarzeń dla przycisku umiejętności - kreator postaci
 		$("#skills").on("click", function () {
@@ -567,30 +562,23 @@ document.addEventListener("DOMContentLoaded", function () {
 			function chooseSkill(whatClick, whatPush) {
 				whatClick.on("click", function () {
 					if (skills.length <= 2) {
-						console.log(whatPush);
 						if (skills.indexOf(whatPush) !== -1) {
-							console.log("ta umiejętność już jest");
 							$("#subAlert").text("Ta umiejętność została już wybrana.").addClass("redText");
 						} else {
-							skills.push(whatPush);
-							createNewElementAppend("button", whatPush, whatPush, $("#btnToRemove"), "bold");
-							$("#alerts #skillAlert").removeClass("redText");
-							$("#alerts #skillAlert").addClass("greenText");
+							skills.push(whatPush);createNewElementAppend("button", whatPush, whatPush, $("#btnToRemove"), "bold");$("#alerts #skillAlert").removeClass("redText");$("#alerts #skillAlert").addClass("greenText");
 						}
 					} else if (skills.length > 2) {
 						$("#subAlert").text("Już zostały wybrane trzy umiejętności.").addClass("redText");
 					}
 
 					var allBtnRemove = document.querySelectorAll("#btnToRemove button"),
-					    i = void 0;
-					for (i = 0; i < allBtnRemove.length; i++) {
+					    i = void 0;for (i = 0; i < allBtnRemove.length; i++) {
 						allBtnRemove[i].addEventListener("click", function (e) {
 							if (skills.indexOf(this.id) !== -1) {
 								skills.splice(skills.indexOf(this.id), 1);this.remove();
 							}
 							if (skills.length === 0) {
-								$("#alerts #skillAlert").removeClass("greenText");
-								$("#alerts #skillAlert").addClass("redText");
+								$("#alerts #skillAlert").removeClass("greenText");$("#alerts #skillAlert").addClass("redText");
 							} else if (skills.length < 3) {
 								$("#subAlert").text("").removeClass("redText");
 							}
@@ -599,7 +587,6 @@ document.addEventListener("DOMContentLoaded", function () {
 				});
 			}
 
-			console.log(skills);
 			//umiejętności wojownika
 			createNewElementAppend("p", "warriorTitle", "wojownik", $("#mainPart"), "bold");
 			createNewElementAppend("button", heroCreator.warriorENG[0], heroCreator.warriorPL[0], $("#mainPart"), "bold");chooseSkill($("#survival"), "szt. przetrwania");
@@ -649,7 +636,7 @@ document.addEventListener("DOMContentLoaded", function () {
 
 			// część do usuwania wybranej umiejętności i komunikacji o błędzie
 			createNewElementAppend("p", "choosenDescription", "", $("#mainPart"));
-			createNewElementAppend("p", "btnToRemoveTitle", "Przedmioty do usunięcia", $("#choosenDescription"));
+			createNewElementAppend("p", "btnToRemoveTitle", "Umiejętności do usunięcia", $("#choosenDescription"));
 			createNewElementAppend("p", "btnToRemove", "", $("#choosenDescription"));
 			createNewElementAppend("p", "subAlert", "", $("#choosenDescription"));
 
@@ -657,7 +644,6 @@ document.addEventListener("DOMContentLoaded", function () {
 			function skillsToRemove(skills) {
 				if (skills.length > 0) {
 					for (var i = 0; i < skills.length; i++) {
-						console.log(skills[i]);
 						createNewElementAppend("button", i, skills[i], $("#btnToRemove"), "bold");
 						var allBtnRemove = document.querySelectorAll("#btnToRemove button"),
 						    j = void 0;
@@ -666,14 +652,12 @@ document.addEventListener("DOMContentLoaded", function () {
 								if (skills.indexOf($(this).text()) !== -1) {
 									skills.splice(equip.indexOf($(this).text()), 1);
 									this.remove();
-								}
-								this.remove();
+								}this.remove();
 							});
 						}
 					}
 				}
-			}
-			skillsToRemove(skills);
+			}skillsToRemove(skills);
 		}); //koniec zdarzeń dla kreatora postaci - umiejętności
 
 		//zdarzenia dla przycisku info - w kreatorze postaci
@@ -801,6 +785,27 @@ document.addEventListener("DOMContentLoaded", function () {
 
 			createNewElementAppend("p", "choosenDescription", "", $("#mainPart"));
 		}); //koniec zdarzeń dla przycisku info - w kreatorze postaci
+
+
+		var allgreen = document.querySelectorAll("#alerts .greenText");
+		console.log(allgreen);
+
+		var stop = setInterval(function () {
+			checkGreen();
+		}, 1000);
+
+		function checkGreen() {
+			var allgreen = document.querySelectorAll("#alerts .greenText");
+			if (allgreen.length < 7) {
+				console.log("nie wszystko");
+			} else if (allgreen.length == 7 && equip.length > 0 && skills.length > 0) {
+				console.log("wszystko");
+				console.log(equip.length);
+				console.log(skills.length);
+				clearInterval(stop);
+			}
+		}
+		checkGreen();
 	}); //koniec przycisku nowa gra (newGame)
 }); //koniec DOMContentLoaded
 

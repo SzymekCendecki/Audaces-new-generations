@@ -154,9 +154,7 @@ $("#newGame").on("click", () =>{ 	$("#mainPart").empty().removeClass("basicText"
 
 		//funkcja wpisywania imienia
 		$("#acceptName").on("click", () =>{ let nameInput = $("#giveName").val().replace(/\d/g,'');
-				if(nameInput == ""){ $("#nameAlert").addClass("redText");
-			}else{ hero.splice(0, 1, nameInput); $("#nameAlert").addClass("greenText"); }
-		}); });//koniec zdarzeń dla przycisku imię
+	if(nameInput == ""){ $("#nameAlert").addClass("redText"); }else{ hero.splice(0, 1, nameInput); $("#nameAlert").addClass("greenText"); } }); });//koniec zdarzeń dla przycisku imię
 
 	//zdarzenia dla przyciku rasa (race)
 	$("#race").on("click", ()=>{ $("#mainPart").empty();
@@ -330,32 +328,16 @@ $("#features2").on("click", ()=>{ $("#mainPart").empty();
 				createNewElementAppend("p", "equipmentDescription", heroCreator.equipmentDescription, $("#mainPart"));
 				createNewElementAppend("p", "weaponTitle", "broń", $("#mainPart"), "bold");
 
-		function chooseItem(whatClick, whatPush){
-			whatClick.on("click", () =>{
-			if(equip.length <= 4){
-				equip.push(whatPush);
-				$("#alerts #equipmentAlert").removeClass("redText");
-					$("#alerts #equipmentAlert").addClass("greenText");
+		function chooseItem(whatClick, whatPush){ whatClick.on("click", () =>{ if(equip.length <= 4){ equip.push(whatPush); $("#alerts #equipmentAlert").removeClass("redText"); $("#alerts #equipmentAlert").addClass("greenText");
 
 		$("#btnToRemove").text(createNewElementAppend("button", whatPush, whatPush, $("#btnToRemove")));
 		$("#btnToRemove").find("button").addClass("width15 bold");
 
 		let allBtnRemove = document.querySelectorAll("#btnToRemove button"), i;
-		for(i=0; i<allBtnRemove.length; i++){
-		allBtnRemove[i].addEventListener("click", function(e) {
-		if(equip.indexOf(this.id) !== -1){
-			equip.splice(equip.indexOf(this.id), 1); this.remove();
-		 }
-		if(equip.length === 0){
-			 $("#alerts #equipmentAlert").removeClass("greenText"); $("#alerts #equipmentAlert").addClass("redText");
-		 }else if(equip.length < 5){$("#subAlert").text("").removeClass("redText");
-	  }
-	});
-}
-		}else{
-	$("#subAlert").text("Już zostało wybrane pięć przedmiotów").addClass("redText");
-}
-}); //koniec funkcji kliknięcia w przycisk
+		for(i=0; i<allBtnRemove.length; i++){	allBtnRemove[i].addEventListener("click", function(e) {
+		if(equip.indexOf(this.id) !== -1){ equip.splice(equip.indexOf(this.id), 1); this.remove(); }
+		if(equip.length === 0){ $("#alerts #equipmentAlert").removeClass("greenText"); $("#alerts #equipmentAlert").addClass("redText"); }else if(equip.length < 5){$("#subAlert").text("").removeClass("redText"); } }); } }else{ $("#subAlert").text("Już zostało wybrane pięć przedmiotów").addClass("redText"); }
+	}); //koniec funkcji kliknięcia w przycisk
 }//koniec funkcji chooseItem
 
 	//broń
@@ -416,14 +398,10 @@ $("#mainPart button").addClass("width15");
 	createNewElementAppend("p", "subAlert", "", $("#choosenDescription"));
 
 //pętla dla przycisków usuwania przedmiotów, gdy pownownie wejdzie się w opcje wybiernia przedmiotów
-	for(let j=0; j<equip.length; j++){
-		createNewElementAppend("button", j, equip[j], $("#btnToRemove"));
-		let allBtnRemove = document.querySelectorAll("#btnToRemove button"), i;
-		for(i=0; i<allBtnRemove.length; i++){	allBtnRemove[i].addEventListener("click", function(e) {
-		if(equip.indexOf($(this).text()) !== -1){	equip.splice(equip.indexOf($(this).text()), 1); this.remove();}	this.remove();});}}
-
-	$("#btnToRemoveTitle").addClass("goldUnderline bold");
-});//koniec zdarzeń dla kreatora postaci - ekipunku
+	for(let j=0; j<equip.length; j++){ createNewElementAppend("button", j, equip[j], $("#btnToRemove")); let allBtnRemove = document.querySelectorAll("#btnToRemove button"), i;
+	for(i=0; i<allBtnRemove.length; i++){	allBtnRemove[i].addEventListener("click", function(e) {
+		if(equip.indexOf($(this).text()) !== -1){	equip.splice(equip.indexOf($(this).text()), 1); this.remove();}	this.remove();});}} $("#btnToRemoveTitle").addClass("goldUnderline bold");
+});//koniec zdarzeń dla kreatora postaci - ekwipunku
 
 //początek zdarzeń dla przycisku umiejętności - kreator postaci
 $("#skills").on("click", ()=>{ $("#mainPart").empty();
@@ -432,42 +410,13 @@ $("#skills").on("click", ()=>{ $("#mainPart").empty();
 		$("#skillsTitle").addClass("goldUnderline basicText");
 		createNewElementAppend("p", "skillsDescription", heroCreator.skillsDescription, $("#mainPart"));
 
-		function chooseSkill(whatClick, whatPush){
-		 whatClick.on("click", () =>{
-			if(skills.length <= 2){
-					console.log(whatPush);
-					if(skills.indexOf(whatPush) !== -1){
-						console.log("ta umiejętność już jest");
-						$("#subAlert").text("Ta umiejętność została już wybrana.").addClass("redText");
-					}else{
-						skills.push(whatPush);
-						createNewElementAppend("button", whatPush, whatPush, $("#btnToRemove"), "bold");
-						$("#alerts #skillAlert").removeClass("redText");
-						$("#alerts #skillAlert").addClass("greenText");
-					}
-				}else if(skills.length > 2){
-					$("#subAlert").text("Już zostały wybrane trzy umiejętności.").addClass("redText");
-				}
+function chooseSkill(whatClick, whatPush){ whatClick.on("click", () =>{ if(skills.length <= 2){
+if(skills.indexOf(whatPush) !== -1){ $("#subAlert").text("Ta umiejętność została już wybrana.").addClass("redText"); }else{ skills.push(whatPush); 					createNewElementAppend("button", whatPush, whatPush, $("#btnToRemove"), "bold");					$("#alerts #skillAlert").removeClass("redText"); $("#alerts #skillAlert").addClass("greenText"); }
+}else if(skills.length > 2){ $("#subAlert").text("Już zostały wybrane trzy umiejętności.").addClass("redText");}
 
-				let allBtnRemove = document.querySelectorAll("#btnToRemove button"), i;
-			 						 for(i=0; i<allBtnRemove.length; i++){
-			 							 allBtnRemove[i].addEventListener("click", function(e) {
-			 								 if(skills.indexOf(this.id) !== -1){
-			 									 skills.splice(skills.indexOf(this.id), 1); this.remove();
-			 									}
-			 									if(skills.length === 0){
-			 										 $("#alerts #skillAlert").removeClass("greenText");
-			 										 $("#alerts #skillAlert").addClass("redText");
-			 									}else if(skills.length < 3){
-			 										$("#subAlert").text("").removeClass("redText");
-			 									}
-			 							});
-			 						}
+let allBtnRemove = document.querySelectorAll("#btnToRemove button"), i; for(i=0; i<allBtnRemove.length; i++){ allBtnRemove[i].addEventListener("click", function(e) { 							if(skills.indexOf(this.id) !== -1){ skills.splice(skills.indexOf(this.id), 1); this.remove(); }
+if(skills.length === 0){ $("#alerts #skillAlert").removeClass("greenText"); 										 $("#alerts #skillAlert").addClass("redText"); }else if(skills.length < 3){ 		 										$("#subAlert").text("").removeClass("redText");	} }); } }); }
 
-			});
-	}
-
-		console.log(skills);
 //umiejętności wojownika
 		createNewElementAppend("p", "warriorTitle", "wojownik", $("#mainPart"), "bold");
 		createNewElementAppend("button", heroCreator.warriorENG[0], heroCreator.warriorPL[0], $("#mainPart"), "bold"); 	chooseSkill($("#survival"), "szt. przetrwania");
@@ -517,33 +466,17 @@ $("#mainPart button").addClass("width15");
 
 // część do usuwania wybranej umiejętności i komunikacji o błędzie
 createNewElementAppend("p", "choosenDescription", "", $("#mainPart"));
-createNewElementAppend("p", "btnToRemoveTitle", "Przedmioty do usunięcia", $("#choosenDescription"));
+createNewElementAppend("p", "btnToRemoveTitle", "Umiejętności do usunięcia", $("#choosenDescription"));
 createNewElementAppend("p", "btnToRemove", "", $("#choosenDescription"));
 createNewElementAppend("p", "subAlert", "", $("#choosenDescription"));
 
-
 //pętla dla przycisków usuwania umiejetności, gdy pownownie wejdzie się w opcje wybiernia umiejętności
-function skillsToRemove(skills){
- if(skills.length > 0){
-	 for (let i=0; i<skills.length; i++){
-	 console.log(skills[i]);
-		createNewElementAppend("button", i, skills[i], $("#btnToRemove"), "bold");
-		let allBtnRemove = document.querySelectorAll("#btnToRemove button"), j;
-		for(j=0; j<allBtnRemove.length; j++){
-			allBtnRemove[j].addEventListener("click", function(e) {
-		if(skills.indexOf($(this).text()) !== -1){
-			skills.splice(equip.indexOf($(this).text()), 1);
-			this.remove();
-		}
-		 this.remove();
-
-	 });
-  }
-}
-}
-}
-skillsToRemove(skills);
-
+function skillsToRemove(skills){ if(skills.length > 0){ for (let i=0; i<skills.length; i++){
+createNewElementAppend("button", i, skills[i], $("#btnToRemove"), "bold");
+let allBtnRemove = document.querySelectorAll("#btnToRemove button"), j;
+for(j=0; j<allBtnRemove.length; j++){allBtnRemove[j].addEventListener("click", function(e) {
+if(skills.indexOf($(this).text()) !== -1){ skills.splice(equip.indexOf($(this).text()), 1);
+this.remove();} this.remove(); }); } } } } skillsToRemove(skills);
 });//koniec zdarzeń dla kreatora postaci - umiejętności
 
 //zdarzenia dla przycisku info - w kreatorze postaci
@@ -656,7 +589,26 @@ createNewElementAppend("div", "skillsResult", "", $("#divInfoFour"));
 infoCreator("skillsInfo", "umiejętności", "skillsInfoSub", skills, $("#skillsResult"));
 
 createNewElementAppend("p", "choosenDescription", "", $("#mainPart"));
-
 });//koniec zdarzeń dla przycisku info - w kreatorze postaci
+
+
+let allgreen = document.querySelectorAll("#alerts .greenText");
+console.log(allgreen);
+
+let stop = setInterval(function(){ checkGreen() }, 1000);
+
+function checkGreen() {
+		let allgreen = document.querySelectorAll("#alerts .greenText");
+    if(allgreen.length < 7){
+			console.log("nie wszystko");
+	}else if(allgreen.length == 7 && equip.length > 0 && skills.length > 0){
+			console.log("wszystko");
+			console.log(equip.length);
+			console.log(skills.length);
+			clearInterval(stop);
+		}
+}
+checkGreen();
+
 }); //koniec przycisku nowa gra (newGame)
 });//koniec DOMContentLoaded
