@@ -79,4 +79,7 @@ Poprawiono wygląd części, w której zliczane są punkty cech postaci. Rozszer
 Dodane zostały przyciski dla usuwania przedmiotów/umiejętności, po ponownym wejściu w opcje wybierania rzeczy/umiejętności - problem - nie zmienia się kolor z czerwonego na zielony, gdy ilość rzeczy/umiejętności jest równy zero.
 
 2 lipca 2018 - wersja 0.2.7
-Drobna poprawka w "umiejętnościach" - przedmioty do usunięcia -> umiejętnoci do usunięcia.
+Drobna poprawka w "umiejętnościach" - przedmioty do usunięcia -> umiejętności do usunięcia.
+
+3 lipca 2018 - wersja 0.2.8
+Walidacja wyborów prawie ukończona - do zrobienia/sprawdzenia: poprawić zmianę kolorów alertów umiejętności i ekwipunku? - poprawić kolor i pozycję przycisku startu gry.

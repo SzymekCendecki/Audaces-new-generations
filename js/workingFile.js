@@ -60,6 +60,7 @@ function createNewInputAppend(nameElement, name, id, value, type, whereAppend, a
 	createNewElementAppend("button", "equipment", "ekwipunek", $("nav"));
 	createNewElementAppend("button", "skills", "umiejętności", $("nav"));
 	createNewElementAppend("button", "infoCreator", "info", $("nav"));
+	createNewElementAppend("button", "startGame", "start", $("nav"));
 
 	//tablice
 	// tablica postaci 0 - imię, 1 - rasa, 2 - profesja
@@ -93,7 +94,7 @@ let amountAllPoint = [];
 $("#info, #licence, #tutorial, #newGame, #titleGameHeader, #subTitleGameHeader").hide();
 
 //schowanie przycisków kreatora
-$("#name, #race, #occupation, #features, #features2, #equipment, #skills, #infoCreator").hide();
+$("#name, #race, #occupation, #features, #features2, #equipment, #skills, #infoCreator, #startGame").hide();
 
 //schowanie i usunięcie nazwy studia oraz sentencji
 $("#studioTitle").fadeOut(6000);
@@ -595,20 +596,27 @@ createNewElementAppend("p", "choosenDescription", "", $("#mainPart"));
 let allgreen = document.querySelectorAll("#alerts .greenText");
 console.log(allgreen);
 
-let stop = setInterval(function(){ checkGreen() }, 1000);
+let stop = setInterval(function(){ checkGreen() }, 500);
 
 function checkGreen() {
 		let allgreen = document.querySelectorAll("#alerts .greenText");
-    if(allgreen.length < 7){
-			console.log("nie wszystko");
-	}else if(allgreen.length == 7 && equip.length > 0 && skills.length > 0){
-			console.log("wszystko");
-			console.log(equip.length);
-			console.log(skills.length);
-			clearInterval(stop);
-		}
+   if(allgreen.length < 7 || equip.length == 0 || skills.length == 0){
+				console.log("nie wszystko");
+			$("#startGame").hide();
+		}	else if(allgreen.length == 7 && equip.length > 0 && skills.length > 0){
+	 			console.log("wszystko");
+	 			console.log(equip.length);
+	 			console.log(skills.length);
+	 			$("#startGame").show().addClass("basicBtn");
+	 		}
 }
 checkGreen();
-
 }); //koniec przycisku nowa gra (newGame)
+
+$("#startGame").on("click", () =>{
+	console.log("działa");
+		clearInterval(stop);
+});
+
+
 });//koniec DOMContentLoaded
