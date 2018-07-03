@@ -592,12 +592,13 @@ infoCreator("skillsInfo", "umiejętności", "skillsInfoSub", skills, $("#skillsR
 createNewElementAppend("p", "choosenDescription", "", $("#mainPart"));
 });//koniec zdarzeń dla przycisku info - w kreatorze postaci
 
-
 let allgreen = document.querySelectorAll("#alerts .greenText");
 console.log(allgreen);
 
-let stop = setInterval(function(){ checkGreen() }, 500);
+checkGreen();
+}); //koniec przycisku nowa gra (newGame)
 
+let stop = setInterval(function(){ checkGreen() }, 500);
 function checkGreen() {
 		let allgreen = document.querySelectorAll("#alerts .greenText");
    if(allgreen.length < 7 || equip.length == 0 || skills.length == 0){
@@ -610,8 +611,6 @@ function checkGreen() {
 	 			$("#startGame").show().addClass("basicBtn");
 	 		}
 }
-checkGreen();
-}); //koniec przycisku nowa gra (newGame)
 
 $("#startGame").on("click", () =>{
 	console.log("działa");

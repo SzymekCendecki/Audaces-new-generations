@@ -787,28 +787,27 @@ document.addEventListener("DOMContentLoaded", function () {
 			createNewElementAppend("p", "choosenDescription", "", $("#mainPart"));
 		}); //koniec zdarzeń dla przycisku info - w kreatorze postaci
 
-
 		var allgreen = document.querySelectorAll("#alerts .greenText");
 		console.log(allgreen);
 
-		var stop = setInterval(function () {
-			checkGreen();
-		}, 500);
-
-		function checkGreen() {
-			var allgreen = document.querySelectorAll("#alerts .greenText");
-			if (allgreen.length < 7 || equip.length == 0 || skills.length == 0) {
-				console.log("nie wszystko");
-				$("#startGame").hide();
-			} else if (allgreen.length == 7 && equip.length > 0 && skills.length > 0) {
-				console.log("wszystko");
-				console.log(equip.length);
-				console.log(skills.length);
-				$("#startGame").show().addClass("basicBtn");
-			}
-		}
 		checkGreen();
 	}); //koniec przycisku nowa gra (newGame)
+
+	var stop = setInterval(function () {
+		checkGreen();
+	}, 500);
+	function checkGreen() {
+		var allgreen = document.querySelectorAll("#alerts .greenText");
+		if (allgreen.length < 7 || equip.length == 0 || skills.length == 0) {
+			console.log("nie wszystko");
+			$("#startGame").hide();
+		} else if (allgreen.length == 7 && equip.length > 0 && skills.length > 0) {
+			console.log("wszystko");
+			console.log(equip.length);
+			console.log(skills.length);
+			$("#startGame").show().addClass("basicBtn");
+		}
+	}
 
 	$("#startGame").on("click", function () {
 		console.log("działa");

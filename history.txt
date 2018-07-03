@@ -83,3 +83,6 @@ Drobna poprawka w "umiejętnościach" - przedmioty do usunięcia -> umiejętnoś
 
 3 lipca 2018 - wersja 0.2.8
 Walidacja wyborów prawie ukończona - do zrobienia/sprawdzenia: poprawić zmianę kolorów alertów umiejętności i ekwipunku? - poprawić kolor i pozycję przycisku startu gry.
+
+3 lipca 2018 - wersja 0.2.9
+Poprawiony problem z działaniem walidacji wyborów - zasięgiem działania funkcji.
