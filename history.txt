@@ -86,3 +86,6 @@ Walidacja wyborów prawie ukończona - do zrobienia/sprawdzenia: poprawić zmian
 
 3 lipca 2018 - wersja 0.2.9
 Poprawiony problem z działaniem walidacji wyborów - zasięgiem działania funkcji.
+
+4 lipca 2018 - wersja 0.3.0
+Dodanie styli oraz nasłuchiwanie zdarzenia dla przycisku start. Dodanie przycisków podstawowego menu gry.

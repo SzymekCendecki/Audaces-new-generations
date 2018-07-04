@@ -121,10 +121,17 @@ setTimeout(()=>{
 function clickFirstMenu(element, element2, idElement, textElement){
 	element.on("click", () =>{ element2.children("p").remove(); createNewElementAppend("p", idElement, textElement, element2); element2.addClass("basicText"); }); }
 
-//funkcje dla pierwszego menu
+//funkcje tworzenia dla pierwszego menu
 clickFirstMenu($("#info"), $("#mainPart"), "textElement", intro.textInfo);
 clickFirstMenu($("#licence"), $("#mainPart"), "textLicence", intro.textLicence);
 clickFirstMenu($("#tutorial"), $("#mainPart"), "textTutorial", intro.textTutorial);
+
+//funkcje tworzenia dla menu gry
+createNewElementAppend("button", "featuresGame", "cechy", $("nav"));
+createNewElementAppend("button", "equipGame", "ekwipunek", $("nav"));
+createNewElementAppend("button", "skillsGame", "umiejętności", $("nav"));
+createNewElementAppend("button", "taskGame", "zadania", $("nav"));
+$("#featuresGame, #equipGame, #skillsGame, #taskGame").hide();
 
 //przycisk nowej gry - tworzenie kretora postaci
 $("#newGame").on("click", () =>{ 	$("#mainPart").empty().removeClass("basicText");
@@ -593,28 +600,23 @@ createNewElementAppend("p", "choosenDescription", "", $("#mainPart"));
 });//koniec zdarzeń dla przycisku info - w kreatorze postaci
 
 let allgreen = document.querySelectorAll("#alerts .greenText");
-console.log(allgreen);
-
 checkGreen();
 }); //koniec przycisku nowa gra (newGame)
 
-let stop = setInterval(function(){ checkGreen() }, 500);
-function checkGreen() {
-		let allgreen = document.querySelectorAll("#alerts .greenText");
-   if(allgreen.length < 7 || equip.length == 0 || skills.length == 0){
-				console.log("nie wszystko");
-			$("#startGame").hide();
-		}	else if(allgreen.length == 7 && equip.length > 0 && skills.length > 0){
-	 			console.log("wszystko");
-	 			console.log(equip.length);
-	 			console.log(skills.length);
-	 			$("#startGame").show().addClass("basicBtn");
-	 		}
-}
+//funkcja dla interwału, sprawdzającego wybranie wszystkich potrzebnych rzeczy
+let stop = setInterval(function(){ checkGreen() }, 100);
+function checkGreen() { let allgreen = document.querySelectorAll("#alerts .greenText");
+if(allgreen.length < 7 || equip.length == 0 || skills.length == 0){ $("#startGame").hide();
+}else if(allgreen.length == 7 && equip.length > 0 && skills.length > 0){  			$("#startGame").show().addClass("basicBtn").addClass("start"); } }
 
+//zdarzenie dla przycisku start w kreatorze postaci
 $("#startGame").on("click", () =>{
-	console.log("działa");
-		clearInterval(stop);
+		clearInterval(stop); // zatrzymanie interwału - sprawdzenia poprawnego dokonania wyborów
+		$("#name, #race, #occupation, #features, #features2, #equipment, #skills, #infoCreator, #startGame").hide();
+		$("#mainPart").empty();
+		$("#alerts").empty();
+
+	$("#featuresGame, #equipGame, #skillsGame, #taskGame").show();
 });
 
 

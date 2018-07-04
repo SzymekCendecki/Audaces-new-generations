@@ -220,10 +220,17 @@ document.addEventListener("DOMContentLoaded", function () {
 		});
 	}
 
-	//funkcje dla pierwszego menu
+	//funkcje tworzenia dla pierwszego menu
 	clickFirstMenu($("#info"), $("#mainPart"), "textElement", intro.textInfo);
 	clickFirstMenu($("#licence"), $("#mainPart"), "textLicence", intro.textLicence);
 	clickFirstMenu($("#tutorial"), $("#mainPart"), "textTutorial", intro.textTutorial);
+
+	//funkcje tworzenia dla menu gry
+	createNewElementAppend("button", "featuresGame", "cechy", $("nav"));
+	createNewElementAppend("button", "equipGame", "ekwipunek", $("nav"));
+	createNewElementAppend("button", "skillsGame", "umiejętności", $("nav"));
+	createNewElementAppend("button", "taskGame", "zadania", $("nav"));
+	$("#featuresGame, #equipGame, #skillsGame, #taskGame").hide();
 
 	//przycisk nowej gry - tworzenie kretora postaci
 	$("#newGame").on("click", function () {
@@ -788,30 +795,30 @@ document.addEventListener("DOMContentLoaded", function () {
 		}); //koniec zdarzeń dla przycisku info - w kreatorze postaci
 
 		var allgreen = document.querySelectorAll("#alerts .greenText");
-		console.log(allgreen);
-
 		checkGreen();
 	}); //koniec przycisku nowa gra (newGame)
 
+	//funkcja dla interwału, sprawdzającego wybranie wszystkich potrzebnych rzeczy
 	var stop = setInterval(function () {
 		checkGreen();
-	}, 500);
+	}, 100);
 	function checkGreen() {
 		var allgreen = document.querySelectorAll("#alerts .greenText");
 		if (allgreen.length < 7 || equip.length == 0 || skills.length == 0) {
-			console.log("nie wszystko");
 			$("#startGame").hide();
 		} else if (allgreen.length == 7 && equip.length > 0 && skills.length > 0) {
-			console.log("wszystko");
-			console.log(equip.length);
-			console.log(skills.length);
-			$("#startGame").show().addClass("basicBtn");
+			$("#startGame").show().addClass("basicBtn").addClass("start");
 		}
 	}
 
+	//zdarzenie dla przycisku start w kreatorze postaci
 	$("#startGame").on("click", function () {
-		console.log("działa");
-		clearInterval(stop);
+		clearInterval(stop); // zatrzymanie interwału - sprawdzenia poprawnego dokonania wyborów
+		$("#name, #race, #occupation, #features, #features2, #equipment, #skills, #infoCreator, #startGame").hide();
+		$("#mainPart").empty();
+		$("#alerts").empty();
+
+		$("#featuresGame, #equipGame, #skillsGame, #taskGame").show();
 	});
 }); //koniec DOMContentLoaded
 
