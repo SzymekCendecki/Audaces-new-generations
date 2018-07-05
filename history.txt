@@ -89,3 +89,6 @@ Poprawiony problem z działaniem walidacji wyborów - zasięgiem działania funk
 
 4 lipca 2018 - wersja 0.3.0
 Dodanie styli oraz nasłuchiwanie zdarzenia dla przycisku start. Dodanie przycisków podstawowego menu gry.
+
+5 lipca 2018 - wersja 0.3.1
+Rozpoczęcie pracy nad zdarzeniami przycisków głównego menu gry. Do poprawienia wyświetlenie puntktów cech postaci - przyczyną nie wyświetlania punktów cech postaci jest to, iż funkcja zliczająca punkty cech jest przypisana do zdarzenia przycisku info w kreatorze postaci, a powinna być nieależna od tego przycisku, czyli całkiem możliwe, że trzeba zlicznie punktów przypisać do funkcji interwału.

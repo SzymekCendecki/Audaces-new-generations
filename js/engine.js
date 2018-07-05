@@ -818,8 +818,36 @@ document.addEventListener("DOMContentLoaded", function () {
 		$("#mainPart").empty();
 		$("#alerts").empty();
 
-		$("#featuresGame, #equipGame, #skillsGame, #taskGame").show();
-	});
+		$("#featuresGame, #equipGame, #skillsGame, #taskGame").show().addClass("basicBtn correctStyles");
+		$("#skillsGame").addClass("correctSkills");
+	}); //koniec zdarzenia dla przycisku start w kreatorze postaci
+
+	//zdarzenie dla przycisku cechy - wyświetlanym w oknie alertowym
+	$("#featuresGame").on("click", function () {
+		createNewElementAppend("div", "showFeatures", "", $("#alerts"));
+
+		createNewElementAppend("p", "forceTitle", "siła", $("#alerts"));
+		createNewElementAppend("p", "forceTable", amountAllPoint[0], $("#alerts"));
+
+		createNewElementAppend("p", "strenghtTitle", "wytrzymałość", $("#alerts"));
+		createNewElementAppend("p", "strenghtTable", amountAllPoint[1], $("#alerts"));
+
+		createNewElementAppend("p", "dexterityTitle", "wytrzymałość", $("#alerts"));
+		createNewElementAppend("p", "dexterityTable", amountAllPoint[2], $("#alerts"));
+
+		createNewElementAppend("p", "intelligenceTitle", "inteligencja", $("#alerts"));
+		createNewElementAppend("p", "intelligenceTable", amountAllPoint[3], $("#alerts"));
+
+		createNewElementAppend("p", "charismaTitle", "charyzma", $("#alerts"));
+		createNewElementAppend("p", "charismaTable", amountAllPoint[4], $("#alerts"));
+
+		createNewElementAppend("button", "close", "zamknij", $("#alerts"));
+
+		//zdarzenie przycisku zamykania
+		$("#close").on("click", function () {
+			$("#alerts").empty();
+		});
+	}); //koniec zdarzenia dla przycisku cechy - wyświetlanym w oknie alertowym
 }); //koniec DOMContentLoaded
 
 /***/ }),
