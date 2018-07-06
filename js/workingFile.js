@@ -487,6 +487,26 @@ if(skills.indexOf($(this).text()) !== -1){ skills.splice(equip.indexOf($(this).t
 this.remove();} this.remove(); }); } } } } skillsToRemove(skills);
 });//koniec zdarzeń dla kreatora postaci - umiejętności
 
+//funkcja optymalizująca zliczanie punktów cech
+	function resultRandomFeatures(features, race, occupation, where, tablePosition){
+		if(!isNaN(features) && isNaN(race) && isNaN(occupation)){// jest tylko cecha
+			let result = features; amountAllPoint.splice(tablePosition, 1, result); where.text(result);
+		}else if(!isNaN(features) && !isNaN(race) && isNaN(occupation)){// jest cecha + rasa
+			let result = features + race; amountAllPoint.splice(tablePosition, 1, result); where.text(result);
+		}else if(isNaN(features) && !isNaN(race) && isNaN(occupation)){// jest rasa
+			let result = race; amountAllPoint.splice(tablePosition, 1, result); where.text(result);
+		}else if(isNaN(features) && !isNaN(race) && !isNaN(occupation)){// jest rasa + profesja
+			let result = race + occupation; amountAllPoint.splice(tablePosition, 1, result); where.text(result);
+		}else if(isNaN(features) && isNaN(race) && !isNaN(occupation)){// jest profesja
+				let result = occupation; amountAllPoint.splice(tablePosition, 1, result); 		where.text(result);
+		}else if(!isNaN(features) && isNaN(race) && !isNaN(occupation)){// jest cecha + profesja
+				let result = features + occupation; amountAllPoint.splice(tablePosition, 1, result);
+				where.text(result);
+		}else if(!isNaN(features) && !isNaN(race) && !isNaN(occupation)){ //cecha + rasa + profesja
+				let result = features + race + occupation; amountAllPoint.splice(tablePosition, 1, result);
+				where.text(result); } }
+
+
 //zdarzenia dla przycisku info - w kreatorze postaci
 $("#infoCreator").on("click", () =>{ $("#mainPart").empty();
 
@@ -514,25 +534,6 @@ $("#infoCreator").on("click", () =>{ $("#mainPart").empty();
 	infoCreator("occupationInfo", "profesja", "occupationInfoSub", hero[2], $("#occupationResult"));
 
 //część druga - losowane cechy
-//funkcja optymalizująca zliczanie punktów cech
-function resultRandomFeatures(features, race, occupation, where, tablePosition){
-	if(!isNaN(features) && isNaN(race) && isNaN(occupation)){// jest tylko cecha
-		let result = features; amountAllPoint.splice(tablePosition, 1, result); where.text(result);
-	}else if(!isNaN(features) && !isNaN(race) && isNaN(occupation)){// jest cecha + rasa
-		let result = features + race; amountAllPoint.splice(tablePosition, 1, result); where.text(result);
-	}else if(isNaN(features) && !isNaN(race) && isNaN(occupation)){// jest rasa
-		let result = race; amountAllPoint.splice(tablePosition, 1, result); where.text(result);
-	}else if(isNaN(features) && !isNaN(race) && !isNaN(occupation)){// jest rasa + profesja
-		let result = race + occupation; amountAllPoint.splice(tablePosition, 1, result); where.text(result);
-	}else if(isNaN(features) && isNaN(race) && !isNaN(occupation)){// jest profesja
-			let result = occupation; amountAllPoint.splice(tablePosition, 1, result); 		where.text(result);
-	}else if(!isNaN(features) && isNaN(race) && !isNaN(occupation)){// jest cecha + profesja
-			let result = features + occupation; amountAllPoint.splice(tablePosition, 1, result);
-			where.text(result);
-	}else if(!isNaN(features) && !isNaN(race) && !isNaN(occupation)){ //cecha + rasa + profesja
-			let result = features + race + occupation; amountAllPoint.splice(tablePosition, 1, result);
-			where.text(result); } }
-
 createNewElementAppend("div", "divInfoTwo", "", $("#mainPart"));
 
 //siła
@@ -624,13 +625,22 @@ $("#startGame").on("click", () =>{
 $("#featuresGame").on("click", () =>{
 	createNewElementAppend("div", "showFeatures", "", $("#alerts"));
 
+	createNewElementAppend("p", "nameTitle", "imię", $("#alerts"));
+	createNewElementAppend("p", "nameTable", hero[0], $("#alerts"));
+
+	createNewElementAppend("p", "raceTitle", "rasa", $("#alerts"));
+	createNewElementAppend("p", "raceTable", hero[1], $("#alerts"));
+
+	createNewElementAppend("p", "occupationTitle", "profesja", $("#alerts"));
+	createNewElementAppend("p", "occupationTable", hero[2], $("#alerts"));
+
 	createNewElementAppend("p", "forceTitle", "siła", $("#alerts"));
 	createNewElementAppend("p", "forceTable", amountAllPoint[0], $("#alerts"));
 
 	createNewElementAppend("p", "strenghtTitle", "wytrzymałość", $("#alerts"));
 	createNewElementAppend("p", "strenghtTable", amountAllPoint[1], $("#alerts"));
 
-	createNewElementAppend("p", "dexterityTitle", "wytrzymałość", $("#alerts"));
+	createNewElementAppend("p", "dexterityTitle", "zręczność", $("#alerts"));
 	createNewElementAppend("p", "dexterityTable", amountAllPoint[2], $("#alerts"));
 
 	createNewElementAppend("p", "intelligenceTitle", "inteligencja", $("#alerts"));
@@ -638,6 +648,24 @@ $("#featuresGame").on("click", () =>{
 
 	createNewElementAppend("p", "charismaTitle", "charyzma", $("#alerts"));
 	createNewElementAppend("p", "charismaTable", amountAllPoint[4], $("#alerts"));
+
+	createNewElementAppend("p", "sexTitle", "płeć", $("#alerts"));
+	createNewElementAppend("p", "sexTable", choosenFeatures[0], $("#alerts"));
+
+	createNewElementAppend("p", "hairTitle", "kolor włosów", $("#alerts"));
+	createNewElementAppend("p", "hairTable", choosenFeatures[1], $("#alerts"));
+
+	createNewElementAppend("p", "eyesTitle", "kolor oczu", $("#alerts"));
+	createNewElementAppend("p", "eyesTable", choosenFeatures[2], $("#alerts"));
+
+	createNewElementAppend("p", "skinTitle", "kolor skóry", $("#alerts"));
+	createNewElementAppend("p", "skinTable", choosenFeatures[3], $("#alerts"));
+
+	createNewElementAppend("p", "weightTitle", "waga", $("#alerts"));
+	createNewElementAppend("p", "weightTable", choosenFeatures[4], $("#alerts"));
+
+	createNewElementAppend("p", "wzrostTitle", "wzrost", $("#alerts"));
+	createNewElementAppend("p", "wzrostTable", choosenFeatures[5], $("#alerts"));
 
 	createNewElementAppend("button", "close", "zamknij", $("#alerts"));
 

@@ -668,6 +668,34 @@ document.addEventListener("DOMContentLoaded", function () {
 			}skillsToRemove(skills);
 		}); //koniec zdarzeń dla kreatora postaci - umiejętności
 
+		//funkcja optymalizująca zliczanie punktów cech
+		function resultRandomFeatures(features, race, occupation, where, tablePosition) {
+			if (!isNaN(features) && isNaN(race) && isNaN(occupation)) {
+				// jest tylko cecha
+				var result = features;amountAllPoint.splice(tablePosition, 1, result);where.text(result);
+			} else if (!isNaN(features) && !isNaN(race) && isNaN(occupation)) {
+				// jest cecha + rasa
+				var _result = features + race;amountAllPoint.splice(tablePosition, 1, _result);where.text(_result);
+			} else if (isNaN(features) && !isNaN(race) && isNaN(occupation)) {
+				// jest rasa
+				var _result2 = race;amountAllPoint.splice(tablePosition, 1, _result2);where.text(_result2);
+			} else if (isNaN(features) && !isNaN(race) && !isNaN(occupation)) {
+				// jest rasa + profesja
+				var _result3 = race + occupation;amountAllPoint.splice(tablePosition, 1, _result3);where.text(_result3);
+			} else if (isNaN(features) && isNaN(race) && !isNaN(occupation)) {
+				// jest profesja
+				var _result4 = occupation;amountAllPoint.splice(tablePosition, 1, _result4);where.text(_result4);
+			} else if (!isNaN(features) && isNaN(race) && !isNaN(occupation)) {
+				// jest cecha + profesja
+				var _result5 = features + occupation;amountAllPoint.splice(tablePosition, 1, _result5);
+				where.text(_result5);
+			} else if (!isNaN(features) && !isNaN(race) && !isNaN(occupation)) {
+				//cecha + rasa + profesja
+				var _result6 = features + race + occupation;amountAllPoint.splice(tablePosition, 1, _result6);
+				where.text(_result6);
+			}
+		}
+
 		//zdarzenia dla przycisku info - w kreatorze postaci
 		$("#infoCreator").on("click", function () {
 			$("#mainPart").empty();
@@ -700,34 +728,6 @@ document.addEventListener("DOMContentLoaded", function () {
 			infoCreator("occupationInfo", "profesja", "occupationInfoSub", hero[2], $("#occupationResult"));
 
 			//część druga - losowane cechy
-			//funkcja optymalizująca zliczanie punktów cech
-			function resultRandomFeatures(features, race, occupation, where, tablePosition) {
-				if (!isNaN(features) && isNaN(race) && isNaN(occupation)) {
-					// jest tylko cecha
-					var result = features;amountAllPoint.splice(tablePosition, 1, result);where.text(result);
-				} else if (!isNaN(features) && !isNaN(race) && isNaN(occupation)) {
-					// jest cecha + rasa
-					var _result = features + race;amountAllPoint.splice(tablePosition, 1, _result);where.text(_result);
-				} else if (isNaN(features) && !isNaN(race) && isNaN(occupation)) {
-					// jest rasa
-					var _result2 = race;amountAllPoint.splice(tablePosition, 1, _result2);where.text(_result2);
-				} else if (isNaN(features) && !isNaN(race) && !isNaN(occupation)) {
-					// jest rasa + profesja
-					var _result3 = race + occupation;amountAllPoint.splice(tablePosition, 1, _result3);where.text(_result3);
-				} else if (isNaN(features) && isNaN(race) && !isNaN(occupation)) {
-					// jest profesja
-					var _result4 = occupation;amountAllPoint.splice(tablePosition, 1, _result4);where.text(_result4);
-				} else if (!isNaN(features) && isNaN(race) && !isNaN(occupation)) {
-					// jest cecha + profesja
-					var _result5 = features + occupation;amountAllPoint.splice(tablePosition, 1, _result5);
-					where.text(_result5);
-				} else if (!isNaN(features) && !isNaN(race) && !isNaN(occupation)) {
-					//cecha + rasa + profesja
-					var _result6 = features + race + occupation;amountAllPoint.splice(tablePosition, 1, _result6);
-					where.text(_result6);
-				}
-			}
-
 			createNewElementAppend("div", "divInfoTwo", "", $("#mainPart"));
 
 			//siła
@@ -826,13 +826,22 @@ document.addEventListener("DOMContentLoaded", function () {
 	$("#featuresGame").on("click", function () {
 		createNewElementAppend("div", "showFeatures", "", $("#alerts"));
 
+		createNewElementAppend("p", "nameTitle", "imię", $("#alerts"));
+		createNewElementAppend("p", "nameTable", hero[0], $("#alerts"));
+
+		createNewElementAppend("p", "raceTitle", "rasa", $("#alerts"));
+		createNewElementAppend("p", "raceTable", hero[1], $("#alerts"));
+
+		createNewElementAppend("p", "occupationTitle", "profesja", $("#alerts"));
+		createNewElementAppend("p", "occupationTable", hero[2], $("#alerts"));
+
 		createNewElementAppend("p", "forceTitle", "siła", $("#alerts"));
 		createNewElementAppend("p", "forceTable", amountAllPoint[0], $("#alerts"));
 
 		createNewElementAppend("p", "strenghtTitle", "wytrzymałość", $("#alerts"));
 		createNewElementAppend("p", "strenghtTable", amountAllPoint[1], $("#alerts"));
 
-		createNewElementAppend("p", "dexterityTitle", "wytrzymałość", $("#alerts"));
+		createNewElementAppend("p", "dexterityTitle", "zręczność", $("#alerts"));
 		createNewElementAppend("p", "dexterityTable", amountAllPoint[2], $("#alerts"));
 
 		createNewElementAppend("p", "intelligenceTitle", "inteligencja", $("#alerts"));
@@ -840,6 +849,24 @@ document.addEventListener("DOMContentLoaded", function () {
 
 		createNewElementAppend("p", "charismaTitle", "charyzma", $("#alerts"));
 		createNewElementAppend("p", "charismaTable", amountAllPoint[4], $("#alerts"));
+
+		createNewElementAppend("p", "sexTitle", "płeć", $("#alerts"));
+		createNewElementAppend("p", "sexTable", choosenFeatures[0], $("#alerts"));
+
+		createNewElementAppend("p", "hairTitle", "kolor włosów", $("#alerts"));
+		createNewElementAppend("p", "hairTable", choosenFeatures[1], $("#alerts"));
+
+		createNewElementAppend("p", "eyesTitle", "kolor oczu", $("#alerts"));
+		createNewElementAppend("p", "eyesTable", choosenFeatures[2], $("#alerts"));
+
+		createNewElementAppend("p", "skinTitle", "kolor skóry", $("#alerts"));
+		createNewElementAppend("p", "skinTable", choosenFeatures[3], $("#alerts"));
+
+		createNewElementAppend("p", "weightTitle", "waga", $("#alerts"));
+		createNewElementAppend("p", "weightTable", choosenFeatures[4], $("#alerts"));
+
+		createNewElementAppend("p", "wzrostTitle", "wzrost", $("#alerts"));
+		createNewElementAppend("p", "wzrostTable", choosenFeatures[5], $("#alerts"));
 
 		createNewElementAppend("button", "close", "zamknij", $("#alerts"));
 
