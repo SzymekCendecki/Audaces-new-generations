@@ -94,4 +94,7 @@ Dodanie styli oraz nasłuchiwanie zdarzenia dla przycisku start. Dodanie przycis
 Rozpoczęcie pracy nad zdarzeniami przycisków głównego menu gry. Do poprawienia wyświetlenie puntktów cech postaci - przyczyną nie wyświetlania punktów cech postaci jest to, iż funkcja zliczająca punkty cech jest przypisana do zdarzenia przycisku info w kreatorze postaci, a powinna być nieależna od tego przycisku, czyli całkiem możliwe, że trzeba zlicznie punktów przypisać do funkcji interwału.
 
 6 lipca 2018 - wersja 0.3.2
-Poprawiono błąd wyświetlania zliczonych punktów cech postaci - wystarczyło wyciągnąć funkcję zliczania wylosowanych punktów, modyfikatorów rasy i profesji (bez konieczności stosowania interwału). Dodano wyświetlanie pozostałych, wybranych cech pod przyciskiem cechy w menu głównym gry. 
+Poprawiono błąd wyświetlania zliczonych punktów cech postaci - wystarczyło wyciągnąć funkcję zliczania wylosowanych punktów, modyfikatorów rasy i profesji (bez konieczności stosowania interwału). Dodano wyświetlanie pozostałych, wybranych cech pod przyciskiem cechy w menu głównym gry.
+
+7 lipca 2018 - wersja 0.3.3
+Dodano wyświetlanie w ekwipunku i umiejętności w oknie alertowym. Poprawiono wyświetlanie się punktów cech postaci - problem był w tym, iż funkcje zliczania punktów wywoływana była tylko podczas kliknięcia w przycisk "info", wystarczyło te funkcje przenieść poza zdarzenie pokazujące dokonane wybory i ustawić funkcję interwału dla zliczania tych punktów - podobnie jak dla sprawdzenia, czy wszystko zostało wybrane poprawnie. Dodano możliwość wyświetlania aktualnych zadań do wykonania.

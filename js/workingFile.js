@@ -90,6 +90,9 @@ let choosenOccupation = []; let choosenRace = [];
 //suma wszystkich punktów
 let amountAllPoint = [];
 
+//tablica zadań
+let tasks =["zanieś paczkę mnichowi"];
+
 //showanie przycisków pierszego menu
 $("#info, #licence, #tutorial, #newGame, #titleGameHeader, #subTitleGameHeader").hide();
 
@@ -487,25 +490,8 @@ if(skills.indexOf($(this).text()) !== -1){ skills.splice(equip.indexOf($(this).t
 this.remove();} this.remove(); }); } } } } skillsToRemove(skills);
 });//koniec zdarzeń dla kreatora postaci - umiejętności
 
-//funkcja optymalizująca zliczanie punktów cech
-	function resultRandomFeatures(features, race, occupation, where, tablePosition){
-		if(!isNaN(features) && isNaN(race) && isNaN(occupation)){// jest tylko cecha
-			let result = features; amountAllPoint.splice(tablePosition, 1, result); where.text(result);
-		}else if(!isNaN(features) && !isNaN(race) && isNaN(occupation)){// jest cecha + rasa
-			let result = features + race; amountAllPoint.splice(tablePosition, 1, result); where.text(result);
-		}else if(isNaN(features) && !isNaN(race) && isNaN(occupation)){// jest rasa
-			let result = race; amountAllPoint.splice(tablePosition, 1, result); where.text(result);
-		}else if(isNaN(features) && !isNaN(race) && !isNaN(occupation)){// jest rasa + profesja
-			let result = race + occupation; amountAllPoint.splice(tablePosition, 1, result); where.text(result);
-		}else if(isNaN(features) && isNaN(race) && !isNaN(occupation)){// jest profesja
-				let result = occupation; amountAllPoint.splice(tablePosition, 1, result); 		where.text(result);
-		}else if(!isNaN(features) && isNaN(race) && !isNaN(occupation)){// jest cecha + profesja
-				let result = features + occupation; amountAllPoint.splice(tablePosition, 1, result);
-				where.text(result);
-		}else if(!isNaN(features) && !isNaN(race) && !isNaN(occupation)){ //cecha + rasa + profesja
-				let result = features + race + occupation; amountAllPoint.splice(tablePosition, 1, result);
-				where.text(result); } }
-
+//funkcja optymalizująca tworzenie elementów informacji zbiorczej
+function infoCreator(titleId, textTitle, nameInfoSubId, what, where){ createNewElementAppend("p", titleId, textTitle, where); createNewElementAppend("p", nameInfoSubId, what, where); if(what == "nie wybrano"){ $("#" + nameInfoSubId).addClass("redText");}else if(what !== "nie wybrano"){ $("#" + nameInfoSubId).addClass("greenText"); } }
 
 //zdarzenia dla przycisku info - w kreatorze postaci
 $("#infoCreator").on("click", () =>{ $("#mainPart").empty();
@@ -513,13 +499,6 @@ $("#infoCreator").on("click", () =>{ $("#mainPart").empty();
 	createNewElementAppend("p", "infoTitle", heroCreator.infoTitle, $("#mainPart"));
 	$("#infoTitle").addClass("goldUnderline basicText");
 	createNewElementAppend("p", "infoDescription", heroCreator.infoDescription, $("#mainPart"));
-
-//funkcja optymaliująca tworzenie elementów informacji zbiorczej
-	function infoCreator(titleId, textTitle, nameInfoSubId, what, where){
-		createNewElementAppend("p", titleId, textTitle, where);
-			createNewElementAppend("p", nameInfoSubId, what, where);
-			if(what == "nie wybrano"){ $("#" + nameInfoSubId).addClass("redText");
-			}else if(what !== "nie wybrano"){ $("#" + nameInfoSubId).addClass("greenText"); } }
 
 //część pierwsza - imię, rasa i profesja
 	createNewElementAppend("div", "divInfoOne", "", $("#mainPart"));
@@ -539,24 +518,22 @@ createNewElementAppend("div", "divInfoTwo", "", $("#mainPart"));
 //siła
 createNewElementAppend("div", "forceResult", "", $("#divInfoTwo"));
 infoCreator("forceInfo", "siła", "forceInfoSub", "nie wylosowano", $("#forceResult"));
-resultRandomFeatures(randomFeatures[0], choosenRace[0], choosenOccupation[0], $("#forceInfoSub"), 0);
 
 //wytrzymałość
 createNewElementAppend("div", "strengthResult", "", $("#divInfoTwo"));
-infoCreator("strengthInfo", "wytrzymałość", "strengthInfoSub", "nie wylosowano", $("#strengthResult")); resultRandomFeatures(randomFeatures[1], choosenRace[1], choosenOccupation[1], $("#strengthInfoSub"), 1);
+infoCreator("strengthInfo", "wytrzymałość", "strengthInfoSub", "nie wylosowano", $("#strengthResult"));
 
 //zręczność
 createNewElementAppend("div", "dexterityResult", "", $("#divInfoTwo"));
-infoCreator("dexterityInfo", "zręczność", "dexterityInfoSub", "nie wylosowano", $("#dexterityResult")); resultRandomFeatures(randomFeatures[2], choosenRace[2], choosenOccupation[2], $("#dexterityInfoSub"), 2);
+infoCreator("dexterityInfo", "zręczność", "dexterityInfoSub", "nie wylosowano", $("#dexterityResult"));
 
 //inteligencja
 createNewElementAppend("div", "intelligenceResult", "", $("#divInfoTwo"));
-infoCreator("intelligenceInfo", "inteligencja", "intelligenceInfoSub", "nie wylosowano", $("#intelligenceResult")); resultRandomFeatures(randomFeatures[3], choosenRace[3], choosenOccupation[3], $("#intelligenceInfoSub"), 3);
+infoCreator("intelligenceInfo", "inteligencja", "intelligenceInfoSub", "nie wylosowano", $("#intelligenceResult"));
 
 //charyzma
 createNewElementAppend("div", "charismaResult", "", $("#divInfoTwo"));
 infoCreator("charismaInfo", "charyzma", "charismaInfoSub", "nie wylosowano", $("#charismaResult"));
-resultRandomFeatures(randomFeatures[4], choosenRace[4], choosenOccupation[4], $("#charismaInfoSub"), 4);
 
 //część trzecia - wybór pozostałych cech - przycisk CECHY 2
 createNewElementAppend("div", "divInfoThree", "", $("#mainPart"));
@@ -604,27 +581,44 @@ let allgreen = document.querySelectorAll("#alerts .greenText");
 checkGreen();
 }); //koniec przycisku nowa gra (newGame)
 
+//funkcja optymalizująca zliczanie punktów cech
+	function resultRandomFeatures(features, race, occupation, where, tablePosition){
+		if(!isNaN(features) && isNaN(race) && isNaN(occupation)){// jest tylko cecha
+			let result = features; amountAllPoint.splice(tablePosition, 1, result); where.text(result);
+		}else if(!isNaN(features) && !isNaN(race) && isNaN(occupation)){// jest cecha + rasa
+			let result = features + race; amountAllPoint.splice(tablePosition, 1, result); where.text(result);
+		}else if(isNaN(features) && !isNaN(race) && isNaN(occupation)){// jest rasa
+			let result = race; amountAllPoint.splice(tablePosition, 1, result); where.text(result);
+		}else if(isNaN(features) && !isNaN(race) && !isNaN(occupation)){// jest rasa + profesja
+			let result = race + occupation; amountAllPoint.splice(tablePosition, 1, result); where.text(result);
+		}else if(isNaN(features) && isNaN(race) && !isNaN(occupation)){// jest profesja
+				let result = occupation; amountAllPoint.splice(tablePosition, 1, result); 		where.text(result);
+		}else if(!isNaN(features) && isNaN(race) && !isNaN(occupation)){// jest cecha + profesja
+				let result = features + occupation; amountAllPoint.splice(tablePosition, 1, result);
+				where.text(result);
+		}else if(!isNaN(features) && !isNaN(race) && !isNaN(occupation)){ //cecha + rasa + profesja
+				let result = features + race + occupation; amountAllPoint.splice(tablePosition, 1, result);
+				where.text(result); } }
+
+//interwał dla zliczania punktów cech Postaci
+let stopPoints = setInterval(function(){ resultRandomFeatures(randomFeatures[0], choosenRace[0], choosenOccupation[0], $("#forceInfoSub"), 0); resultRandomFeatures(randomFeatures[1], choosenRace[1], choosenOccupation[1], $("#strengthInfoSub"), 1); resultRandomFeatures(randomFeatures[2], choosenRace[2], choosenOccupation[2], $("#dexterityInfoSub"), 2); resultRandomFeatures(randomFeatures[3], choosenRace[3], choosenOccupation[3], $("#intelligenceInfoSub"), 3); resultRandomFeatures(randomFeatures[4], choosenRace[4], choosenOccupation[4], $("#charismaInfoSub"), 4); }, 100);
+
 //funkcja dla interwału, sprawdzającego wybranie wszystkich potrzebnych rzeczy
-let stop = setInterval(function(){ checkGreen() }, 100);
+let stopAll = setInterval(function(){ checkGreen() }, 100);
 function checkGreen() { let allgreen = document.querySelectorAll("#alerts .greenText");
 if(allgreen.length < 7 || equip.length == 0 || skills.length == 0){ $("#startGame").hide();
 }else if(allgreen.length == 7 && equip.length > 0 && skills.length > 0){  			$("#startGame").show().addClass("basicBtn").addClass("start"); } }
 
 //zdarzenie dla przycisku start w kreatorze postaci
 $("#startGame").on("click", () =>{
-		clearInterval(stop); // zatrzymanie interwału - sprawdzenia poprawnego dokonania wyborów
-		$("#name, #race, #occupation, #features, #features2, #equipment, #skills, #infoCreator, #startGame").hide();
-		$("#mainPart").empty();
-		$("#alerts").empty();
-
-	$("#featuresGame, #equipGame, #skillsGame, #taskGame").show().addClass("basicBtn correctStyles");
-	$("#skillsGame").addClass("correctSkills");
+clearInterval(stopAll); // zatrzymanie interwału - sprawdzenia poprawnego dokonania wyborów
+clearInterval(stopPoints); // zatrzymanie interwału - dla zliczania punktów cech postaci
+$("#name, #race, #occupation, #features, #features2, #equipment, #skills, #infoCreator, #startGame").hide(); $("#mainPart").empty(); $("#alerts").empty(); $("#featuresGame, #equipGame, #skillsGame, #taskGame").show().addClass("basicBtn correctStyles"); $("#skillsGame").addClass("correctSkills");
 });//koniec zdarzenia dla przycisku start w kreatorze postaci
 
 //zdarzenie dla przycisku cechy - wyświetlanym w oknie alertowym
 $("#featuresGame").on("click", () =>{
 	createNewElementAppend("div", "showFeatures", "", $("#alerts"));
-
 	createNewElementAppend("p", "nameTitle", "imię", $("#alerts"));
 	createNewElementAppend("p", "nameTable", hero[0], $("#alerts"));
 
@@ -667,9 +661,36 @@ $("#featuresGame").on("click", () =>{
 	createNewElementAppend("p", "wzrostTitle", "wzrost", $("#alerts"));
 	createNewElementAppend("p", "wzrostTable", choosenFeatures[5], $("#alerts"));
 
-	createNewElementAppend("button", "close", "zamknij", $("#alerts"));
+	createNewElementAppend("button", "closeFeatures", "zamknij", $("#alerts"));
 
 	//zdarzenie przycisku zamykania
-		$("#close").on("click", () => { $("#alerts").empty(); });
+		$("#closeFeatures").on("click", () => { $("#alerts").empty(); });
 });//koniec zdarzenia dla przycisku cechy - wyświetlanym w oknie alertowym
+
+//zdarzenie wyświetlania ekwipunku (gra);
+$("#equipGame").on("click", () =>{createNewElementAppend("p", "equipTitle", "ekwipunek", $("#alerts")); createNewElementAppend("p", "equipTable", equip, $("#alerts")); createNewElementAppend("button", "closeEquip", "zamknij", $("#alerts"));
+//zdarzenie przycisku zamykania
+		$("#closeEquip").on("click", () => { $("#alerts").empty(); }); });
+//koniec zdarzenia wyświetlania ekwipunku (gra)
+
+//zdarzenie dla wyświetlania umiejętności (gra);
+$("#skillsGame").on("click", () =>{ createNewElementAppend("p", "skillsTitle", "umiejętności", $("#alerts")); createNewElementAppend("p", "skillsTable", skills, $("#alerts"));	createNewElementAppend("button", "closeSkills", "zamknij", $("#alerts"));
+	//zdarzenie przycisku zamykania
+		$("#closeSkills").on("click", () => { $("#alerts").empty(); }); });
+//koniec zdarzenia wyświetlania umiejętności (gra)
+
+//zdarzenie dla wyśwetlania zadań w grze (gra)
+$("#taskGame").on("click", () =>{
+	createNewElementAppend("p", "taskTitle", "zadania", $("#alerts"));
+for(let i=0; i<tasks.length; i++){
+	createNewElementAppend("p", "taskId" + i, tasks[i], $("#alerts"));
+}
+
+createNewElementAppend("button", "closeTasks", "zamknij", $("#alerts"));
+//zdarzenie przycisku zamykania
+	$("#closeTasks").on("click", () => { $("#alerts").empty(); });
+
+});
+
+
 });//koniec DOMContentLoaded
