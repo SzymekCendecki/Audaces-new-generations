@@ -1,5 +1,6 @@
 let intro = require("./firstMenu.js");
 let heroCreator = require("./heroCreator.js");
+let introGame = require("./introGame.js");
 
 document.addEventListener("DOMContentLoaded", () => { console.log("NIEWIERNE PSY RULEZ!!!!");
 
@@ -613,7 +614,28 @@ if(allgreen.length < 7 || equip.length == 0 || skills.length == 0){ $("#startGam
 $("#startGame").on("click", () =>{
 clearInterval(stopAll); // zatrzymanie interwału - sprawdzenia poprawnego dokonania wyborów
 clearInterval(stopPoints); // zatrzymanie interwału - dla zliczania punktów cech postaci
-$("#name, #race, #occupation, #features, #features2, #equipment, #skills, #infoCreator, #startGame").hide(); $("#mainPart").empty(); $("#alerts").empty(); $("#featuresGame, #equipGame, #skillsGame, #taskGame").show().addClass("basicBtn correctStyles"); $("#skillsGame").addClass("correctSkills");
+$("#name, #race, #occupation, #features, #features2, #equipment, #skills, #infoCreator, #startGame").hide();
+$("#mainPart").empty();
+$("#alerts").empty();
+
+setTimeout(function(){
+	createNewElementAppend("p", "text1", introGame.text1, $("#mainPart"));
+	createNewElementAppend("p", "text2", introGame.text2, $("#mainPart"));
+	createNewElementAppend("p", "text3", introGame.text3, $("#mainPart"));
+	createNewElementAppend("p", "text4", introGame.text4, $("#mainPart"));
+	createNewElementAppend("p", "text5", introGame.text5, $("#mainPart"));
+	createNewElementAppend("p", "text6", introGame.text6, $("#mainPart"));
+	createNewElementAppend("p", "text7", introGame.text7, $("#mainPart"));
+	createNewElementAppend("p", "text8", introGame.text8, $("#mainPart"));
+}, 100);
+
+setTimeout(function(){
+$("#mainPart").empty();
+$("#featuresGame, #equipGame, #skillsGame, #taskGame").show().addClass("basicBtn correctStyles");
+$("#skillsGame").addClass("correctSkills");
+}, 30000);
+
+
 });//koniec zdarzenia dla przycisku start w kreatorze postaci
 
 //zdarzenie dla przycisku cechy - wyświetlanym w oknie alertowym
@@ -680,17 +702,10 @@ $("#skillsGame").on("click", () =>{ createNewElementAppend("p", "skillsTitle", "
 //koniec zdarzenia wyświetlania umiejętności (gra)
 
 //zdarzenie dla wyśwetlania zadań w grze (gra)
-$("#taskGame").on("click", () =>{
-	createNewElementAppend("p", "taskTitle", "zadania", $("#alerts"));
-for(let i=0; i<tasks.length; i++){
-	createNewElementAppend("p", "taskId" + i, tasks[i], $("#alerts"));
-}
-
-createNewElementAppend("button", "closeTasks", "zamknij", $("#alerts"));
+$("#taskGame").on("click", () =>{ createNewElementAppend("p", "taskTitle", "zadania", $("#alerts"));
+for(let i=0; i<tasks.length; i++){ createNewElementAppend("p", "taskId" + i, tasks[i], $("#alerts")); } createNewElementAppend("button", "closeTasks", "zamknij", $("#alerts"));
 //zdarzenie przycisku zamykania
 	$("#closeTasks").on("click", () => { $("#alerts").empty(); });
-
-});
-
+}); //koniec zdarzenia wyświetlania zadań (gra)
 
 });//koniec DOMContentLoaded

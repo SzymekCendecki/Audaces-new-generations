@@ -79,6 +79,7 @@ module.exports = __webpack_require__(1);
 
 var intro = __webpack_require__(2);
 var heroCreator = __webpack_require__(3);
+var introGame = __webpack_require__(4);
 
 document.addEventListener("DOMContentLoaded", function () {
 	console.log("NIEWIERNE PSY RULEZ!!!!");
@@ -819,7 +820,26 @@ document.addEventListener("DOMContentLoaded", function () {
 	$("#startGame").on("click", function () {
 		clearInterval(stopAll); // zatrzymanie interwału - sprawdzenia poprawnego dokonania wyborów
 		clearInterval(stopPoints); // zatrzymanie interwału - dla zliczania punktów cech postaci
-		$("#name, #race, #occupation, #features, #features2, #equipment, #skills, #infoCreator, #startGame").hide();$("#mainPart").empty();$("#alerts").empty();$("#featuresGame, #equipGame, #skillsGame, #taskGame").show().addClass("basicBtn correctStyles");$("#skillsGame").addClass("correctSkills");
+		$("#name, #race, #occupation, #features, #features2, #equipment, #skills, #infoCreator, #startGame").hide();
+		$("#mainPart").empty();
+		$("#alerts").empty();
+
+		setTimeout(function () {
+			createNewElementAppend("p", "text1", introGame.text1, $("#mainPart"));
+			createNewElementAppend("p", "text2", introGame.text2, $("#mainPart"));
+			createNewElementAppend("p", "text3", introGame.text3, $("#mainPart"));
+			createNewElementAppend("p", "text4", introGame.text4, $("#mainPart"));
+			createNewElementAppend("p", "text5", introGame.text5, $("#mainPart"));
+			createNewElementAppend("p", "text6", introGame.text6, $("#mainPart"));
+			createNewElementAppend("p", "text7", introGame.text7, $("#mainPart"));
+			createNewElementAppend("p", "text8", introGame.text8, $("#mainPart"));
+		}, 100);
+
+		setTimeout(function () {
+			$("#mainPart").empty();
+			$("#featuresGame, #equipGame, #skillsGame, #taskGame").show().addClass("basicBtn correctStyles");
+			$("#skillsGame").addClass("correctSkills");
+		}, 30000);
 	}); //koniec zdarzenia dla przycisku start w kreatorze postaci
 
 	//zdarzenie dla przycisku cechy - wyświetlanym w oknie alertowym
@@ -900,14 +920,12 @@ document.addEventListener("DOMContentLoaded", function () {
 		createNewElementAppend("p", "taskTitle", "zadania", $("#alerts"));
 		for (var i = 0; i < tasks.length; i++) {
 			createNewElementAppend("p", "taskId" + i, tasks[i], $("#alerts"));
-		}
-
-		createNewElementAppend("button", "closeTasks", "zamknij", $("#alerts"));
+		}createNewElementAppend("button", "closeTasks", "zamknij", $("#alerts"));
 		//zdarzenie przycisku zamykania
 		$("#closeTasks").on("click", function () {
 			$("#alerts").empty();
 		});
-	});
+	}); //koniec zdarzenia wyświetlania zadań (gra)
 }); //koniec DOMContentLoaded
 
 /***/ }),
@@ -1040,6 +1058,29 @@ module.exports.skillsAlert = "Wybierz umiejętności";
 //-------------------------INFORMACJA ZBIORCZA ------------------------------------------------//
 module.exports.infoTitle = "Twoja postać.";
 module.exports.infoDescription = "Poniżej znajdują się Twoje wybory. W tej sekcji możesz je sprawdzić oraz zastanowić się nad ewentualnymi zmianami. Po dokonaniu wszystkich wyborów, to po prawej stronie pod przyciskami powinien ukazać się przycisk rozpoczynający grę.";
+
+/***/ }),
+/* 4 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+module.exports.text1 = "Mówią, że Dzikie Pustkowia to kraina opuszczona przez Bogów.";
+
+module.exports.text2 = "Pełna siedzib mrocznych kultów, wyrzutków społeczeństwa, krwiożerczych bestii i demonów, przywołanych czarną magią z innych wymiarów.";
+
+module.exports.text3 = " Krąży wiele legend o ukrytych, nieprzebranych skarbach, o herosach - smokobójcach.";
+
+module.exports.text4 = "Dzikie Pustkowia fascynuję i przerażają, jednak wielu śmiałków wędruje w tą część świata w poszukiwaniu bogactw i chwały.";
+
+module.exports.text5 = "Większość nie wraca... ";
+
+module.exports.text6 = "Twoja historia zaczyna się w mieście Erharuf.";
+
+module.exports.text7 = " W ostatnim bezpiecznym mieście przed Dzikimi Pustkowiami.";
+
+module.exports.text8 = "Na usilną prośbę znajomego kapłana zgadzasz się dostarczyć małą paczkę dla tamtejszego mnicha, rezydującego w niewielkiej wiosce, która leży tuż przy granicy z Dzikimi Pustkowiami.";
 
 /***/ })
 /******/ ]);

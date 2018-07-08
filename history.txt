@@ -98,3 +98,6 @@ Poprawiono błąd wyświetlania zliczonych punktów cech postaci - wystarczyło 
 
 7 lipca 2018 - wersja 0.3.3
 Dodano wyświetlanie w ekwipunku i umiejętności w oknie alertowym. Poprawiono wyświetlanie się punktów cech postaci - problem był w tym, iż funkcje zliczania punktów wywoływana była tylko podczas kliknięcia w przycisk "info", wystarczyło te funkcje przenieść poza zdarzenie pokazujące dokonane wybory i ustawić funkcję interwału dla zliczania tych punktów - podobnie jak dla sprawdzenia, czy wszystko zostało wybrane poprawnie. Dodano możliwość wyświetlania aktualnych zadań do wykonania.
+
+8 lipca 2018 - wersja 0.3.4
+Dodano tekst wprowadzający do gry, takie tam "intro" - po kreatorze postaci.
