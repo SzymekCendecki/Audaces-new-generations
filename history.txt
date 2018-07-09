@@ -101,3 +101,6 @@ Dodano wyświetlanie w ekwipunku i umiejętności w oknie alertowym. Poprawiono 
 
 8 lipca 2018 - wersja 0.3.4
 Dodano tekst wprowadzający do gry, takie tam "intro" - po kreatorze postaci.
+
+9 lipca 2018 - wersja 0.3.5
+Poprawiono wizualnie wszystkie informacje, które są wyświetlane w części alertowej - aktywowane przyciskami z menu głównego gry.

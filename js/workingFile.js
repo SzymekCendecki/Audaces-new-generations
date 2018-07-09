@@ -640,7 +640,6 @@ $("#skillsGame").addClass("correctSkills");
 
 //zdarzenie dla przycisku cechy - wyświetlanym w oknie alertowym
 $("#featuresGame").on("click", () =>{
-	createNewElementAppend("div", "showFeatures", "", $("#alerts"));
 	createNewElementAppend("p", "nameTitle", "imię", $("#alerts"));
 	createNewElementAppend("p", "nameTable", hero[0], $("#alerts"));
 
@@ -680,31 +679,52 @@ $("#featuresGame").on("click", () =>{
 	createNewElementAppend("p", "weightTitle", "waga", $("#alerts"));
 	createNewElementAppend("p", "weightTable", choosenFeatures[4], $("#alerts"));
 
-	createNewElementAppend("p", "wzrostTitle", "wzrost", $("#alerts"));
-	createNewElementAppend("p", "wzrostTable", choosenFeatures[5], $("#alerts"));
+	createNewElementAppend("p", "heightTitle", "wzrost", $("#alerts"));
+	createNewElementAppend("p", "heightTable", choosenFeatures[5], $("#alerts"));
+
+	$("#alerts").addClass("arrange");
+
+	$("#nameTitle, #nameTable, #raceTitle, #raceTable, #occupationTitle, #occupationTable, #forceTitle, #forceTable, #strenghtTitle, #strenghtTable, #dexterityTitle, #dexterityTable, #intelligenceTitle, #intelligenceTable, #charismaTitle, #charismaTable, #sexTitle, #sexTable, #hairTitle, #hairTable, #eyesTitle, #eyesTable, #skinTitle, #skinTable, #weightTitle, #weightTable, #heightTitle, #heightTable").addClass("centerBold");
+
+	$("#nameTable, #raceTable, #occupationTable, #forceTable, #strenghtTable, #dexterityTable, #intelligenceTable, #charismaTable, #sexTable, #hairTable, #eyesTable, #skinTable, #weightTable,  #heightTable").addClass("font12emGreen");
 
 	createNewElementAppend("button", "closeFeatures", "zamknij", $("#alerts"));
 
 	//zdarzenie przycisku zamykania
-		$("#closeFeatures").on("click", () => { $("#alerts").empty(); });
+		$("#closeFeatures").addClass("closeBtn");
+		$("#closeFeatures").on("click", () => { $("#alerts").removeClass("arrange").empty(); });
 });//koniec zdarzenia dla przycisku cechy - wyświetlanym w oknie alertowym
 
 //zdarzenie wyświetlania ekwipunku (gra);
 $("#equipGame").on("click", () =>{createNewElementAppend("p", "equipTitle", "ekwipunek", $("#alerts")); createNewElementAppend("p", "equipTable", equip, $("#alerts")); createNewElementAppend("button", "closeEquip", "zamknij", $("#alerts"));
+
+$("#equipTable, #equipTitle").addClass("centerBold2");
+$("#equipTable").addClass("font12emGreen");
+
 //zdarzenie przycisku zamykania
-		$("#closeEquip").on("click", () => { $("#alerts").empty(); }); });
+$("#closeEquip").addClass("closeBtn");
+$("#closeEquip").on("click", () => { $("#alerts").empty(); }); });
 //koniec zdarzenia wyświetlania ekwipunku (gra)
 
 //zdarzenie dla wyświetlania umiejętności (gra);
 $("#skillsGame").on("click", () =>{ createNewElementAppend("p", "skillsTitle", "umiejętności", $("#alerts")); createNewElementAppend("p", "skillsTable", skills, $("#alerts"));	createNewElementAppend("button", "closeSkills", "zamknij", $("#alerts"));
+
+$("#skillsTitle, #skillsTable").addClass("centerBold2");
+$("#skillsTable").addClass("font12emGreen");
+
 	//zdarzenie przycisku zamykania
+	$("#closeSkills").addClass("closeBtn");
 		$("#closeSkills").on("click", () => { $("#alerts").empty(); }); });
 //koniec zdarzenia wyświetlania umiejętności (gra)
 
 //zdarzenie dla wyśwetlania zadań w grze (gra)
 $("#taskGame").on("click", () =>{ createNewElementAppend("p", "taskTitle", "zadania", $("#alerts"));
-for(let i=0; i<tasks.length; i++){ createNewElementAppend("p", "taskId" + i, tasks[i], $("#alerts")); } createNewElementAppend("button", "closeTasks", "zamknij", $("#alerts"));
+for(let i=0; i<tasks.length; i++){ createNewElementAppend("p", "taskId" + i, tasks[i], $("#alerts"), "font12emGreen"); } createNewElementAppend("button", "closeTasks", "zamknij", $("#alerts"));
+
+$("#alerts > p").addClass("centerBold2");
+
 //zdarzenie przycisku zamykania
+$("#closeTasks").addClass("closeBtn");
 	$("#closeTasks").on("click", () => { $("#alerts").empty(); });
 }); //koniec zdarzenia wyświetlania zadań (gra)
 
