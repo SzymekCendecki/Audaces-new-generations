@@ -415,3 +415,38 @@ nav{
   font-weight: bold;
   text-shadow: 1px 1px white;
 }
+
+#lookAround, #wardrobe, #chest, #package{
+  width: 49%;
+  height: 50%;
+  font-weight: bold;
+  text-shadow: 1px 1px white;
+}
+
+#lookAround{
+  margin-top: 4%;
+  background: linear-gradient(white, blue);
+}
+
+#wardrobe{
+  margin: 4% 0 0 1%;
+  background: linear-gradient(white, green);
+}
+
+#chest{
+  margin-top: 2%;
+  background: linear-gradient(white, green);
+}
+
+#package{
+  margin: 2% 0 0 1%;
+  background: linear-gradient(white, gold);
+}
+
+#outRoom{
+  margin: 10% 0 0 25%;
+  width: 50%;
+  background-color: red;
+  font-weight: bold;
+  text-shadow: 1px 1px white;
+}

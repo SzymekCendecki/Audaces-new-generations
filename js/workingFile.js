@@ -62,6 +62,7 @@ function createNewInputAppend(nameElement, name, id, value, type, whereAppend, a
 	createNewElementAppend("button", "skills", "umiejętności", $("nav"));
 	createNewElementAppend("button", "infoCreator", "info", $("nav"));
 	createNewElementAppend("button", "startGame", "start", $("nav"));
+	createNewElementAppend("button", "outRoom", "wyjdź", $("nav"));
 
 	//tablice
 	// tablica postaci 0 - imię, 1 - rasa, 2 - profesja
@@ -98,7 +99,7 @@ let tasks =["zanieś paczkę mnichowi"];
 $("#info, #licence, #tutorial, #newGame, #titleGameHeader, #subTitleGameHeader").hide();
 
 //schowanie przycisków kreatora
-$("#name, #race, #occupation, #features, #features2, #equipment, #skills, #infoCreator, #startGame").hide();
+$("#name, #race, #occupation, #features, #features2, #equipment, #skills, #infoCreator, #startGame, #outRoom").hide();
 
 //schowanie i usunięcie nazwy studia oraz sentencji
 $("#studioTitle").fadeOut(6000);
@@ -614,26 +615,29 @@ if(allgreen.length < 7 || equip.length == 0 || skills.length == 0){ $("#startGam
 $("#startGame").on("click", () =>{
 clearInterval(stopAll); // zatrzymanie interwału - sprawdzenia poprawnego dokonania wyborów
 clearInterval(stopPoints); // zatrzymanie interwału - dla zliczania punktów cech postaci
-$("#name, #race, #occupation, #features, #features2, #equipment, #skills, #infoCreator, #startGame").hide();
-$("#mainPart").empty();
-$("#alerts").empty();
+$("#name, #race, #occupation, #features, #features2, #equipment, #skills, #infoCreator, #startGame").hide(); $("#mainPart").empty(); $("#alerts").empty();
 
-setTimeout(function(){
-	createNewElementAppend("p", "text1", introGame.text1, $("#mainPart"));
-	createNewElementAppend("p", "text2", introGame.text2, $("#mainPart"));
-	createNewElementAppend("p", "text3", introGame.text3, $("#mainPart"));
+setTimeout(function(){ createNewElementAppend("p", "text1", introGame.text1, $("#mainPart"));	createNewElementAppend("p", "text2", introGame.text2, $("#mainPart")); createNewElementAppend("p", "text3", introGame.text3, $("#mainPart"));
 	createNewElementAppend("p", "text4", introGame.text4, $("#mainPart"));
 	createNewElementAppend("p", "text5", introGame.text5, $("#mainPart"));
 	createNewElementAppend("p", "text6", introGame.text6, $("#mainPart"));
 	createNewElementAppend("p", "text7", introGame.text7, $("#mainPart"));
-	createNewElementAppend("p", "text8", introGame.text8, $("#mainPart"));
-}, 100);
+	createNewElementAppend("p", "text8", introGame.text8, $("#mainPart")); }, 100);
 
-setTimeout(function(){
-$("#mainPart").empty();
+setTimeout(() =>{ $("#mainPart").empty();
 $("#featuresGame, #equipGame, #skillsGame, #taskGame").show().addClass("basicBtn correctStyles");
-$("#skillsGame").addClass("correctSkills");
-}, 30000);
+$("#skillsGame").addClass("correctSkills"); }, 30000);
+
+setTimeout(()=>{
+	createNewElementAppend("div", "btnsP1", "", $("nav"));
+	createNewElementAppend("button", "lookAround", "rozejrzyj się", $("#btnsP1"));
+	createNewElementAppend("button", "wardrobe", "zbadaj szafę", $("#btnsP1"));
+	createNewElementAppend("button", "chest", "zbadaj skrzynię", $("#btnsP1"));
+	createNewElementAppend("button", "package", "weź paczkę", $("#btnsP1"));
+
+$("#btnsP1").after($("#outRoom").show());
+
+}, 30100);
 
 
 });//koniec zdarzenia dla przycisku start w kreatorze postaci
@@ -713,19 +717,16 @@ $("#skillsTitle, #skillsTable").addClass("centerBold2");
 $("#skillsTable").addClass("font12emGreen");
 
 	//zdarzenie przycisku zamykania
-	$("#closeSkills").addClass("closeBtn");
-		$("#closeSkills").on("click", () => { $("#alerts").empty(); }); });
+$("#closeSkills").addClass("closeBtn"); $("#closeSkills").on("click", () => { $("#alerts").empty(); }); });
 //koniec zdarzenia wyświetlania umiejętności (gra)
 
 //zdarzenie dla wyśwetlania zadań w grze (gra)
 $("#taskGame").on("click", () =>{ createNewElementAppend("p", "taskTitle", "zadania", $("#alerts"));
-for(let i=0; i<tasks.length; i++){ createNewElementAppend("p", "taskId" + i, tasks[i], $("#alerts"), "font12emGreen"); } createNewElementAppend("button", "closeTasks", "zamknij", $("#alerts"));
-
-$("#alerts > p").addClass("centerBold2");
+for(let i=0; i<tasks.length; i++){ createNewElementAppend("p", "taskId" + i, tasks[i], $("#alerts"), "font12emGreen"); } createNewElementAppend("button", "closeTasks", "zamknij", $("#alerts")); $("#alerts > p").addClass("centerBold2");
 
 //zdarzenie przycisku zamykania
 $("#closeTasks").addClass("closeBtn");
-	$("#closeTasks").on("click", () => { $("#alerts").empty(); });
+$("#closeTasks").on("click", () => { $("#alerts").empty(); });
 }); //koniec zdarzenia wyświetlania zadań (gra)
 
 });//koniec DOMContentLoaded

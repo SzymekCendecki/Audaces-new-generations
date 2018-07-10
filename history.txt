@@ -104,3 +104,6 @@ Dodano tekst wprowadzający do gry, takie tam "intro" - po kreatorze postaci.
 
 9 lipca 2018 - wersja 0.3.5
 Poprawiono wizualnie wszystkie informacje, które są wyświetlane w części alertowej - aktywowane przyciskami z menu głównego gry.
+
+10 lipca 2018 - wersja 0.3.6
+Dodano pierwsze przyciski, pierwszego paragrafu.
