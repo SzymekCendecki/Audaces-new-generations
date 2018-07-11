@@ -80,6 +80,7 @@ module.exports = __webpack_require__(1);
 var intro = __webpack_require__(2);
 var heroCreator = __webpack_require__(3);
 var introGame = __webpack_require__(4);
+var firstP = __webpack_require__(5);
 
 document.addEventListener("DOMContentLoaded", function () {
 	console.log("NIEWIERNE PSY RULEZ!!!!");
@@ -845,9 +846,28 @@ document.addEventListener("DOMContentLoaded", function () {
 			createNewElementAppend("button", "chest", "zbadaj skrzynię", $("#btnsP1"));
 			createNewElementAppend("button", "package", "weź paczkę", $("#btnsP1"));
 
-			$("#btnsP1").after($("#outRoom").show());
+			createNewElementAppend("p", "textP", firstP.text, $("#mainPart"));
+			createNewElementAppend("p", "description", "", $("#mainPart"));
+			$("#btnsP1").after($("#outRoom").show().addClass("outRoomRed").prop("disabled", true));
+
+			//zdarzenie dla rozglądania się
+			$("#lookAround").on("click", function () {
+				$("#description").text(firstP.lookRoom);
+				setTimeout(function () {
+					$("#description").empty();
+				}, 7000);
+			});
+			//koniec zdarzenia rozglądania się
+
+			//zdarzenie dla zabrania paczki
+			$("#package").on("click", function () {
+				equip.push("paczka");$("#outRoom").removeClass("outRoomRed").addClass("outRoomGreen").prop("disabled", false);$(this).remove();
+			});
+			//koniec zdarzenia dla zabrania paczki
+
 		}, 30100);
 	}); //koniec zdarzenia dla przycisku start w kreatorze postaci
+
 
 	//zdarzenie dla przycisku cechy - wyświetlanym w oknie alertowym
 	$("#featuresGame").on("click", function () {
@@ -1105,6 +1125,17 @@ module.exports.text6 = "Twoja historia zaczyna się w mieście Erharuf.";
 module.exports.text7 = " W ostatnim bezpiecznym mieście przed Dzikimi Pustkowiami.";
 
 module.exports.text8 = "Na usilną prośbę znajomego kapłana zgadzasz się dostarczyć małą paczkę dla tamtejszego mnicha, rezydującego w niewielkiej wiosce, która leży tuż przy granicy z Dzikimi Pustkowiami.";
+
+/***/ }),
+/* 5 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+module.exports.text = "Stoisz w swoim pokoju, w którym znajduje się tylko łóżko, szafa, mały stolik i drewniana skrzynia. Na stoliku leży zawniątko, które musisz oddać mnichowi w przygranicznej wiosce. Co robisz?";
+
+module.exports.lookRoom = "Pokój jak pokój. Stół, łóżko, szafa, skrzynia.";
 
 /***/ })
 /******/ ]);

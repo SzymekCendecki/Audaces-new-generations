@@ -1,6 +1,7 @@
 let intro = require("./firstMenu.js");
 let heroCreator = require("./heroCreator.js");
 let introGame = require("./introGame.js");
+let firstP = require("./firstParagraph");
 
 document.addEventListener("DOMContentLoaded", () => { console.log("NIEWIERNE PSY RULEZ!!!!");
 
@@ -635,12 +636,30 @@ setTimeout(()=>{
 	createNewElementAppend("button", "chest", "zbadaj skrzynię", $("#btnsP1"));
 	createNewElementAppend("button", "package", "weź paczkę", $("#btnsP1"));
 
-$("#btnsP1").after($("#outRoom").show());
+	createNewElementAppend("p", "textP", firstP.text, $("#mainPart"));
+	createNewElementAppend("p", "description", "", $("#mainPart"));
+$("#btnsP1").after($("#outRoom").show().addClass("outRoomRed").prop("disabled", true));
+
+//zdarzenie dla rozglądania się
+$("#lookAround").on("click", function(){
+	$("#description").text(firstP.lookRoom);
+	setTimeout(()=>{
+		$("#description").empty();
+	}, 7000)
+});
+//koniec zdarzenia rozglądania się
+
+//zdarzenie dla zabrania paczki
+$("#package").on("click", function(){
+	equip.push("paczka"); $("#outRoom").removeClass("outRoomRed").addClass("outRoomGreen").prop("disabled", false); $(this).remove(); });
+//koniec zdarzenia dla zabrania paczki
+
 
 }, 30100);
 
-
 });//koniec zdarzenia dla przycisku start w kreatorze postaci
+
+
 
 //zdarzenie dla przycisku cechy - wyświetlanym w oknie alertowym
 $("#featuresGame").on("click", () =>{

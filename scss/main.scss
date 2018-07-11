@@ -443,10 +443,27 @@ nav{
   background: linear-gradient(white, gold);
 }
 
-#outRoom{
+.outRoomRed{
   margin: 10% 0 0 25%;
   width: 50%;
   background-color: red;
   font-weight: bold;
+  text-shadow: 1px 1px white;
+}
+
+.outRoomGreen{
+  margin: 10% 0 0 25%;
+  width: 50%;
+  background-color: green;
+  font-weight: bold;
+  text-shadow: 1px 1px white;
+
+}
+
+#textP, #description{
+  margin-top: 5%;
+  text-indent: 20px;
+  font-weight: bold;
+  font-size: 1.1em;
   text-shadow: 1px 1px white;
 }

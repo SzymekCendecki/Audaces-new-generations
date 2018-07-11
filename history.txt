@@ -107,3 +107,6 @@ Poprawiono wizualnie wszystkie informacje, które są wyświetlane w części al
 
 10 lipca 2018 - wersja 0.3.6
 Dodano pierwsze przyciski, pierwszego paragrafu.
+
+11 lipca 2018  wersja 0.3.7
+Dodane zostały zdarzenia dla rozglądania się po pokoju oraz zabrania paczki.
