@@ -108,5 +108,8 @@ Poprawiono wizualnie wszystkie informacje, które są wyświetlane w części al
 10 lipca 2018 - wersja 0.3.6
 Dodano pierwsze przyciski, pierwszego paragrafu.
 
-11 lipca 2018  wersja 0.3.7
+11 lipca 2018 - wersja 0.3.7
 Dodane zostały zdarzenia dla rozglądania się po pokoju oraz zabrania paczki.
+
+12 lipca 2018 - wersja 0.3.8
+Rozpoczęcie pracy nad zdarzeniem "zbadaj szafę". Na razie funkcja rozpoznaje jaka płeć otworzyła szafę i dopasowuje odpowiedni tekst.

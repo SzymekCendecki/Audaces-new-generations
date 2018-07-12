@@ -820,6 +820,11 @@ document.addEventListener("DOMContentLoaded", function () {
 
 	//zdarzenie dla przycisku start w kreatorze postaci
 	$("#startGame").on("click", function () {
+
+		//export płci
+		module.exports.test = 23746;
+		module.exports.sex = choosenFeatures[0];
+
 		clearInterval(stopAll); // zatrzymanie interwału - sprawdzenia poprawnego dokonania wyborów
 		clearInterval(stopPoints); // zatrzymanie interwału - dla zliczania punktów cech postaci
 		$("#name, #race, #occupation, #features, #features2, #equipment, #skills, #infoCreator, #startGame").hide();$("#mainPart").empty();$("#alerts").empty();
@@ -858,6 +863,12 @@ document.addEventListener("DOMContentLoaded", function () {
 				}, 7000);
 			});
 			//koniec zdarzenia rozglądania się
+
+			//zdarzenie dla zbadania szafy
+			$("#wardrobe").on("click", function () {
+				firstP.wardrobe(choosenFeatures[0], $("#description"));
+			});
+			//koniec zdarzenia badania szafy
 
 			//zdarzenie dla zabrania paczki
 			$("#package").on("click", function () {
@@ -1133,9 +1144,20 @@ module.exports.text8 = "Na usilną prośbę znajomego kapłana zgadzasz się dos
 "use strict";
 
 
+var workingFile = __webpack_require__(1);
+
 module.exports.text = "Stoisz w swoim pokoju, w którym znajduje się tylko łóżko, szafa, mały stolik i drewniana skrzynia. Na stoliku leży zawniątko, które musisz oddać mnichowi w przygranicznej wiosce. Co robisz?";
 
 module.exports.lookRoom = "Pokój jak pokój. Stół, łóżko, szafa, skrzynia.";
+
+//funkcja dla badania szafy
+module.exports.wardrobe = function (sex, where) {
+	if (sex === "kobieta") {
+		where.text("Stara, drewniana szafa, śmierdząca kurzem, pleśnią i niewiadomo czym jeszcze. Otworzyłaś szafę, w której wisi płaszcz.");
+	} else if (sex === "mężczyzna" || sex === "nie wiadomo") {
+		where.text("Stara, drewniana szafa, śmierdząca kurzem, pleśnią i niewiadomo czym jeszcze. Otworzyłeś szafę, w której wisi płaszcz.");
+	}
+};
 
 /***/ })
 /******/ ]);
