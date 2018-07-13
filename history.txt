@@ -113,3 +113,6 @@ Dodane zostały zdarzenia dla rozglądania się po pokoju oraz zabrania paczki.
 
 12 lipca 2018 - wersja 0.3.8
 Rozpoczęcie pracy nad zdarzeniem "zbadaj szafę". Na razie funkcja rozpoznaje jaka płeć otworzyła szafę i dopasowuje odpowiedni tekst.
+
+13 lipca 2018 - wersja 0.3.9
+Dodane dwa przyciski do eventu z szafą: "weź płaszcz" i "zamnknij szafę". Do przycisku "zamknij szafę" dodano zdarzenie usuwające tekst z pola o id description.

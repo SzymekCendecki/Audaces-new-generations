@@ -7,9 +7,7 @@ document.addEventListener("DOMContentLoaded", () => { console.log("NIEWIERNE PSY
 
 //funkcja, która tworzy nowy element DOM
 function createNewElementAppend(nameElement, idName, text, whereAppend, addedClass){
-		let newElement = document.createElement(nameElement); newElement.id = idName;
-		newElement.innerText = text; whereAppend.append(newElement);
-		newElement.classList.add(addedClass); newElement.classList.remove("undefined"); }
+let newElement = document.createElement(nameElement); newElement.id = idName;	newElement.innerText = text; whereAppend.append(newElement); newElement.classList.add(addedClass); 	newElement.classList.remove("undefined"); }
 
 //funkcja optymalizująca tworzenie inputów
 function createNewInputAppend(nameElement, name, id, value, type, whereAppend, addedClass){
@@ -656,7 +654,8 @@ $("#lookAround").on("click", function(){
 
 //zdarzenie dla zbadania szafy
 $("#wardrobe").on("click", function(){
-	firstP.wardrobe(choosenFeatures[0], $("#description"));
+	firstP.wardrobe(choosenFeatures[0], $("#description"), equip);
+	firstP.closeWardrobe();
 });
 //koniec zdarzenia badania szafy
 

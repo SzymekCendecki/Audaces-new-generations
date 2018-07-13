@@ -60,18 +60,11 @@
 /******/ 	__webpack_require__.p = "";
 /******/
 /******/ 	// Load entry module and return exports
-/******/ 	return __webpack_require__(__webpack_require__.s = 0);
+/******/ 	return __webpack_require__(__webpack_require__.s = 1);
 /******/ })
 /************************************************************************/
 /******/ ([
 /* 0 */
-/***/ (function(module, exports, __webpack_require__) {
-
-module.exports = __webpack_require__(1);
-
-
-/***/ }),
-/* 1 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -87,9 +80,7 @@ document.addEventListener("DOMContentLoaded", function () {
 
 	//funkcja, która tworzy nowy element DOM
 	function createNewElementAppend(nameElement, idName, text, whereAppend, addedClass) {
-		var newElement = document.createElement(nameElement);newElement.id = idName;
-		newElement.innerText = text;whereAppend.append(newElement);
-		newElement.classList.add(addedClass);newElement.classList.remove("undefined");
+		var newElement = document.createElement(nameElement);newElement.id = idName;newElement.innerText = text;whereAppend.append(newElement);newElement.classList.add(addedClass);newElement.classList.remove("undefined");
 	}
 
 	//funkcja optymalizująca tworzenie inputów
@@ -866,7 +857,8 @@ document.addEventListener("DOMContentLoaded", function () {
 
 			//zdarzenie dla zbadania szafy
 			$("#wardrobe").on("click", function () {
-				firstP.wardrobe(choosenFeatures[0], $("#description"));
+				firstP.wardrobe(choosenFeatures[0], $("#description"), equip);
+				firstP.closeWardrobe();
 			});
 			//koniec zdarzenia badania szafy
 
@@ -982,6 +974,13 @@ document.addEventListener("DOMContentLoaded", function () {
 		});
 	}); //koniec zdarzenia wyświetlania zadań (gra)
 }); //koniec DOMContentLoaded
+
+/***/ }),
+/* 1 */
+/***/ (function(module, exports, __webpack_require__) {
+
+module.exports = __webpack_require__(0);
+
 
 /***/ }),
 /* 2 */
@@ -1144,19 +1143,58 @@ module.exports.text8 = "Na usilną prośbę znajomego kapłana zgadzasz się dos
 "use strict";
 
 
-var workingFile = __webpack_require__(1);
+var workingFile = __webpack_require__(0);
 
 module.exports.text = "Stoisz w swoim pokoju, w którym znajduje się tylko łóżko, szafa, mały stolik i drewniana skrzynia. Na stoliku leży zawniątko, które musisz oddać mnichowi w przygranicznej wiosce. Co robisz?";
 
 module.exports.lookRoom = "Pokój jak pokój. Stół, łóżko, szafa, skrzynia.";
 
 //funkcja dla badania szafy
-module.exports.wardrobe = function (sex, where) {
-	if (sex === "kobieta") {
-		where.text("Stara, drewniana szafa, śmierdząca kurzem, pleśnią i niewiadomo czym jeszcze. Otworzyłaś szafę, w której wisi płaszcz.");
-	} else if (sex === "mężczyzna" || sex === "nie wiadomo") {
-		where.text("Stara, drewniana szafa, śmierdząca kurzem, pleśnią i niewiadomo czym jeszcze. Otworzyłeś szafę, w której wisi płaszcz.");
-	}
+module.exports.wardrobe = function (sex, where, equip) {
+  //gdy płaszcz jest ekwipunku
+  if (equip.indexOf('płaszcz') !== -1) {
+    if (sex === "kobieta") {
+      where.text("Stara, drewniana szafa, śmierdząca kurzem, pleśnią i niewiadomo czym jeszcze. Otworzyłaś szafę. Jest pusta.");
+    } else if (sex === "mężczyzna" || sex === "nie wiadomo") {
+      where.text("Stara, drewniana szafa, śmierdząca kurzem, pleśnią i niewiadomo czym jeszcze. Otworzyłeś szafę. Jest pusta.");
+    }
+  }
+
+  //gdy nie płaszcza w ekwipunku
+  else {
+      if (sex === "kobieta") {
+        where.text("Stara, drewniana szafa, śmierdząca kurzem, pleśnią i niewiadomo czym jeszcze. Otworzyłaś szafę, w której wisi płaszcz.");
+
+        var takeCoat = document.createElement("button");
+        takeCoat.id = "coatWardrobe";
+        takeCoat.innerText = "weź płaszcz";
+        where.append(takeCoat);
+
+        var closeWardrobe = document.createElement("button");
+        closeWardrobe.id = "closeWardrobe";
+        closeWardrobe.innerText = "zamknij szafę";
+        where.append(closeWardrobe);
+      } else if (sex === "mężczyzna" || sex === "nie wiadomo") {
+        where.text("Stara, drewniana szafa, śmierdząca kurzem, pleśnią i niewiadomo czym jeszcze. Otworzyłeś szafę, w której wisi płaszcz.");
+
+        var _takeCoat = document.createElement("button");
+        _takeCoat.id = "coatWardrobe";
+        _takeCoat.innerText = "weź płaszcz";
+        where.append(_takeCoat);
+
+        var _closeWardrobe = document.createElement("button");
+        _closeWardrobe.id = "closeWardrobe";
+        _closeWardrobe.innerText = "zamknij szafę";
+        where.append(_closeWardrobe);
+      }
+    }
+};
+
+//zamykanie szafy
+module.exports.closeWardrobe = function () {
+  $("#closeWardrobe").on("click", function () {
+    $("#description").empty();
+  });
 };
 
 /***/ })
