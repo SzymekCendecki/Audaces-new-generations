@@ -656,6 +656,7 @@ $("#lookAround").on("click", function(){
 $("#wardrobe").on("click", function(){
 	firstP.wardrobe(choosenFeatures[0], $("#description"), equip);
 	firstP.closeWardrobe();
+	firstP.takeCoat();
 });
 //koniec zdarzenia badania szafy
 
