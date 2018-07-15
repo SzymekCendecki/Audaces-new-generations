@@ -614,7 +614,6 @@ if(allgreen.length < 7 || equip.length == 0 || skills.length == 0){ $("#startGam
 $("#startGame").on("click", () =>{
 
 //export płci
-module.exports.test = 23746;
 module.exports.sex = choosenFeatures[0];
 
 clearInterval(stopAll); // zatrzymanie interwału - sprawdzenia poprawnego dokonania wyborów
@@ -656,20 +655,20 @@ $("#lookAround").on("click", function(){
 $("#wardrobe").on("click", function(){
 	firstP.wardrobe(choosenFeatures[0], $("#description"), equip);
 	firstP.closeWardrobe();
-	firstP.takeCoat();
+	firstP.takeCoat(equip);
 });
 //koniec zdarzenia badania szafy
 
 //zdarzenie dla zabrania paczki
 $("#package").on("click", function(){
-	equip.push("paczka"); $("#outRoom").removeClass("outRoomRed").addClass("outRoomGreen").prop("disabled", false); $(this).remove(); });
+	equip.push("paczka");
+	$("#outRoom").removeClass("outRoomRed").addClass("outRoomGreen").prop("disabled", false); $(this).remove(); });
 //koniec zdarzenia dla zabrania paczki
 
 
 }, 30100);
 
 });//koniec zdarzenia dla przycisku start w kreatorze postaci
-
 
 
 //zdarzenie dla przycisku cechy - wyświetlanym w oknie alertowym
@@ -716,6 +715,7 @@ $("#featuresGame").on("click", () =>{
 	createNewElementAppend("p", "heightTitle", "wzrost", $("#alerts"));
 	createNewElementAppend("p", "heightTable", choosenFeatures[5], $("#alerts"));
 
+	$("#featuresGame").prop("disabled", true);
 	$("#alerts").addClass("arrange");
 
 	$("#nameTitle, #nameTable, #raceTitle, #raceTable, #occupationTitle, #occupationTable, #forceTitle, #forceTable, #strenghtTitle, #strenghtTable, #dexterityTitle, #dexterityTable, #intelligenceTitle, #intelligenceTable, #charismaTitle, #charismaTable, #sexTitle, #sexTable, #hairTitle, #hairTable, #eyesTitle, #eyesTable, #skinTitle, #skinTable, #weightTitle, #weightTable, #heightTitle, #heightTable").addClass("centerBold");
@@ -726,7 +726,10 @@ $("#featuresGame").on("click", () =>{
 
 	//zdarzenie przycisku zamykania
 		$("#closeFeatures").addClass("closeBtn");
-		$("#closeFeatures").on("click", () => { $("#alerts").removeClass("arrange").empty(); });
+		$("#closeFeatures").on("click", () => {
+			$("#alerts").removeClass("arrange").empty();
+			$("#taskGame, #skillsGame, #equipGame, #featuresGame").prop("disabled", false);
+		});
 });//koniec zdarzenia dla przycisku cechy - wyświetlanym w oknie alertowym
 
 //zdarzenie wyświetlania ekwipunku (gra);
@@ -735,9 +738,14 @@ $("#equipGame").on("click", () =>{createNewElementAppend("p", "equipTitle", "ekw
 $("#equipTable, #equipTitle").addClass("centerBold2");
 $("#equipTable").addClass("font12emGreen");
 
+$("#equipGame").prop("disabled", true);
+
 //zdarzenie przycisku zamykania
 $("#closeEquip").addClass("closeBtn");
-$("#closeEquip").on("click", () => { $("#alerts").empty(); }); });
+$("#closeEquip").on("click", () => {
+	$("#alerts").empty();
+$("#taskGame, #skillsGame, #equipGame, #featuresGame").prop("disabled", false);
+}); });
 //koniec zdarzenia wyświetlania ekwipunku (gra)
 
 //zdarzenie dla wyświetlania umiejętności (gra);
@@ -746,17 +754,29 @@ $("#skillsGame").on("click", () =>{ createNewElementAppend("p", "skillsTitle", "
 $("#skillsTitle, #skillsTable").addClass("centerBold2");
 $("#skillsTable").addClass("font12emGreen");
 
+$("#skillsGame").prop("disabled", true);
+
 	//zdarzenie przycisku zamykania
-$("#closeSkills").addClass("closeBtn"); $("#closeSkills").on("click", () => { $("#alerts").empty(); }); });
+$("#closeSkills").addClass("closeBtn"); $("#closeSkills").on("click", () => {
+	$("#alerts").empty();
+$("#taskGame, #skillsGame, #equipGame, #featuresGame").prop("disabled", false);
+}); });
 //koniec zdarzenia wyświetlania umiejętności (gra)
 
 //zdarzenie dla wyśwetlania zadań w grze (gra)
-$("#taskGame").on("click", () =>{ createNewElementAppend("p", "taskTitle", "zadania", $("#alerts"));
-for(let i=0; i<tasks.length; i++){ createNewElementAppend("p", "taskId" + i, tasks[i], $("#alerts"), "font12emGreen"); } createNewElementAppend("button", "closeTasks", "zamknij", $("#alerts")); $("#alerts > p").addClass("centerBold2");
-
+$("#taskGame").on("click", () =>{
+	 createNewElementAppend("p", "taskTitle", "zadania", $("#alerts"));
+for(let i=0; i<tasks.length; i++){
+	 createNewElementAppend("p", "taskId" + i, tasks[i], $("#alerts"), "font12emGreen"); }
+	  createNewElementAppend("button", "closeTasks", "zamknij", $("#alerts"));
+		$("#alerts > p").addClass("centerBold2");
+$("#taskGame").prop("disabled", true);
 //zdarzenie przycisku zamykania
 $("#closeTasks").addClass("closeBtn");
-$("#closeTasks").on("click", () => { $("#alerts").empty(); });
+$("#closeTasks").on("click", () => {
+	$("#alerts").empty();
+	$("#taskGame, #skillsGame, #equipGame, #featuresGame").prop("disabled", false);
+});
 }); //koniec zdarzenia wyświetlania zadań (gra)
 
 });//koniec DOMContentLoaded

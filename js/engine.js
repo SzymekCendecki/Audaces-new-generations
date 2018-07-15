@@ -813,7 +813,6 @@ document.addEventListener("DOMContentLoaded", function () {
 	$("#startGame").on("click", function () {
 
 		//export płci
-		module.exports.test = 23746;
 		module.exports.sex = choosenFeatures[0];
 
 		clearInterval(stopAll); // zatrzymanie interwału - sprawdzenia poprawnego dokonania wyborów
@@ -859,12 +858,14 @@ document.addEventListener("DOMContentLoaded", function () {
 			$("#wardrobe").on("click", function () {
 				firstP.wardrobe(choosenFeatures[0], $("#description"), equip);
 				firstP.closeWardrobe();
+				firstP.takeCoat(equip);
 			});
 			//koniec zdarzenia badania szafy
 
 			//zdarzenie dla zabrania paczki
 			$("#package").on("click", function () {
-				equip.push("paczka");$("#outRoom").removeClass("outRoomRed").addClass("outRoomGreen").prop("disabled", false);$(this).remove();
+				equip.push("paczka");
+				$("#outRoom").removeClass("outRoomRed").addClass("outRoomGreen").prop("disabled", false);$(this).remove();
 			});
 			//koniec zdarzenia dla zabrania paczki
 
@@ -916,6 +917,7 @@ document.addEventListener("DOMContentLoaded", function () {
 		createNewElementAppend("p", "heightTitle", "wzrost", $("#alerts"));
 		createNewElementAppend("p", "heightTable", choosenFeatures[5], $("#alerts"));
 
+		$("#featuresGame").prop("disabled", true);
 		$("#alerts").addClass("arrange");
 
 		$("#nameTitle, #nameTable, #raceTitle, #raceTable, #occupationTitle, #occupationTable, #forceTitle, #forceTable, #strenghtTitle, #strenghtTable, #dexterityTitle, #dexterityTable, #intelligenceTitle, #intelligenceTable, #charismaTitle, #charismaTable, #sexTitle, #sexTable, #hairTitle, #hairTable, #eyesTitle, #eyesTable, #skinTitle, #skinTable, #weightTitle, #weightTable, #heightTitle, #heightTable").addClass("centerBold");
@@ -928,6 +930,7 @@ document.addEventListener("DOMContentLoaded", function () {
 		$("#closeFeatures").addClass("closeBtn");
 		$("#closeFeatures").on("click", function () {
 			$("#alerts").removeClass("arrange").empty();
+			$("#taskGame, #skillsGame, #equipGame, #featuresGame").prop("disabled", false);
 		});
 	}); //koniec zdarzenia dla przycisku cechy - wyświetlanym w oknie alertowym
 
@@ -938,10 +941,13 @@ document.addEventListener("DOMContentLoaded", function () {
 		$("#equipTable, #equipTitle").addClass("centerBold2");
 		$("#equipTable").addClass("font12emGreen");
 
+		$("#equipGame").prop("disabled", true);
+
 		//zdarzenie przycisku zamykania
 		$("#closeEquip").addClass("closeBtn");
 		$("#closeEquip").on("click", function () {
 			$("#alerts").empty();
+			$("#taskGame, #skillsGame, #equipGame, #featuresGame").prop("disabled", false);
 		});
 	});
 	//koniec zdarzenia wyświetlania ekwipunku (gra)
@@ -953,9 +959,12 @@ document.addEventListener("DOMContentLoaded", function () {
 		$("#skillsTitle, #skillsTable").addClass("centerBold2");
 		$("#skillsTable").addClass("font12emGreen");
 
+		$("#skillsGame").prop("disabled", true);
+
 		//zdarzenie przycisku zamykania
 		$("#closeSkills").addClass("closeBtn");$("#closeSkills").on("click", function () {
 			$("#alerts").empty();
+			$("#taskGame, #skillsGame, #equipGame, #featuresGame").prop("disabled", false);
 		});
 	});
 	//koniec zdarzenia wyświetlania umiejętności (gra)
@@ -965,12 +974,15 @@ document.addEventListener("DOMContentLoaded", function () {
 		createNewElementAppend("p", "taskTitle", "zadania", $("#alerts"));
 		for (var i = 0; i < tasks.length; i++) {
 			createNewElementAppend("p", "taskId" + i, tasks[i], $("#alerts"), "font12emGreen");
-		}createNewElementAppend("button", "closeTasks", "zamknij", $("#alerts"));$("#alerts > p").addClass("centerBold2");
-
+		}
+		createNewElementAppend("button", "closeTasks", "zamknij", $("#alerts"));
+		$("#alerts > p").addClass("centerBold2");
+		$("#taskGame").prop("disabled", true);
 		//zdarzenie przycisku zamykania
 		$("#closeTasks").addClass("closeBtn");
 		$("#closeTasks").on("click", function () {
 			$("#alerts").empty();
+			$("#taskGame, #skillsGame, #equipGame, #featuresGame").prop("disabled", false);
 		});
 	}); //koniec zdarzenia wyświetlania zadań (gra)
 }); //koniec DOMContentLoaded
@@ -1149,43 +1161,44 @@ module.exports.text = "Stoisz w swoim pokoju, w którym znajduje się tylko łó
 
 module.exports.lookRoom = "Pokój jak pokój. Stół, łóżko, szafa, skrzynia.";
 
+//funkcja zamykania szafy
+function closeWardrobe(where) {
+  var closeWardrobe = document.createElement("button");
+  closeWardrobe.id = "closeWardrobe";
+  closeWardrobe.innerText = "zamknij szafę";
+  where.append(closeWardrobe);
+}
+
+//funkcja zabierania płaszcza
+function btnTakeCoat(where) {
+  var takeCoat = document.createElement("button");
+  takeCoat.id = "takeCoatWardrobe";
+  takeCoat.innerText = "weź płaszcz";
+  where.append(takeCoat);
+}
+
 //funkcja dla badania szafy
 module.exports.wardrobe = function (sex, where, equip) {
   //gdy płaszcz jest ekwipunku
   if (equip.indexOf('płaszcz') !== -1) {
     if (sex === "kobieta") {
       where.text("Stara, drewniana szafa, śmierdząca kurzem, pleśnią i niewiadomo czym jeszcze. Otworzyłaś szafę. Jest pusta.");
+      closeWardrobe(where);
     } else if (sex === "mężczyzna" || sex === "nie wiadomo") {
       where.text("Stara, drewniana szafa, śmierdząca kurzem, pleśnią i niewiadomo czym jeszcze. Otworzyłeś szafę. Jest pusta.");
+      closeWardrobe(where);
     }
   }
-
   //gdy nie płaszcza w ekwipunku
   else {
       if (sex === "kobieta") {
         where.text("Stara, drewniana szafa, śmierdząca kurzem, pleśnią i niewiadomo czym jeszcze. Otworzyłaś szafę, w której wisi płaszcz.");
-
-        var takeCoat = document.createElement("button");
-        takeCoat.id = "coatWardrobe";
-        takeCoat.innerText = "weź płaszcz";
-        where.append(takeCoat);
-
-        var closeWardrobe = document.createElement("button");
-        closeWardrobe.id = "closeWardrobe";
-        closeWardrobe.innerText = "zamknij szafę";
-        where.append(closeWardrobe);
+        btnTakeCoat(where);
+        closeWardrobe(where);
       } else if (sex === "mężczyzna" || sex === "nie wiadomo") {
         where.text("Stara, drewniana szafa, śmierdząca kurzem, pleśnią i niewiadomo czym jeszcze. Otworzyłeś szafę, w której wisi płaszcz.");
-
-        var _takeCoat = document.createElement("button");
-        _takeCoat.id = "coatWardrobe";
-        _takeCoat.innerText = "weź płaszcz";
-        where.append(_takeCoat);
-
-        var _closeWardrobe = document.createElement("button");
-        _closeWardrobe.id = "closeWardrobe";
-        _closeWardrobe.innerText = "zamknij szafę";
-        where.append(_closeWardrobe);
+        btnTakeCoat(where);
+        closeWardrobe(where);
       }
     }
 };
@@ -1194,6 +1207,14 @@ module.exports.wardrobe = function (sex, where, equip) {
 module.exports.closeWardrobe = function () {
   $("#closeWardrobe").on("click", function () {
     $("#description").empty();
+  });
+};
+
+//zabieranie płaszcza
+module.exports.takeCoat = function (equip) {
+  $("#takeCoatWardrobe").on("click", function () {
+    equip.push("płaszcz");
+    $(this).remove();
   });
 };
 
