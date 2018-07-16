@@ -94,6 +94,10 @@ let amountAllPoint = [];
 //tablica zadań
 let tasks =["zanieś paczkę mnichowi"];
 
+//początkowa ilosć złota
+let amountGold = 0;
+let gold = "złoto: " + amountGold;
+
 //showanie przycisków pierszego menu
 $("#info, #licence, #tutorial, #newGame, #titleGameHeader, #subTitleGameHeader").hide();
 
@@ -613,8 +617,8 @@ if(allgreen.length < 7 || equip.length == 0 || skills.length == 0){ $("#startGam
 //zdarzenie dla przycisku start w kreatorze postaci
 $("#startGame").on("click", () =>{
 
-//export płci
-module.exports.sex = choosenFeatures[0];
+//dodanie ilości złota do ekwipunku
+equip.unshift(gold);
 
 clearInterval(stopAll); // zatrzymanie interwału - sprawdzenia poprawnego dokonania wyborów
 clearInterval(stopPoints); // zatrzymanie interwału - dla zliczania punktów cech postaci
@@ -643,12 +647,8 @@ setTimeout(()=>{
 $("#btnsP1").after($("#outRoom").show().addClass("outRoomRed").prop("disabled", true));
 
 //zdarzenie dla rozglądania się
-$("#lookAround").on("click", function(){
-	$("#description").text(firstP.lookRoom);
-	setTimeout(()=>{
-		$("#description").empty();
-	}, 7000)
-});
+$("#lookAround").on("click", function(){ $("#description").text(firstP.lookRoom);
+	setTimeout(()=>{ $("#description").empty(); }, 7000); });
 //koniec zdarzenia rozglądania się
 
 //zdarzenie dla zbadania szafy
@@ -656,13 +656,18 @@ $("#wardrobe").on("click", function(){
 	firstP.wardrobe(choosenFeatures[0], $("#description"), equip);
 	firstP.closeWardrobe();
 	firstP.takeCoat(equip);
-});
+ });
 //koniec zdarzenia badania szafy
 
+//zdarzenie dla zbadania skrzynię
+$("#chest").on("click", function(){
+	firstP.chest(equip, gold, amountGold, $("#description"));
+	firstP.closeChest($("#description"));
+});
+//koniec zdarzenia dla zbadania skrzyni
+
 //zdarzenie dla zabrania paczki
-$("#package").on("click", function(){
-	equip.push("paczka");
-	$("#outRoom").removeClass("outRoomRed").addClass("outRoomGreen").prop("disabled", false); $(this).remove(); });
+$("#package").on("click", function(){ equip.push("paczka"); $("#outRoom").removeClass("outRoomRed").addClass("outRoomGreen").prop("disabled", false); $(this).remove(); });
 //koniec zdarzenia dla zabrania paczki
 
 
