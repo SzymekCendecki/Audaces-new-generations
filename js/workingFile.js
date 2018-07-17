@@ -95,8 +95,7 @@ let amountAllPoint = [];
 let tasks =["zanieś paczkę mnichowi"];
 
 //początkowa ilosć złota
-let amountGold = 0;
-let gold = "złoto: " + amountGold;
+let gold = [0];
 
 //showanie przycisków pierszego menu
 $("#info, #licence, #tutorial, #newGame, #titleGameHeader, #subTitleGameHeader").hide();
@@ -617,9 +616,6 @@ if(allgreen.length < 7 || equip.length == 0 || skills.length == 0){ $("#startGam
 //zdarzenie dla przycisku start w kreatorze postaci
 $("#startGame").on("click", () =>{
 
-//dodanie ilości złota do ekwipunku
-equip.unshift(gold);
-
 clearInterval(stopAll); // zatrzymanie interwału - sprawdzenia poprawnego dokonania wyborów
 clearInterval(stopPoints); // zatrzymanie interwału - dla zliczania punktów cech postaci
 $("#name, #race, #occupation, #features, #features2, #equipment, #skills, #infoCreator, #startGame").hide(); $("#mainPart").empty(); $("#alerts").empty();
@@ -652,25 +648,16 @@ $("#lookAround").on("click", function(){ $("#description").text(firstP.lookRoom)
 //koniec zdarzenia rozglądania się
 
 //zdarzenie dla zbadania szafy
-$("#wardrobe").on("click", function(){
-	firstP.wardrobe(choosenFeatures[0], $("#description"), equip);
-	firstP.closeWardrobe();
-	firstP.takeCoat(equip);
- });
+$("#wardrobe").on("click", function(){ firstP.wardrobe(choosenFeatures[0], $("#description"), equip); firstP.closeWardrobe(); firstP.takeCoat(equip); });
 //koniec zdarzenia badania szafy
 
 //zdarzenie dla zbadania skrzynię
-$("#chest").on("click", function(){
-	firstP.chest(equip, gold, amountGold, $("#description"));
-	firstP.closeChest($("#description"));
-});
+$("#chest").on("click", function(){ firstP.chest(gold, $("#description")); firstP.closeChest($("#description")); });
 //koniec zdarzenia dla zbadania skrzyni
 
 //zdarzenie dla zabrania paczki
 $("#package").on("click", function(){ equip.push("paczka"); $("#outRoom").removeClass("outRoomRed").addClass("outRoomGreen").prop("disabled", false); $(this).remove(); });
 //koniec zdarzenia dla zabrania paczki
-
-
 }, 30100);
 
 });//koniec zdarzenia dla przycisku start w kreatorze postaci
@@ -730,18 +717,20 @@ $("#featuresGame").on("click", () =>{
 	createNewElementAppend("button", "closeFeatures", "zamknij", $("#alerts"));
 
 	//zdarzenie przycisku zamykania
-		$("#closeFeatures").addClass("closeBtn");
-		$("#closeFeatures").on("click", () => {
-			$("#alerts").removeClass("arrange").empty();
-			$("#taskGame, #skillsGame, #equipGame, #featuresGame").prop("disabled", false);
-		});
+	$("#closeFeatures").addClass("closeBtn"); $("#closeFeatures").on("click", () => {
+	$("#alerts").removeClass("arrange").empty(); $("#taskGame, #skillsGame, #equipGame, #featuresGame").prop("disabled", false); });
 });//koniec zdarzenia dla przycisku cechy - wyświetlanym w oknie alertowym
 
 //zdarzenie wyświetlania ekwipunku (gra);
-$("#equipGame").on("click", () =>{createNewElementAppend("p", "equipTitle", "ekwipunek", $("#alerts")); createNewElementAppend("p", "equipTable", equip, $("#alerts")); createNewElementAppend("button", "closeEquip", "zamknij", $("#alerts"));
+$("#equipGame").on("click", () =>{
+	createNewElementAppend("p", "equipTitle", "ekwipunek", $("#alerts"));
+	createNewElementAppend("p", "equipTable", equip, $("#alerts"));
+	createNewElementAppend("p", "goldTitle", "złoto", $("#alerts"));
+	createNewElementAppend("p", "goldTable", gold, $("#alerts"));
+	createNewElementAppend("button", "closeEquip", "zamknij", $("#alerts"));
 
-$("#equipTable, #equipTitle").addClass("centerBold2");
-$("#equipTable").addClass("font12emGreen");
+$("#equipTable, #equipTitle, #goldTitle, #goldTable").addClass("centerBold2");
+$("#equipTable, #goldTable").addClass("font12emGreen");
 
 $("#equipGame").prop("disabled", true);
 

@@ -125,3 +125,6 @@ Poprawiono działanie eventów: dodawania płaszcza do ekwipunku, wyświetlania 
 
 16 lipca 2018 - wersja 0.4.2
 Rozpoczęto nad eventem dla przycisku skrzyni i dodawania złota do ekwipunku.
+
+17 lipca 2018 - wersja 0.4.3
+Poprawiono błąd dodawania złota do ekwipunku.

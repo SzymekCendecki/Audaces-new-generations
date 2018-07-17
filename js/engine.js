@@ -180,8 +180,7 @@ document.addEventListener("DOMContentLoaded", function () {
 	var tasks = ["zanieś paczkę mnichowi"];
 
 	//początkowa ilosć złota
-	var amountGold = 0;
-	var gold = "złoto: " + amountGold;
+	var gold = [0];
 
 	//showanie przycisków pierszego menu
 	$("#info, #licence, #tutorial, #newGame, #titleGameHeader, #subTitleGameHeader").hide();
@@ -816,9 +815,6 @@ document.addEventListener("DOMContentLoaded", function () {
 	//zdarzenie dla przycisku start w kreatorze postaci
 	$("#startGame").on("click", function () {
 
-		//dodanie ilości złota do ekwipunku
-		equip.unshift(gold);
-
 		clearInterval(stopAll); // zatrzymanie interwału - sprawdzenia poprawnego dokonania wyborów
 		clearInterval(stopPoints); // zatrzymanie interwału - dla zliczania punktów cech postaci
 		$("#name, #race, #occupation, #features, #features2, #equipment, #skills, #infoCreator, #startGame").hide();$("#mainPart").empty();$("#alerts").empty();
@@ -860,16 +856,13 @@ document.addEventListener("DOMContentLoaded", function () {
 
 			//zdarzenie dla zbadania szafy
 			$("#wardrobe").on("click", function () {
-				firstP.wardrobe(choosenFeatures[0], $("#description"), equip);
-				firstP.closeWardrobe();
-				firstP.takeCoat(equip);
+				firstP.wardrobe(choosenFeatures[0], $("#description"), equip);firstP.closeWardrobe();firstP.takeCoat(equip);
 			});
 			//koniec zdarzenia badania szafy
 
 			//zdarzenie dla zbadania skrzynię
 			$("#chest").on("click", function () {
-				firstP.chest(equip, gold, amountGold, $("#description"));
-				firstP.closeChest($("#description"));
+				firstP.chest(gold, $("#description"));firstP.closeChest($("#description"));
 			});
 			//koniec zdarzenia dla zbadania skrzyni
 
@@ -878,7 +871,6 @@ document.addEventListener("DOMContentLoaded", function () {
 				equip.push("paczka");$("#outRoom").removeClass("outRoomRed").addClass("outRoomGreen").prop("disabled", false);$(this).remove();
 			});
 			//koniec zdarzenia dla zabrania paczki
-
 		}, 30100);
 	}); //koniec zdarzenia dla przycisku start w kreatorze postaci
 
@@ -937,19 +929,21 @@ document.addEventListener("DOMContentLoaded", function () {
 		createNewElementAppend("button", "closeFeatures", "zamknij", $("#alerts"));
 
 		//zdarzenie przycisku zamykania
-		$("#closeFeatures").addClass("closeBtn");
-		$("#closeFeatures").on("click", function () {
-			$("#alerts").removeClass("arrange").empty();
-			$("#taskGame, #skillsGame, #equipGame, #featuresGame").prop("disabled", false);
+		$("#closeFeatures").addClass("closeBtn");$("#closeFeatures").on("click", function () {
+			$("#alerts").removeClass("arrange").empty();$("#taskGame, #skillsGame, #equipGame, #featuresGame").prop("disabled", false);
 		});
 	}); //koniec zdarzenia dla przycisku cechy - wyświetlanym w oknie alertowym
 
 	//zdarzenie wyświetlania ekwipunku (gra);
 	$("#equipGame").on("click", function () {
-		createNewElementAppend("p", "equipTitle", "ekwipunek", $("#alerts"));createNewElementAppend("p", "equipTable", equip, $("#alerts"));createNewElementAppend("button", "closeEquip", "zamknij", $("#alerts"));
+		createNewElementAppend("p", "equipTitle", "ekwipunek", $("#alerts"));
+		createNewElementAppend("p", "equipTable", equip, $("#alerts"));
+		createNewElementAppend("p", "goldTitle", "złoto", $("#alerts"));
+		createNewElementAppend("p", "goldTable", gold, $("#alerts"));
+		createNewElementAppend("button", "closeEquip", "zamknij", $("#alerts"));
 
-		$("#equipTable, #equipTitle").addClass("centerBold2");
-		$("#equipTable").addClass("font12emGreen");
+		$("#equipTable, #equipTitle, #goldTitle, #goldTable").addClass("centerBold2");
+		$("#equipTable, #goldTable").addClass("font12emGreen");
 
 		$("#equipGame").prop("disabled", true);
 
@@ -1174,18 +1168,12 @@ module.exports.lookRoom = "Pokój jak pokój. Stół, łóżko, szafa, skrzynia.
 //funkcje dla szafy
 //funkcja zamykania szafy
 function closeWardrobe(where) {
-  var closeWardrobe = document.createElement("button");
-  closeWardrobe.id = "closeWardrobe";
-  closeWardrobe.innerText = "zamknij szafę";
-  where.append(closeWardrobe);
+  var closeWardrobe = document.createElement("button");closeWardrobe.id = "closeWardrobe";closeWardrobe.innerText = "zamknij szafę";where.append(closeWardrobe);
 }
 
 //funkcja tworzenia przycisku zabierania płaszcza
 function btnTakeCoat(where) {
-  var takeCoat = document.createElement("button");
-  takeCoat.id = "takeCoatWardrobe";
-  takeCoat.innerText = "weź płaszcz";
-  where.append(takeCoat);
+  var takeCoat = document.createElement("button");takeCoat.id = "takeCoatWardrobe";takeCoat.innerText = "weź płaszcz";where.append(takeCoat);
 }
 
 //zamykanie szafy
@@ -1200,24 +1188,20 @@ module.exports.wardrobe = function (sex, where, equip) {
   //gdy płaszcz jest ekwipunku
   if (equip.indexOf('płaszcz') !== -1) {
     if (sex === "kobieta") {
-      where.text("Stara, drewniana szafa, śmierdząca kurzem, pleśnią i niewiadomo czym jeszcze. Otworzyłaś szafę. Jest pusta.");
-      closeWardrobe(where);
+      where.text("Stara, drewniana szafa, śmierdząca kurzem, pleśnią i niewiadomo czym jeszcze. Otworzyłaś szafę. Jest pusta.");closeWardrobe(where);
     } else if (sex === "mężczyzna" || sex === "nie wiadomo") {
-      where.text("Stara, drewniana szafa, śmierdząca kurzem, pleśnią i niewiadomo czym jeszcze. Otworzyłeś szafę. Jest pusta.");
-      closeWardrobe(where);
+      where.text("Stara, drewniana szafa, śmierdząca kurzem, pleśnią i niewiadomo czym jeszcze. Otworzyłeś szafę. Jest pusta.");closeWardrobe(where);
     }
   }
 
   //gdy nie płaszcza w ekwipunku
   else {
       if (sex === "kobieta") {
-        where.text("Stara, drewniana szafa, śmierdząca kurzem, pleśnią i niewiadomo czym jeszcze. Otworzyłaś szafę, w której wisi płaszcz.");
-        btnTakeCoat(where);
+        where.text("Stara, drewniana szafa, śmierdząca kurzem, pleśnią i niewiadomo czym jeszcze. Otworzyłaś szafę, w której wisi płaszcz.");btnTakeCoat(where);
         closeWardrobe(where);
       } else if (sex === "mężczyzna" || sex === "nie wiadomo") {
         where.text("Stara, drewniana szafa, śmierdząca kurzem, pleśnią i niewiadomo czym jeszcze. Otworzyłeś szafę, w której wisi płaszcz.");
-        btnTakeCoat(where);
-        closeWardrobe(where);
+        btnTakeCoat(where);closeWardrobe(where);
       }
     }
 };
@@ -1225,8 +1209,7 @@ module.exports.wardrobe = function (sex, where, equip) {
 //zabieranie płaszcza
 module.exports.takeCoat = function (equip) {
   $("#takeCoatWardrobe").on("click", function () {
-    equip.push("płaszcz");
-    $(this).remove();
+    equip.push("płaszcz");$(this).remove();
   });
 };
 
@@ -1238,43 +1221,27 @@ module.exports.closeChest = function (where) {
   });
 };
 
-//funkcja brania pieniędzy ze skryni
-function takeGold(equip, gold, amountGold, where) {
-  $("#takeGoldChest").on("click", function () {
-    amountGold = amountGold + 12;
-    gold = "złoto: " + amountGold;
-    equip.splice(0, 1, gold);
-    $("#description").text("Niewielka drewniana skrzynia, bez żadnych żelaznych okuć. Jest pusta.");
-    closeChest(where);
-    $(this).remove();
-  });
-}
-
 //funkcja tworzenia przycisku zamykania skrzyni
 function closeChest(where) {
-  var closeChest = document.createElement("button");
-  closeChest.id = "closeChest";
-  closeChest.innerText = "zamknij skrzynię";
-  where.append(closeChest);
+  var closeChest = document.createElement("button");closeChest.id = "closeChest";closeChest.innerText = "zamknij skrzynię";where.append(closeChest);
 }
 
 //funkcja tworzenia przycisku zabierania złota
 function btnTakeGold(where) {
-  var takeGold = document.createElement("button");
-  takeGold.id = "takeGoldChest";
-  takeGold.innerText = "weź złoto";
-  where.append(takeGold);
+  var takeGold = document.createElement("button");takeGold.id = "takeGoldChest";takeGold.innerText = "weź złoto";where.append(takeGold);
 }
 
-module.exports.chest = function (equip, gold, amountGold, where) {
-  if (amountGold === 0) {
-    where.text("Niewielka drewniana skrzynia, bez żadnych żelaznych okuć. W środku znajduje się 12 sztuk złotych monet.");
-    takeGold(equip, gold, amountGold, where);
-    btnTakeGold(where);
-    closeChest(where);
-  } else if (amountGold > 0) {
-    where.text("Niewielka drewniana skrzynia, bez żadnych żelaznych okuć. Jest pusta.");
-    closeChest(where);
+module.exports.chest = function (gold, where) {
+  if (gold[0] == 0) {
+    where.text("Niewielka drewniana skrzynia, bez żadnych żelaznych okuć. W środku znajduje się 12 sztuk złotych monet.");btnTakeGold(where);closeChest(where);
+
+    $("#takeGoldChest").on("click", function () {
+      gold.splice(0, 1, 12);$("#description").text("Niewielka drewniana skrzynia, bez żadnych żelaznych okuć. Jest pusta.");closeChest(where);$("#closeChest").on("click", function () {
+        $("#description").empty();
+      });$(this).remove();
+    });s;
+  } else if (gold[0] > 0) {
+    where.text("Niewielka drewniana skrzynia, bez żadnych żelaznych okuć. Jest pusta.");closeChest(where);
   }
 };
 
