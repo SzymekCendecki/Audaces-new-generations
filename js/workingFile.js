@@ -2,6 +2,7 @@ let intro = require("./firstMenu.js");
 let heroCreator = require("./heroCreator.js");
 let introGame = require("./introGame.js");
 let firstP = require("./firstParagraph");
+let street = require("./secondParagraph");
 
 document.addEventListener("DOMContentLoaded", () => { console.log("NIEWIERNE PSY RULEZ!!!!");
 
@@ -633,10 +634,19 @@ $("#skillsGame").addClass("correctSkills"); }, 30000);
 
 setTimeout(()=>{
 	createNewElementAppend("div", "btnsP1", "", $("nav"));
+
+	//tworzenie przycisków dla pierwszego paragrafu - pokój
 	createNewElementAppend("button", "lookAround", "rozejrzyj się", $("#btnsP1"));
 	createNewElementAppend("button", "wardrobe", "zbadaj szafę", $("#btnsP1"));
 	createNewElementAppend("button", "chest", "zbadaj skrzynię", $("#btnsP1"));
 	createNewElementAppend("button", "package", "weź paczkę", $("#btnsP1"));
+
+	//tworzenie przycisków dla paragrafu drugiego - ulica
+	createNewElementAppend("button", "lookAroundStreet", "rozejrzyj się", $("#btnsP1"));
+	createNewElementAppend("button", "marketPlace", "targ", $("#btnsP1"));
+	createNewElementAppend("button", "inRoom", "do domu", $("#btnsP1"));
+	createNewElementAppend("button", "caravans", "karawany", $("#btnsP1"));
+	$("#lookAroundStreet, #marketPlace, #inRoom, #caravans").hide();
 
 	createNewElementAppend("p", "textP", firstP.text, $("#mainPart"));
 	createNewElementAppend("p", "description", "", $("#mainPart"));
@@ -659,8 +669,15 @@ $("#chest").on("click", function(){ firstP.chest(gold, $("#description")); first
 $("#package").on("click", function(){ equip.push("paczka"); $("#outRoom").removeClass("outRoomRed").addClass("outRoomGreen").prop("disabled", false); $(this).remove(); });
 //koniec zdarzenia dla zabrania paczki
 }, 30100);
-
 });//koniec zdarzenia dla przycisku start w kreatorze postaci
+
+$("#outRoom").on("click", ()=>{
+	console.log("działa");
+	$("#mainPart").empty();
+	$("#lookAround, #wardrobe, #chest, #outRoom").hide();
+	$("#lookAroundStreet, #marketPlace, #inRoom, #caravans").show().addClass("basicBtn");
+	createNewElementAppend("p", "textP",street.text, $("#mainPart"));
+});
 
 
 //zdarzenie dla przycisku cechy - wyświetlanym w oknie alertowym

@@ -128,3 +128,6 @@ Rozpoczęto nad eventem dla przycisku skrzyni i dodawania złota do ekwipunku.
 
 17 lipca 2018 - wersja 0.4.3
 Poprawiono błąd dodawania złota do ekwipunku.
+
+18 lipca 2018 - wersja 0.4.4
+Poprawiono "grafikę" przycisków skrzyni. Rozpoczęto prace nad drugim paragrafem - wyjście przed dom - utworzono przyciski oraz dodano wstępnie style dla przycisków. Należy dodać eventy do tych przycsików oraz drbną poprawkę dla przycisków "do domu" i "karawany" - przesunąć w lewo, celem wyrównania.

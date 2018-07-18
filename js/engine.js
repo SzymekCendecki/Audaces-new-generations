@@ -74,6 +74,7 @@ var intro = __webpack_require__(2);
 var heroCreator = __webpack_require__(3);
 var introGame = __webpack_require__(4);
 var firstP = __webpack_require__(5);
+var street = __webpack_require__(6);
 
 document.addEventListener("DOMContentLoaded", function () {
 	console.log("NIEWIERNE PSY RULEZ!!!!");
@@ -836,10 +837,19 @@ document.addEventListener("DOMContentLoaded", function () {
 
 		setTimeout(function () {
 			createNewElementAppend("div", "btnsP1", "", $("nav"));
+
+			//tworzenie przycisków dla pierwszego paragrafu - pokój
 			createNewElementAppend("button", "lookAround", "rozejrzyj się", $("#btnsP1"));
 			createNewElementAppend("button", "wardrobe", "zbadaj szafę", $("#btnsP1"));
 			createNewElementAppend("button", "chest", "zbadaj skrzynię", $("#btnsP1"));
 			createNewElementAppend("button", "package", "weź paczkę", $("#btnsP1"));
+
+			//tworzenie przycisków dla paragrafu drugiego - ulica
+			createNewElementAppend("button", "lookAroundStreet", "rozejrzyj się", $("#btnsP1"));
+			createNewElementAppend("button", "marketPlace", "targ", $("#btnsP1"));
+			createNewElementAppend("button", "inRoom", "do domu", $("#btnsP1"));
+			createNewElementAppend("button", "caravans", "karawany", $("#btnsP1"));
+			$("#lookAroundStreet, #marketPlace, #inRoom, #caravans").hide();
 
 			createNewElementAppend("p", "textP", firstP.text, $("#mainPart"));
 			createNewElementAppend("p", "description", "", $("#mainPart"));
@@ -874,6 +884,13 @@ document.addEventListener("DOMContentLoaded", function () {
 		}, 30100);
 	}); //koniec zdarzenia dla przycisku start w kreatorze postaci
 
+	$("#outRoom").on("click", function () {
+		console.log("działa");
+		$("#mainPart").empty();
+		$("#lookAround, #wardrobe, #chest, #outRoom").hide();
+		$("#lookAroundStreet, #marketPlace, #inRoom, #caravans").show().addClass("basicBtn");
+		createNewElementAppend("p", "textP", street.text, $("#mainPart"));
+	});
 
 	//zdarzenie dla przycisku cechy - wyświetlanym w oknie alertowym
 	$("#featuresGame").on("click", function () {
@@ -1239,11 +1256,20 @@ module.exports.chest = function (gold, where) {
       gold.splice(0, 1, 12);$("#description").text("Niewielka drewniana skrzynia, bez żadnych żelaznych okuć. Jest pusta.");closeChest(where);$("#closeChest").on("click", function () {
         $("#description").empty();
       });$(this).remove();
-    });s;
+    });
   } else if (gold[0] > 0) {
     where.text("Niewielka drewniana skrzynia, bez żadnych żelaznych okuć. Jest pusta.");closeChest(where);
   }
 };
+
+/***/ }),
+/* 6 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+module.exports.text = "Stoisz przed domem. Aby udać się do wyznaczonego celu, najlepiej zabrać się z jakąś karawaną. Idziesz w kierunku bramy miasta. Przy bramie znajduje się targ. To dobry czas i miejsce, aby uzupełnić zapasy na dalszą podróż.";
 
 /***/ })
 /******/ ]);

@@ -416,19 +416,19 @@ nav{
   text-shadow: 1px 1px white;
 }
 
-#lookAround, #wardrobe, #chest, #package{
+#lookAround, #wardrobe, #chest, #package, #lookAroundStreet, #marketPlace, #inRoom, #caravans{
   width: 49%;
   height: 50%;
   font-weight: bold;
   text-shadow: 1px 1px white;
 }
 
-#lookAround{
+#lookAround, #lookAroundStreet{
   margin-top: 4%;
   background: linear-gradient(white, blue);
 }
 
-#wardrobe{
+#wardrobe, #marketPlace, #inRoom, #caravans{
   margin: 4% 0 0 1%;
   background: linear-gradient(white, green);
 }
@@ -443,7 +443,7 @@ nav{
   background: linear-gradient(white, gold);
 }
 
-#takeCoatWardrobe{
+#takeCoatWardrobe, #takeGoldChest{
   width: 15%;
   height: 5%;
   background: linear-gradient(white, green);
@@ -451,7 +451,7 @@ nav{
   margin-left: 1.5%;
 }
 
-#closeWardrobe{
+#closeWardrobe, #closeChest{
   width: 15%;
   height: 5%;
   background: linear-gradient(white, red);
