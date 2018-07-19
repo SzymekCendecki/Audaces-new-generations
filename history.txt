@@ -131,3 +131,6 @@ Poprawiono błąd dodawania złota do ekwipunku.
 
 18 lipca 2018 - wersja 0.4.4
 Poprawiono "grafikę" przycisków skrzyni. Rozpoczęto prace nad drugim paragrafem - wyjście przed dom - utworzono przyciski oraz dodano wstępnie style dla przycisków. Należy dodać eventy do tych przycsików oraz drbną poprawkę dla przycisków "do domu" i "karawany" - przesunąć w lewo, celem wyrównania.
+
+19 lipca 2018 - wersja 0.4.5
+Dodano event dla rozglądania się na ulicy oraz event wchodzenia do pokoju z ulicy.

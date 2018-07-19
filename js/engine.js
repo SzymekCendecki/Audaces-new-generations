@@ -813,85 +813,6 @@ document.addEventListener("DOMContentLoaded", function () {
 		}
 	}
 
-	//zdarzenie dla przycisku start w kreatorze postaci
-	$("#startGame").on("click", function () {
-
-		clearInterval(stopAll); // zatrzymanie interwału - sprawdzenia poprawnego dokonania wyborów
-		clearInterval(stopPoints); // zatrzymanie interwału - dla zliczania punktów cech postaci
-		$("#name, #race, #occupation, #features, #features2, #equipment, #skills, #infoCreator, #startGame").hide();$("#mainPart").empty();$("#alerts").empty();
-
-		setTimeout(function () {
-			createNewElementAppend("p", "text1", introGame.text1, $("#mainPart"));createNewElementAppend("p", "text2", introGame.text2, $("#mainPart"));createNewElementAppend("p", "text3", introGame.text3, $("#mainPart"));
-			createNewElementAppend("p", "text4", introGame.text4, $("#mainPart"));
-			createNewElementAppend("p", "text5", introGame.text5, $("#mainPart"));
-			createNewElementAppend("p", "text6", introGame.text6, $("#mainPart"));
-			createNewElementAppend("p", "text7", introGame.text7, $("#mainPart"));
-			createNewElementAppend("p", "text8", introGame.text8, $("#mainPart"));
-		}, 100);
-
-		setTimeout(function () {
-			$("#mainPart").empty();
-			$("#featuresGame, #equipGame, #skillsGame, #taskGame").show().addClass("basicBtn correctStyles");
-			$("#skillsGame").addClass("correctSkills");
-		}, 30000);
-
-		setTimeout(function () {
-			createNewElementAppend("div", "btnsP1", "", $("nav"));
-
-			//tworzenie przycisków dla pierwszego paragrafu - pokój
-			createNewElementAppend("button", "lookAround", "rozejrzyj się", $("#btnsP1"));
-			createNewElementAppend("button", "wardrobe", "zbadaj szafę", $("#btnsP1"));
-			createNewElementAppend("button", "chest", "zbadaj skrzynię", $("#btnsP1"));
-			createNewElementAppend("button", "package", "weź paczkę", $("#btnsP1"));
-
-			//tworzenie przycisków dla paragrafu drugiego - ulica
-			createNewElementAppend("button", "lookAroundStreet", "rozejrzyj się", $("#btnsP1"));
-			createNewElementAppend("button", "marketPlace", "targ", $("#btnsP1"));
-			createNewElementAppend("button", "inRoom", "do domu", $("#btnsP1"));
-			createNewElementAppend("button", "caravans", "karawany", $("#btnsP1"));
-			$("#lookAroundStreet, #marketPlace, #inRoom, #caravans").hide();
-
-			createNewElementAppend("p", "textP", firstP.text, $("#mainPart"));
-			createNewElementAppend("p", "description", "", $("#mainPart"));
-			$("#btnsP1").after($("#outRoom").show().addClass("outRoomRed").prop("disabled", true));
-
-			//zdarzenie dla rozglądania się
-			$("#lookAround").on("click", function () {
-				$("#description").text(firstP.lookRoom);
-				setTimeout(function () {
-					$("#description").empty();
-				}, 7000);
-			});
-			//koniec zdarzenia rozglądania się
-
-			//zdarzenie dla zbadania szafy
-			$("#wardrobe").on("click", function () {
-				firstP.wardrobe(choosenFeatures[0], $("#description"), equip);firstP.closeWardrobe();firstP.takeCoat(equip);
-			});
-			//koniec zdarzenia badania szafy
-
-			//zdarzenie dla zbadania skrzynię
-			$("#chest").on("click", function () {
-				firstP.chest(gold, $("#description"));firstP.closeChest($("#description"));
-			});
-			//koniec zdarzenia dla zbadania skrzyni
-
-			//zdarzenie dla zabrania paczki
-			$("#package").on("click", function () {
-				equip.push("paczka");$("#outRoom").removeClass("outRoomRed").addClass("outRoomGreen").prop("disabled", false);$(this).remove();
-			});
-			//koniec zdarzenia dla zabrania paczki
-		}, 30100);
-	}); //koniec zdarzenia dla przycisku start w kreatorze postaci
-
-	$("#outRoom").on("click", function () {
-		console.log("działa");
-		$("#mainPart").empty();
-		$("#lookAround, #wardrobe, #chest, #outRoom").hide();
-		$("#lookAroundStreet, #marketPlace, #inRoom, #caravans").show().addClass("basicBtn");
-		createNewElementAppend("p", "textP", street.text, $("#mainPart"));
-	});
-
 	//zdarzenie dla przycisku cechy - wyświetlanym w oknie alertowym
 	$("#featuresGame").on("click", function () {
 		createNewElementAppend("p", "nameTitle", "imię", $("#alerts"));
@@ -1006,6 +927,99 @@ document.addEventListener("DOMContentLoaded", function () {
 			$("#taskGame, #skillsGame, #equipGame, #featuresGame").prop("disabled", false);
 		});
 	}); //koniec zdarzenia wyświetlania zadań (gra)
+
+
+	//zdarzenie dla przycisku start w kreatorze postaci
+	$("#startGame").on("click", function () {
+
+		clearInterval(stopAll); // zatrzymanie interwału - sprawdzenia poprawnego dokonania wyborów
+		clearInterval(stopPoints); // zatrzymanie interwału - dla zliczania punktów cech postaci
+		$("#name, #race, #occupation, #features, #features2, #equipment, #skills, #infoCreator, #startGame").hide();$("#mainPart").empty();$("#alerts").empty();
+
+		setTimeout(function () {
+			createNewElementAppend("p", "text1", introGame.text1, $("#mainPart"));createNewElementAppend("p", "text2", introGame.text2, $("#mainPart"));createNewElementAppend("p", "text3", introGame.text3, $("#mainPart"));
+			createNewElementAppend("p", "text4", introGame.text4, $("#mainPart"));
+			createNewElementAppend("p", "text5", introGame.text5, $("#mainPart"));
+			createNewElementAppend("p", "text6", introGame.text6, $("#mainPart"));
+			createNewElementAppend("p", "text7", introGame.text7, $("#mainPart"));
+			createNewElementAppend("p", "text8", introGame.text8, $("#mainPart"));
+		}, 100);
+
+		setTimeout(function () {
+			$("#mainPart").empty();
+			$("#featuresGame, #equipGame, #skillsGame, #taskGame").show().addClass("basicBtn correctStyles");
+			$("#skillsGame").addClass("correctSkills");
+		}, 30000);
+
+		setTimeout(function () {
+			createNewElementAppend("div", "btnsP1", "", $("nav"));
+
+			//tworzenie przycisków dla pierwszego paragrafu - pokój
+			createNewElementAppend("button", "lookAround", "rozejrzyj się", $("#btnsP1"));
+			createNewElementAppend("button", "wardrobe", "zbadaj szafę", $("#btnsP1"));
+			createNewElementAppend("button", "chest", "zbadaj skrzynię", $("#btnsP1"));
+			createNewElementAppend("button", "package", "weź paczkę", $("#btnsP1"));
+
+			//tworzenie przycisków dla paragrafu drugiego - ulica
+			createNewElementAppend("button", "lookAroundStreet", "rozejrzyj się", $("#btnsP1"));
+			createNewElementAppend("button", "marketPlace", "targ", $("#btnsP1"));
+			createNewElementAppend("button", "inRoom", "do domu", $("#btnsP1"));
+			createNewElementAppend("button", "caravans", "karawany", $("#btnsP1"));
+			$("#lookAroundStreet, #marketPlace, #inRoom, #caravans").hide();
+
+			createNewElementAppend("p", "textP", firstP.text, $("#mainPart"));
+			createNewElementAppend("p", "description", "", $("#mainPart"));
+			$("#btnsP1").after($("#outRoom").show().addClass("outRoomRed").prop("disabled", true));
+
+			//zdarzenie dla rozglądania się
+			$("#lookAround").on("click", function () {
+				firstP.lookAround();
+			});
+			//koniec zdarzenia rozglądania się
+
+			//zdarzenie dla zbadania szafy
+			$("#wardrobe").on("click", function () {
+				firstP.wardrobe(choosenFeatures[0], $("#description"), equip);
+				firstP.closeWardrobe();firstP.takeCoat(equip);
+			});
+			//koniec zdarzenia badania szafy
+
+			//zdarzenie dla zbadania skrzynię
+			$("#chest").on("click", function () {
+				firstP.chest(gold, $("#description"));firstP.closeChest($("#description"));
+			});
+			//koniec zdarzenia dla zbadania skrzyni
+
+			//zdarzenie dla zabrania paczki
+			$("#package").on("click", function () {
+				equip.push("paczka");$("#outRoom").removeClass("outRoomRed").addClass("outRoomGreen").prop("disabled", false);$(this).remove();
+			});
+			//koniec zdarzenia dla zabrania paczki
+		}, 30100);
+	}); //koniec zdarzenia dla przycisku start w kreatorze postaci
+
+	//zdarzenie dla wyjścia z pokoju - ulica
+	$("#outRoom").on("click", function () {
+		$("#mainPart").empty();
+		$("#lookAround, #wardrobe, #chest, #outRoom").hide();
+		$("#lookAroundStreet, #marketPlace, #inRoom, #caravans").show().addClass("basicBtn");
+		createNewElementAppend("p", "textP", street.text, $("#mainPart"));
+		createNewElementAppend("p", "description", "", $("#mainPart"));
+
+		//zdarzenie dla rozglądania się na ulicy
+		$("#lookAroundStreet").on("click", function () {
+			street.lookAround();
+		});
+
+		//zdarzenie dla wejścia do domu
+		$("#inRoom").on("click", function () {
+			$("#mainPart").empty();
+			$("#lookAroundStreet, #marketPlace, #inRoom, #caravans").hide();
+			$("#lookAround, #wardrobe, #chest, #outRoom").show();
+			createNewElementAppend("p", "textP", firstP.text, $("#mainPart"));
+			createNewElementAppend("p", "description", "", $("#mainPart"));
+		});
+	});
 }); //koniec DOMContentLoaded
 
 /***/ }),
@@ -1180,8 +1194,6 @@ var workingFile = __webpack_require__(0);
 
 module.exports.text = "Stoisz w swoim pokoju, w którym znajduje się tylko łóżko, szafa, mały stolik i drewniana skrzynia. Na stoliku leży zawniątko, które musisz oddać mnichowi w przygranicznej wiosce. Co robisz?";
 
-module.exports.lookRoom = "Pokój jak pokój. Stół, łóżko, szafa, skrzynia.";
-
 //funkcje dla szafy
 //funkcja zamykania szafy
 function closeWardrobe(where) {
@@ -1262,6 +1274,14 @@ module.exports.chest = function (gold, where) {
   }
 };
 
+//funkcja rozglądania się po pokoju
+module.exports.lookAround = function () {
+  $("#description").text("Pokój jak pokój. Stół, łóżko, szafa, skrzynia.");
+  setTimeout(function () {
+    $("#description").empty();
+  }, 7000);
+};
+
 /***/ }),
 /* 6 */
 /***/ (function(module, exports, __webpack_require__) {
@@ -1269,7 +1289,16 @@ module.exports.chest = function (gold, where) {
 "use strict";
 
 
+//główny tekst opisu ulicy
 module.exports.text = "Stoisz przed domem. Aby udać się do wyznaczonego celu, najlepiej zabrać się z jakąś karawaną. Idziesz w kierunku bramy miasta. Przy bramie znajduje się targ. To dobry czas i miejsce, aby uzupełnić zapasy na dalszą podróż.";
+
+//tekst dla rozglądania się na ulicy
+module.exports.lookAround = function () {
+  $("#description").text("Typowa ulica dzielnicy Najemników, miasta Erharuf. Częściowo brukowana. Pobliskie budynki są niskie i drewniane, maksymalnie jednopiętrowe. Nic specjalnego.");
+  setTimeout(function () {
+    $("#description").empty();
+  }, 11000);
+};
 
 /***/ })
 /******/ ]);

@@ -2,8 +2,6 @@ let workingFile = require("./workingFile.js");
 
 module.exports.text = "Stoisz w swoim pokoju, w którym znajduje się tylko łóżko, szafa, mały stolik i drewniana skrzynia. Na stoliku leży zawniątko, które musisz oddać mnichowi w przygranicznej wiosce. Co robisz?";
 
-module.exports.lookRoom = "Pokój jak pokój. Stół, łóżko, szafa, skrzynia.";
-
 //funkcje dla szafy
 //funkcja zamykania szafy
 function closeWardrobe(where){ let closeWardrobe = document.createElement("button");  closeWardrobe.id = "closeWardrobe"; closeWardrobe.innerText = "zamknij szafę"; where.append(closeWardrobe); }
@@ -12,7 +10,7 @@ function closeWardrobe(where){ let closeWardrobe = document.createElement("butto
 function btnTakeCoat(where){ let takeCoat = document.createElement("button"); takeCoat.id = "takeCoatWardrobe"; takeCoat.innerText = "weź płaszcz"; where.append(takeCoat); }
 
 //zamykanie szafy
-module.exports.closeWardrobe = function(){  $("#closeWardrobe").on("click", function(){     $("#description").empty(); }); }
+module.exports.closeWardrobe = function(){  $("#closeWardrobe").on("click", function(){   $("#description").empty(); }); }
 
 //funkcja dla badania szafy
 module.exports.wardrobe = function (sex, where, equip){
@@ -27,7 +25,7 @@ module.exports.wardrobe = function (sex, where, equip){
  btnTakeCoat(where); closeWardrobe(where); } } }
 
 //zabieranie płaszcza
-module.exports.takeCoat = function(equip){ $("#takeCoatWardrobe").on("click", function(){   equip.push("płaszcz"); $(this).remove(); }); }
+module.exports.takeCoat = function(equip){ $("#takeCoatWardrobe").on("click", function(){ equip.push("płaszcz"); $(this).remove(); }); }
 
 //funkcje dla skrzyni
 //zamykanie skrzyni
@@ -42,5 +40,13 @@ function btnTakeGold(where){ let takeGold = document.createElement("button"); ta
 module.exports.chest = function(gold, where){
 if (gold[0] == 0) { where.text("Niewielka drewniana skrzynia, bez żadnych żelaznych okuć. W środku znajduje się 12 sztuk złotych monet."); btnTakeGold(where); closeChest(where);
 
-$("#takeGoldChest").on("click", function(){ gold.splice(0, 1, 12); $("#description").text("Niewielka drewniana skrzynia, bez żadnych żelaznych okuć. Jest pusta."); closeChest(where); $("#closeChest").on("click", function(){ $("#description").empty(); }); $(this).remove(); });s
+$("#takeGoldChest").on("click", function(){ gold.splice(0, 1, 12); $("#description").text("Niewielka drewniana skrzynia, bez żadnych żelaznych okuć. Jest pusta."); closeChest(where); $("#closeChest").on("click", function(){ $("#description").empty(); }); $(this).remove(); });
 }else if(gold[0] > 0){ where.text("Niewielka drewniana skrzynia, bez żadnych żelaznych okuć. Jest pusta."); closeChest(where); } }
+
+//funkcja rozglądania się po pokoju
+module.exports.lookAround = function(){
+  $("#description").text("Pokój jak pokój. Stół, łóżko, szafa, skrzynia.");
+  setTimeout(()=>{
+  $("#description").empty();
+}, 7000);
+}
