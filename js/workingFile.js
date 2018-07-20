@@ -62,7 +62,13 @@ function createNewInputAppend(nameElement, name, id, value, type, whereAppend, a
 	createNewElementAppend("button", "skills", "umiejętności", $("nav"));
 	createNewElementAppend("button", "infoCreator", "info", $("nav"));
 	createNewElementAppend("button", "startGame", "start", $("nav"));
+
+	//utworzenie przycisku wyjścia z pokoju na ulicę
 	createNewElementAppend("button", "outRoom", "wyjdź", $("nav"));
+
+	//utorzenie przycisków przejścia na targ lub do miejsca stacjonowania karawan
+	createNewElementAppend("button", "caravans", "karawany", $("nav"));
+	createNewElementAppend("button", "marketPlace", "targ", $("nav"));
 
 	//tablice
 	// tablica postaci 0 - imię, 1 - rasa, 2 - profesja
@@ -101,8 +107,8 @@ let gold = [0];
 //showanie przycisków pierszego menu
 $("#info, #licence, #tutorial, #newGame, #titleGameHeader, #subTitleGameHeader").hide();
 
-//schowanie przycisków kreatora
-$("#name, #race, #occupation, #features, #features2, #equipment, #skills, #infoCreator, #startGame, #outRoom").hide();
+//schowanie przycisków
+$("#name, #race, #occupation, #features, #features2, #equipment, #skills, #infoCreator, #startGame, #outRoom, #lookAroundStreet, #marketPlace, #inRoom, #caravans").hide();
 
 //schowanie i usunięcie nazwy studia oraz sentencji
 $("#studioTitle").fadeOut(6000);
@@ -774,6 +780,7 @@ setTimeout(function(){ createNewElementAppend("p", "text1", introGame.text1, $("
 setTimeout(() =>{ $("#mainPart").empty();
 $("#featuresGame, #equipGame, #skillsGame, #taskGame").show().addClass("basicBtn correctStyles");
 $("#skillsGame").addClass("correctSkills"); }, 30000);
+$("#marketPlace, #caravans").hide();
 
 setTimeout(()=>{
 	createNewElementAppend("div", "btnsP1", "", $("nav"));
@@ -786,10 +793,9 @@ setTimeout(()=>{
 
 	//tworzenie przycisków dla paragrafu drugiego - ulica
 	createNewElementAppend("button", "lookAroundStreet", "rozejrzyj się", $("#btnsP1"));
-	createNewElementAppend("button", "marketPlace", "targ", $("#btnsP1"));
 	createNewElementAppend("button", "inRoom", "do domu", $("#btnsP1"));
-	createNewElementAppend("button", "caravans", "karawany", $("#btnsP1"));
-	$("#lookAroundStreet, #marketPlace, #inRoom, #caravans").hide();
+
+$("#lookAroundStreet, #inRoom").hide();
 
 	createNewElementAppend("p", "textP", firstP.text, $("#mainPart"));
 	createNewElementAppend("p", "description", "", $("#mainPart"));
@@ -822,9 +828,11 @@ $("#package").on("click", function(){ equip.push("paczka"); $("#outRoom").remove
 $("#outRoom").on("click", ()=>{
 	$("#mainPart").empty();
 	$("#lookAround, #wardrobe, #chest, #outRoom").hide();
-	$("#lookAroundStreet, #marketPlace, #inRoom, #caravans").show().addClass("basicBtn");
+	$("#lookAroundStreet, #inRoom").show();
 	createNewElementAppend("p", "textP", street.text, $("#mainPart"));
 	createNewElementAppend("p", "description", "", $("#mainPart"));
+
+	$("#btnsP1").after($("#marketPlace, #caravans").show());
 
 //zdarzenie dla rozglądania się na ulicy
 $("#lookAroundStreet").on("click", () => { street.lookAround(); });
@@ -837,7 +845,6 @@ $("#inRoom").on("click", () =>{
 	createNewElementAppend("p", "textP", firstP.text, $("#mainPart"));
 	createNewElementAppend("p", "description", "", $("#mainPart"));
 });
-
 });
 
 

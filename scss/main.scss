@@ -416,19 +416,19 @@ nav{
   text-shadow: 1px 1px white;
 }
 
-#lookAround, #wardrobe, #chest, #package, #lookAroundStreet, #marketPlace, #inRoom, #caravans{
+#lookAround, #wardrobe, #chest, #package{
   width: 49%;
   height: 50%;
   font-weight: bold;
   text-shadow: 1px 1px white;
 }
 
-#lookAround, #lookAroundStreet{
+#lookAround{
   margin-top: 4%;
   background: linear-gradient(white, blue);
 }
 
-#wardrobe, #marketPlace, #inRoom, #caravans{
+#wardrobe{
   margin: 4% 0 0 1%;
   background: linear-gradient(white, green);
 }
@@ -482,4 +482,35 @@ nav{
   font-weight: bold;
   font-size: 1.1em;
   text-shadow: 1px 1px white;
+}
+
+//style dla przycisków "na ulicy"
+#lookAroundStreet, #inRoom{
+  margin-top: 5%;
+  width: 49%;
+  height: 70%;
+  font-weight: bold;
+  text-shadow: 1px 1px white;
+}
+
+#lookAroundStreet{
+  background: linear-gradient(white, blue);
+}
+
+#inRoom{
+  background: linear-gradient(white, green);
+  margin-left: 2%;
+}
+
+#marketPlace, #caravans{
+  margin-top: 3%;
+  width: 49%;
+  height: 4%;
+  font-weight: bold;
+  text-shadow: 1px 1px white;
+  background: linear-gradient(white, green);
+}
+
+#btnsP1{
+  width: 100%;
 }

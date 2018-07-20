@@ -134,3 +134,6 @@ Poprawiono "grafikę" przycisków skrzyni. Rozpoczęto prace nad drugim paragraf
 
 19 lipca 2018 - wersja 0.4.5
 Dodano event dla rozglądania się na ulicy oraz event wchodzenia do pokoju z ulicy.
+
+20 lipca 2018 - wersja 0.4.6
+Dodano style dla przycisków dla paragrafu "ulicy".
