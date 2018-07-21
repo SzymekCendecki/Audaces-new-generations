@@ -139,4 +139,7 @@ Dodano event dla rozglądania się na ulicy oraz event wchodzenia do pokoju z ul
 Dodano style dla przycisków dla paragrafu "ulicy".
 
 21 lipca 2018 - wersja 0.4.7
-Rozpoczęcie pracy nad targiem. 
+Rozpoczęcie pracy nad targiem.
+
+21 lipca 2018 - wersja 0.4.8
+Dodano przyciski rzeczy do kupienia - targ.

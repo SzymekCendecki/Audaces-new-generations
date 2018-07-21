@@ -518,3 +518,23 @@ nav{
 #btnsP1{
   width: 100%;
 }
+
+//style dla przycisków kupna na targu
+.btnsMarket{
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+}
+
+#tentM, #bagM, #blanketM, #lampM, #ropeM, #foodM, #daggerM, #woodenStickM, #bucklerM, #saddleM, #crossBowM, #closeM{
+  width: 15%;
+  height: 12%;
+  font-weight: bold;
+  font-size: 1.05em;
+  text-shadow: 1px 1px white;
+  background: linear-gradient(white, green);
+}
+
+#closeM{
+  background: linear-gradient(white, red);
+}

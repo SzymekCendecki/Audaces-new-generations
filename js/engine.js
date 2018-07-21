@@ -1042,8 +1042,31 @@ document.addEventListener("DOMContentLoaded", function () {
 
 		createNewElementAppend("p", "textP", market.market, $("#mainPart"));
 		createNewElementAppend("p", "description", "", $("#mainPart"));
-
 		$("#buy, #sell").show();
+
+		//zdarzenie dla kupowania
+		$("#buy").on("click", function () {
+			$("#description").addClass("btnsMarket");
+			createNewElementAppend("button", "tentM", "namiot", $("#description"));
+			createNewElementAppend("button", "bagM", "torba", $("#description"));
+			createNewElementAppend("button", "blanketM", "derka", $("#description"));
+			createNewElementAppend("button", "lampM", "lampa", $("#description"));
+			createNewElementAppend("button", "ropeM", "lina", $("#description"));
+			createNewElementAppend("button", "foodM", "racja żyw.", $("#description"));
+			createNewElementAppend("button", "daggerM", "sztylet", $("#description"));
+			createNewElementAppend("button", "crossBowM", "kusza", $("#description"));
+			createNewElementAppend("button", "saddleM", "siodło", $("#description"));
+			createNewElementAppend("button", "woodenStickM", "drew. pałka", $("#description"));
+			createNewElementAppend("button", "bucklerM", "puklerz", $("#description"));
+			createNewElementAppend("button", "closeM", "zamknij", $("#description"));
+
+			$("#closeM").on("click", function () {
+				$("#description").empty();
+			});
+		});
+
+		//zdarzenie dla sprzedawania
+		$("#sell").on("click", function () {});
 	});
 }); //koniec DOMContentLoaded
 
