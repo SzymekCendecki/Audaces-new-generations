@@ -1,8 +1,9 @@
 let intro = require("./firstMenu.js");
 let heroCreator = require("./heroCreator.js");
 let introGame = require("./introGame.js");
-let firstP = require("./firstParagraph");
-let street = require("./secondParagraph");
+let firstP = require("./firstParagraph.js");
+let street = require("./secondParagraph.js");
+let market = require("./market.js");
 
 document.addEventListener("DOMContentLoaded", () => { console.log("NIEWIERNE PSY RULEZ!!!!");
 
@@ -795,7 +796,12 @@ setTimeout(()=>{
 	createNewElementAppend("button", "lookAroundStreet", "rozejrzyj się", $("#btnsP1"));
 	createNewElementAppend("button", "inRoom", "do domu", $("#btnsP1"));
 
-$("#lookAroundStreet, #inRoom").hide();
+//tworzenie przycisków kupowanie i sprzedawanie
+	createNewElementAppend("button", "buy", "kup", $("#btnsP1"));
+	createNewElementAppend("button", "sell", "sprzedaj", $("#btnsP1"));
+
+//ukrywanie przycisków
+$("#lookAroundStreet, #inRoom, #buy, #sell").hide();
 
 	createNewElementAppend("p", "textP", firstP.text, $("#mainPart"));
 	createNewElementAppend("p", "description", "", $("#mainPart"));
@@ -845,6 +851,17 @@ $("#inRoom").on("click", () =>{
 	createNewElementAppend("p", "textP", firstP.text, $("#mainPart"));
 	createNewElementAppend("p", "description", "", $("#mainPart"));
 });
+});
+
+//zdarzenia dla targu
+$("#marketPlace").on("click", ()=>{
+	$("#mainPart").empty();
+	$("#lookAroundStreet, #marketPlace, #inRoom, #caravans").hide();
+
+	createNewElementAppend("p", "textP", market.market, $("#mainPart"));
+	createNewElementAppend("p", "description", "", $("#mainPart"));
+
+	$("#buy, #sell").show();
 });
 
 

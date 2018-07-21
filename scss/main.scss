@@ -484,8 +484,8 @@ nav{
   text-shadow: 1px 1px white;
 }
 
-//style dla przycisków "na ulicy"
-#lookAroundStreet, #inRoom{
+//style dla przycisków "na ulicy", i dla targu
+#lookAroundStreet, #inRoom, #buy, #sell{
   margin-top: 5%;
   width: 49%;
   height: 70%;
@@ -497,7 +497,11 @@ nav{
   background: linear-gradient(white, blue);
 }
 
-#inRoom{
+#buy{
+  background: linear-gradient(white, green);
+}
+
+#inRoom, #sell{
   background: linear-gradient(white, green);
   margin-left: 2%;
 }

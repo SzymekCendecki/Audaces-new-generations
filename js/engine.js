@@ -75,6 +75,7 @@ var heroCreator = __webpack_require__(3);
 var introGame = __webpack_require__(4);
 var firstP = __webpack_require__(5);
 var street = __webpack_require__(6);
+var market = __webpack_require__(7);
 
 document.addEventListener("DOMContentLoaded", function () {
 	console.log("NIEWIERNE PSY RULEZ!!!!");
@@ -971,7 +972,12 @@ document.addEventListener("DOMContentLoaded", function () {
 			createNewElementAppend("button", "lookAroundStreet", "rozejrzyj się", $("#btnsP1"));
 			createNewElementAppend("button", "inRoom", "do domu", $("#btnsP1"));
 
-			$("#lookAroundStreet, #inRoom").hide();
+			//tworzenie przycisków kupowanie i sprzedawanie
+			createNewElementAppend("button", "buy", "kup", $("#btnsP1"));
+			createNewElementAppend("button", "sell", "sprzedaj", $("#btnsP1"));
+
+			//ukrywanie przycisków
+			$("#lookAroundStreet, #inRoom, #buy, #sell").hide();
 
 			createNewElementAppend("p", "textP", firstP.text, $("#mainPart"));
 			createNewElementAppend("p", "description", "", $("#mainPart"));
@@ -1027,6 +1033,17 @@ document.addEventListener("DOMContentLoaded", function () {
 			createNewElementAppend("p", "textP", firstP.text, $("#mainPart"));
 			createNewElementAppend("p", "description", "", $("#mainPart"));
 		});
+	});
+
+	//zdarzenia dla targu
+	$("#marketPlace").on("click", function () {
+		$("#mainPart").empty();
+		$("#lookAroundStreet, #marketPlace, #inRoom, #caravans").hide();
+
+		createNewElementAppend("p", "textP", market.market, $("#mainPart"));
+		createNewElementAppend("p", "description", "", $("#mainPart"));
+
+		$("#buy, #sell").show();
 	});
 }); //koniec DOMContentLoaded
 
@@ -1307,6 +1324,16 @@ module.exports.lookAround = function () {
     $("#description").empty();
   }, 11000);
 };
+
+/***/ }),
+/* 7 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+//główny tekst opisu market
+module.exports.market = "Stoisz na środku placu targowego. Wokół widzisz stragany, na których możesz kupić potrzebne rzeczy.";
 
 /***/ })
 /******/ ]);
