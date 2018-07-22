@@ -865,20 +865,7 @@ $("#marketPlace").on("click", ()=>{
 	//zdarzenie dla kupowania
 $("#buy").on("click", ()=>{
 	$("#description").addClass("btnsMarket");
-	createNewElementAppend("button", "tentM", "namiot", $("#description"));
-	createNewElementAppend("button", "bagM", "torba", $("#description"));
-	createNewElementAppend("button", "blanketM", "derka", $("#description"));
-	createNewElementAppend("button", "lampM", "lampa", $("#description"));
-	createNewElementAppend("button", "ropeM", "lina", $("#description"));
-	createNewElementAppend("button", "foodM", "racja żyw.", $("#description"));
-	createNewElementAppend("button", "daggerM", "sztylet", $("#description"));
-	createNewElementAppend("button", "crossBowM", "kusza", $("#description"));
-	createNewElementAppend("button", "saddleM", "siodło", $("#description"));
-	createNewElementAppend("button", "woodenStickM", "drew. pałka", $("#description"));
-	createNewElementAppend("button", "bucklerM", "puklerz", $("#description"));
-	createNewElementAppend("button", "closeM", "zamknij", $("#description"));
-
-	$("#closeM").on("click", ()=>{ $("#description").empty(); });
+	market.btnsBuy(gold, equip);
 });
 
 

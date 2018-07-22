@@ -143,3 +143,6 @@ Rozpoczęcie pracy nad targiem.
 
 21 lipca 2018 - wersja 0.4.8
 Dodano przyciski rzeczy do kupienia - targ.
+
+22 lipca 2018 - wersja 0.4.9
+Dodano zdarzenia dla kupowania rzeczy na targu.

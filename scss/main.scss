@@ -520,21 +520,43 @@ nav{
 }
 
 //style dla przycisków kupna na targu
+#buyItemMarket{
+  width: 100%;
+  text-align: center;
+}
+
 .btnsMarket{
   display: flex;
   flex-wrap: wrap;
-  justify-content: center;
+  justify-content: space-around;
 }
 
 #tentM, #bagM, #blanketM, #lampM, #ropeM, #foodM, #daggerM, #woodenStickM, #bucklerM, #saddleM, #crossBowM, #closeM{
   width: 15%;
   height: 12%;
+  margin-top: 2%;
   font-weight: bold;
-  font-size: 1.05em;
   text-shadow: 1px 1px white;
   background: linear-gradient(white, green);
 }
 
 #closeM{
   background: linear-gradient(white, red);
+}
+
+//styl dla kupionego przedmiotu
+#buyed{
+  text-align: center;
+  font-weight: bold;
+  color: green;
+  text-shadow: 1px 1px white;
+  font-size: 1.2em;
+}
+
+#noGold{
+  text-align: center;
+  font-weight: bold;
+  color: red;
+  text-shadow: 1px 1px white;
+  font-size: 1.2em;
 }
