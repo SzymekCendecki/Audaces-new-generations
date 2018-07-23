@@ -871,7 +871,8 @@ $("#buy").on("click", ()=>{
 
 //zdarzenie dla sprzedawania
 $("#sell").on("click", ()=>{
-
+	$("#description").addClass("btnsMarket");
+	market.btnsSell(gold, equip);
 });
 
 });

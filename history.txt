@@ -146,3 +146,6 @@ Dodano przyciski rzeczy do kupienia - targ.
 
 22 lipca 2018 - wersja 0.4.9
 Dodano zdarzenia dla kupowania rzeczy na targu.
+
+23 lipca 2018 - werja 0.5.0
+Rozpoczęto pracę nad częścią sprzedaży przedmiotów na targu - na razie dodano wyświetlanie się przycisków w zależności od zawartości ekwipunku. Przycisk paczka (przedmiot fabularny) jest zblokowany i nie do użycia przez użytkownika.

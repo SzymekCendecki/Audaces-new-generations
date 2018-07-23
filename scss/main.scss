@@ -519,8 +519,8 @@ nav{
   width: 100%;
 }
 
-//style dla przycisków kupna na targu
-#buyItemMarket{
+//style dla przycisków kupna/sprzedaży na targu
+#buyItemMarket, #sellItemMarket{
   width: 100%;
   text-align: center;
 }
@@ -559,4 +559,22 @@ nav{
   color: red;
   text-shadow: 1px 1px white;
   font-size: 1.2em;
+}
+
+.btnsSellGreen{
+  width: 15%;
+  height: 12%;
+  margin-top: 2%;
+  font-weight: bold;
+  text-shadow: 1px 1px white;
+  background: linear-gradient(white, green);
+}
+
+.redBtnPackage{
+  width: 15%;
+  height: 12%;
+  margin-top: 2%;
+  font-weight: bold;
+  text-shadow: 1px 1px white;
+  background: linear-gradient(white, red);
 }

@@ -54,3 +54,21 @@ $("#saddleM").on("click", function(){ buyItem("siodło", 12, gold, equip); });
 $("#woodenStickM").on("click", function(){ buyItem("drew. pałka", 4, gold, equip);
 $("#bucklerM").on("click", function(){ buyItem("puklerz", 12, gold, equip); }); });
 }
+
+//funkcja tworząca przyciski rzeczy, które można sprzedać
+module.exports.btnsSell = function(gold, equip){
+  $("#description").empty();
+  createNewElementAppend("p", "sellItemMarket", "przedmioty do sprzedania", $("#description"));
+  for(let i=0; i<equip.length; i++){
+    createNewElementAppend("button", equip[i], equip[i], $("#description"), "btnsSellGreen");
+
+  }
+
+
+
+  createNewElementAppend("button", "closeM", "zamknij", $("#description"));
+  $("#closeM").on("click", ()=>{ $("#description").empty(); });
+
+  $("#paczka").prop("disabled", true);
+  $("#paczka").addClass("redBtnPackage");
+}

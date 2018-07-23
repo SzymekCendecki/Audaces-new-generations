@@ -1051,7 +1051,10 @@ document.addEventListener("DOMContentLoaded", function () {
 		});
 
 		//zdarzenie dla sprzedawania
-		$("#sell").on("click", function () {});
+		$("#sell").on("click", function () {
+			$("#description").addClass("btnsMarket");
+			market.btnsSell(gold, equip);
+		});
 	});
 }); //koniec DOMContentLoaded
 
@@ -1419,6 +1422,23 @@ module.exports.btnsBuy = function (gold, equip) {
       buyItem("puklerz", 12, gold, equip);
     });
   });
+};
+
+//funkcja tworząca przyciski rzeczy, które można sprzedać
+module.exports.btnsSell = function (gold, equip) {
+  $("#description").empty();
+  createNewElementAppend("p", "sellItemMarket", "przedmioty do sprzedania", $("#description"));
+  for (var i = 0; i < equip.length; i++) {
+    createNewElementAppend("button", equip[i], equip[i], $("#description"), "btnsSellGreen");
+  }
+
+  createNewElementAppend("button", "closeM", "zamknij", $("#description"));
+  $("#closeM").on("click", function () {
+    $("#description").empty();
+  });
+
+  $("#paczka").prop("disabled", true);
+  $("#paczka").addClass("redBtnPackage");
 };
 
 /***/ })
