@@ -1355,7 +1355,8 @@ function buyItem(item, price, gold, equip) {
   if (gold[0] >= price) {
     equip.push(item);
     var newGold = gold[0] - price;
-    gold.splice(0, 1, newGold);
+    var newGoldFixed = newGold.toFixed(2);
+    gold.splice(0, 1, newGoldFixed);
     createNewElementAppend("p", "buyed", "kupiono: " + item, $("#alerts"));
     setTimeout(function () {
       $("#buyed").remove();
@@ -1430,6 +1431,23 @@ module.exports.btnsSell = function (gold, equip) {
   createNewElementAppend("p", "sellItemMarket", "przedmioty do sprzedania", $("#description"));
   for (var i = 0; i < equip.length; i++) {
     createNewElementAppend("button", equip[i], equip[i], $("#description"), "btnsSellGreen");
+
+    document.querySelectorAll("#description button")[i].onclick = function () {
+      var newGold = gold[0] + 0.35;
+      gold.splice(0, 1, newGold);
+
+      var thisText = $(this).text();
+      if (equip.indexOf(thisText) !== -1) {
+        equip.splice(equip.indexOf(thisText), 1);
+      }
+
+      createNewElementAppend("p", "itSell", "sprzedano: " + thisText + " za 0,35 szt. zł.", $("#alerts"));
+      $(this).remove();
+
+      setTimeout(function () {
+        $("#itSell").remove();
+      }, 5000);
+    };
   }
 
   createNewElementAppend("button", "closeM", "zamknij", $("#description"));
@@ -1437,7 +1455,7 @@ module.exports.btnsSell = function (gold, equip) {
     $("#description").empty();
   });
 
-  $("#paczka").prop("disabled", true);
+  $("#paczka").prop("disabled", true).text("paczka");
   $("#paczka").addClass("redBtnPackage");
 };
 
