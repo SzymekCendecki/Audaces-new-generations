@@ -1013,7 +1013,7 @@ document.addEventListener("DOMContentLoaded", function () {
 	//zdarzenie dla wyjścia z pokoju - ulica
 	$("#outRoom").on("click", function () {
 		$("#mainPart").empty();
-		$("#lookAround, #wardrobe, #chest, #outRoom").hide();
+		$("#lookAround, #wardrobe, #chest, #outRoom, #buy, #sell").hide();
 		$("#lookAroundStreet, #inRoom").show();
 		createNewElementAppend("p", "textP", street.text, $("#mainPart"));
 		createNewElementAppend("p", "description", "", $("#mainPart"));
@@ -1043,6 +1043,9 @@ document.addEventListener("DOMContentLoaded", function () {
 		createNewElementAppend("p", "textP", market.market, $("#mainPart"));
 		createNewElementAppend("p", "description", "", $("#mainPart"));
 		$("#buy, #sell").show();
+
+		market.marketToStreet();
+		market.marketToCaravans();
 
 		//zdarzenie dla kupowania
 		$("#buy").on("click", function () {
@@ -1457,6 +1460,14 @@ module.exports.btnsSell = function (gold, equip) {
 
   $("#paczka").prop("disabled", true).text("paczka");
   $("#paczka").addClass("redBtnPackage");
+};
+
+module.exports.marketToStreet = function () {
+  $("#outRoom").show().text("ulica");
+};
+
+module.exports.marketToCaravans = function () {
+  $("#caravans").show().text("karawany");
 };
 
 /***/ })

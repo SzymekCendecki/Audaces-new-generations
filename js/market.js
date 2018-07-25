@@ -5,7 +5,6 @@ module.exports.market = "Stoisz na środku placu targowego. Wokół widzisz stra
 function createNewElementAppend(nameElement, idName, text, whereAppend, addedClass){
 let newElement = document.createElement(nameElement); newElement.id = idName;	newElement.innerText = text; whereAppend.append(newElement); newElement.classList.add(addedClass); 	newElement.classList.remove("undefined"); }
 
-
 function buyItem (item, price, gold, equip){
           if(gold[0] >= price){
              equip.push(item);
@@ -80,11 +79,17 @@ module.exports.btnsSell = function(gold, equip){
             }
         }
 
-
-
   createNewElementAppend("button", "closeM", "zamknij", $("#description"));
   $("#closeM").on("click", ()=>{ $("#description").empty(); });
 
   $("#paczka").prop("disabled", true).text("paczka");
   $("#paczka").addClass("redBtnPackage");
+}
+
+module.exports.marketToStreet = function(){
+  $("#outRoom").show().text("ulica");
+}
+
+module.exports.marketToCaravans = function(){
+  $("#caravans").show().text("karawany");
 }

@@ -833,7 +833,7 @@ $("#package").on("click", function(){ equip.push("paczka"); $("#outRoom").remove
 //zdarzenie dla wyjścia z pokoju - ulica
 $("#outRoom").on("click", ()=>{
 	$("#mainPart").empty();
-	$("#lookAround, #wardrobe, #chest, #outRoom").hide();
+	$("#lookAround, #wardrobe, #chest, #outRoom, #buy, #sell").hide();
 	$("#lookAroundStreet, #inRoom").show();
 	createNewElementAppend("p", "textP", street.text, $("#mainPart"));
 	createNewElementAppend("p", "description", "", $("#mainPart"));
@@ -862,12 +862,14 @@ $("#marketPlace").on("click", ()=>{
 	createNewElementAppend("p", "description", "", $("#mainPart"));
 	$("#buy, #sell").show();
 
+	market.marketToStreet();
+	market.marketToCaravans();
+
 	//zdarzenie dla kupowania
 $("#buy").on("click", ()=>{
 	$("#description").addClass("btnsMarket");
 	market.btnsBuy(gold, equip);
 });
-
 
 //zdarzenie dla sprzedawania
 $("#sell").on("click", ()=>{

@@ -152,3 +152,6 @@ Rozpoczęto pracę nad częścią sprzedaży przedmiotów na targu - na razie do
 
 24 lipca 2018 - wersja 0.5.1
 Dodano eventy dla sprzedażu rzeczy z ekwipunku.
+
+25 lipca 2018 - wersja 0.5.2
+Dodano zdarzenie dla przechodzenie z targu na ulicę przed domem.
