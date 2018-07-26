@@ -155,3 +155,6 @@ Dodano eventy dla sprzedażu rzeczy z ekwipunku.
 
 25 lipca 2018 - wersja 0.5.2
 Dodano zdarzenie dla przechodzenie z targu na ulicę przed domem.
+
+26 lipca 2018 - wersja 0.5.3
+Drobna poprawka umiejscowienia przycisku wyjścia/ulica. Nie do końca wyszło ta ja trzeba. Pewnie będzie to poprawione w następnej wersji - tzeba będzie się pobawić jakimś dodatkowym div'em i css'em.

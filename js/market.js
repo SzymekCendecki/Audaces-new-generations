@@ -87,7 +87,7 @@ module.exports.btnsSell = function(gold, equip){
 }
 
 module.exports.marketToStreet = function(){
-  $("#outRoom").show().text("ulica");
+  $("#outRoom").show().text("ulica").toggleClass("streetMarket");
 }
 
 module.exports.marketToCaravans = function(){

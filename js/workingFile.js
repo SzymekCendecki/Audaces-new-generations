@@ -825,7 +825,10 @@ $("#chest").on("click", function(){ firstP.chest(gold, $("#description")); first
 //koniec zdarzenia dla zbadania skrzyni
 
 //zdarzenie dla zabrania paczki
-$("#package").on("click", function(){ equip.push("paczka"); $("#outRoom").removeClass("outRoomRed").addClass("outRoomGreen").prop("disabled", false); $(this).remove(); });
+$("#package").on("click", function(){ equip.push("paczka"); $("#outRoom").addClass("outRoomGreen").prop("disabled", false);
+$("#outRoom").removeClass("streetMarket");
+$("#outRoom").removeClass("outRoomRed");
+$(this).remove(); });
 //koniec zdarzenia dla zabrania paczki
 }, 30100);
 });//koniec zdarzenia dla przycisku start w kreatorze postaci
@@ -876,7 +879,6 @@ $("#sell").on("click", ()=>{
 	$("#description").addClass("btnsMarket");
 	market.btnsSell(gold, equip);
 });
-
 });
 
 

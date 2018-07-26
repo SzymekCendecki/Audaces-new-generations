@@ -1004,7 +1004,10 @@ document.addEventListener("DOMContentLoaded", function () {
 
 			//zdarzenie dla zabrania paczki
 			$("#package").on("click", function () {
-				equip.push("paczka");$("#outRoom").removeClass("outRoomRed").addClass("outRoomGreen").prop("disabled", false);$(this).remove();
+				equip.push("paczka");$("#outRoom").addClass("outRoomGreen").prop("disabled", false);
+				$("#outRoom").removeClass("streetMarket");
+				$("#outRoom").removeClass("outRoomRed");
+				$(this).remove();
 			});
 			//koniec zdarzenia dla zabrania paczki
 		}, 30100);
@@ -1463,7 +1466,7 @@ module.exports.btnsSell = function (gold, equip) {
 };
 
 module.exports.marketToStreet = function () {
-  $("#outRoom").show().text("ulica");
+  $("#outRoom").show().text("ulica").toggleClass("streetMarket");
 };
 
 module.exports.marketToCaravans = function () {
