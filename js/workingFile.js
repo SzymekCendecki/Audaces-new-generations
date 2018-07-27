@@ -4,6 +4,7 @@ let introGame = require("./introGame.js");
 let firstP = require("./firstParagraph.js");
 let street = require("./secondParagraph.js");
 let market = require("./market.js");
+let caravans = require("./goToCaravans.js");
 
 document.addEventListener("DOMContentLoaded", () => { console.log("NIEWIERNE PSY RULEZ!!!!");
 
@@ -879,6 +880,19 @@ $("#sell").on("click", ()=>{
 	$("#description").addClass("btnsMarket");
 	market.btnsSell(gold, equip);
 });
+});
+
+//zdarzenie dla pójścia do miejsca postoju karawany
+
+$("#caravans").on("click", () =>{
+	$("#mainPart").empty();
+	$("#btnsP1").empty();
+	$("#caravans, #marketPlace").hide();
+	$("#outRoom").hide();
+
+	createNewElementAppend("p", "textP", caravans.text, $("#mainPart"));
+	createNewElementAppend("p", "description", "", $("#mainPart"));
+
 });
 
 

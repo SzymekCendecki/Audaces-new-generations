@@ -76,6 +76,7 @@ var introGame = __webpack_require__(4);
 var firstP = __webpack_require__(5);
 var street = __webpack_require__(6);
 var market = __webpack_require__(7);
+var caravans = __webpack_require__(8);
 
 document.addEventListener("DOMContentLoaded", function () {
 	console.log("NIEWIERNE PSY RULEZ!!!!");
@@ -1062,6 +1063,18 @@ document.addEventListener("DOMContentLoaded", function () {
 			market.btnsSell(gold, equip);
 		});
 	});
+
+	//zdarzenie dla pójścia do miejsca postoju karawany
+
+	$("#caravans").on("click", function () {
+		$("#mainPart").empty();
+		$("#btnsP1").empty();
+		$("#caravans, #marketPlace").hide();
+		$("#outRoom").hide();
+
+		createNewElementAppend("p", "textP", caravans.text, $("#mainPart"));
+		createNewElementAppend("p", "description", "", $("#mainPart"));
+	});
 }); //koniec DOMContentLoaded
 
 /***/ }),
@@ -1472,6 +1485,15 @@ module.exports.marketToStreet = function () {
 module.exports.marketToCaravans = function () {
   $("#caravans").show().text("karawany");
 };
+
+/***/ }),
+/* 8 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+module.exports.text = "Idziesz w kierunku głównej bramy. Mijasz ludzi, zwierzęta i taplające się w błocie dzieci. Gdy dochodzisz do bramy robi się coraz tłoczniej. Przez bramę przejeżdżają wozy, ludzie łażą w każdą stronę, wartownicy na murach ziewają z nudów.";
 
 /***/ })
 /******/ ]);
