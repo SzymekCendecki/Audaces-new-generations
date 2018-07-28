@@ -889,10 +889,12 @@ $("#caravans").on("click", () =>{
 	$("#btnsP1").empty();
 	$("#caravans, #marketPlace").hide();
 	$("#outRoom").hide();
-
 	createNewElementAppend("p", "textP", caravans.text, $("#mainPart"));
 	createNewElementAppend("p", "description", "", $("#mainPart"));
-
+		caravans.street();
+			caravans.market();
+	caravans.ask();
+	caravans.answerAsk();
 });
 
 
