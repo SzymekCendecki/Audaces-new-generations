@@ -164,3 +164,6 @@ Początek pracy nad prześciem z targu/ulicy na postój karawan.
 
 28 lipca 2018 - wersja 0.5.5
 Dodano tekst dla postoju karawan oraz przyciski dla tego paragrafu (ulica i targ). Do poprawy zdarzenia pod przyciskami - dla targu.
+
+29 lipca 2018 - wersja 0.5.6
+Naprawiono problem z poprawnym wyświetlaniem przycisku "zapytaj".

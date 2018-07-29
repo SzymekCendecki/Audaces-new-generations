@@ -1022,6 +1022,8 @@ document.addEventListener("DOMContentLoaded", function () {
 		createNewElementAppend("p", "textP", street.text, $("#mainPart"));
 		createNewElementAppend("p", "description", "", $("#mainPart"));
 
+		$("#ask").hide();
+
 		$("#btnsP1").after($("#marketPlace, #caravans").show());
 
 		//zdarzenie dla rozglądania się na ulicy
@@ -1042,7 +1044,7 @@ document.addEventListener("DOMContentLoaded", function () {
 	//zdarzenia dla targu
 	$("#marketPlace").on("click", function () {
 		$("#mainPart").empty();
-		$("#lookAroundStreet, #marketPlace, #inRoom, #caravans").hide();
+		$("#lookAroundStreet, #marketPlace, #inRoom, #caravans, #ask").hide();
 
 		createNewElementAppend("p", "textP", market.market, $("#mainPart"));
 		createNewElementAppend("p", "description", "", $("#mainPart"));
