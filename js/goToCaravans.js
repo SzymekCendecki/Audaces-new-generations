@@ -26,3 +26,7 @@ module.exports.street = function(){
 module.exports.market = function(){
   $("#marketPlace").show();
 }
+
+module.exports.agree = function(){
+  createNewElementAppend("button", "agree", "zgódź się", $("nav"));
+}

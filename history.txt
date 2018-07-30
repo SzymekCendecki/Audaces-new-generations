@@ -167,3 +167,8 @@ Dodano tekst dla postoju karawan oraz przyciski dla tego paragrafu (ulica i targ
 
 29 lipca 2018 - wersja 0.5.6
 Naprawiono problem z poprawnym wyświetlaniem przycisku "zapytaj".
+
+30 lipca 2018 - wersja 0.5.7
+Dodano przycisk "zgódź się", w paragrafie postoju karawan oraz część zdarzenia - chowanie tekstu i przycisów.
+
+Utworzony nowy plik starVoyege - dla paragrafu opisującego wsiadanie do wozu.

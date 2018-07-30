@@ -5,6 +5,7 @@ let firstP = require("./firstParagraph.js");
 let street = require("./secondParagraph.js");
 let market = require("./market.js");
 let caravans = require("./goToCaravans.js");
+let startVoyage = require("./startVoyage.js");
 
 document.addEventListener("DOMContentLoaded", () => { console.log("NIEWIERNE PSY RULEZ!!!!");
 
@@ -897,7 +898,16 @@ $("#caravans").on("click", () =>{
 			caravans.market();
 	caravans.ask();
 	caravans.answerAsk();
+	caravans.agree();
+	
+	$("#agree").on("click", function(){
+		console.log("działa");
+		$("#textP, #description").empty();
+		$("#ask, #agree, #marketPlace, #outRoom").hide();
+	});
 });
+
+
 
 
 

@@ -77,6 +77,7 @@ var firstP = __webpack_require__(5);
 var street = __webpack_require__(6);
 var market = __webpack_require__(7);
 var caravans = __webpack_require__(8);
+var startVoyage = __webpack_require__(9);
 
 document.addEventListener("DOMContentLoaded", function () {
 	console.log("NIEWIERNE PSY RULEZ!!!!");
@@ -1079,6 +1080,13 @@ document.addEventListener("DOMContentLoaded", function () {
 		caravans.market();
 		caravans.ask();
 		caravans.answerAsk();
+		caravans.agree();
+
+		$("#agree").on("click", function () {
+			console.log("działa");
+			$("#textP, #description").empty();
+			$("#ask, #agree, #marketPlace, #outRoom").hide();
+		});
 	});
 }); //koniec DOMContentLoaded
 
@@ -1526,6 +1534,17 @@ module.exports.street = function () {
 module.exports.market = function () {
   $("#marketPlace").show();
 };
+
+module.exports.agree = function () {
+  createNewElementAppend("button", "agree", "zgódź się", $("nav"));
+};
+
+/***/ }),
+/* 9 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
 
 /***/ })
 /******/ ]);
