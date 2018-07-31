@@ -172,3 +172,6 @@ Naprawiono problem z poprawnym wyświetlaniem przycisku "zapytaj".
 Dodano przycisk "zgódź się", w paragrafie postoju karawan oraz część zdarzenia - chowanie tekstu i przycisów.
 
 Utworzony nowy plik starVoyege - dla paragrafu opisującego wsiadanie do wozu.
+
+31 lipca 2018 - wersja 0.5.8
+Dodano przycisk dalej oraz tekst dla paragrafu, w którym bohater wsiada na wóz - do poprawki.

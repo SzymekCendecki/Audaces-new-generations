@@ -158,6 +158,9 @@ document.addEventListener("DOMContentLoaded", function () {
 	createNewElementAppend("button", "caravans", "karawany", $("nav"));
 	createNewElementAppend("button", "marketPlace", "targ", $("nav"));
 
+	//utworzenie przycisku dalej, gry bohater wsiada na wóz
+	createNewElementAppend("button", "further", "dalej", $("nav"));
+
 	//tablice
 	// tablica postaci 0 - imię, 1 - rasa, 2 - profesja
 	var hero = ["nie wybrano", "nie wybrano", "nie wybrano"];
@@ -196,7 +199,7 @@ document.addEventListener("DOMContentLoaded", function () {
 	$("#info, #licence, #tutorial, #newGame, #titleGameHeader, #subTitleGameHeader").hide();
 
 	//schowanie przycisków
-	$("#name, #race, #occupation, #features, #features2, #equipment, #skills, #infoCreator, #startGame, #outRoom, #lookAroundStreet, #marketPlace, #inRoom, #caravans").hide();
+	$("#name, #race, #occupation, #features, #features2, #equipment, #skills, #infoCreator, #startGame, #outRoom, #lookAroundStreet, #marketPlace, #inRoom, #caravans, #further").hide();
 
 	//schowanie i usunięcie nazwy studia oraz sentencji
 	$("#studioTitle").fadeOut(6000);
@@ -1083,9 +1086,10 @@ document.addEventListener("DOMContentLoaded", function () {
 		caravans.agree();
 
 		$("#agree").on("click", function () {
-			console.log("działa");
 			$("#textP, #description").empty();
 			$("#ask, #agree, #marketPlace, #outRoom").hide();
+			$("#further").show();
+			startVoyage.startVoyageText();
 		});
 	});
 }); //koniec DOMContentLoaded
@@ -1545,6 +1549,19 @@ module.exports.agree = function () {
 
 "use strict";
 
+
+function createNewElementAppend(nameElement, idName, text, whereAppend, addedClass) {
+  var newElement = document.createElement(nameElement);
+  newElement.id = idName;newElement.innerText = text;
+  whereAppend.append(newElement);newElement.classList.add(addedClass);
+  newElement.classList.remove("undefined");
+}
+
+var text = "Na ostatnim wozie okazało się, że jest jeszcze sporo miejsca, dzięki czemu będzie można podróżować dość wygodnie. Po kilkunastu minutach karawana ruszyła...";
+
+module.exports.startVoyageText = function () {
+  createNewElementAppend("p", "startVoyageText", text, $("#mainPart"));
+};
 
 /***/ })
 /******/ ]);

@@ -73,6 +73,9 @@ function createNewInputAppend(nameElement, name, id, value, type, whereAppend, a
 	createNewElementAppend("button", "caravans", "karawany", $("nav"));
 	createNewElementAppend("button", "marketPlace", "targ", $("nav"));
 
+	//utworzenie przycisku dalej, gry bohater wsiada na wóz
+	createNewElementAppend("button", "further", "dalej", $("nav"));
+
 	//tablice
 	// tablica postaci 0 - imię, 1 - rasa, 2 - profesja
 	let hero = ["nie wybrano", "nie wybrano", "nie wybrano"];
@@ -111,7 +114,7 @@ let gold = [0];
 $("#info, #licence, #tutorial, #newGame, #titleGameHeader, #subTitleGameHeader").hide();
 
 //schowanie przycisków
-$("#name, #race, #occupation, #features, #features2, #equipment, #skills, #infoCreator, #startGame, #outRoom, #lookAroundStreet, #marketPlace, #inRoom, #caravans").hide();
+$("#name, #race, #occupation, #features, #features2, #equipment, #skills, #infoCreator, #startGame, #outRoom, #lookAroundStreet, #marketPlace, #inRoom, #caravans, #further").hide();
 
 //schowanie i usunięcie nazwy studia oraz sentencji
 $("#studioTitle").fadeOut(6000);
@@ -899,11 +902,12 @@ $("#caravans").on("click", () =>{
 	caravans.ask();
 	caravans.answerAsk();
 	caravans.agree();
-	
+
 	$("#agree").on("click", function(){
-		console.log("działa");
 		$("#textP, #description").empty();
 		$("#ask, #agree, #marketPlace, #outRoom").hide();
+		$("#further").show();
+		startVoyage.startVoyageText();
 	});
 });
 
