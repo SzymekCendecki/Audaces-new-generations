@@ -75,6 +75,9 @@ function createNewInputAppend(nameElement, name, id, value, type, whereAppend, a
 
 	//utworzenie przycisku dalej, gry bohater wsiada na wóz
 	createNewElementAppend("button", "further", "dalej", $("nav"));
+	
+	//utworzenie przycisku dalej, gry bohater wsiada na wóz
+	createNewElementAppend("button", "voyage", "dalej", $("nav"));
 
 	//tablice
 	// tablica postaci 0 - imię, 1 - rasa, 2 - profesja
@@ -114,7 +117,7 @@ let gold = [0];
 $("#info, #licence, #tutorial, #newGame, #titleGameHeader, #subTitleGameHeader").hide();
 
 //schowanie przycisków
-$("#name, #race, #occupation, #features, #features2, #equipment, #skills, #infoCreator, #startGame, #outRoom, #lookAroundStreet, #marketPlace, #inRoom, #caravans, #further").hide();
+$("#name, #race, #occupation, #features, #features2, #equipment, #skills, #infoCreator, #startGame, #outRoom, #lookAroundStreet, #marketPlace, #inRoom, #caravans, #further, #voyage").hide();
 
 //schowanie i usunięcie nazwy studia oraz sentencji
 $("#studioTitle").fadeOut(6000);
@@ -889,7 +892,6 @@ $("#sell").on("click", ()=>{
 });
 
 //zdarzenie dla pójścia do miejsca postoju karawany
-
 $("#caravans").on("click", () =>{
 	$("#mainPart").empty();
 	$("#btnsP1").empty();
@@ -912,7 +914,7 @@ $("#caravans").on("click", () =>{
 });
 
 
-
+startVoyage.further();
 
 
 

@@ -175,3 +175,8 @@ Utworzony nowy plik starVoyege - dla paragrafu opisującego wsiadanie do wozu.
 
 31 lipca 2018 - wersja 0.5.8
 Dodano przycisk dalej oraz tekst dla paragrafu, w którym bohater wsiada na wóz - do poprawki.
+
+1 sierpnia 2018 - wersja 0.5.9
+Poprawka w paragrafie rozpoczęcia podróży (wsiadanie do wozu) - z pliku startVojage wykasowana została funkcja, która tworzyła nowy paragraf - zostało to zamienione na dodanie tekstu do już istniejącego paragrafu textP.
+
+	Utworzono zdarzenie czyszczące z tekstu główny paragraf opisujący, chowający przycisk dalej(grdy bohater wsiądzie na wóz) oraz utworzono kolejny przycisk "dalej" (na razie bez styli i zdarzenia - położenie przycisku do poprawy).
