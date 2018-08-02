@@ -180,3 +180,6 @@ Dodano przycisk dalej oraz tekst dla paragrafu, w którym bohater wsiada na wóz
 Poprawka w paragrafie rozpoczęcia podróży (wsiadanie do wozu) - z pliku startVojage wykasowana została funkcja, która tworzyła nowy paragraf - zostało to zamienione na dodanie tekstu do już istniejącego paragrafu textP.
 
 	Utworzono zdarzenie czyszczące z tekstu główny paragraf opisujący, chowający przycisk dalej(grdy bohater wsiądzie na wóz) oraz utworzono kolejny przycisk "dalej" (na razie bez styli i zdarzenia - położenie przycisku do poprawy).
+
+2 sierpnia 2018 - wersja 0.6.0
+	Dodanie stylu dla kolejnego przycisku "dalej" oraz poprawiono pozycjonowanie dwóch przycisków dalej.``
