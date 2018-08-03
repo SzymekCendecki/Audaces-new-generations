@@ -182,4 +182,7 @@ Poprawka w paragrafie rozpoczęcia podróży (wsiadanie do wozu) - z pliku start
 	Utworzono zdarzenie czyszczące z tekstu główny paragraf opisujący, chowający przycisk dalej(grdy bohater wsiądzie na wóz) oraz utworzono kolejny przycisk "dalej" (na razie bez styli i zdarzenia - położenie przycisku do poprawy).
 
 2 sierpnia 2018 - wersja 0.6.0
-	Dodanie stylu dla kolejnego przycisku "dalej" oraz poprawiono pozycjonowanie dwóch przycisków dalej.``
+	Dodanie stylu dla kolejnego przycisku "dalej" oraz poprawiono pozycjonowanie dwóch przycisków dalej.
+
+3 sierpnia 2018 - wersja 0.6.1
+Dodano nowy plik firstFight, wraz z nowym opisem paragrafu, dodano nowy przycisk "przygotuj się" (na pierwszą walkę) oraz ostylowano go.

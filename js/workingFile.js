@@ -6,6 +6,7 @@ let street = require("./secondParagraph.js");
 let market = require("./market.js");
 let caravans = require("./goToCaravans.js");
 let startVoyage = require("./startVoyage.js");
+let firstFight = require("./firstFight.js");
 
 document.addEventListener("DOMContentLoaded", () => { console.log("NIEWIERNE PSY RULEZ!!!!");
 
@@ -75,7 +76,7 @@ function createNewInputAppend(nameElement, name, id, value, type, whereAppend, a
 
 	//utworzenie przycisku dalej, gry bohater wsiada na wóz
 	createNewElementAppend("button", "further", "dalej", $("nav"));
-	
+
 	//utworzenie przycisku dalej, gry bohater wsiada na wóz
 	createNewElementAppend("button", "voyage", "dalej", $("nav"));
 
@@ -915,7 +916,6 @@ $("#caravans").on("click", () =>{
 
 
 startVoyage.further();
-
 
 
 });//koniec DOMContentLoaded

@@ -484,7 +484,7 @@ nav{
 }
 
 //style dla przycisków "na ulicy", i dla targu
-#lookAroundStreet, #inRoom, #buy, #sell, #ask, #further{
+#lookAroundStreet, #inRoom, #buy, #sell, #ask{
   margin-top: 5%;
   width: 49%;
   height: 70%;
@@ -505,7 +505,7 @@ nav{
   margin-left: 2%;
 }
 
-#marketPlace, #caravans, #further{
+#marketPlace, #caravans{
   margin-top: 3%;
   width: 49%;
   height: 4%;
@@ -591,4 +591,28 @@ nav{
   width: 50%;
   font-weight: bold;
   text-shadow: 1px 1px white;
+}
+
+#further, #voyage{
+  width: 9%;
+  height: 4%;
+  font-weight: bold;
+  text-shadow: 1px 1px white;
+  background: linear-gradient(white, green);
+  position: absolute;
+ top: 150px;
+ z-index: 50;
+}
+
+#voyage{
+    background: linear-gradient(white, red);
+}
+
+#prepareToBattle{
+  margin: 4% 0 0 51%;
+  width: 49%;
+  height: 5%;
+  font-weight: bold;
+  text-shadow: 1px 1px white;
+  background: linear-gradient(white, green);
 }
