@@ -60,7 +60,7 @@
 /******/ 	__webpack_require__.p = "";
 /******/
 /******/ 	// Load entry module and return exports
-/******/ 	return __webpack_require__(__webpack_require__.s = 1);
+/******/ 	return __webpack_require__(__webpack_require__.s = 2);
 /******/ })
 /************************************************************************/
 /******/ ([
@@ -70,14 +70,15 @@
 "use strict";
 
 
-var intro = __webpack_require__(2);
-var heroCreator = __webpack_require__(3);
-var introGame = __webpack_require__(4);
-var firstP = __webpack_require__(5);
-var street = __webpack_require__(6);
-var market = __webpack_require__(7);
-var caravans = __webpack_require__(8);
-var startVoyage = __webpack_require__(9);
+var intro = __webpack_require__(3);
+var heroCreator = __webpack_require__(4);
+var introGame = __webpack_require__(5);
+var firstP = __webpack_require__(6);
+var street = __webpack_require__(7);
+var market = __webpack_require__(8);
+var caravans = __webpack_require__(9);
+var startVoyage = __webpack_require__(10);
+var firstFight = __webpack_require__(1);
 
 document.addEventListener("DOMContentLoaded", function () {
 	console.log("NIEWIERNE PSY RULEZ!!!!");
@@ -161,6 +162,9 @@ document.addEventListener("DOMContentLoaded", function () {
 	//utworzenie przycisku dalej, gry bohater wsiada na wóz
 	createNewElementAppend("button", "further", "dalej", $("nav"));
 
+	//utworzenie przycisku dalej, gry bohater wsiada na wóz
+	createNewElementAppend("button", "voyage", "dalej", $("nav"));
+
 	//tablice
 	// tablica postaci 0 - imię, 1 - rasa, 2 - profesja
 	var hero = ["nie wybrano", "nie wybrano", "nie wybrano"];
@@ -173,6 +177,7 @@ document.addEventListener("DOMContentLoaded", function () {
 
 	//tablica ekwipunku max 5 elementów
 	var equip = [];
+	module.exports.e = equip;
 
 	//tablica umiejętności max 3 elementy
 	var skills = [];
@@ -199,7 +204,7 @@ document.addEventListener("DOMContentLoaded", function () {
 	$("#info, #licence, #tutorial, #newGame, #titleGameHeader, #subTitleGameHeader").hide();
 
 	//schowanie przycisków
-	$("#name, #race, #occupation, #features, #features2, #equipment, #skills, #infoCreator, #startGame, #outRoom, #lookAroundStreet, #marketPlace, #inRoom, #caravans, #further").hide();
+	$("#name, #race, #occupation, #features, #features2, #equipment, #skills, #infoCreator, #startGame, #outRoom, #lookAroundStreet, #marketPlace, #inRoom, #caravans, #further, #voyage").hide();
 
 	//schowanie i usunięcie nazwy studia oraz sentencji
 	$("#studioTitle").fadeOut(6000);
@@ -1071,7 +1076,6 @@ document.addEventListener("DOMContentLoaded", function () {
 	});
 
 	//zdarzenie dla pójścia do miejsca postoju karawany
-
 	$("#caravans").on("click", function () {
 		$("#mainPart").empty();
 		$("#btnsP1").empty();
@@ -1092,17 +1096,61 @@ document.addEventListener("DOMContentLoaded", function () {
 			startVoyage.startVoyageText();
 		});
 	});
+
+	startVoyage.further();
 }); //koniec DOMContentLoaded
 
 /***/ }),
 /* 1 */
 /***/ (function(module, exports, __webpack_require__) {
 
+"use strict";
+
+
+var workingFile = __webpack_require__(0);
+
+//funkcja, która tworzy nowy element DOM
+function createNewElementAppend(nameElement, idName, text, whereAppend, addedClass) {
+	var newElement = document.createElement(nameElement);
+	newElement.id = idName;newElement.innerText = text;
+	whereAppend.append(newElement);newElement.classList.add(addedClass);
+	newElement.classList.remove("undefined");
+}
+
+//tekst pierwszej walki
+var text = "Jedziecie sobie spokojnie. Czas mija na oglądaniu pejzaży z jadącego wozu. Niestety ta sielanka skończyła się wieczorem drugiego dnia. Zaczęło się od zawalonej, przez drzewa drogi. Gdy uczestnicy, z pierwszych wozów karawany uprzątali drzewa, nastąpił atak. Wszyscy muszą walczyć!. Ciebie atakuje jeden bandyta z wielkim mieczem.";
+
+module.exports.firstFight = function () {
+	$("#textP").text(text);
+	$("#voyage").prop("disabled", true);
+	createNewElementAppend("button", "prepareToBattle", "przygotuj się", $("nav"));
+
+	$("#prepareToBattle").on("click", function () {
+		createNewElementAppend("p", "prepareToBattleTitle", "Wybierz maksymalnie trzy rzeczy, które będziesz używać w trakcie walki.", $("#description"));
+
+		createNewElementAppend("p", "equipList", "", $("#description"));
+
+		for (var i = 0; i < workingFile.e.length; i++) {
+			var weaponBtn = document.createElement("button");
+			weaponBtn.id = workingFile.e[i];
+			weaponBtn.innerText = workingFile.e[i];
+			$("#equipList").append(weaponBtn);
+			$("#description button").addClass("weaponList");
+		}
+
+		$("#paczka").prop("disabled", true);
+	});
+};
+
+/***/ }),
+/* 2 */
+/***/ (function(module, exports, __webpack_require__) {
+
 module.exports = __webpack_require__(0);
 
 
 /***/ }),
-/* 2 */
+/* 3 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -1121,7 +1169,7 @@ module.exports.textLicence = "UMOWA LICENCYJNA UŻYTKOWNIKA APLIKACJI AUDACES (o
 module.exports.textTutorial = "Początek gry. Ekran składa się z powitania oraz czterech przycisków. Po wciśnięciu przycisku Info, Licencja lub Tutorial obok pojawi się odpowiednia informacja. Po wciśnięciu przycisku Nowa gra, użytkownik rozpocznie grę. Po rozpoczęciu gry, użytkownik będzie mógł stworzyć swoją. Po stworzeniu postaci, użytkownik przejdze do gry. Ekran będzie podzielony na część z przyciskami, główną, w której będzie rozgrywała się gra oraz na część z komunikatami. Część z przyciskami będzie posiadała przyciski umożliwiające dostęp do cech postaci, ekwipunku, umiejętności itd. oraz do opcji, które będzie mógł wybrać w trakcie gry. W głównej części pojawi się główna gra. Na jej podstawie gracz będzie mógł dokonywać wyborów z listy przycików. W części komunikatów będą pojawiać się komunikaty dotyczące podjętych działań.";
 
 /***/ }),
-/* 3 */
+/* 4 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -1233,7 +1281,7 @@ module.exports.infoTitle = "Twoja postać.";
 module.exports.infoDescription = "Poniżej znajdują się Twoje wybory. W tej sekcji możesz je sprawdzić oraz zastanowić się nad ewentualnymi zmianami. Po dokonaniu wszystkich wyborów, to po prawej stronie pod przyciskami powinien ukazać się przycisk rozpoczynający grę.";
 
 /***/ }),
-/* 4 */
+/* 5 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -1256,7 +1304,7 @@ module.exports.text7 = " W ostatnim bezpiecznym mieście przed Dzikimi Pustkowia
 module.exports.text8 = "Na usilną prośbę znajomego kapłana zgadzasz się dostarczyć małą paczkę dla tamtejszego mnicha, rezydującego w niewielkiej wiosce, która leży tuż przy granicy z Dzikimi Pustkowiami.";
 
 /***/ }),
-/* 5 */
+/* 6 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -1355,7 +1403,7 @@ module.exports.lookAround = function () {
 };
 
 /***/ }),
-/* 6 */
+/* 7 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -1373,7 +1421,7 @@ module.exports.lookAround = function () {
 };
 
 /***/ }),
-/* 7 */
+/* 8 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -1504,7 +1552,7 @@ module.exports.marketToCaravans = function () {
 };
 
 /***/ }),
-/* 8 */
+/* 9 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -1544,23 +1592,28 @@ module.exports.agree = function () {
 };
 
 /***/ }),
-/* 9 */
+/* 10 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
 
 
-function createNewElementAppend(nameElement, idName, text, whereAppend, addedClass) {
-  var newElement = document.createElement(nameElement);
-  newElement.id = idName;newElement.innerText = text;
-  whereAppend.append(newElement);newElement.classList.add(addedClass);
-  newElement.classList.remove("undefined");
-}
+var firstFight = __webpack_require__(1);
 
+//tekst startu podróży
 var text = "Na ostatnim wozie okazało się, że jest jeszcze sporo miejsca, dzięki czemu będzie można podróżować dość wygodnie. Po kilkunastu minutach karawana ruszyła...";
 
 module.exports.startVoyageText = function () {
-  createNewElementAppend("p", "startVoyageText", text, $("#mainPart"));
+	$("#textP").append(text);
+};
+
+module.exports.further = function () {
+	$("#further").on("click", function () {
+		$("#textP").empty();
+		$("#further").hide();
+		$("#voyage").show();
+		firstFight.firstFight();
+	});
 };
 
 /***/ })

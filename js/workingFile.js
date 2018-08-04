@@ -92,6 +92,7 @@ function createNewInputAppend(nameElement, name, id, value, type, whereAppend, a
 
 	//tablica ekwipunku max 5 elementów
 	let equip = [];
+	module.exports.e = equip;
 
 	//tablica umiejętności max 3 elementy
 	let skills = [];

@@ -1,3 +1,5 @@
+let workingFile = require("./workingFile.js");
+
 //funkcja, która tworzy nowy element DOM
 function createNewElementAppend(nameElement, idName, text, whereAppend, addedClass){
 let newElement = document.createElement(nameElement);
@@ -14,6 +16,19 @@ module.exports.firstFight = function(){
 	  createNewElementAppend("button", "prepareToBattle", "przygotuj się", $("nav"));
 
 		$("#prepareToBattle").on("click", ()=>{
-			console.log("działa");
+			createNewElementAppend("p", "prepareToBattleTitle", "Wybierz maksymalnie trzy rzeczy, które będziesz używać w trakcie walki.", $("#description"));
+
+			createNewElementAppend("p", "equipList", "", $("#description"));
+
+			for(let i=0; i<workingFile.e.length; i++){
+				let weaponBtn = document.createElement("button");
+				weaponBtn.id = workingFile.e[i];
+				weaponBtn.innerText = workingFile.e[i];
+				$("#equipList").append(weaponBtn);
+				$("#description button").addClass("weaponList");
+	 }
+
+	 	$("#paczka").prop("disabled", true);
+
 		});
 }

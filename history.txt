@@ -186,3 +186,6 @@ Poprawka w paragrafie rozpoczęcia podróży (wsiadanie do wozu) - z pliku start
 
 3 sierpnia 2018 - wersja 0.6.1
 Dodano nowy plik firstFight, wraz z nowym opisem paragrafu, dodano nowy przycisk "przygotuj się" (na pierwszą walkę) oraz ostylowano go.
+
+4 sierpnia 2018 - wersja 0.6.2
+Dodano przyciski, dzięi którym można wybrać rzeczy do walki (na razie są tylko przyciski)
