@@ -61,4 +61,9 @@ module.exports.clicksFirstMenu = function(){
   functions.clickFirstMenu($("#info"), $("#mainPart"), "textInfo", info);
   functions.clickFirstMenu($("#licence"), $("#mainPart"), "textLicence", licence);
   functions.clickFirstMenu($("#tutorial"), $("#mainPart"), "textTutorial", tutorial);
+
+  $("#newGame").on("click", ()=>{
+    $("nav, #mainPart").empty();
+    
+    });
 }

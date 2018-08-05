@@ -1,3 +1,20 @@
+//import funkcji z pliku zewnętrznego
+let functions = require("./functions.js"); //podstawowe funkcje
+
+//utworzenie przycisków kreatora
+module.exports.btnsCreator = function(){
+  functions.newElement("button", "name", "imię", $("nav"));
+  functions.newElement("button", "race", "rasa", $("nav"));
+  functions.newElement("button", "occupation", "profesja", $("nav"));
+  functions.newElement("button", "features", "cechy", $("nav"));
+  functions.newElement("button", "features2", "cechy 2", $("nav"));
+  functions.newElement("button", "equipment", "ekwipunek", $("nav"));
+  functions.newElement("button", "skills", "umiejętności", $("nav"));
+  functions.newElement("button", "infoCreator", "info", $("nav"));
+  functions.newElement("button", "startGame", "start", $("nav"));
+}
+
+
 //--------------------------------tablice dla wybierania ekwipunku ------------------------------//
 //broń
 module.exports.equipWeaponPL = ["sztylet", "drewniana pałka", "krótki miecz", "szabla", "włócznia", "proca", "łuk"];

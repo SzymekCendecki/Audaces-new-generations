@@ -60,7 +60,7 @@
 /******/ 	__webpack_require__.p = "";
 /******/
 /******/ 	// Load entry module and return exports
-/******/ 	return __webpack_require__(__webpack_require__.s = 2);
+/******/ 	return __webpack_require__(__webpack_require__.s = 3);
 /******/ })
 /************************************************************************/
 /******/ ([
@@ -71,8 +71,8 @@
 
 
 //import z plików zewnętrznych
-var functions = __webpack_require__(3); //podstawowe funkcje
-var introFirstMenu = __webpack_require__(12); //plik z częścią intro oraz pierwszym menu
+var functions = __webpack_require__(1); //podstawowe funkcje
+var introFirstMenu = __webpack_require__(4); //plik z częścią intro oraz pierwszym menu
 var heroCreator = __webpack_require__(5);
 var introGame = __webpack_require__(6);
 var firstP = __webpack_require__(7);
@@ -80,7 +80,7 @@ var street = __webpack_require__(8);
 var market = __webpack_require__(9);
 var caravans = __webpack_require__(10);
 var startVoyage = __webpack_require__(11);
-var firstFight = __webpack_require__(1);
+var firstFight = __webpack_require__(2);
 
 document.addEventListener("DOMContentLoaded", function () {
 	console.log("NIEWIERNE PSY RULEZ!!!!");
@@ -91,15 +91,7 @@ document.addEventListener("DOMContentLoaded", function () {
 	introFirstMenu.btnsFirstMenu();
 
 	//utworzenie przycisków kreatora
-	functions.newElement("button", "name", "imię", $("nav"));
-	functions.newElement("button", "race", "rasa", $("nav"));
-	functions.newElement("button", "occupation", "profesja", $("nav"));
-	functions.newElement("button", "features", "cechy", $("nav"));
-	functions.newElement("button", "features2", "cechy 2", $("nav"));
-	functions.newElement("button", "equipment", "ekwipunek", $("nav"));
-	functions.newElement("button", "skills", "umiejętności", $("nav"));
-	functions.newElement("button", "infoCreator", "info", $("nav"));
-	functions.newElement("button", "startGame", "start", $("nav"));
+	heroCreator.btnsCreator();
 
 	//utworzenie przycisku wyjścia z pokoju na ulicę
 	functions.newElement("button", "outRoom", "wyjdź", $("nav"));
@@ -173,8 +165,7 @@ document.addEventListener("DOMContentLoaded", function () {
 
 	//przycisk nowej gry - tworzenie kretora postaci
 	$("#newGame").on("click", function () {
-		$("#mainPart").empty().removeClass("basicText");
-		$("#info, #licence, #tutorial, #newGame").fadeOut();
+
 		$("#name, #race, #occupation, #features, #features2, #equipment, #skills, #infoCreator").fadeIn();
 		$("#name, #race, #occupation, #features, #features2, #equipment, #skills, #infoCreator").addClass("basicBtn");
 
@@ -1026,55 +1017,6 @@ document.addEventListener("DOMContentLoaded", function () {
 "use strict";
 
 
-var workingFile = __webpack_require__(0);
-
-//funkcja, która tworzy nowy element DOM
-function createNewElementAppend(nameElement, idName, text, whereAppend, addedClass) {
-	var newElement = document.createElement(nameElement);
-	newElement.id = idName;newElement.innerText = text;
-	whereAppend.append(newElement);newElement.classList.add(addedClass);
-	newElement.classList.remove("undefined");
-}
-
-//tekst pierwszej walki
-var text = "Jedziecie sobie spokojnie. Czas mija na oglądaniu pejzaży z jadącego wozu. Niestety ta sielanka skończyła się wieczorem drugiego dnia. Zaczęło się od zawalonej, przez drzewa drogi. Gdy uczestnicy, z pierwszych wozów karawany uprzątali drzewa, nastąpił atak. Wszyscy muszą walczyć!. Ciebie atakuje jeden bandyta z wielkim mieczem.";
-
-module.exports.firstFight = function () {
-	$("#textP").text(text);
-	$("#voyage").prop("disabled", true);
-	createNewElementAppend("button", "prepareToBattle", "przygotuj się", $("nav"));
-
-	$("#prepareToBattle").on("click", function () {
-		createNewElementAppend("p", "prepareToBattleTitle", "Wybierz maksymalnie trzy rzeczy, które będziesz używać w trakcie walki.", $("#description"));
-
-		createNewElementAppend("p", "equipList", "", $("#description"));
-
-		for (var i = 0; i < workingFile.e.length; i++) {
-			var weaponBtn = document.createElement("button");
-			weaponBtn.id = workingFile.e[i];
-			weaponBtn.innerText = workingFile.e[i];
-			$("#equipList").append(weaponBtn);
-			$("#description button").addClass("weaponList");
-		}
-
-		$("#paczka").prop("disabled", true);
-	});
-};
-
-/***/ }),
-/* 2 */
-/***/ (function(module, exports, __webpack_require__) {
-
-module.exports = __webpack_require__(0);
-
-
-/***/ }),
-/* 3 */
-/***/ (function(module, exports, __webpack_require__) {
-
-"use strict";
-
-
 //funkcja, która tworzy nowy element DOM
 module.exports.newElement = function (nameElement, idName, text, whereAppend) {
   var newElement = document.createElement(nameElement);
@@ -1155,12 +1097,152 @@ function clickRaceOccupation(element, text, number, sourceDescription, alert) {
 }
 
 /***/ }),
-/* 4 */,
+/* 2 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+var workingFile = __webpack_require__(0);
+
+//funkcja, która tworzy nowy element DOM
+function createNewElementAppend(nameElement, idName, text, whereAppend, addedClass) {
+	var newElement = document.createElement(nameElement);
+	newElement.id = idName;newElement.innerText = text;
+	whereAppend.append(newElement);newElement.classList.add(addedClass);
+	newElement.classList.remove("undefined");
+}
+
+//tekst pierwszej walki
+var text = "Jedziecie sobie spokojnie. Czas mija na oglądaniu pejzaży z jadącego wozu. Niestety ta sielanka skończyła się wieczorem drugiego dnia. Zaczęło się od zawalonej, przez drzewa drogi. Gdy uczestnicy, z pierwszych wozów karawany uprzątali drzewa, nastąpił atak. Wszyscy muszą walczyć!. Ciebie atakuje jeden bandyta z wielkim mieczem.";
+
+module.exports.firstFight = function () {
+	$("#textP").text(text);
+	$("#voyage").prop("disabled", true);
+	createNewElementAppend("button", "prepareToBattle", "przygotuj się", $("nav"));
+
+	$("#prepareToBattle").on("click", function () {
+		createNewElementAppend("p", "prepareToBattleTitle", "Wybierz maksymalnie trzy rzeczy, które będziesz używać w trakcie walki.", $("#description"));
+
+		createNewElementAppend("p", "equipList", "", $("#description"));
+
+		for (var i = 0; i < workingFile.e.length; i++) {
+			var weaponBtn = document.createElement("button");
+			weaponBtn.id = workingFile.e[i];
+			weaponBtn.innerText = workingFile.e[i];
+			$("#equipList").append(weaponBtn);
+			$("#description button").addClass("weaponList");
+		}
+
+		$("#paczka").prop("disabled", true);
+	});
+};
+
+/***/ }),
+/* 3 */
+/***/ (function(module, exports, __webpack_require__) {
+
+module.exports = __webpack_require__(0);
+
+
+/***/ }),
+/* 4 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+//import funkcji z pliku zewnętrznego
+var functions = __webpack_require__(1); //podstawowe funkcje
+
+//funkcja tytuły gry
+module.exports.gameTitle = function () {
+  //utworzenie paragarafów dla tytułu gry
+  functions.newElement("p", "titleGameHeader", "AUDACES", $("header"));
+  functions.newElement("p", "subTitleGameHeader", "serce ze stali", $("#titleGameHeader"));
+
+  //pokazanie tytułu i podtytułu gry
+  setTimeout(function () {
+    $("#studioTitle h2").replaceWith("<p class='medievalTextTitle gameTitle'>Audaces</p>");
+    $("#studioTitle h3").replaceWith("<p class='medievalTextTitle subGameTitle'>serce z żelaza</p>");
+    $("#studioTitle").fadeIn(6000);$("#studioTitle").delay(2000).fadeOut(6000);
+  }, 6200);
+};
+
+//przejście z nazwy gry do pierwszego toFirstMenu
+module.exports.toFirstMenu = function () {
+  //zmiana koloru tła na beżowy
+  setTimeout(function () {
+    $("body").css("backgroundColor", "beige");
+  }, 19000);
+
+  //usunięcie diva o id studioTitle
+  setTimeout(function () {
+    $("#studioTitle").remove();
+    $("#titleGameHeader, #subTitleGameHeader").fadeIn(1500);
+    $("#info, #licence, #tutorial, #newGame").fadeIn(1500).addClass("basicBtn");
+    $("#info").addClass("btnInfo");
+    $("#licence").addClass("btnLicence");
+    $("#tutorial").addClass("btnTutorial");
+    $("#newGame").addClass("btnNewGame");
+    functions.newElement("p", "textHello", textHello, $("#mainPart"));
+    $("#textHello").addClass("basicText medievalText");
+  }, 20000);
+};
+
+//utworzenie przycisków pierwszego menu
+module.exports.btnsFirstMenu = function () {
+  functions.newElement("button", "info", "info", $("nav"));
+  functions.newElement("button", "licence", "licencja", $("nav"));
+  functions.newElement("button", "tutorial", "tutorial", $("nav"));
+  functions.newElement("button", "newGame", "Nowa Gra", $("nav"));
+};
+
+//tekst powitalny
+var textHello = "Witaj w grze 'Audaces - serce z żelaza', pierwszej grze tekstowej Niewiernych Psów. Poniżej znajdują się cztery przyciski, dzięki którym poznasz podsatwowe informacje o Niewiernych Psach, licencji gry, jsamouczka obsługi interfejsu gry oraz rozpoczniesz grę AUDACES - serce z żelaza. Także tego. Studio Niewiernych Psów, życzy miłej zabawy.";
+
+//tekst dla informacji w menu pierwszym
+var info = "Ta wersja gry została stworzona jako poprawiona wersja, projektu końcowego kursu front'endowego, a także jako modernizacja tej samej gry sprzed kursu. Gra ma także na celu przetestowanie mechaniki 'papierowej' wersji systemu gry Audaces. Projekt będzie rozwijalny także po skończeniu kursu. Wszystkie wersje tej gry zostały wydane przez niezależne studio Niewierne Psy. Gra powstała dzięki użytym technologiom: HTML5, SASS, jQuery, EcmaScript 6. Fonty pobrane z: fonts.google.com/.";
+
+//tekst dla licencji
+var licence = "UMOWA LICENCYJNA UŻYTKOWNIKA APLIKACJI AUDACES (oraz wszystkich jego wesji). POSIADAJĄC APLIKACJĘ AKCEPTUJESZ PONIŻSZE WARUNKI LICENCJI. Autor informuje, iż zawarte treści w aplikacji mogą być niestosowne dla osób niepełnoletnich, o innym światopoglądzie lub wyznawanej religii. Użytkownik używa aplikację na własne ryzyko. Twórca tej aplikacji infourmuje, iż aplikacja ta została stowrzona w celach hobbystycznych oraz w celu nauki programowania. Aplikacja ta może zawierać błędy, które niekoniecznie muszą być poprawione. Autor nie udziela żadnych gwarancji, obietnic oraz zapewnień na tą aplikację (i jej wersje) i nie odpowiada za błędne działanie lub użytkowanie programu. Autor aplikacji nie bierze na siebie żadnych reklamacji w sprawie wadliwego działania programu oraz nie poczuwa się do zadość uczynienia za spowodowane szkody. Prawa autorskie należą do Szymona Cendeckiego. Audaces jest rozprowadzany na zasadzie FREEWARE czyli: użytkownik dostaje aplikację za darmo, nie może w żaden sposób zmieniać aplikacji, może wykorzystywać aplikację na własny użytek, zabrnia się wykorzystywać aplikację w celach komercyjnych, zabrania się ujawniania kodu źródłowego.";
+
+//tekst dla tutorialu
+var tutorial = "Początek gry. Ekran składa się z powitania oraz czterech przycisków. Po wciśnięciu przycisku Info, Licencja lub Tutorial obok pojawi się odpowiednia informacja. Po wciśnięciu przycisku Nowa gra, użytkownik rozpocznie grę. Po rozpoczęciu gry, użytkownik będzie mógł stworzyć swoją. Po stworzeniu postaci, użytkownik przejdze do gry. Ekran będzie podzielony na część z przyciskami, główną, w której będzie rozgrywała się gra oraz na część z komunikatami. Część z przyciskami będzie posiadała przyciski umożliwiające dostęp do cech postaci, ekwipunku, umiejętności itd. oraz do opcji, które będzie mógł wybrać w trakcie gry. W głównej części pojawi się główna gra. Na jej podstawie gracz będzie mógł dokonywać wyborów z listy przycików. W części komunikatów będą pojawiać się komunikaty dotyczące podjętych działań.";
+
+//zdarzenia dla pierwszego menu
+module.exports.clicksFirstMenu = function () {
+  functions.clickFirstMenu($("#info"), $("#mainPart"), "textInfo", info);
+  functions.clickFirstMenu($("#licence"), $("#mainPart"), "textLicence", licence);
+  functions.clickFirstMenu($("#tutorial"), $("#mainPart"), "textTutorial", tutorial);
+
+  $("#newGame").on("click", function () {
+    $("nav, #mainPart").empty();
+  });
+};
+
+/***/ }),
 /* 5 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
 
+
+//import funkcji z pliku zewnętrznego
+var functions = __webpack_require__(1); //podstawowe funkcje
+
+//utworzenie przycisków kreatora
+module.exports.btnsCreator = function () {
+  functions.newElement("button", "name", "imię", $("nav"));
+  functions.newElement("button", "race", "rasa", $("nav"));
+  functions.newElement("button", "occupation", "profesja", $("nav"));
+  functions.newElement("button", "features", "cechy", $("nav"));
+  functions.newElement("button", "features2", "cechy 2", $("nav"));
+  functions.newElement("button", "equipment", "ekwipunek", $("nav"));
+  functions.newElement("button", "skills", "umiejętności", $("nav"));
+  functions.newElement("button", "infoCreator", "info", $("nav"));
+  functions.newElement("button", "startGame", "start", $("nav"));
+};
 
 //--------------------------------tablice dla wybierania ekwipunku ------------------------------//
 //broń
@@ -1585,7 +1667,7 @@ module.exports.agree = function () {
 "use strict";
 
 
-var firstFight = __webpack_require__(1);
+var firstFight = __webpack_require__(2);
 
 //tekst startu podróży
 var text = "Na ostatnim wozie okazało się, że jest jeszcze sporo miejsca, dzięki czemu będzie można podróżować dość wygodnie. Po kilkunastu minutach karawana ruszyła...";
@@ -1601,78 +1683,6 @@ module.exports.further = function () {
 		$("#voyage").show();
 		firstFight.firstFight();
 	});
-};
-
-/***/ }),
-/* 12 */
-/***/ (function(module, exports, __webpack_require__) {
-
-"use strict";
-
-
-//import funkcji z pliku zewnętrznego
-var functions = __webpack_require__(3); //podstawowe funkcje
-
-//funkcja tytuły gry
-module.exports.gameTitle = function () {
-  //utworzenie paragarafów dla tytułu gry
-  functions.newElement("p", "titleGameHeader", "AUDACES", $("header"));
-  functions.newElement("p", "subTitleGameHeader", "serce ze stali", $("#titleGameHeader"));
-
-  //pokazanie tytułu i podtytułu gry
-  setTimeout(function () {
-    $("#studioTitle h2").replaceWith("<p class='medievalTextTitle gameTitle'>Audaces</p>");
-    $("#studioTitle h3").replaceWith("<p class='medievalTextTitle subGameTitle'>serce z żelaza</p>");
-    $("#studioTitle").fadeIn(6000);$("#studioTitle").delay(2000).fadeOut(6000);
-  }, 6200);
-};
-
-//przejście z nazwy gry do pierwszego toFirstMenu
-module.exports.toFirstMenu = function () {
-  //zmiana koloru tła na beżowy
-  setTimeout(function () {
-    $("body").css("backgroundColor", "beige");
-  }, 19000);
-
-  //usunięcie diva o id studioTitle
-  setTimeout(function () {
-    $("#studioTitle").remove();
-    $("#titleGameHeader, #subTitleGameHeader").fadeIn(1500);
-    $("#info, #licence, #tutorial, #newGame").fadeIn(1500).addClass("basicBtn");
-    $("#info").addClass("btnInfo");
-    $("#licence").addClass("btnLicence");
-    $("#tutorial").addClass("btnTutorial");
-    $("#newGame").addClass("btnNewGame");
-    functions.newElement("p", "textHello", textHello, $("#mainPart"));
-    $("#textHello").addClass("basicText medievalText");
-  }, 20000);
-};
-
-//utworzenie przycisków pierwszego menu
-module.exports.btnsFirstMenu = function () {
-  functions.newElement("button", "info", "info", $("nav"));
-  functions.newElement("button", "licence", "licencja", $("nav"));
-  functions.newElement("button", "tutorial", "tutorial", $("nav"));
-  functions.newElement("button", "newGame", "Nowa Gra", $("nav"));
-};
-
-//tekst powitalny
-var textHello = "Witaj w grze 'Audaces - serce z żelaza', pierwszej grze tekstowej Niewiernych Psów. Poniżej znajdują się cztery przyciski, dzięki którym poznasz podsatwowe informacje o Niewiernych Psach, licencji gry, jsamouczka obsługi interfejsu gry oraz rozpoczniesz grę AUDACES - serce z żelaza. Także tego. Studio Niewiernych Psów, życzy miłej zabawy.";
-
-//tekst dla informacji w menu pierwszym
-var info = "Ta wersja gry została stworzona jako poprawiona wersja, projektu końcowego kursu front'endowego, a także jako modernizacja tej samej gry sprzed kursu. Gra ma także na celu przetestowanie mechaniki 'papierowej' wersji systemu gry Audaces. Projekt będzie rozwijalny także po skończeniu kursu. Wszystkie wersje tej gry zostały wydane przez niezależne studio Niewierne Psy. Gra powstała dzięki użytym technologiom: HTML5, SASS, jQuery, EcmaScript 6. Fonty pobrane z: fonts.google.com/.";
-
-//tekst dla licencji
-var licence = "UMOWA LICENCYJNA UŻYTKOWNIKA APLIKACJI AUDACES (oraz wszystkich jego wesji). POSIADAJĄC APLIKACJĘ AKCEPTUJESZ PONIŻSZE WARUNKI LICENCJI. Autor informuje, iż zawarte treści w aplikacji mogą być niestosowne dla osób niepełnoletnich, o innym światopoglądzie lub wyznawanej religii. Użytkownik używa aplikację na własne ryzyko. Twórca tej aplikacji infourmuje, iż aplikacja ta została stowrzona w celach hobbystycznych oraz w celu nauki programowania. Aplikacja ta może zawierać błędy, które niekoniecznie muszą być poprawione. Autor nie udziela żadnych gwarancji, obietnic oraz zapewnień na tą aplikację (i jej wersje) i nie odpowiada za błędne działanie lub użytkowanie programu. Autor aplikacji nie bierze na siebie żadnych reklamacji w sprawie wadliwego działania programu oraz nie poczuwa się do zadość uczynienia za spowodowane szkody. Prawa autorskie należą do Szymona Cendeckiego. Audaces jest rozprowadzany na zasadzie FREEWARE czyli: użytkownik dostaje aplikację za darmo, nie może w żaden sposób zmieniać aplikacji, może wykorzystywać aplikację na własny użytek, zabrnia się wykorzystywać aplikację w celach komercyjnych, zabrania się ujawniania kodu źródłowego.";
-
-//tekst dla tutorialu
-var tutorial = "Początek gry. Ekran składa się z powitania oraz czterech przycisków. Po wciśnięciu przycisku Info, Licencja lub Tutorial obok pojawi się odpowiednia informacja. Po wciśnięciu przycisku Nowa gra, użytkownik rozpocznie grę. Po rozpoczęciu gry, użytkownik będzie mógł stworzyć swoją. Po stworzeniu postaci, użytkownik przejdze do gry. Ekran będzie podzielony na część z przyciskami, główną, w której będzie rozgrywała się gra oraz na część z komunikatami. Część z przyciskami będzie posiadała przyciski umożliwiające dostęp do cech postaci, ekwipunku, umiejętności itd. oraz do opcji, które będzie mógł wybrać w trakcie gry. W głównej części pojawi się główna gra. Na jej podstawie gracz będzie mógł dokonywać wyborów z listy przycików. W części komunikatów będą pojawiać się komunikaty dotyczące podjętych działań.";
-
-//zdarzenia dla pierwszego menu
-module.exports.clicksFirstMenu = function () {
-  functions.clickFirstMenu($("#info"), $("#mainPart"), "textInfo", info);
-  functions.clickFirstMenu($("#licence"), $("#mainPart"), "textLicence", licence);
-  functions.clickFirstMenu($("#tutorial"), $("#mainPart"), "textTutorial", tutorial);
 };
 
 /***/ })

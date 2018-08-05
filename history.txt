@@ -195,4 +195,7 @@ Początek optymalizacji. Utworzony plik introFirstMenu.scss - przeniesienie do n
 
 	Utworzony pliku introFirstMenu.js oraz przeniesienie odpowiedniego kodu do tego pliku.
 
-Utworzony plik functons.js i przeniesienie do niego odpowiedniego kodu
+Utworzony plik functons.js i przeniesienie do niego odpowiedniego kodu.
+
+5 sierpnia 2018 - wersja 0.6.31
+Po wciśnięciu przycisku "nowa gra", usuwane są przyciski pierwszego menu oraz test z części opisowej (mainPart).

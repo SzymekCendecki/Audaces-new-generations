@@ -19,15 +19,10 @@ document.addEventListener("DOMContentLoaded", () => {
 	introFirstMenu.btnsFirstMenu();
 
 	//utworzenie przycisków kreatora
-	functions.newElement("button", "name", "imię", $("nav"));
-	functions.newElement("button", "race", "rasa", $("nav"));
-	functions.newElement("button", "occupation", "profesja", $("nav"));
-	functions.newElement("button", "features", "cechy", $("nav"));
-	functions.newElement("button", "features2", "cechy 2", $("nav"));
-	functions.newElement("button", "equipment", "ekwipunek", $("nav"));
-	functions.newElement("button", "skills", "umiejętności", $("nav"));
-	functions.newElement("button", "infoCreator", "info", $("nav"));
-	functions.newElement("button", "startGame", "start", $("nav"));
+	heroCreator.btnsCreator();
+
+
+
 
 	//utworzenie przycisku wyjścia z pokoju na ulicę
 	functions.newElement("button", "outRoom", "wyjdź", $("nav"));
@@ -92,7 +87,6 @@ introFirstMenu.toFirstMenu();
 //funkcje zdarzeń (kliknięcia w przyciski) dla pierwszego menu
 introFirstMenu.clicksFirstMenu();
 
-
 //funkcje tworzenia dla menu gry
 createNewElementAppend("button", "featuresGame", "cechy", $("nav"));
 createNewElementAppend("button", "equipGame", "ekwipunek", $("nav"));
@@ -101,8 +95,8 @@ createNewElementAppend("button", "taskGame", "zadania", $("nav"));
 $("#featuresGame, #equipGame, #skillsGame, #taskGame").hide();
 
 //przycisk nowej gry - tworzenie kretora postaci
-$("#newGame").on("click", () =>{ 	$("#mainPart").empty().removeClass("basicText");
-	$("#info, #licence, #tutorial, #newGame").fadeOut();
+$("#newGame").on("click", () =>{
+
 	$("#name, #race, #occupation, #features, #features2, #equipment, #skills, #infoCreator").fadeIn();
 	$("#name, #race, #occupation, #features, #features2, #equipment, #skills, #infoCreator").addClass("basicBtn");
 
