@@ -1,4 +1,6 @@
-let intro = require("./firstMenu.js");
+//import z plików zewnętrznych
+let functions = require("./functions.js"); //podstawowe funkcje
+let introFirstMenu = require("./introFirstMenu.js"); //plik z częścią intro oraz pierwszym menu
 let heroCreator = require("./heroCreator.js");
 let introGame = require("./introGame.js");
 let firstP = require("./firstParagraph.js");
@@ -8,77 +10,37 @@ let caravans = require("./goToCaravans.js");
 let startVoyage = require("./startVoyage.js");
 let firstFight = require("./firstFight.js");
 
-document.addEventListener("DOMContentLoaded", () => { console.log("NIEWIERNE PSY RULEZ!!!!");
+document.addEventListener("DOMContentLoaded", () => {
+	console.log("NIEWIERNE PSY RULEZ!!!!");
 
-//funkcja, która tworzy nowy element DOM
-function createNewElementAppend(nameElement, idName, text, whereAppend, addedClass){
-let newElement = document.createElement(nameElement); newElement.id = idName;	newElement.innerText = text; whereAppend.append(newElement); newElement.classList.add(addedClass); 	newElement.classList.remove("undefined"); }
-
-//funkcja optymalizująca tworzenie inputów
-function createNewInputAppend(nameElement, name, id, value, type, whereAppend, addedClass){
-			let newElement = document.createElement(nameElement); newElement.type = type;
-			newElement.name = name; newElement.id = id; newElement.value = value;
-			whereAppend.append(newElement);	newElement.classList.add(addedClass);
-			newElement.classList.remove("undefined"); }
-
-		//funkcja optymalizująca wybieranie rasy i profesji
-			function clickRaceOccupation(element, text, number, sourceDescription, alert){
-				element.on("click", ()=>{ hero.splice(number, 1, text); alert.addClass("greenText");
-				$("#choosenDescription").text(sourceDescription);
-
-				if(text === "wojownik"){ choosenOccupation.splice(0, 1, 5);
-				choosenOccupation.splice(1, 1, 5); choosenOccupation.splice(2, 1, 0); 	choosenOccupation.splice(3, 1, 0); choosenOccupation.splice(4, 1, 0);
-				}else if(text === "złoczyńca"){ choosenOccupation.splice(0, 1, 0);
-					choosenOccupation.splice(1, 1, 0); choosenOccupation.splice(2, 1, 10);
-					choosenOccupation.splice(3, 1, 0); choosenOccupation.splice(4, 1, 0);
-				}else if(text === "czarodziej"){ choosenOccupation.splice(0, 1, 0);
-					choosenOccupation.splice(1, 1, 0); choosenOccupation.splice(2, 1, 0);
-					choosenOccupation.splice(3, 1, 5); choosenOccupation.splice(4, 1, 5);
-				}else if(text === "człowiek"){ choosenRace.splice(0, 1, 0);
-					choosenRace.splice(1, 1, 0); choosenRace.splice(2, 1, 0);
-					choosenRace.splice(3, 1, 0); choosenRace.splice(4, 1, 0);
-				}else if(text === "elf"){ choosenRace.splice(0, 1, -5);
-					choosenRace.splice(1, 1, -5); choosenRace.splice(2, 1, 0);
-					choosenRace.splice(3, 1, 5); choosenRace.splice(4, 1, 5);
-				}else if(text === "krasnolud"){ choosenRace.splice(0, 1, 4);
-					choosenRace.splice(1, 1, 4); choosenRace.splice(2, 1, 0);
-					choosenRace.splice(3, 1, -2); choosenRace.splice(4, 1, -3);
-				}else if(text === "ork"){ choosenRace.splice(0, 1, 5);
-					choosenRace.splice(1, 1, 5); choosenRace.splice(2, 1, 0);
-					choosenRace.splice(3, 1, -5);	choosenRace.splice(4, 1, -5);
-				} }); }
-
-//utworzenie przycisków pierwszego menu
-  createNewElementAppend("p", "titleGameHeader", "AUDACES", $("header"));
-  createNewElementAppend("p", "subTitleGameHeader", "serce ze stali", $("#titleGameHeader"));
-  createNewElementAppend("button", "info", "info", $("nav"));
-  createNewElementAppend("button", "licence", "licencja", $("nav"));
-  createNewElementAppend("button", "tutorial", "tutorial", $("nav"));
-  createNewElementAppend("button", "newGame", "Nowa Gra", $("nav"));
+//intro i pierwsze menu
+	introFirstMenu.gameTitle();
+//przyciski pierwszego menu
+	introFirstMenu.btnsFirstMenu();
 
 	//utworzenie przycisków kreatora
-	createNewElementAppend("button", "name", "imię", $("nav"));
-	createNewElementAppend("button", "race", "rasa", $("nav"));
-	createNewElementAppend("button", "occupation", "profesja", $("nav"));
-	createNewElementAppend("button", "features", "cechy", $("nav"));
-	createNewElementAppend("button", "features2", "cechy 2", $("nav"));
-	createNewElementAppend("button", "equipment", "ekwipunek", $("nav"));
-	createNewElementAppend("button", "skills", "umiejętności", $("nav"));
-	createNewElementAppend("button", "infoCreator", "info", $("nav"));
-	createNewElementAppend("button", "startGame", "start", $("nav"));
+	functions.newElement("button", "name", "imię", $("nav"));
+	functions.newElement("button", "race", "rasa", $("nav"));
+	functions.newElement("button", "occupation", "profesja", $("nav"));
+	functions.newElement("button", "features", "cechy", $("nav"));
+	functions.newElement("button", "features2", "cechy 2", $("nav"));
+	functions.newElement("button", "equipment", "ekwipunek", $("nav"));
+	functions.newElement("button", "skills", "umiejętności", $("nav"));
+	functions.newElement("button", "infoCreator", "info", $("nav"));
+	functions.newElement("button", "startGame", "start", $("nav"));
 
 	//utworzenie przycisku wyjścia z pokoju na ulicę
-	createNewElementAppend("button", "outRoom", "wyjdź", $("nav"));
+	functions.newElement("button", "outRoom", "wyjdź", $("nav"));
 
 	//utorzenie przycisków przejścia na targ lub do miejsca stacjonowania karawan
-	createNewElementAppend("button", "caravans", "karawany", $("nav"));
-	createNewElementAppend("button", "marketPlace", "targ", $("nav"));
+	functions.newElement("button", "caravans", "karawany", $("nav"));
+	functions.newElement("button", "marketPlace", "targ", $("nav"));
 
 	//utworzenie przycisku dalej, gry bohater wsiada na wóz
-	createNewElementAppend("button", "further", "dalej", $("nav"));
+	functions.newElement("button", "further", "dalej", $("nav"));
 
 	//utworzenie przycisku dalej, gry bohater wsiada na wóz
-	createNewElementAppend("button", "voyage", "dalej", $("nav"));
+	functions.newElement("button", "voyage", "dalej", $("nav"));
 
 	//tablice
 	// tablica postaci 0 - imię, 1 - rasa, 2 - profesja
@@ -124,32 +86,12 @@ $("#name, #race, #occupation, #features, #features2, #equipment, #skills, #infoC
 //schowanie i usunięcie nazwy studia oraz sentencji
 $("#studioTitle").fadeOut(6000);
 
-//pokazanie tytułu i podtytułu gry
-setTimeout(() =>{
-  $("#studioTitle h2").replaceWith("<p class='medievalText gameTitle'>Audaces</p>");
-  $("#studioTitle h3").replaceWith("<p class='medievalText subGameTitle'>serce z żelaza</p>");
-  $("#studioTitle").fadeIn(6000); $("#studioTitle").delay(2000).fadeOut(6000); }, 6200);
+//przejście z nazwy gry do pierwszego toFirstMenu
+introFirstMenu.toFirstMenu();
 
-//zmiana koloru tła na beżowy
-setTimeout(() =>{ $("body").css("backgroundColor", "beige"); }, 19000);
+//funkcje zdarzeń (kliknięcia w przyciski) dla pierwszego menu
+introFirstMenu.clicksFirstMenu();
 
-//usunięcie diva o id studioTitle
-setTimeout(()=>{
-  $("#studioTitle").remove(); $("#titleGameHeader, #subTitleGameHeader").fadeIn(1500);
-    $("#info, #licence, #tutorial, #newGame").fadeIn(1500).addClass("basicBtn");
-    $("#info").addClass("btnInfo"); $("#licence").addClass("btnLicence");
-    $("#tutorial").addClass("btnTutorial"); $("#newGame").addClass("btnNewGame");
-		createNewElementAppend("p", "textHello", intro.textHello, $("#mainPart"));
-		$("#textHello").addClass("basicText"); }, 20000);
-
-//funkcja klik dla pierwszego menu
-function clickFirstMenu(element, element2, idElement, textElement){
-	element.on("click", () =>{ element2.children("p").remove(); createNewElementAppend("p", idElement, textElement, element2); element2.addClass("basicText"); }); }
-
-//funkcje tworzenia dla pierwszego menu
-clickFirstMenu($("#info"), $("#mainPart"), "textElement", intro.textInfo);
-clickFirstMenu($("#licence"), $("#mainPart"), "textLicence", intro.textLicence);
-clickFirstMenu($("#tutorial"), $("#mainPart"), "textTutorial", intro.textTutorial);
 
 //funkcje tworzenia dla menu gry
 createNewElementAppend("button", "featuresGame", "cechy", $("nav"));
@@ -631,24 +573,6 @@ function checkGreen() { let allgreen = document.querySelectorAll("#alerts .green
 if(allgreen.length < 7 || equip.length == 0 || skills.length == 0){ $("#startGame").hide();
 }else if(allgreen.length == 7 && equip.length > 0 && skills.length > 0){  			$("#startGame").show().addClass("basicBtn").addClass("start"); } }
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 //zdarzenie dla przycisku cechy - wyświetlanym w oknie alertowym
 $("#featuresGame").on("click", () =>{
 	createNewElementAppend("p", "nameTitle", "imię", $("#alerts"));
@@ -758,21 +682,6 @@ $("#closeTasks").on("click", () => {
 	$("#taskGame, #skillsGame, #equipGame, #featuresGame").prop("disabled", false);
 });
 }); //koniec zdarzenia wyświetlania zadań (gra)
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 //zdarzenie dla przycisku start w kreatorze postaci
 $("#startGame").on("click", () =>{
@@ -914,9 +823,5 @@ $("#caravans").on("click", () =>{
 		startVoyage.startVoyageText();
 	});
 });
-
-
 startVoyage.further();
-
-
 });//koniec DOMContentLoaded

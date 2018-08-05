@@ -188,4 +188,11 @@ Poprawka w paragrafie rozpoczęcia podróży (wsiadanie do wozu) - z pliku start
 Dodano nowy plik firstFight, wraz z nowym opisem paragrafu, dodano nowy przycisk "przygotuj się" (na pierwszą walkę) oraz ostylowano go.
 
 4 sierpnia 2018 - wersja 0.6.2
-Dodano przyciski, dzięi którym można wybrać rzeczy do walki (na razie są tylko przyciski)
+Dodano przyciski, dzięi którym można wybrać rzeczy do walki (na razie są tylko przyciski).
+
+5 sierpnia 2018 - wersja 0.6.3
+Początek optymalizacji. Utworzony plik introFirstMenu.scss - przeniesienie do niego styli dla intro i pierwszego menu.
+
+	Utworzony pliku introFirstMenu.js oraz przeniesienie odpowiedniego kodu do tego pliku.
+
+Utworzony plik functons.js i przeniesienie do niego odpowiedniego kodu
