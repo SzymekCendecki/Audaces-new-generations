@@ -15,6 +15,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
 //intro i pierwsze menu
 	introFirstMenu.gameTitle();
+
 //przyciski pierwszego menu
 	introFirstMenu.btnsFirstMenu();
 
@@ -96,6 +97,10 @@ $("#featuresGame, #equipGame, #skillsGame, #taskGame").hide();
 
 //przycisk nowej gry - tworzenie kretora postaci
 $("#newGame").on("click", () =>{
+
+
+
+
 
 	$("#name, #race, #occupation, #features, #features2, #equipment, #skills, #infoCreator").fadeIn();
 	$("#name, #race, #occupation, #features, #features2, #equipment, #skills, #infoCreator").addClass("basicBtn");

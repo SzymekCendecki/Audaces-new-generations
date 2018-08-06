@@ -70,16 +70,102 @@
 "use strict";
 
 
+//funkcja, która tworzy nowy element DOM
+module.exports.newElement = function (nameElement, idName, text, whereAppend) {
+  var newElement = document.createElement(nameElement);
+  newElement.id = idName;
+  newElement.innerText = text;
+  whereAppend.append(newElement);
+};
+
+function newElement(nameElement, idName, text, whereAppend) {
+  var newElement = document.createElement(nameElement);
+  newElement.id = idName;
+  newElement.innerText = text;
+  whereAppend.append(newElement);
+}
+
+//funkcja optymalizująca tworzenie inputów
+function createNewInputAppend(nameElement, name, id, value, type, whereAppend) {
+  var newElement = document.createElement(nameElement);
+  newElement.type = type;
+  newElement.name = name;
+  newElement.id = id;
+  newElement.value = value;
+  whereAppend.append(newElement);
+}
+
+//funkcja klik dla pierwszego menu
+module.exports.clickFirstMenu = function (element, element2, idElement, textElement) {
+  element.on("click", function () {
+    element2.children("p").remove();
+    newElement("p", idElement, textElement, element2);
+    element2.addClass("basicText medievalText");
+  });
+};
+
+//funkcja optymalizująca wybieranie rasy i profesji
+function clickRaceOccupation(element, text, number, sourceDescription, alert) {
+  element.on("click", function () {
+    hero.splice(number, 1, text);
+    alert.addClass("greenText");
+    $("#choosenDescription").text(sourceDescription);
+
+    if (text === "wojownik") {
+      choosenOccupation.splice(0, 1, 5);
+      choosenOccupation.splice(1, 1, 5);
+      choosenOccupation.splice(2, 1, 0);
+      choosenOccupation.splice(3, 1, 0);
+      choosenOccupation.splice(4, 1, 0);
+    } else if (text === "złoczyńca") {
+      choosenOccupation.splice(0, 1, 0);
+      choosenOccupation.splice(1, 1, 0);
+      choosenOccupation.splice(2, 1, 10);
+      choosenOccupation.splice(3, 1, 0);
+      choosenOccupation.splice(4, 1, 0);
+    } else if (text === "czarodziej") {
+      choosenOccupation.splice(0, 1, 0);
+      choosenOccupation.splice(1, 1, 0);
+      choosenOccupation.splice(2, 1, 0);
+      choosenOccupation.splice(3, 1, 5);
+      choosenOccupation.splice(4, 1, 5);
+    } else if (text === "człowiek") {
+      choosenRace.splice(0, 1, 0);
+      choosenRace.splice(1, 1, 0);choosenRace.splice(2, 1, 0);
+      choosenRace.splice(3, 1, 0);choosenRace.splice(4, 1, 0);
+    } else if (text === "elf") {
+      choosenRace.splice(0, 1, -5);
+      choosenRace.splice(1, 1, -5);choosenRace.splice(2, 1, 0);
+      choosenRace.splice(3, 1, 5);choosenRace.splice(4, 1, 5);
+    } else if (text === "krasnolud") {
+      choosenRace.splice(0, 1, 4);
+      choosenRace.splice(1, 1, 4);choosenRace.splice(2, 1, 0);
+      choosenRace.splice(3, 1, -2);choosenRace.splice(4, 1, -3);
+    } else if (text === "ork") {
+      choosenRace.splice(0, 1, 5);
+      choosenRace.splice(1, 1, 5);choosenRace.splice(2, 1, 0);
+      choosenRace.splice(3, 1, -5);choosenRace.splice(4, 1, -5);
+    }
+  });
+}
+
+/***/ }),
+/* 1 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
 //import z plików zewnętrznych
-var functions = __webpack_require__(1); //podstawowe funkcje
+var functions = __webpack_require__(0); //podstawowe funkcje
 var introFirstMenu = __webpack_require__(4); //plik z częścią intro oraz pierwszym menu
-var heroCreator = __webpack_require__(5);
-var introGame = __webpack_require__(6);
-var firstP = __webpack_require__(7);
-var street = __webpack_require__(8);
-var market = __webpack_require__(9);
-var caravans = __webpack_require__(10);
-var startVoyage = __webpack_require__(11);
+var heroCreator = __webpack_require__(6);
+var introGame = __webpack_require__(7);
+var firstP = __webpack_require__(8);
+var street = __webpack_require__(9);
+var market = __webpack_require__(10);
+var caravans = __webpack_require__(11);
+var startVoyage = __webpack_require__(12);
 var firstFight = __webpack_require__(2);
 
 document.addEventListener("DOMContentLoaded", function () {
@@ -87,6 +173,7 @@ document.addEventListener("DOMContentLoaded", function () {
 
 	//intro i pierwsze menu
 	introFirstMenu.gameTitle();
+
 	//przyciski pierwszego menu
 	introFirstMenu.btnsFirstMenu();
 
@@ -1011,99 +1098,13 @@ document.addEventListener("DOMContentLoaded", function () {
 }); //koniec DOMContentLoaded
 
 /***/ }),
-/* 1 */
-/***/ (function(module, exports, __webpack_require__) {
-
-"use strict";
-
-
-//funkcja, która tworzy nowy element DOM
-module.exports.newElement = function (nameElement, idName, text, whereAppend) {
-  var newElement = document.createElement(nameElement);
-  newElement.id = idName;
-  newElement.innerText = text;
-  whereAppend.append(newElement);
-};
-
-function newElement(nameElement, idName, text, whereAppend) {
-  var newElement = document.createElement(nameElement);
-  newElement.id = idName;
-  newElement.innerText = text;
-  whereAppend.append(newElement);
-}
-
-//funkcja optymalizująca tworzenie inputów
-function createNewInputAppend(nameElement, name, id, value, type, whereAppend) {
-  var newElement = document.createElement(nameElement);
-  newElement.type = type;
-  newElement.name = name;
-  newElement.id = id;
-  newElement.value = value;
-  whereAppend.append(newElement);
-}
-
-//funkcja klik dla pierwszego menu
-module.exports.clickFirstMenu = function (element, element2, idElement, textElement) {
-  element.on("click", function () {
-    element2.children("p").remove();
-    newElement("p", idElement, textElement, element2);
-    element2.addClass("basicText medievalText");
-  });
-};
-
-//funkcja optymalizująca wybieranie rasy i profesji
-function clickRaceOccupation(element, text, number, sourceDescription, alert) {
-  element.on("click", function () {
-    hero.splice(number, 1, text);
-    alert.addClass("greenText");
-    $("#choosenDescription").text(sourceDescription);
-
-    if (text === "wojownik") {
-      choosenOccupation.splice(0, 1, 5);
-      choosenOccupation.splice(1, 1, 5);
-      choosenOccupation.splice(2, 1, 0);
-      choosenOccupation.splice(3, 1, 0);
-      choosenOccupation.splice(4, 1, 0);
-    } else if (text === "złoczyńca") {
-      choosenOccupation.splice(0, 1, 0);
-      choosenOccupation.splice(1, 1, 0);
-      choosenOccupation.splice(2, 1, 10);
-      choosenOccupation.splice(3, 1, 0);
-      choosenOccupation.splice(4, 1, 0);
-    } else if (text === "czarodziej") {
-      choosenOccupation.splice(0, 1, 0);
-      choosenOccupation.splice(1, 1, 0);
-      choosenOccupation.splice(2, 1, 0);
-      choosenOccupation.splice(3, 1, 5);
-      choosenOccupation.splice(4, 1, 5);
-    } else if (text === "człowiek") {
-      choosenRace.splice(0, 1, 0);
-      choosenRace.splice(1, 1, 0);choosenRace.splice(2, 1, 0);
-      choosenRace.splice(3, 1, 0);choosenRace.splice(4, 1, 0);
-    } else if (text === "elf") {
-      choosenRace.splice(0, 1, -5);
-      choosenRace.splice(1, 1, -5);choosenRace.splice(2, 1, 0);
-      choosenRace.splice(3, 1, 5);choosenRace.splice(4, 1, 5);
-    } else if (text === "krasnolud") {
-      choosenRace.splice(0, 1, 4);
-      choosenRace.splice(1, 1, 4);choosenRace.splice(2, 1, 0);
-      choosenRace.splice(3, 1, -2);choosenRace.splice(4, 1, -3);
-    } else if (text === "ork") {
-      choosenRace.splice(0, 1, 5);
-      choosenRace.splice(1, 1, 5);choosenRace.splice(2, 1, 0);
-      choosenRace.splice(3, 1, -5);choosenRace.splice(4, 1, -5);
-    }
-  });
-}
-
-/***/ }),
 /* 2 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
 
 
-var workingFile = __webpack_require__(0);
+var workingFile = __webpack_require__(1);
 
 //funkcja, która tworzy nowy element DOM
 function createNewElementAppend(nameElement, idName, text, whereAppend, addedClass) {
@@ -1142,7 +1143,7 @@ module.exports.firstFight = function () {
 /* 3 */
 /***/ (function(module, exports, __webpack_require__) {
 
-module.exports = __webpack_require__(0);
+module.exports = __webpack_require__(1);
 
 
 /***/ }),
@@ -1153,7 +1154,8 @@ module.exports = __webpack_require__(0);
 
 
 //import funkcji z pliku zewnętrznego
-var functions = __webpack_require__(1); //podstawowe funkcje
+var functions = __webpack_require__(0); //podstawowe funkcje
+var buttons = __webpack_require__(5); //podstawowe funkcje
 
 //funkcja tytuły gry
 module.exports.gameTitle = function () {
@@ -1192,10 +1194,10 @@ module.exports.toFirstMenu = function () {
 
 //utworzenie przycisków pierwszego menu
 module.exports.btnsFirstMenu = function () {
-  functions.newElement("button", "info", "info", $("nav"));
-  functions.newElement("button", "licence", "licencja", $("nav"));
-  functions.newElement("button", "tutorial", "tutorial", $("nav"));
-  functions.newElement("button", "newGame", "Nowa Gra", $("nav"));
+  functions.newElement("button", "info", "info", $("#mainBtns"));
+  functions.newElement("button", "licence", "licencja", $("#mainBtns"));
+  functions.newElement("button", "tutorial", "tutorial", $("#mainBtns"));
+  functions.newElement("button", "newGame", "Nowa Gra", $("#mainBtns"));
 };
 
 //tekst powitalny
@@ -1229,7 +1231,27 @@ module.exports.clicksFirstMenu = function () {
 
 
 //import funkcji z pliku zewnętrznego
-var functions = __webpack_require__(1); //podstawowe funkcje
+var functions = __webpack_require__(0); //podstawowe funkcje
+
+//przyciski pierwszego menu
+module.exports.firstMenuBtns = function () {
+  functions.newElement("button", "info", "info", $("#mainBtns"));
+  functions.newElement("button", "licence", "licencja", $("#mainBtns"));
+  functions.newElement("button", "tutorial", "tutorial", $("#mainBtns"));
+  functions.newElement("button", "newGame", "Nowa Gra", $("#mainBtns"));
+};
+
+/***/ }),
+/* 6 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+//import funkcji z pliku zewnętrznego
+var functions = __webpack_require__(0); //podstawowe funkcje
+var buttons = __webpack_require__(5); //podstawowe funkcje
+
 
 //utworzenie przycisków kreatora
 module.exports.btnsCreator = function () {
@@ -1350,7 +1372,7 @@ module.exports.infoTitle = "Twoja postać.";
 module.exports.infoDescription = "Poniżej znajdują się Twoje wybory. W tej sekcji możesz je sprawdzić oraz zastanowić się nad ewentualnymi zmianami. Po dokonaniu wszystkich wyborów, to po prawej stronie pod przyciskami powinien ukazać się przycisk rozpoczynający grę.";
 
 /***/ }),
-/* 6 */
+/* 7 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -1373,13 +1395,13 @@ module.exports.text7 = " W ostatnim bezpiecznym mieście przed Dzikimi Pustkowia
 module.exports.text8 = "Na usilną prośbę znajomego kapłana zgadzasz się dostarczyć małą paczkę dla tamtejszego mnicha, rezydującego w niewielkiej wiosce, która leży tuż przy granicy z Dzikimi Pustkowiami.";
 
 /***/ }),
-/* 7 */
+/* 8 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
 
 
-var workingFile = __webpack_require__(0);
+var workingFile = __webpack_require__(1);
 
 module.exports.text = "Stoisz w swoim pokoju, w którym znajduje się tylko łóżko, szafa, mały stolik i drewniana skrzynia. Na stoliku leży zawniątko, które musisz oddać mnichowi w przygranicznej wiosce. Co robisz?";
 
@@ -1472,7 +1494,7 @@ module.exports.lookAround = function () {
 };
 
 /***/ }),
-/* 8 */
+/* 9 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -1490,7 +1512,7 @@ module.exports.lookAround = function () {
 };
 
 /***/ }),
-/* 9 */
+/* 10 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -1621,7 +1643,7 @@ module.exports.marketToCaravans = function () {
 };
 
 /***/ }),
-/* 10 */
+/* 11 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -1661,7 +1683,7 @@ module.exports.agree = function () {
 };
 
 /***/ }),
-/* 11 */
+/* 12 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";

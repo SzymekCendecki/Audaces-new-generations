@@ -39,10 +39,10 @@ nav, #mainPart, #alerts{ height: 78vh; }
 
 
 //style dla nawigacji i nagłówka
-nav{
+.flexForBtns{
   display: flex;
   flex-wrap: wrap;
-  justify-content: space-between;
+  justify-content: space-around;
   align-content: flex-start;
 }
 

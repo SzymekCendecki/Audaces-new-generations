@@ -1,5 +1,7 @@
 //import funkcji z pliku zewnętrznego
 let functions = require("./functions.js"); //podstawowe funkcje
+let buttons = require("./buttons.js"); //podstawowe funkcje
+
 
 //utworzenie przycisków kreatora
 module.exports.btnsCreator = function(){

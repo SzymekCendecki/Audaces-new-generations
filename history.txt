@@ -199,3 +199,12 @@ Utworzony plik functons.js i przeniesienie do niego odpowiedniego kodu.
 
 5 sierpnia 2018 - wersja 0.6.31
 Po wciśnięciu przycisku "nowa gra", usuwane są przyciski pierwszego menu oraz test z części opisowej (mainPart).
+
+6 sierpnia 2018 - werja 0.6.32
+Dodano trzy divy dla przycisków:
+	pierwszy (heroBtns) dla przycisków - cechy, ekwipunek, umiejętnoci oraz zadania.
+	drugi (mainBtns) dla przycisków - pierwszego menu oraz przycisków przechodzenia ppomiędzy paragarfami.
+	trzeci (interactionsBtns) -  dla przycisków interakcji na danym paragarafie.
+Dodano plik buttons.js oraz dodano do niego tworzenie przycisów pierwszego menu.
+	Zmieniono nazwę klasy nav na flexForBtns oraz dodano je do divów: hero, mainBtns, interactionsBtns.
+Zmieniono miejsce dodania przycisków pierwszego menu z nav na diva mainBtns.

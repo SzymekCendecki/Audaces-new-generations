@@ -1,5 +1,6 @@
 //import funkcji z pliku zewnętrznego
 let functions = require("./functions.js"); //podstawowe funkcje
+let buttons = require("./buttons.js"); //podstawowe funkcje
 
 //funkcja tytuły gry
 module.exports.gameTitle = function(){
@@ -38,10 +39,10 @@ setTimeout(()=>{
 
 //utworzenie przycisków pierwszego menu
 module.exports.btnsFirstMenu = function(){
-  functions.newElement("button", "info", "info", $("nav"));
-  functions.newElement("button", "licence", "licencja", $("nav"));
-  functions.newElement("button", "tutorial", "tutorial", $("nav"));
-  functions.newElement("button", "newGame", "Nowa Gra", $("nav"));
+  functions.newElement("button", "info", "info", $("#mainBtns"));
+  functions.newElement("button", "licence", "licencja", $("#mainBtns"));
+  functions.newElement("button", "tutorial", "tutorial", $("#mainBtns"));
+  functions.newElement("button", "newGame", "Nowa Gra", $("#mainBtns"));
 }
 
 //tekst powitalny
@@ -64,6 +65,6 @@ module.exports.clicksFirstMenu = function(){
 
   $("#newGame").on("click", ()=>{
     $("nav, #mainPart").empty();
-    
+
     });
 }
