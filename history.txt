@@ -208,3 +208,10 @@ Dodano trzy divy dla przycisków:
 Dodano plik buttons.js oraz dodano do niego tworzenie przycisów pierwszego menu.
 	Zmieniono nazwę klasy nav na flexForBtns oraz dodano je do divów: hero, mainBtns, interactionsBtns.
 Zmieniono miejsce dodania przycisków pierwszego menu z nav na diva mainBtns.
+
+7 sierpnia 2018 - wersja 0.6.33
+Usunięto pliki: firstFight.js, firstParagraph.js, goToCaravans.js, market, secondParagraph.js, startVoyage, buttons.js.
+	W pozostałych pousuwano zawartość, tak aby pozostało tylko to, co potrzebne do uruchomienia intro oraz pierwszego menu.
+Poprawiono wyświetlanie się przycisków pierwszego menu.
+	Dodano dwa przyciski: wylosuj - dla wylosowanie postaci oraz wybierz - dla własnoręcznego wybierania postaci.
+Dodano paragraf opisujący co robią przyciski wylosuj oraz wybierz.

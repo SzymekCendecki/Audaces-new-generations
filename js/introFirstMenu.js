@@ -1,12 +1,14 @@
 //import funkcji z pliku zewnętrznego
 let functions = require("./functions.js"); //podstawowe funkcje
-let buttons = require("./buttons.js"); //podstawowe funkcje
+let heroCreator = require("./heroCreator.js"); //plik tworzenia postaci
 
 //funkcja tytuły gry
 module.exports.gameTitle = function(){
 //utworzenie paragarafów dla tytułu gry
   functions.newElement("p", "titleGameHeader", "AUDACES", $("header"));
   functions.newElement("p", "subTitleGameHeader", "serce ze stali", $("#titleGameHeader"));
+
+  $("#titleGameHeader").hide();
 
   //pokazanie tytułu i podtytułu gry
   setTimeout(() =>{
@@ -27,7 +29,7 @@ setTimeout(() =>{
 setTimeout(()=>{
   $("#studioTitle").remove();
 	$("#titleGameHeader, #subTitleGameHeader").fadeIn(1500);
-  $("#info, #licence, #tutorial, #newGame").fadeIn(1500).addClass("basicBtn");
+  $("#info, #licence, #tutorial, #newGame").delay(1500).show().addClass("basicBtn");
   $("#info").addClass("btnInfo");
 	$("#licence").addClass("btnLicence");
   $("#tutorial").addClass("btnTutorial");
@@ -38,11 +40,12 @@ setTimeout(()=>{
 }
 
 //utworzenie przycisków pierwszego menu
-module.exports.btnsFirstMenu = function(){
+module.exports.btnsMenuFirst = function(){
   functions.newElement("button", "info", "info", $("#mainBtns"));
   functions.newElement("button", "licence", "licencja", $("#mainBtns"));
   functions.newElement("button", "tutorial", "tutorial", $("#mainBtns"));
   functions.newElement("button", "newGame", "Nowa Gra", $("#mainBtns"));
+  $("#info, #licence, #tutorial, #newGame").hide();
 }
 
 //tekst powitalny
@@ -64,7 +67,8 @@ module.exports.clicksFirstMenu = function(){
   functions.clickFirstMenu($("#tutorial"), $("#mainPart"), "textTutorial", tutorial);
 
   $("#newGame").on("click", ()=>{
-    $("nav, #mainPart").empty();
-
-    });
+    $("#mainBtns, #mainPart").empty();
+    heroCreator.randomChooseHeroBtns();
+    heroCreator.textDescription();
+  });
 }

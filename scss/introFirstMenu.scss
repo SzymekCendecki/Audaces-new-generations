@@ -152,12 +152,3 @@ body{ background: lightgray; }
 .btnInfo:focus, .btnLicence:focus, .btnTutorial:focus, .btnNewGame:focus, #acceptName:focus{
   outline: none;
 }
-
-//style dla informacji pierwszego menu
-.basicText{
-  text-indent: 3%;
-  font-weight: bold;
-  margin-top: 2%;
-  font-size: 1.3em;
-  text-shadow: 1px 1px white;
-}
