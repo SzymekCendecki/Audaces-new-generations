@@ -60,7 +60,7 @@
 /******/ 	__webpack_require__.p = "";
 /******/
 /******/ 	// Load entry module and return exports
-/******/ 	return __webpack_require__(__webpack_require__.s = 4);
+/******/ 	return __webpack_require__(__webpack_require__.s = 2);
 /******/ })
 /************************************************************************/
 /******/ ([
@@ -156,11 +156,96 @@ function clickRaceOccupation(element, text, number, sourceDescription, alert) {
 "use strict";
 
 
+//import funkcji z pliku zewnętrznego
+var functions = __webpack_require__(0); //podstawowe funkcje
+
+//tablica z imionami męskimi
+var namesMan = ["Wortigern, Gintor, Hegel, Derig, Diggramon, Zengowetoryk, Deggetm, Zigamon, Birduk, Ardenor, Winterks, Joluntik, Menigor, Oltis, Kurdir"];
+
+//tablica z imionami żeńskimi
+var namesWomen = ["Wortigerna, Hejacynta, Dejawina, Ludiniam, Keoburna, Leokamina, Erminia, Xynenda, Fejmira, Apsurginis, Wicynia, Jermodernia, Sertyksa"];
+
+//tablica z rasami
+var races = ["człowiek", "elf", "krasnolud", "ork"];
+
+//tablica z profesjami
+var occupations = ["wojownik", "złoczyńca", "czarodziej"];
+
+//tabica z płcią
+var sex = ["kobieta", "mężczyzna", "nie wiadomo"];
+
+//tablica z kolorami włosów
+var hairColor = ["blond", "rude", "czarne", "farbowane"];
+
+//tablica z kolorem oczu
+var eyesColor = ["piwne", "szare", "brązowe", "niebieskie"];
+
+//tablica z kolorem skóry
+var skinColor = ["biała", "brązowa", "czarna", "czerwona", "zółta", "zielona", "brunatna", "błękitna"];
+
+//tablica z wagą
+var weight = ["niedowaga", "normalna", "nadwaga"];
+
+//tablica ze wzrostem
+var height = ["niski", "normalny", "wysoki"];
+
+//tablice z ekwipunkiem
+//broń
+var equipWeapon = ["sztylet", "drewniana pałka", "krótki miecz", "szabla", "włócznia", "proca", "łuk"];
+
+//zbroja
+var equipArmor = ["przeszywanica", "skórzana", "ćwiekowana"];
+
+//tarcze
+var equipShield = ["puklerz", "mała drewniana", "mała metalowa"];
+
+//inny ekwipunek
+var equipOther = ["kostur", "mieszek", "torba podróżna", "sakwa", "plecak", "manierka", "sagan", "koc", "tuba na perg.", "pęk piór do pis.", "pergamniny 5szt.", "zwykłe ubranie", "fikuśna czapka", "płaszcz", "skórzany pas", "igły i nici", "derka", "namiot", "drewniana miska", "drewniana łyżka", "pochodnia", "lampa oliwna", "kaganek", "lina 5m", "hubka i krzesiwo"];
+
+//tablice z umiejętnościami
+//wojownika
+var skillsWarrior = ["szt.przetrwania", "dyscyplina", "dowodzenie", "uderzenie tarczą", "jeździectwo", "sztylet", "krótki miecz", "szabla", "włócznia", "łuk", "puklerz", "mała tarcza drewniana", "mała tarcza metalowa"];
+
+//złoczyńcy
+var skillsCriminal = ["survival", "discipline", "argumentation", "impactShield", "horsebackRiding", "dagger", "shortSword", "sabre", "spear", "bow", "buckler", "smallWoodenShield", "smallMetalShield"];
+
+//czarodzieja
+var skillsWizard = ["pisanie i czytanie", "przyw./odp. demona", "wróżbiarstwo", "leczenie ran", "rzuczanie czarów", "tworz. eliksirów", "tworz.mag. przedm.", "tworzenie maści", "tworzenie runów", "astrologia", "zielarstwo"];
+
+//utworzenie przycisków wylosuj i wybierz postać
+module.exports.randomChooseHeroBtns = function () {
+  functions.newElement("button", "randomHero", "wylosuj", $("#mainBtns"));
+  functions.newElement("button", "chooseHero", "wybierz", $("#mainBtns"));
+
+  $("#randomHero, #chooseHero").addClass("basicBtn medievalText btnNewGame");
+};
+
+///utworzenie paragrafu z opisem przycisków wylosuj i wybierz.
+module.exports.textDescription = function () {
+  $("#mainPart").html("<p id='text'>Zanim zaczniesz grę, muszisz stworzyć swoją postać. Można to zrobić na dwa sposoby. Pierwszy to wylosowanie protagonisty. Jest to sposób całkowice automatyczny i wystarczy wcisnąć przycisk <span class='blueText'>'losuj'</span>. Drugim sposobem na stworzenie własnej postaci jest jej własnoręczne utworzenie za pomocą kreatora postaci. W tym celu należy wcisnąć przycisk <span class='blueText'>'wybierz'</span>. Co robisz?</p>");
+
+  $("#text").addClass("basicText medievalText");
+};
+
+/***/ }),
+/* 2 */
+/***/ (function(module, exports, __webpack_require__) {
+
+module.exports = __webpack_require__(3);
+
+
+/***/ }),
+/* 3 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
 //import z plików zewnętrznych
 var functions = __webpack_require__(0); //podstawowe funkcje
-var introFirstMenu = __webpack_require__(5); //plik z częścią intro oraz pierwszym menu
-var heroCreator = __webpack_require__(6);
-var introGame = __webpack_require__(7);
+var introFirstMenu = __webpack_require__(4); //plik z częścią intro oraz pierwszym menu
+var heroCreator = __webpack_require__(1);
+var introGame = __webpack_require__(5);
 
 document.addEventListener("DOMContentLoaded", function () {
 	console.log("NIEWIERNE PSY RULEZ!!!!");
@@ -179,16 +264,7 @@ document.addEventListener("DOMContentLoaded", function () {
 }); //koniec DOMContentLoaded
 
 /***/ }),
-/* 2 */,
-/* 3 */,
 /* 4 */
-/***/ (function(module, exports, __webpack_require__) {
-
-module.exports = __webpack_require__(1);
-
-
-/***/ }),
-/* 5 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -196,7 +272,7 @@ module.exports = __webpack_require__(1);
 
 //import funkcji z pliku zewnętrznego
 var functions = __webpack_require__(0); //podstawowe funkcje
-var heroCreator = __webpack_require__(6); //plik tworzenia postaci
+var heroCreator = __webpack_require__(1); //plik tworzenia postaci
 
 //funkcja tytuły gry
 module.exports.gameTitle = function () {
@@ -270,32 +346,7 @@ module.exports.clicksFirstMenu = function () {
 };
 
 /***/ }),
-/* 6 */
-/***/ (function(module, exports, __webpack_require__) {
-
-"use strict";
-
-
-//import funkcji z pliku zewnętrznego
-var functions = __webpack_require__(0); //podstawowe funkcje
-
-//utworzenie przycisków wylosuj i wybierz postać
-module.exports.randomChooseHeroBtns = function () {
-  functions.newElement("button", "randomHero", "wylosuj", $("#mainBtns"));
-  functions.newElement("button", "chooseHero", "wybierz", $("#mainBtns"));
-
-  $("#randomHero, #chooseHero").addClass("basicBtn medievalText btnNewGame");
-};
-
-///utworzenie paragrafu z opisem przycisków wylosuj i wybierz.
-module.exports.textDescription = function () {
-  $("#mainPart").html("<p id='text'>Zanim zaczniesz grę, muszisz stworzyć swoją postać. Można to zrobić na dwa sposoby. Pierwszy to wylosowanie protagonisty. Jest to sposób całkowice automatyczny i wystarczy wcisnąć przycisk <span class='blueText'>'losuj'</span>. Drugim sposobem na stworzenie własnej postaci jest jej własnoręczne utworzenie za pomocą kreatora postaci. W tym celu należy wcisnąć przycisk <span class='blueText'>'wybierz'</span>. Co robisz?</p>");
-
-  $("#text").addClass("basicText medievalText");
-};
-
-/***/ }),
-/* 7 */
+/* 5 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";

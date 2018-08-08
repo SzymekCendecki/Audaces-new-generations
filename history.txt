@@ -215,3 +215,6 @@ Usunięto pliki: firstFight.js, firstParagraph.js, goToCaravans.js, market, seco
 Poprawiono wyświetlanie się przycisków pierwszego menu.
 	Dodano dwa przyciski: wylosuj - dla wylosowanie postaci oraz wybierz - dla własnoręcznego wybierania postaci.
 Dodano paragraf opisujący co robią przyciski wylosuj oraz wybierz.
+
+8 sierpnia 2018 - wersja 0.6.34
+Utworzenie tablic z imionami męskimi i żeńskimi, rasami, profesjami, płcią, kolorem włosów, kolorem oczu, kolorem skóry, wagą i wzrostem, ekwipunkiem i umiejętnościami.
