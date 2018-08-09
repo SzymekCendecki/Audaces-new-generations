@@ -218,3 +218,7 @@ Dodano paragraf opisujący co robią przyciski wylosuj oraz wybierz.
 
 8 sierpnia 2018 - wersja 0.6.34
 Utworzenie tablic z imionami męskimi i żeńskimi, rasami, profesjami, płcią, kolorem włosów, kolorem oczu, kolorem skóry, wagą i wzrostem, ekwipunkiem i umiejętnościami.
+
+9 sierpnia 2018 - wersja 0.6.35
+Poprawiono błąd w tablicacg  imionami.
+	Utworzono losownie płci i imion (na podstawie wylosowanej płci) - wyni na razie wyskakuje w konsoli.

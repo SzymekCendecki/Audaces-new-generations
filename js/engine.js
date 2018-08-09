@@ -160,10 +160,10 @@ function clickRaceOccupation(element, text, number, sourceDescription, alert) {
 var functions = __webpack_require__(0); //podstawowe funkcje
 
 //tablica z imionami męskimi
-var namesMan = ["Wortigern, Gintor, Hegel, Derig, Diggramon, Zengowetoryk, Deggetm, Zigamon, Birduk, Ardenor, Winterks, Joluntik, Menigor, Oltis, Kurdir"];
+var namesMan = ["Wortigern", "Gintor", "Hegel", "Derig", "Diggramon", "Zengowetoryk", "Deggetm", "Zigamon", "Birduk", "Ardenor", "Winterks", "Joluntik", "Menigor", "Oltis", "Kurdir"];
 
 //tablica z imionami żeńskimi
-var namesWomen = ["Wortigerna, Hejacynta, Dejawina, Ludiniam, Keoburna, Leokamina, Erminia, Xynenda, Fejmira, Apsurginis, Wicynia, Jermodernia, Sertyksa"];
+var namesWomen = ["Wortigerna", "Hejacynta", "Dejawina", "Ludiniam", "Keoburna", "Leokamina", "Erminia", "Xynenda", "Fejmira", "Apsurginis", "Wicynia", "Jermodernia", "Sertyksa"];
 
 //tablica z rasami
 var races = ["człowiek", "elf", "krasnolud", "ork"];
@@ -216,8 +216,26 @@ var skillsWizard = ["pisanie i czytanie", "przyw./odp. demona", "wróżbiarstwo"
 module.exports.randomChooseHeroBtns = function () {
   functions.newElement("button", "randomHero", "wylosuj", $("#mainBtns"));
   functions.newElement("button", "chooseHero", "wybierz", $("#mainBtns"));
-
   $("#randomHero, #chooseHero").addClass("basicBtn medievalText btnNewGame");
+
+  //losowanie postaci
+  $("#randomHero").on("click", function () {
+
+    var randomSexNumber = Math.round(Math.random() * (sex.length - 1));
+    console.log(sex[randomSexNumber]);
+
+    if (sex[randomSexNumber] === "mężczyzna") {
+      var randomNameNumber = Math.round(Math.random() * (namesMan.length - 1));
+      console.log("imię męskie to: " + namesMan[randomNameNumber]);
+    } else if (sex[randomSexNumber] === "kobieta") {
+      var _randomNameNumber = Math.round(Math.random() * (namesWomen.length - 1));
+      console.log("imię żeńskie to: " + namesWomen[_randomNameNumber]);
+    } else {
+      var allNames = namesMan.concat(namesWomen);
+      var _randomNameNumber2 = Math.round(Math.random() * (allNames.length - 1));
+      console.log("imię dla nie waidomo to: " + allNames[_randomNameNumber2]);
+    }
+  });
 };
 
 ///utworzenie paragrafu z opisem przycisków wylosuj i wybierz.

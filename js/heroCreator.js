@@ -2,10 +2,10 @@
 let functions = require("./functions.js"); //podstawowe funkcje
 
 //tablica z imionami męskimi
-let namesMan = ["Wortigern, Gintor, Hegel, Derig, Diggramon, Zengowetoryk, Deggetm, Zigamon, Birduk, Ardenor, Winterks, Joluntik, Menigor, Oltis, Kurdir"];
+let namesMan = ["Wortigern", "Gintor", "Hegel", "Derig", "Diggramon", "Zengowetoryk", "Deggetm", "Zigamon", "Birduk", "Ardenor", "Winterks", "Joluntik", "Menigor", "Oltis", "Kurdir"];
 
 //tablica z imionami żeńskimi
-let namesWomen = ["Wortigerna, Hejacynta, Dejawina, Ludiniam, Keoburna, Leokamina, Erminia, Xynenda, Fejmira, Apsurginis, Wicynia, Jermodernia, Sertyksa"];
+let namesWomen = ["Wortigerna", "Hejacynta", "Dejawina", "Ludiniam", "Keoburna", "Leokamina", "Erminia", "Xynenda", "Fejmira", "Apsurginis", "Wicynia", "Jermodernia", "Sertyksa"];
 
 //tablica z rasami
 let races = ["człowiek", "elf", "krasnolud", "ork"];
@@ -58,8 +58,26 @@ let skillsWizard = ["pisanie i czytanie", "przyw./odp. demona", "wróżbiarstwo"
 module.exports.randomChooseHeroBtns = function(){
   functions.newElement("button", "randomHero", "wylosuj", $("#mainBtns"));
   functions.newElement("button", "chooseHero", "wybierz", $("#mainBtns"));
-
   $("#randomHero, #chooseHero").addClass("basicBtn medievalText btnNewGame");
+
+//losowanie postaci
+  $("#randomHero").on("click", ()=>{
+
+  let randomSexNumber = Math.round(Math.random()*(sex.length-1));
+  console.log(sex[randomSexNumber]);
+
+  if(sex[randomSexNumber] === "mężczyzna"){
+    let randomNameNumber = Math.round(Math.random()*(namesMan.length-1));
+    console.log("imię męskie to: " + namesMan[randomNameNumber]);
+  }else if(sex[randomSexNumber] === "kobieta"){
+    let randomNameNumber = Math.round(Math.random()*(namesWomen.length-1));
+    console.log("imię żeńskie to: " + namesWomen[randomNameNumber]);
+  }else{
+    let allNames = namesMan.concat(namesWomen);
+    let randomNameNumber = Math.round(Math.random()*(allNames.length-1));
+    console.log("imię dla nie waidomo to: " + allNames[randomNameNumber]);
+  }
+  });
 }
 
 ///utworzenie paragrafu z opisem przycisków wylosuj i wybierz.
