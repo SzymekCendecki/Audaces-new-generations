@@ -63,9 +63,11 @@ module.exports.randomChooseHeroBtns = function(){
 //losowanie postaci
   $("#randomHero").on("click", ()=>{
 
+//losowanie płci
   let randomSexNumber = Math.round(Math.random()*(sex.length-1));
   console.log(sex[randomSexNumber]);
 
+//losowanie imienia w oparciu o wylosowaną płeć
   if(sex[randomSexNumber] === "mężczyzna"){
     let randomNameNumber = Math.round(Math.random()*(namesMan.length-1));
     console.log("imię męskie to: " + namesMan[randomNameNumber]);
@@ -77,6 +79,18 @@ module.exports.randomChooseHeroBtns = function(){
     let randomNameNumber = Math.round(Math.random()*(allNames.length-1));
     console.log("imię dla nie waidomo to: " + allNames[randomNameNumber]);
   }
+
+//losowanie siły, wytrzymałości, zręczności, inteligencji i charyzmy
+  let randomForce = Math.round(Math.random()*50);
+    console.log("siła to: " + randomForce);
+  let randomStrength = Math.round(Math.random()*50);
+    console.log("wytrzymałość to: " + randomStrength);
+  let randomDexterity = Math.round(Math.random()*50);
+    console.log("zręczność to: " + randomDexterity);
+  let randomintelligence = Math.round(Math.random()*50);
+    console.log("inteligencja to: " + randomintelligence);
+  let randomCharisma = Math.round(Math.random()*50);
+    console.log("charisma to: " + randomCharisma);
   });
 }
 
