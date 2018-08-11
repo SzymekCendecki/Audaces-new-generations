@@ -69,7 +69,37 @@ nav, #mainPart, #alerts{ height: 78vh; }
   text-shadow: 1px 1px white;
 }
 
+//wyśrodkowanie tekstu
+.center{
+	text-align: center;
+}
+
+//szerokość 24 procent
+.width24{
+	width: 24%;
+}
+
+//szerokość 33 procent
+.width33{
+	width: 33%;
+}
+
+//szerokość 49 procent
+.width49{
+	width: 49%;
+}
+
+//szerokość 100%
+.width100{
+	width: 100%;
+}
+
 //niebieski kolor tekstu
 .blueText{
   color: blue;
+}
+
+//zielony kolor tekstu
+.greenText{
+	color: green;
 }

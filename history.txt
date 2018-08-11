@@ -225,3 +225,7 @@ Poprawiono błąd w tablicach imionami.
 
 10 sierpnia 2018 - wersja 0.6.36
 Utworzono losowanie cech - siły, wytrzymalości, zręczności, inteligencji i charyzmy.
+
+11 sierpnia 2018 - wersja 0.6.37
+Stworzono wyświetlanie się wylosowanej: płci, imienia, siły, wytrzymałości, zręczności, inteligencji oraz charyzmy oraz dodano do nich style css.
+	

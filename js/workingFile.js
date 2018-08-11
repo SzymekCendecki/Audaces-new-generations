@@ -18,6 +18,4 @@ document.addEventListener("DOMContentLoaded", () => { console.log("NIEWIERNE PSY
 //funkcje zdarzeń (kliknięcia w przyciski) dla pierwszego menu
 	introFirstMenu.clicksFirstMenu();
 
-
-
 });//koniec DOMContentLoaded

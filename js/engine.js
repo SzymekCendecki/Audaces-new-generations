@@ -214,41 +214,54 @@ var skillsWizard = ["pisanie i czytanie", "przyw./odp. demona", "wróżbiarstwo"
 
 //utworzenie przycisków wylosuj i wybierz postać
 module.exports.randomChooseHeroBtns = function () {
+  //utworzenie przycisku wylosuj postać
   functions.newElement("button", "randomHero", "wylosuj", $("#mainBtns"));
+  //utworzenie przycisku wybierz postać
   functions.newElement("button", "chooseHero", "wybierz", $("#mainBtns"));
+  //nadanie styli dla przycisków wylosuj i wybierz
   $("#randomHero, #chooseHero").addClass("basicBtn medievalText btnNewGame");
 
   //losowanie postaci
   $("#randomHero").on("click", function () {
+    $("#drawnCharacter").empty();
+    functions.newElement("p", "choosenHeroTitle", "wylosowana postać", $("#drawnCharacter"));
+    $("#drawnCharacter").addClass("flexForBtns");
+    $("#choosenHeroTitle").addClass("basicText center medievalText width100 ");
 
     //losowanie płci
     var randomSexNumber = Math.round(Math.random() * (sex.length - 1));
-    console.log(sex[randomSexNumber]);
+    var sexHero = sex[randomSexNumber];
 
     //losowanie imienia w oparciu o wylosowaną płeć
     if (sex[randomSexNumber] === "mężczyzna") {
       var randomNameNumber = Math.round(Math.random() * (namesMan.length - 1));
-      console.log("imię męskie to: " + namesMan[randomNameNumber]);
+      $("#drawnCharacter").append("<p class = \"basicText center width49 medievalText\">P\u0142e\u0107: <span class=\"greenText\">" + sexHero + "</span></p>");
+      var nameHero = namesMan[randomNameNumber];
+      $("#drawnCharacter").append("<p class = \"basicText center width49 medievalText\">Imi\u0119: <span class=\"greenText\">" + nameHero + "</span></p>");
     } else if (sex[randomSexNumber] === "kobieta") {
+      $("#drawnCharacter").append("<p class = \"basicText center width49 medievalText\">P\u0142e\u0107: <span class=\"greenText\">" + sexHero + "</span></p>");
       var _randomNameNumber = Math.round(Math.random() * (namesWomen.length - 1));
-      console.log("imię żeńskie to: " + namesWomen[_randomNameNumber]);
+      var _nameHero = namesWomen[_randomNameNumber];
+      $("#drawnCharacter").append("<p class = \"basicText center width49 medievalText\">Imi\u0119: <span class=\"greenText\">" + _nameHero + "</span></p>");
     } else {
+      $("#drawnCharacter").append("<p class = \"basicText center width49 medievalText\">P\u0142e\u0107: <span class=\"greenText\">" + sexHero + "</span></p>");
       var allNames = namesMan.concat(namesWomen);
       var _randomNameNumber2 = Math.round(Math.random() * (allNames.length - 1));
-      console.log("imię dla nie waidomo to: " + allNames[_randomNameNumber2]);
+      var _nameHero2 = allNames[_randomNameNumber2];
+      $("#drawnCharacter").append("<p class = \"basicText center width49 medievalText\">Imi\u0119: <span class=\"greenText\">" + _nameHero2 + "</span></p>");
     }
 
     //losowanie siły, wytrzymałości, zręczności, inteligencji i charyzmy
     var randomForce = Math.round(Math.random() * 50);
-    console.log("siła to: " + randomForce);
+    $("#drawnCharacter").append("<p class = \"basicText center width23 medievalText\">Si\u0142a: <span class=\"greenText\">" + randomForce + "</span></p>");
     var randomStrength = Math.round(Math.random() * 50);
-    console.log("wytrzymałość to: " + randomStrength);
+    $("#drawnCharacter").append("<p class = \"basicText center width23 medievalText\">Wytrzyma\u0142o\u015B\u0107: <span class=\"greenText\">" + randomStrength + "</span></p>");
     var randomDexterity = Math.round(Math.random() * 50);
-    console.log("zręczność to: " + randomDexterity);
-    var randomintelligence = Math.round(Math.random() * 50);
-    console.log("inteligencja to: " + randomintelligence);
+    $("#drawnCharacter").append("<p class = \"basicText center width23 medievalText\">Zr\u0119czno\u015B\u0107: <span class=\"greenText\">" + randomDexterity + "</span></p>");
+    var randomIntelligence = Math.round(Math.random() * 50);
+    $("#drawnCharacter").append("<p class = \"basicText center width23 medievalText\">Inteligencja: <span class=\"greenText\">" + randomIntelligence + "</span></p>");
     var randomCharisma = Math.round(Math.random() * 50);
-    console.log("charisma to: " + randomCharisma);
+    $("#drawnCharacter").append("<p class = \"basicText center width23 medievalText\">Charyzma: <span class=\"greenText\">" + randomCharisma + "</span></p>");
   });
 };
 
@@ -257,6 +270,9 @@ module.exports.textDescription = function () {
   $("#mainPart").html("<p id='text'>Zanim zaczniesz grę, muszisz stworzyć swoją postać. Można to zrobić na dwa sposoby. Pierwszy to wylosowanie protagonisty. Jest to sposób całkowice automatyczny i wystarczy wcisnąć przycisk <span class='blueText'>'losuj'</span>. Drugim sposobem na stworzenie własnej postaci jest jej własnoręczne utworzenie za pomocą kreatora postaci. W tym celu należy wcisnąć przycisk <span class='blueText'>'wybierz'</span>. Co robisz?</p>");
 
   $("#text").addClass("basicText medievalText");
+
+  //utworzenie diva dla wylosowanej postaci
+  functions.newElement("div", "drawnCharacter", "", $("#mainPart"));
 };
 
 /***/ }),
