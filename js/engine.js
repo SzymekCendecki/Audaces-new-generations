@@ -199,6 +199,16 @@ var equipArmor = ["przeszywanica", "skórzana", "ćwiekowana"];
 //tarcze
 var equipShield = ["puklerz", "mała drewniana", "mała metalowa"];
 
+//tablice ze modyfikatorami rasy i profesji - dla określenia ostatecznej ilości punktów postaci
+var warrior = [5, 5, 0, 0, 0];
+var criminal = [0, 0, 10, 0, 0];
+var wizard = [0, 0, 0, 5, 5];
+
+var human = [0, 0, 0, 0, 0];
+var elf = [-5, -5, 0, 5, 5];
+var dwarf = [4, 4, 0, -2, -3];
+var orc = [5, 5, 0, -5, -5];
+
 //inny ekwipunek
 var equipOther = ["kostur", "mieszek", "torba podróżna", "sakwa", "plecak", "manierka", "sagan", "koc", "tuba na perg.", "pęk piór do pis.", "pergamniny 5szt.", "zwykłe ubranie", "fikuśna czapka", "płaszcz", "skórzany pas", "igły i nici", "derka", "namiot", "drewniana miska", "drewniana łyżka", "pochodnia", "lampa oliwna", "kaganek", "lina 5m", "hubka i krzesiwo"];
 
@@ -214,65 +224,133 @@ var skillsWizard = ["pisanie i czytanie", "przyw./odp. demona", "wróżbiarstwo"
 
 //utworzenie przycisków wylosuj i wybierz postać
 module.exports.randomChooseHeroBtns = function () {
-  //utworzenie przycisku wylosuj postać
-  functions.newElement("button", "randomHero", "wylosuj", $("#mainBtns"));
-  //utworzenie przycisku wybierz postać
-  functions.newElement("button", "chooseHero", "wybierz", $("#mainBtns"));
-  //nadanie styli dla przycisków wylosuj i wybierz
-  $("#randomHero, #chooseHero").addClass("basicBtn medievalText btnNewGame");
+	//utworzenie przycisku wylosuj postać
+	functions.newElement("button", "randomHero", "wylosuj", $("#mainBtns"));
+	//utworzenie przycisku wybierz postać
+	functions.newElement("button", "chooseHero", "wybierz", $("#mainBtns"));
+	//nadanie styli dla przycisków wylosuj i wybierz
+	$("#randomHero, #chooseHero").addClass("basicBtn medievalText btnNewGame");
 
-  //losowanie postaci
-  $("#randomHero").on("click", function () {
-    $("#drawnCharacter").empty();
-    functions.newElement("p", "choosenHeroTitle", "wylosowana postać", $("#drawnCharacter"));
-    $("#drawnCharacter").addClass("flexForBtns");
-    $("#choosenHeroTitle").addClass("basicText center medievalText width100 ");
+	//losowanie postaci
+	$("#randomHero").on("click", function () {
+		$("#drawnCharacter").empty();
+		functions.newElement("p", "choosenHeroTitle", "WYLOSOWANA POSTAĆ", $("#drawnCharacter"));
+		$("#drawnCharacter").addClass("flexForBtns");
+		$("#choosenHeroTitle").addClass("basicText center medievalText width100 textUnderlineGold");
 
-    //losowanie płci
-    var randomSexNumber = Math.round(Math.random() * (sex.length - 1));
-    var sexHero = sex[randomSexNumber];
+		//losowanie płci
+		var randomSexNumber = Math.round(Math.random() * (sex.length - 1));
+		var sexHero = sex[randomSexNumber];
 
-    //losowanie imienia w oparciu o wylosowaną płeć
-    if (sex[randomSexNumber] === "mężczyzna") {
-      var randomNameNumber = Math.round(Math.random() * (namesMan.length - 1));
-      $("#drawnCharacter").append("<p class = \"basicText center width49 medievalText\">P\u0142e\u0107: <span class=\"greenText\">" + sexHero + "</span></p>");
-      var nameHero = namesMan[randomNameNumber];
-      $("#drawnCharacter").append("<p class = \"basicText center width49 medievalText\">Imi\u0119: <span class=\"greenText\">" + nameHero + "</span></p>");
-    } else if (sex[randomSexNumber] === "kobieta") {
-      $("#drawnCharacter").append("<p class = \"basicText center width49 medievalText\">P\u0142e\u0107: <span class=\"greenText\">" + sexHero + "</span></p>");
-      var _randomNameNumber = Math.round(Math.random() * (namesWomen.length - 1));
-      var _nameHero = namesWomen[_randomNameNumber];
-      $("#drawnCharacter").append("<p class = \"basicText center width49 medievalText\">Imi\u0119: <span class=\"greenText\">" + _nameHero + "</span></p>");
-    } else {
-      $("#drawnCharacter").append("<p class = \"basicText center width49 medievalText\">P\u0142e\u0107: <span class=\"greenText\">" + sexHero + "</span></p>");
-      var allNames = namesMan.concat(namesWomen);
-      var _randomNameNumber2 = Math.round(Math.random() * (allNames.length - 1));
-      var _nameHero2 = allNames[_randomNameNumber2];
-      $("#drawnCharacter").append("<p class = \"basicText center width49 medievalText\">Imi\u0119: <span class=\"greenText\">" + _nameHero2 + "</span></p>");
-    }
+		//losowanie imienia w oparciu o wylosowaną płeć
+		if (sex[randomSexNumber] === "mężczyzna") {
+			var randomNameNumber = Math.round(Math.random() * (namesMan.length - 1));
+			$("#drawnCharacter").append("<p class = \"basicText center width24 medievalText fontSize11em\">P\u0142e\u0107: <span class=\"greenText\">" + sexHero + "</span></p>");
+			var nameHero = namesMan[randomNameNumber];
+			$("#drawnCharacter").append("<p class = \"basicText center width24 medievalText fontSize11em\">Imi\u0119: <span class=\"greenText\">" + nameHero + "</span></p>");
+		} else if (sex[randomSexNumber] === "kobieta") {
+			$("#drawnCharacter").append("<p class = \"basicText center width24 medievalText fontSize11em\">P\u0142e\u0107: <span class=\"greenText\">" + sexHero + "</span></p>");
+			var _randomNameNumber = Math.round(Math.random() * (namesWomen.length - 1));
+			var _nameHero = namesWomen[_randomNameNumber];
+			$("#drawnCharacter").append("<p class = \"basicText center width24 medievalText fontSize11em\">Imi\u0119: <span class=\"greenText\">" + _nameHero + "</span></p>");
+		} else {
+			$("#drawnCharacter").append("<p class = \"basicText center width24 medievalText fontSize11em\">P\u0142e\u0107: <span class=\"greenText\">" + sexHero + "</span></p>");
+			var allNames = namesMan.concat(namesWomen);
+			var _randomNameNumber2 = Math.round(Math.random() * (allNames.length - 1));
+			var _nameHero2 = allNames[_randomNameNumber2];
+			$("#drawnCharacter").append("<p class = \"basicText center width24 medievalText fontSize11em\">Imi\u0119: <span class=\"greenText\">" + _nameHero2 + "</span></p>");
+		}
 
-    //losowanie siły, wytrzymałości, zręczności, inteligencji i charyzmy
-    var randomForce = Math.round(Math.random() * 50);
-    $("#drawnCharacter").append("<p class = \"basicText center width23 medievalText\">Si\u0142a: <span class=\"greenText\">" + randomForce + "</span></p>");
-    var randomStrength = Math.round(Math.random() * 50);
-    $("#drawnCharacter").append("<p class = \"basicText center width23 medievalText\">Wytrzyma\u0142o\u015B\u0107: <span class=\"greenText\">" + randomStrength + "</span></p>");
-    var randomDexterity = Math.round(Math.random() * 50);
-    $("#drawnCharacter").append("<p class = \"basicText center width23 medievalText\">Zr\u0119czno\u015B\u0107: <span class=\"greenText\">" + randomDexterity + "</span></p>");
-    var randomIntelligence = Math.round(Math.random() * 50);
-    $("#drawnCharacter").append("<p class = \"basicText center width23 medievalText\">Inteligencja: <span class=\"greenText\">" + randomIntelligence + "</span></p>");
-    var randomCharisma = Math.round(Math.random() * 50);
-    $("#drawnCharacter").append("<p class = \"basicText center width23 medievalText\">Charyzma: <span class=\"greenText\">" + randomCharisma + "</span></p>");
-  });
+		//losowanie profesji
+		var randomOccupationNumber = Math.round(Math.random() * (occupations.length - 1));
+		var occupationsHero = occupations[randomOccupationNumber];
+		$("#drawnCharacter").append("<p class = \"basicText center width24 medievalText fontSize11em\">Profesja: <span class=\"greenText\">" + occupationsHero + "</span></p>");
+
+		//losowanie rasy
+		var randomRaceNumber = Math.round(Math.random() * (races.length - 1));
+		var raceHero = races[randomRaceNumber];
+		$("#drawnCharacter").append("<p class = \"basicText center width24 medievalText fontSize11em\">Rasa: <span class=\"greenText\">" + raceHero + "</span></p>");
+
+		//losowanie punktów cech w zależności od rasy i profesji
+		//człowiek - wojownik
+		if (raceHero == "człowiek" && occupationsHero == "wojownik") {
+			var randomForce = Math.round(Math.random() * 50);
+			var allPointsForce = randomForce + warrior[0] + human[0];
+			$("#drawnCharacter").append("<p class = \"basicText center width23 medievalText fontSize11em\">Si\u0142a: <span class=\"greenText\">" + allPointsForce + "</span></p>");
+
+			var randomStrength = Math.round(Math.random() * 50);
+			var allPointsStrength = randomStrength + warrior[1] + human[1];
+			$("#drawnCharacter").append("<p class = \"basicText center width23 medievalText fontSize11em\">Wytrzyma\u0142o\u015B\u0107: <span class=\"greenText\">" + allPointsStrength + "</span></p>");
+
+			var randomDexterity = Math.round(Math.random() * 50);
+			var allPointsDexterity = randomDexterity + warrior[2] + human[2];
+			$("#drawnCharacter").append("<p class = \"basicText center width23 medievalText fontSize11em\">Zr\u0119czno\u015B\u0107: <span class=\"greenText\">" + allPointsDexterity + "</span></p>");
+
+			var randomIntelligence = Math.round(Math.random() * 50);
+			var allPointsIntelligence = randomIntelligence + warrior[3] + human[3];
+			$("#drawnCharacter").append("<p class = \"basicText center width23 medievalText fontSize11em\">Inteligencja: <span class=\"greenText\">" + allPointsIntelligence + "</span></p>");
+
+			var randomCharisma = Math.round(Math.random() * 50);
+			var allPointsCharisma = randomCharisma + warrior[4] + human[4];
+			$("#drawnCharacter").append("<p class = \"basicText center width23 medievalText fontSize11em\">Charyzma: <span class=\"greenText\">" + allPointsCharisma + "</span></p>");
+		}
+
+		//człowiek - złoczyńca
+		else if (raceHero == "człowiek" && occupationsHero == "złoczyńca") {
+				var _randomForce = Math.round(Math.random() * 50);
+				var _allPointsForce = _randomForce + criminal[0] + human[0];
+				$("#drawnCharacter").append("<p class = \"basicText center width23 medievalText fontSize11em\">Si\u0142a: <span class=\"greenText\">" + _allPointsForce + "</span></p>");
+
+				var _randomStrength = Math.round(Math.random() * 50);
+				var _allPointsStrength = _randomStrength + criminal[1] + human[1];
+				$("#drawnCharacter").append("<p class = \"basicText center width23 medievalText fontSize11em\">Wytrzyma\u0142o\u015B\u0107: <span class=\"greenText\">" + _allPointsStrength + "</span></p>");
+
+				var _randomDexterity = Math.round(Math.random() * 50);
+				var _allPointsDexterity = _randomDexterity + criminal[2] + human[2];
+				$("#drawnCharacter").append("<p class = \"basicText center width23 medievalText fontSize11em\">Zr\u0119czno\u015B\u0107: <span class=\"greenText\">" + _allPointsDexterity + "</span></p>");
+
+				var _randomIntelligence = Math.round(Math.random() * 50);
+				var _allPointsIntelligence = _randomIntelligence + criminal[3] + human[3];
+				$("#drawnCharacter").append("<p class = \"basicText center width23 medievalText fontSize11em\">Inteligencja: <span class=\"greenText\">" + _allPointsIntelligence + "</span></p>");
+
+				var _randomCharisma = Math.round(Math.random() * 50);
+				var _allPointsCharisma = _randomCharisma + criminal[4] + human[4];
+				$("#drawnCharacter").append("<p class = \"basicText center width23 medievalText fontSize11em\">Charyzma: <span class=\"greenText\">" + _allPointsCharisma + "</span></p>");
+			}
+
+			//człowiek czarodziej
+			else if (raceHero == "człowiek" && occupationsHero == "czarodziej") {
+					var _randomForce2 = Math.round(Math.random() * 50);
+					var _allPointsForce2 = _randomForce2 + wizard[0] + human[0];
+					$("#drawnCharacter").append("<p class = \"basicText center width23 medievalText fontSize11em\">Si\u0142a: <span class=\"greenText\">" + _allPointsForce2 + "</span></p>");
+
+					var _randomStrength2 = Math.round(Math.random() * 50);
+					var _allPointsStrength2 = _randomStrength2 + wizard[1] + human[1];
+					$("#drawnCharacter").append("<p class = \"basicText center width23 medievalText fontSize11em\">Wytrzyma\u0142o\u015B\u0107: <span class=\"greenText\">" + _allPointsStrength2 + "</span></p>");
+
+					var _randomDexterity2 = Math.round(Math.random() * 50);
+					var _allPointsDexterity2 = _randomDexterity2 + wizard[2] + human[2];
+					$("#drawnCharacter").append("<p class = \"basicText center width23 medievalText fontSize11em\">Zr\u0119czno\u015B\u0107: <span class=\"greenText\">" + _allPointsDexterity2 + "</span></p>");
+
+					var _randomIntelligence2 = Math.round(Math.random() * 50);
+					var _allPointsIntelligence2 = _randomIntelligence2 + wizard[3] + human[3];
+					$("#drawnCharacter").append("<p class = \"basicText center width23 medievalText fontSize11em\">Inteligencja: <span class=\"greenText\">" + _allPointsIntelligence2 + "</span></p>");
+
+					var _randomCharisma2 = Math.round(Math.random() * 50);
+					var _allPointsCharisma2 = _randomCharisma2 + wizard[4] + human[4];
+					$("#drawnCharacter").append("<p class = \"basicText center width23 medievalText fontSize11em\">Charyzma: <span class=\"greenText\">" + _allPointsCharisma2 + "</span></p>");
+				}
+	});
 };
 
 ///utworzenie paragrafu z opisem przycisków wylosuj i wybierz.
 module.exports.textDescription = function () {
-  $("#mainPart").html("<p id='text'>Zanim zaczniesz grę, muszisz stworzyć swoją postać. Można to zrobić na dwa sposoby. Pierwszy to wylosowanie protagonisty. Jest to sposób całkowice automatyczny i wystarczy wcisnąć przycisk <span class='blueText'>'losuj'</span>. Drugim sposobem na stworzenie własnej postaci jest jej własnoręczne utworzenie za pomocą kreatora postaci. W tym celu należy wcisnąć przycisk <span class='blueText'>'wybierz'</span>. Co robisz?</p>");
+	$("#mainPart").html("<p id='text'>Zanim zaczniesz grę, muszisz stworzyć swoją postać. Można to zrobić na dwa sposoby. Pierwszy to wylosowanie protagonisty. Jest to sposób całkowice automatyczny i wystarczy wcisnąć przycisk <span class='blueText'>'losuj'</span>. Drugim sposobem na stworzenie własnej postaci jest jej własnoręczne utworzenie za pomocą kreatora postaci. W tym celu należy wcisnąć przycisk <span class='blueText'>'wybierz'</span>. Co robisz?</p>");
 
-  $("#text").addClass("basicText medievalText");
+	$("#text").addClass("basicText medievalText");
 
-  //utworzenie diva dla wylosowanej postaci
-  functions.newElement("div", "drawnCharacter", "", $("#mainPart"));
+	//utworzenie diva dla wylosowanej postaci
+	functions.newElement("div", "drawnCharacter", "", $("#mainPart"));
 };
 
 /***/ }),

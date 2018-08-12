@@ -56,9 +56,7 @@ nav, #mainPart, #alerts{ height: 78vh; }
 }
 
 //tekst średniowieczny
-.medievalText{
-  font-family: 'MedievalSharp', cursive;
-}
+.medievalText{ font-family: 'MedievalSharp', cursive; }
 
 //podstawowy styl dla tekstu paragrafu
 .basicText{
@@ -70,36 +68,22 @@ nav, #mainPart, #alerts{ height: 78vh; }
 }
 
 //wyśrodkowanie tekstu
-.center{
-	text-align: center;
-}
+.center{ text-align: center; }
 
-//szerokość 24 procent
-.width24{
-	width: 24%;
-}
+//szerokości
+.width24{ width: 24%; }
+.width33{ width: 33%; }
+.width49{ width: 49%; }
+.width100{ width: 100%; }
 
-//szerokość 33 procent
-.width33{
-	width: 33%;
-}
+// kolory tekstu
+.blueText{ color: blue; }
+.greenText{ color: green; }
 
-//szerokość 49 procent
-.width49{
-	width: 49%;
-}
+//wielkość liter
+.fontSize11em{ font-size: 1.1em; }
+.fontSize12em{ font-size: 1.2em; }
+.fontSize13em{ font-size: 1.3em; }
 
-//szerokość 100%
-.width100{
-	width: 100%;
-}
-
-//niebieski kolor tekstu
-.blueText{
-  color: blue;
-}
-
-//zielony kolor tekstu
-.greenText{
-	color: green;
-}
+//złote podkreślenie
+.textUnderlineGold{ text-decoration: underline; text-decoration-color: gold; }
