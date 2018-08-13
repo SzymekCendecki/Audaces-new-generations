@@ -1,6 +1,15 @@
 //import funkcji z pliku zewnętrznego
 let functions = require("./functions.js"); //podstawowe funkcje
 
+function randomPoints(warriorPoints, humanPoints, text){
+	let randomPoints = Math.round(Math.random()*50);
+	let allPoints = randomPoints + warriorPoints + humanPoints;
+	$("#drawnCharacter").append(`<p class = "basicText center width23 medievalText fontSize11em">` + text + `: <span class="greenText">${allPoints}</span></p>`);
+	console.log(randomPoints, warriorPoints, humanPoints, text);
+}
+
+
+
 //tablica z imionami męskimi
 let namesMan = ["Wortigern", "Gintor", "Hegel", "Derig", "Diggramon", "Zengowetoryk", "Deggetm", "Zigamon", "Birduk", "Ardenor", "Winterks", "Joluntik", "Menigor", "Oltis", "Kurdir"];
 
@@ -113,29 +122,14 @@ module.exports.randomChooseHeroBtns = function(){
   let raceHero = races[randomRaceNumber];
   $("#drawnCharacter").append(`<p class = "basicText center width24 medievalText fontSize11em">Rasa: <span class="greenText">${raceHero}</span></p>`);
 
-
 //losowanie punktów cech w zależności od rasy i profesji
 //człowiek - wojownik
 	if(raceHero == "człowiek" && occupationsHero == "wojownik"){
-		let randomForce = Math.round(Math.random()*50);
-		let allPointsForce = randomForce + warrior[0] + human[0];
-	  $("#drawnCharacter").append(`<p class = "basicText center width23 medievalText fontSize11em">Siła: <span class="greenText">${allPointsForce}</span></p>`);
-
-	  let randomStrength = Math.round(Math.random()*50);
-		let allPointsStrength = randomStrength + warrior[1] + human[1];
-	 	$("#drawnCharacter").append(`<p class = "basicText center width23 medievalText fontSize11em">Wytrzymałość: <span class="greenText">${allPointsStrength}</span></p>`);
-
-	  let randomDexterity = Math.round(Math.random()*50);
-		let allPointsDexterity = randomDexterity + warrior[2] + human[2];
-    $("#drawnCharacter").append(`<p class = "basicText center width23 medievalText fontSize11em">Zręczność: <span class="greenText">${allPointsDexterity}</span></p>`);
-
-		let randomIntelligence = Math.round(Math.random()*50);
-		let allPointsIntelligence = randomIntelligence + warrior[3] + human[3];
-		 $("#drawnCharacter").append(`<p class = "basicText center width23 medievalText fontSize11em">Inteligencja: <span class="greenText">${allPointsIntelligence}</span></p>`);
-
-		let randomCharisma = Math.round(Math.random()*50);
-		let allPointsCharisma = randomCharisma + warrior[4] + human[4];
-	  $("#drawnCharacter").append(`<p class = "basicText center width23 medievalText fontSize11em">Charyzma: <span class="greenText">${allPointsCharisma}</span></p>`);
+		randomPoints(warrior[0], human[0], `siła`);
+		randomPoints(warrior[1], human[1], `wytrzymałość`);
+		randomPoints(warrior[2], human[2], `zręczność`)
+		randomPoints(warrior[3], human[3], `inteligencja`);
+		randomPoints(warrior[4], human[4], `charisma`);
 }
 
 //człowiek - złoczyńca
@@ -183,7 +177,6 @@ module.exports.randomChooseHeroBtns = function(){
 		let allPointsCharisma = randomCharisma + wizard[4] + human[4];
 		$("#drawnCharacter").append(`<p class = "basicText center width23 medievalText fontSize11em">Charyzma: <span class="greenText">${allPointsCharisma}</span></p>`);
 	}
-
   });
 }
 
@@ -195,5 +188,4 @@ module.exports.textDescription = function(){
 
    //utworzenie diva dla wylosowanej postaci
 	functions.newElement("div", "drawnCharacter", "", $("#mainPart"));
-
 }

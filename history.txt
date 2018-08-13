@@ -229,9 +229,12 @@ Utworzono losowanie cech - siły, wytrzymalości, zręczności, inteligencji i c
 11 sierpnia 2018 - wersja 0.6.37
 Stworzono wyświetlanie się wylosowanej: płci, imienia, siły, wytrzymałości, zręczności, inteligencji oraz charyzmy oraz dodano do nich style css.
 
-12 sierpnia 2018 -wersja 0.6.38
+12 sierpnia 2018 - wersja 0.6.38
 Utworzono i dodano nowe style css - podkreślenie, 3 rodzaje wielkości czcionek.
 	Dodano losowanie profesji i rasy.
 Zmieniono (zmiejszono) szerokość dla imienia i płci, aby się zmieściły w jednej linii z profesją i rasą.
 	Dodano tablice z modyfikatorami rasy i profesji.
 Rozpoczęto pracę nad punktami cech postaci - ich zliczaniem w zależności od rasy i profesji - na razie dla człowieka wojownika, złoczyńcy i czarodzieja) - w momencie losowania postaci.
+
+13 sierpnia 2018 - wersja 0.6.39
+Stworzenie funkcji optymalizującej losowanie punktów cech oraz ich zliczanie uwzględniając profesję oraz rasę postaci - rozpoczęcie przerabiania - upraszczania kodu - pliku heroCreator.js ze względu na tą funkjcę optymalizującą.
