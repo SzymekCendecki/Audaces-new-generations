@@ -1,15 +1,6 @@
 //import funkcji z pliku zewnętrznego
 let functions = require("./functions.js"); //podstawowe funkcje
 
-function randomPoints(warriorPoints, humanPoints, text){
-	let randomPoints = Math.round(Math.random()*50);
-	let allPoints = randomPoints + warriorPoints + humanPoints;
-	$("#drawnCharacter").append(`<p class = "basicText center width23 medievalText fontSize11em">` + text + `: <span class="greenText">${allPoints}</span></p>`);
-	console.log(randomPoints, warriorPoints, humanPoints, text);
-}
-
-
-
 //tablica z imionami męskimi
 let namesMan = ["Wortigern", "Gintor", "Hegel", "Derig", "Diggramon", "Zengowetoryk", "Deggetm", "Zigamon", "Birduk", "Ardenor", "Winterks", "Joluntik", "Menigor", "Oltis", "Kurdir"];
 
@@ -56,7 +47,7 @@ let equipShield = ["puklerz", "mała drewniana", "mała metalowa"];
 	let wizard = [0, 0, 0, 5, 5];
 
 	let human = [0, 0, 0, 0, 0];
-	let elf = [-5, -5, 0, 5, 5];
+	let elv = [-5, -5, 0, 5, 5];
 	let dwarf = [4, 4, 0, -2, -3];
 	let orc = [5, 5, 0, -5, -5];
 
@@ -125,60 +116,113 @@ module.exports.randomChooseHeroBtns = function(){
 //losowanie punktów cech w zależności od rasy i profesji
 //człowiek - wojownik
 	if(raceHero == "człowiek" && occupationsHero == "wojownik"){
-		randomPoints(warrior[0], human[0], `siła`);
-		randomPoints(warrior[1], human[1], `wytrzymałość`);
-		randomPoints(warrior[2], human[2], `zręczność`)
-		randomPoints(warrior[3], human[3], `inteligencja`);
-		randomPoints(warrior[4], human[4], `charisma`);
+		functions.randomPoints(warrior[0], human[0], `siła`);
+		functions.randomPoints(warrior[1], human[1], `wytrzymałość`);
+		functions.randomPoints(warrior[2], human[2], `zręczność`)
+		functions.randomPoints(warrior[3], human[3], `inteligencja`);
+		functions.randomPoints(warrior[4], human[4], `charyzma`);
 }
 
 //człowiek - złoczyńca
 	else if(raceHero == "człowiek" && occupationsHero == "złoczyńca"){
-		let randomForce = Math.round(Math.random()*50);
-		let allPointsForce = randomForce + criminal[0] + human[0];
-		$("#drawnCharacter").append(`<p class = "basicText center width23 medievalText fontSize11em">Siła: <span class="greenText">${allPointsForce}</span></p>`);
-
-		let randomStrength = Math.round(Math.random()*50);
-		let allPointsStrength = randomStrength + criminal[1] + human[1];
-		$("#drawnCharacter").append(`<p class = "basicText center width23 medievalText fontSize11em">Wytrzymałość: <span class="greenText">${allPointsStrength}</span></p>`);
-
-		let randomDexterity = Math.round(Math.random()*50);
-		let allPointsDexterity = randomDexterity + criminal[2] + human[2];
-		$("#drawnCharacter").append(`<p class = "basicText center width23 medievalText fontSize11em">Zręczność: <span class="greenText">${allPointsDexterity}</span></p>`);
-
-		let randomIntelligence = Math.round(Math.random()*50);
-		let allPointsIntelligence = randomIntelligence + criminal[3] + human[3];
-		$("#drawnCharacter").append(`<p class = "basicText center width23 medievalText fontSize11em">Inteligencja: <span class="greenText">${allPointsIntelligence}</span></p>`);
-
-		let randomCharisma = Math.round(Math.random()*50);
-		let allPointsCharisma = randomCharisma + criminal[4] + human[4];
-		$("#drawnCharacter").append(`<p class = "basicText center width23 medievalText fontSize11em">Charyzma: <span class="greenText">${allPointsCharisma}</span></p>`);
+		functions.randomPoints(criminal[0], human[0], `siła`);
+		functions.randomPoints(criminal[1], human[1], `wytrzymałość`);
+		functions.randomPoints(criminal[2], human[2], `zręczność`)
+		functions.randomPoints(criminal[3], human[3], `inteligencja`);
+		functions.randomPoints(criminal[4], human[4], `charyzma`);
 	}
 
 //człowiek czarodziej
 	else if(raceHero == "człowiek" && occupationsHero == "czarodziej"){
-		let randomForce = Math.round(Math.random()*50);
-		let allPointsForce = randomForce + wizard[0] + human[0];
-		$("#drawnCharacter").append(`<p class = "basicText center width23 medievalText fontSize11em">Siła: <span class="greenText">${allPointsForce}</span></p>`);
-
-		let randomStrength = Math.round(Math.random()*50);
-		let allPointsStrength = randomStrength + wizard[1] + human[1];
-		$("#drawnCharacter").append(`<p class = "basicText center width23 medievalText fontSize11em">Wytrzymałość: <span class="greenText">${allPointsStrength}</span></p>`);
-
-		let randomDexterity = Math.round(Math.random()*50);
-		let allPointsDexterity = randomDexterity + wizard[2] + human[2];
-		$("#drawnCharacter").append(`<p class = "basicText center width23 medievalText fontSize11em">Zręczność: <span class="greenText">${allPointsDexterity}</span></p>`);
-
-		let randomIntelligence = Math.round(Math.random()*50);
-		let allPointsIntelligence = randomIntelligence + wizard[3] + human[3];
-		$("#drawnCharacter").append(`<p class = "basicText center width23 medievalText fontSize11em">Inteligencja: <span class="greenText">${allPointsIntelligence}</span></p>`);
-
-		let randomCharisma = Math.round(Math.random()*50);
-		let allPointsCharisma = randomCharisma + wizard[4] + human[4];
-		$("#drawnCharacter").append(`<p class = "basicText center width23 medievalText fontSize11em">Charyzma: <span class="greenText">${allPointsCharisma}</span></p>`);
+		functions.randomPoints(wizard[0], human[0], `siła`);
+		functions.randomPoints(wizard[1], human[1], `wytrzymałość`);
+		functions.randomPoints(wizard[2], human[2], `zręczność`)
+		functions.randomPoints(wizard[3], human[3], `inteligencja`);
+		functions.randomPoints(wizard[4], human[4], `charyzma`);
 	}
-  });
+
+//elf - wojownik
+	else if(raceHero == "elf" && occupationsHero == "wojownik"){
+		functions.randomPoints(warrior[0], elv[0], `siła`);
+		functions.randomPoints(warrior[1], elv[1], `wytrzymałość`);
+		functions.randomPoints(warrior[2], elv[2], `zręczność`)
+		functions.randomPoints(warrior[3], elv[3], `inteligencja`);
+		functions.randomPoints(warrior[4], elv[4], `charyzma`);
+	}
+
+//elf złoczyńca
+else if(raceHero == "elf" && occupationsHero == "złoczyńca"){
+	functions.randomPoints(criminal[0], elv[0], `siła`);
+	functions.randomPoints(criminal[1], elv[1], `wytrzymałość`);
+	functions.randomPoints(criminal[2], elv[2], `zręczność`)
+	functions.randomPoints(criminal[3], elv[3], `inteligencja`);
+	functions.randomPoints(criminal[4], elv[4], `charyzma`);
 }
+
+//elf czarodziej
+else if(raceHero == "elf" && occupationsHero == "czarodziej"){
+	functions.randomPoints(wizard[0], elv[0], `siła`);
+	functions.randomPoints(wizard[1], elv[1], `wytrzymałość`);
+	functions.randomPoints(wizard[2], elv[2], `zręczność`)
+	functions.randomPoints(wizard[3], elv[3], `inteligencja`);
+	functions.randomPoints(wizard[4], elv[4], `charyzma`);
+}
+
+//krasnolud - wojownik
+	else if(raceHero == "krasnolud" && occupationsHero == "wojownik"){
+		functions.randomPoints(warrior[0], dwarf[0], `siła`);
+		functions.randomPoints(warrior[1], dwarf[1], `wytrzymałość`);
+		functions.randomPoints(warrior[2], dwarf[2], `zręczność`)
+		functions.randomPoints(warrior[3], dwarf[3], `inteligencja`);
+		functions.randomPoints(warrior[4], dwarf[4], `charyzma`);
+	}
+
+//krasnolud złoczyńca
+else if(raceHero == "krasnolud" && occupationsHero == "złoczyńca"){
+	functions.randomPoints(criminal[0], dwarf[0], `siła`);
+	functions.randomPoints(criminal[1], dwarf[1], `wytrzymałość`);
+	functions.randomPoints(criminal[2], dwarf[2], `zręczność`)
+	functions.randomPoints(criminal[3], dwarf[3], `inteligencja`);
+	functions.randomPoints(criminal[4], dwarf[4], `charyzma`);
+}
+
+//krasnolud czarodziej
+else if(raceHero == "krasnolud" && occupationsHero == "czarodziej"){
+	functions.randomPoints(wizard[0], dwarf[0], `siła`);
+	functions.randomPoints(wizard[1], dwarf[1], `wytrzymałość`);
+	functions.randomPoints(wizard[2], dwarf[2], `zręczność`)
+	functions.randomPoints(wizard[3], dwarf[3], `inteligencja`);
+	functions.randomPoints(wizard[4], dwarf[4], `charyzma`);
+}
+//ork - wojownik
+	else if(raceHero == "ork" && occupationsHero == "wojownik"){
+		functions.randomPoints(warrior[0], orc[0], `siła`);
+		functions.randomPoints(warrior[1], orc[1], `wytrzymałość`);
+		functions.randomPoints(warrior[2], orc[2], `zręczność`)
+		functions.randomPoints(warrior[3], orc[3], `inteligencja`);
+		functions.randomPoints(warrior[4], orc[4], `charyzma`);
+	}
+
+//ork złoczyńca
+else if(raceHero == "ork" && occupationsHero == "złoczyńca"){
+	functions.randomPoints(criminal[0], orc[0], `siła`);
+	functions.randomPoints(criminal[1], orc[1], `wytrzymałość`);
+	functions.randomPoints(criminal[2], orc[2], `zręczność`)
+	functions.randomPoints(criminal[3], orc[3], `inteligencja`);
+	functions.randomPoints(criminal[4], orc[4], `charyzma`);
+}
+
+//ork czarodziej
+else if(raceHero == "ork" && occupationsHero == "czarodziej"){
+	functions.randomPoints(wizard[0], orc[0], `siła`);
+	functions.randomPoints(wizard[1], orc[1], `wytrzymałość`);
+	functions.randomPoints(wizard[2], orc[2], `zręczność`)
+	functions.randomPoints(wizard[3], orc[3], `inteligencja`);
+	functions.randomPoints(wizard[4], orc[4], `charyzma`);
+}
+
+});//koniec zdarzenia losowania postaci
+}//koniec module.exports.randomChooseHeroBtns
 
 ///utworzenie paragrafu z opisem przycisków wylosuj i wybierz.
 module.exports.textDescription = function(){

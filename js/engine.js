@@ -104,6 +104,14 @@ module.exports.clickFirstMenu = function (element, element2, idElement, textElem
   });
 };
 
+//funckcja zliczająca punkty cech w zależności od rasy, profesji oraz wylosowanej liczby
+module.exports.randomPoints = function (occupationsPoints, racePoints, text) {
+  var randomPoints = Math.round(Math.random() * 50);
+  var allPoints = randomPoints + occupationsPoints + racePoints;
+  $("#drawnCharacter").append("<p class = \"basicText center width23 medievalText fontSize11em\">" + text + (": <span class=\"greenText\">" + allPoints + "</span></p>"));
+  console.log(randomPoints, occupationsPoints, racePoints, text);
+};
+
 //funkcja optymalizująca wybieranie rasy i profesji
 function clickRaceOccupation(element, text, number, sourceDescription, alert) {
   element.on("click", function () {
@@ -159,13 +167,6 @@ function clickRaceOccupation(element, text, number, sourceDescription, alert) {
 //import funkcji z pliku zewnętrznego
 var functions = __webpack_require__(0); //podstawowe funkcje
 
-function randomPoints(warriorPoints, humanPoints, text) {
-		var randomPoints = Math.round(Math.random() * 50);
-		var allPoints = randomPoints + warriorPoints + humanPoints;
-		$("#drawnCharacter").append("<p class = \"basicText center width23 medievalText fontSize11em\">" + text + (": <span class=\"greenText\">" + allPoints + "</span></p>"));
-		console.log(randomPoints, warriorPoints, humanPoints, text);
-}
-
 //tablica z imionami męskimi
 var namesMan = ["Wortigern", "Gintor", "Hegel", "Derig", "Diggramon", "Zengowetoryk", "Deggetm", "Zigamon", "Birduk", "Ardenor", "Winterks", "Joluntik", "Menigor", "Oltis", "Kurdir"];
 
@@ -212,7 +213,7 @@ var criminal = [0, 0, 10, 0, 0];
 var wizard = [0, 0, 0, 5, 5];
 
 var human = [0, 0, 0, 0, 0];
-var elf = [-5, -5, 0, 5, 5];
+var elv = [-5, -5, 0, 5, 5];
 var dwarf = [4, 4, 0, -2, -3];
 var orc = [5, 5, 0, -5, -5];
 
@@ -231,119 +232,171 @@ var skillsWizard = ["pisanie i czytanie", "przyw./odp. demona", "wróżbiarstwo"
 
 //utworzenie przycisków wylosuj i wybierz postać
 module.exports.randomChooseHeroBtns = function () {
-		//utworzenie przycisku wylosuj postać
-		functions.newElement("button", "randomHero", "wylosuj", $("#mainBtns"));
-		//utworzenie przycisku wybierz postać
-		functions.newElement("button", "chooseHero", "wybierz", $("#mainBtns"));
-		//nadanie styli dla przycisków wylosuj i wybierz
-		$("#randomHero, #chooseHero").addClass("basicBtn medievalText btnNewGame");
+	//utworzenie przycisku wylosuj postać
+	functions.newElement("button", "randomHero", "wylosuj", $("#mainBtns"));
+	//utworzenie przycisku wybierz postać
+	functions.newElement("button", "chooseHero", "wybierz", $("#mainBtns"));
+	//nadanie styli dla przycisków wylosuj i wybierz
+	$("#randomHero, #chooseHero").addClass("basicBtn medievalText btnNewGame");
 
-		//losowanie postaci
-		$("#randomHero").on("click", function () {
-				$("#drawnCharacter").empty();
-				functions.newElement("p", "choosenHeroTitle", "WYLOSOWANA POSTAĆ", $("#drawnCharacter"));
-				$("#drawnCharacter").addClass("flexForBtns");
-				$("#choosenHeroTitle").addClass("basicText center medievalText width100 textUnderlineGold");
+	//losowanie postaci
+	$("#randomHero").on("click", function () {
+		$("#drawnCharacter").empty();
+		functions.newElement("p", "choosenHeroTitle", "WYLOSOWANA POSTAĆ", $("#drawnCharacter"));
+		$("#drawnCharacter").addClass("flexForBtns");
+		$("#choosenHeroTitle").addClass("basicText center medievalText width100 textUnderlineGold");
 
-				//losowanie płci
-				var randomSexNumber = Math.round(Math.random() * (sex.length - 1));
-				var sexHero = sex[randomSexNumber];
+		//losowanie płci
+		var randomSexNumber = Math.round(Math.random() * (sex.length - 1));
+		var sexHero = sex[randomSexNumber];
 
-				//losowanie imienia w oparciu o wylosowaną płeć
-				if (sex[randomSexNumber] === "mężczyzna") {
-						var randomNameNumber = Math.round(Math.random() * (namesMan.length - 1));
-						$("#drawnCharacter").append("<p class = \"basicText center width24 medievalText fontSize11em\">P\u0142e\u0107: <span class=\"greenText\">" + sexHero + "</span></p>");
-						var nameHero = namesMan[randomNameNumber];
-						$("#drawnCharacter").append("<p class = \"basicText center width24 medievalText fontSize11em\">Imi\u0119: <span class=\"greenText\">" + nameHero + "</span></p>");
-				} else if (sex[randomSexNumber] === "kobieta") {
-						$("#drawnCharacter").append("<p class = \"basicText center width24 medievalText fontSize11em\">P\u0142e\u0107: <span class=\"greenText\">" + sexHero + "</span></p>");
-						var _randomNameNumber = Math.round(Math.random() * (namesWomen.length - 1));
-						var _nameHero = namesWomen[_randomNameNumber];
-						$("#drawnCharacter").append("<p class = \"basicText center width24 medievalText fontSize11em\">Imi\u0119: <span class=\"greenText\">" + _nameHero + "</span></p>");
-				} else {
-						$("#drawnCharacter").append("<p class = \"basicText center width24 medievalText fontSize11em\">P\u0142e\u0107: <span class=\"greenText\">" + sexHero + "</span></p>");
-						var allNames = namesMan.concat(namesWomen);
-						var _randomNameNumber2 = Math.round(Math.random() * (allNames.length - 1));
-						var _nameHero2 = allNames[_randomNameNumber2];
-						$("#drawnCharacter").append("<p class = \"basicText center width24 medievalText fontSize11em\">Imi\u0119: <span class=\"greenText\">" + _nameHero2 + "</span></p>");
+		//losowanie imienia w oparciu o wylosowaną płeć
+		if (sex[randomSexNumber] === "mężczyzna") {
+			var randomNameNumber = Math.round(Math.random() * (namesMan.length - 1));
+			$("#drawnCharacter").append("<p class = \"basicText center width24 medievalText fontSize11em\">P\u0142e\u0107: <span class=\"greenText\">" + sexHero + "</span></p>");
+			var nameHero = namesMan[randomNameNumber];
+			$("#drawnCharacter").append("<p class = \"basicText center width24 medievalText fontSize11em\">Imi\u0119: <span class=\"greenText\">" + nameHero + "</span></p>");
+		} else if (sex[randomSexNumber] === "kobieta") {
+			$("#drawnCharacter").append("<p class = \"basicText center width24 medievalText fontSize11em\">P\u0142e\u0107: <span class=\"greenText\">" + sexHero + "</span></p>");
+			var _randomNameNumber = Math.round(Math.random() * (namesWomen.length - 1));
+			var _nameHero = namesWomen[_randomNameNumber];
+			$("#drawnCharacter").append("<p class = \"basicText center width24 medievalText fontSize11em\">Imi\u0119: <span class=\"greenText\">" + _nameHero + "</span></p>");
+		} else {
+			$("#drawnCharacter").append("<p class = \"basicText center width24 medievalText fontSize11em\">P\u0142e\u0107: <span class=\"greenText\">" + sexHero + "</span></p>");
+			var allNames = namesMan.concat(namesWomen);
+			var _randomNameNumber2 = Math.round(Math.random() * (allNames.length - 1));
+			var _nameHero2 = allNames[_randomNameNumber2];
+			$("#drawnCharacter").append("<p class = \"basicText center width24 medievalText fontSize11em\">Imi\u0119: <span class=\"greenText\">" + _nameHero2 + "</span></p>");
+		}
+
+		//losowanie profesji
+		var randomOccupationNumber = Math.round(Math.random() * (occupations.length - 1));
+		var occupationsHero = occupations[randomOccupationNumber];
+		$("#drawnCharacter").append("<p class = \"basicText center width24 medievalText fontSize11em\">Profesja: <span class=\"greenText\">" + occupationsHero + "</span></p>");
+
+		//losowanie rasy
+		var randomRaceNumber = Math.round(Math.random() * (races.length - 1));
+		var raceHero = races[randomRaceNumber];
+		$("#drawnCharacter").append("<p class = \"basicText center width24 medievalText fontSize11em\">Rasa: <span class=\"greenText\">" + raceHero + "</span></p>");
+
+		//losowanie punktów cech w zależności od rasy i profesji
+		//człowiek - wojownik
+		if (raceHero == "człowiek" && occupationsHero == "wojownik") {
+			functions.randomPoints(warrior[0], human[0], "si\u0142a");
+			functions.randomPoints(warrior[1], human[1], "wytrzyma\u0142o\u015B\u0107");
+			functions.randomPoints(warrior[2], human[2], "zr\u0119czno\u015B\u0107");
+			functions.randomPoints(warrior[3], human[3], "inteligencja");
+			functions.randomPoints(warrior[4], human[4], "charyzma");
+		}
+
+		//człowiek - złoczyńca
+		else if (raceHero == "człowiek" && occupationsHero == "złoczyńca") {
+				functions.randomPoints(criminal[0], human[0], "si\u0142a");
+				functions.randomPoints(criminal[1], human[1], "wytrzyma\u0142o\u015B\u0107");
+				functions.randomPoints(criminal[2], human[2], "zr\u0119czno\u015B\u0107");
+				functions.randomPoints(criminal[3], human[3], "inteligencja");
+				functions.randomPoints(criminal[4], human[4], "charyzma");
+			}
+
+			//człowiek czarodziej
+			else if (raceHero == "człowiek" && occupationsHero == "czarodziej") {
+					functions.randomPoints(wizard[0], human[0], "si\u0142a");
+					functions.randomPoints(wizard[1], human[1], "wytrzyma\u0142o\u015B\u0107");
+					functions.randomPoints(wizard[2], human[2], "zr\u0119czno\u015B\u0107");
+					functions.randomPoints(wizard[3], human[3], "inteligencja");
+					functions.randomPoints(wizard[4], human[4], "charyzma");
 				}
 
-				//losowanie profesji
-				var randomOccupationNumber = Math.round(Math.random() * (occupations.length - 1));
-				var occupationsHero = occupations[randomOccupationNumber];
-				$("#drawnCharacter").append("<p class = \"basicText center width24 medievalText fontSize11em\">Profesja: <span class=\"greenText\">" + occupationsHero + "</span></p>");
+				//elf - wojownik
+				else if (raceHero == "elf" && occupationsHero == "wojownik") {
+						functions.randomPoints(warrior[0], elv[0], "si\u0142a");
+						functions.randomPoints(warrior[1], elv[1], "wytrzyma\u0142o\u015B\u0107");
+						functions.randomPoints(warrior[2], elv[2], "zr\u0119czno\u015B\u0107");
+						functions.randomPoints(warrior[3], elv[3], "inteligencja");
+						functions.randomPoints(warrior[4], elv[4], "charyzma");
+					}
 
-				//losowanie rasy
-				var randomRaceNumber = Math.round(Math.random() * (races.length - 1));
-				var raceHero = races[randomRaceNumber];
-				$("#drawnCharacter").append("<p class = \"basicText center width24 medievalText fontSize11em\">Rasa: <span class=\"greenText\">" + raceHero + "</span></p>");
-
-				//losowanie punktów cech w zależności od rasy i profesji
-				//człowiek - wojownik
-				if (raceHero == "człowiek" && occupationsHero == "wojownik") {
-						randomPoints(warrior[0], human[0], "si\u0142a");
-						randomPoints(warrior[1], human[1], "wytrzyma\u0142o\u015B\u0107");
-						randomPoints(warrior[2], human[2], "zr\u0119czno\u015B\u0107");
-						randomPoints(warrior[3], human[3], "inteligencja");
-						randomPoints(warrior[4], human[4], "charisma");
-				}
-
-				//człowiek - złoczyńca
-				else if (raceHero == "człowiek" && occupationsHero == "złoczyńca") {
-								var randomForce = Math.round(Math.random() * 50);
-								var allPointsForce = randomForce + criminal[0] + human[0];
-								$("#drawnCharacter").append("<p class = \"basicText center width23 medievalText fontSize11em\">Si\u0142a: <span class=\"greenText\">" + allPointsForce + "</span></p>");
-
-								var randomStrength = Math.round(Math.random() * 50);
-								var allPointsStrength = randomStrength + criminal[1] + human[1];
-								$("#drawnCharacter").append("<p class = \"basicText center width23 medievalText fontSize11em\">Wytrzyma\u0142o\u015B\u0107: <span class=\"greenText\">" + allPointsStrength + "</span></p>");
-
-								var randomDexterity = Math.round(Math.random() * 50);
-								var allPointsDexterity = randomDexterity + criminal[2] + human[2];
-								$("#drawnCharacter").append("<p class = \"basicText center width23 medievalText fontSize11em\">Zr\u0119czno\u015B\u0107: <span class=\"greenText\">" + allPointsDexterity + "</span></p>");
-
-								var randomIntelligence = Math.round(Math.random() * 50);
-								var allPointsIntelligence = randomIntelligence + criminal[3] + human[3];
-								$("#drawnCharacter").append("<p class = \"basicText center width23 medievalText fontSize11em\">Inteligencja: <span class=\"greenText\">" + allPointsIntelligence + "</span></p>");
-
-								var randomCharisma = Math.round(Math.random() * 50);
-								var allPointsCharisma = randomCharisma + criminal[4] + human[4];
-								$("#drawnCharacter").append("<p class = \"basicText center width23 medievalText fontSize11em\">Charyzma: <span class=\"greenText\">" + allPointsCharisma + "</span></p>");
+					//elf złoczyńca
+					else if (raceHero == "elf" && occupationsHero == "złoczyńca") {
+							functions.randomPoints(criminal[0], elv[0], "si\u0142a");
+							functions.randomPoints(criminal[1], elv[1], "wytrzyma\u0142o\u015B\u0107");
+							functions.randomPoints(criminal[2], elv[2], "zr\u0119czno\u015B\u0107");
+							functions.randomPoints(criminal[3], elv[3], "inteligencja");
+							functions.randomPoints(criminal[4], elv[4], "charyzma");
 						}
 
-						//człowiek czarodziej
-						else if (raceHero == "człowiek" && occupationsHero == "czarodziej") {
-										var _randomForce = Math.round(Math.random() * 50);
-										var _allPointsForce = _randomForce + wizard[0] + human[0];
-										$("#drawnCharacter").append("<p class = \"basicText center width23 medievalText fontSize11em\">Si\u0142a: <span class=\"greenText\">" + _allPointsForce + "</span></p>");
+						//elf czarodziej
+						else if (raceHero == "elf" && occupationsHero == "czarodziej") {
+								functions.randomPoints(wizard[0], elv[0], "si\u0142a");
+								functions.randomPoints(wizard[1], elv[1], "wytrzyma\u0142o\u015B\u0107");
+								functions.randomPoints(wizard[2], elv[2], "zr\u0119czno\u015B\u0107");
+								functions.randomPoints(wizard[3], elv[3], "inteligencja");
+								functions.randomPoints(wizard[4], elv[4], "charyzma");
+							}
 
-										var _randomStrength = Math.round(Math.random() * 50);
-										var _allPointsStrength = _randomStrength + wizard[1] + human[1];
-										$("#drawnCharacter").append("<p class = \"basicText center width23 medievalText fontSize11em\">Wytrzyma\u0142o\u015B\u0107: <span class=\"greenText\">" + _allPointsStrength + "</span></p>");
-
-										var _randomDexterity = Math.round(Math.random() * 50);
-										var _allPointsDexterity = _randomDexterity + wizard[2] + human[2];
-										$("#drawnCharacter").append("<p class = \"basicText center width23 medievalText fontSize11em\">Zr\u0119czno\u015B\u0107: <span class=\"greenText\">" + _allPointsDexterity + "</span></p>");
-
-										var _randomIntelligence = Math.round(Math.random() * 50);
-										var _allPointsIntelligence = _randomIntelligence + wizard[3] + human[3];
-										$("#drawnCharacter").append("<p class = \"basicText center width23 medievalText fontSize11em\">Inteligencja: <span class=\"greenText\">" + _allPointsIntelligence + "</span></p>");
-
-										var _randomCharisma = Math.round(Math.random() * 50);
-										var _allPointsCharisma = _randomCharisma + wizard[4] + human[4];
-										$("#drawnCharacter").append("<p class = \"basicText center width23 medievalText fontSize11em\">Charyzma: <span class=\"greenText\">" + _allPointsCharisma + "</span></p>");
+							//krasnolud - wojownik
+							else if (raceHero == "krasnolud" && occupationsHero == "wojownik") {
+									functions.randomPoints(warrior[0], dwarf[0], "si\u0142a");
+									functions.randomPoints(warrior[1], dwarf[1], "wytrzyma\u0142o\u015B\u0107");
+									functions.randomPoints(warrior[2], dwarf[2], "zr\u0119czno\u015B\u0107");
+									functions.randomPoints(warrior[3], dwarf[3], "inteligencja");
+									functions.randomPoints(warrior[4], dwarf[4], "charyzma");
 								}
-		});
-};
+
+								//krasnolud złoczyńca
+								else if (raceHero == "krasnolud" && occupationsHero == "złoczyńca") {
+										functions.randomPoints(criminal[0], dwarf[0], "si\u0142a");
+										functions.randomPoints(criminal[1], dwarf[1], "wytrzyma\u0142o\u015B\u0107");
+										functions.randomPoints(criminal[2], dwarf[2], "zr\u0119czno\u015B\u0107");
+										functions.randomPoints(criminal[3], dwarf[3], "inteligencja");
+										functions.randomPoints(criminal[4], dwarf[4], "charyzma");
+									}
+
+									//krasnolud czarodziej
+									else if (raceHero == "krasnolud" && occupationsHero == "czarodziej") {
+											functions.randomPoints(wizard[0], dwarf[0], "si\u0142a");
+											functions.randomPoints(wizard[1], dwarf[1], "wytrzyma\u0142o\u015B\u0107");
+											functions.randomPoints(wizard[2], dwarf[2], "zr\u0119czno\u015B\u0107");
+											functions.randomPoints(wizard[3], dwarf[3], "inteligencja");
+											functions.randomPoints(wizard[4], dwarf[4], "charyzma");
+										}
+										//ork - wojownik
+										else if (raceHero == "ork" && occupationsHero == "wojownik") {
+												functions.randomPoints(warrior[0], orc[0], "si\u0142a");
+												functions.randomPoints(warrior[1], orc[1], "wytrzyma\u0142o\u015B\u0107");
+												functions.randomPoints(warrior[2], orc[2], "zr\u0119czno\u015B\u0107");
+												functions.randomPoints(warrior[3], orc[3], "inteligencja");
+												functions.randomPoints(warrior[4], orc[4], "charyzma");
+											}
+
+											//ork złoczyńca
+											else if (raceHero == "ork" && occupationsHero == "złoczyńca") {
+													functions.randomPoints(criminal[0], orc[0], "si\u0142a");
+													functions.randomPoints(criminal[1], orc[1], "wytrzyma\u0142o\u015B\u0107");
+													functions.randomPoints(criminal[2], orc[2], "zr\u0119czno\u015B\u0107");
+													functions.randomPoints(criminal[3], orc[3], "inteligencja");
+													functions.randomPoints(criminal[4], orc[4], "charyzma");
+												}
+
+												//ork czarodziej
+												else if (raceHero == "ork" && occupationsHero == "czarodziej") {
+														functions.randomPoints(wizard[0], orc[0], "si\u0142a");
+														functions.randomPoints(wizard[1], orc[1], "wytrzyma\u0142o\u015B\u0107");
+														functions.randomPoints(wizard[2], orc[2], "zr\u0119czno\u015B\u0107");
+														functions.randomPoints(wizard[3], orc[3], "inteligencja");
+														functions.randomPoints(wizard[4], orc[4], "charyzma");
+													}
+	}); //koniec zdarzenia losowania postaci
+}; //koniec module.exports.randomChooseHeroBtns
 
 ///utworzenie paragrafu z opisem przycisków wylosuj i wybierz.
 module.exports.textDescription = function () {
-		$("#mainPart").html("<p id='text'>Zanim zaczniesz grę, muszisz stworzyć swoją postać. Można to zrobić na dwa sposoby. Pierwszy to wylosowanie protagonisty. Jest to sposób całkowice automatyczny i wystarczy wcisnąć przycisk <span class='blueText'>'losuj'</span>. Drugim sposobem na stworzenie własnej postaci jest jej własnoręczne utworzenie za pomocą kreatora postaci. W tym celu należy wcisnąć przycisk <span class='blueText'>'wybierz'</span>. Co robisz?</p>");
+	$("#mainPart").html("<p id='text'>Zanim zaczniesz grę, muszisz stworzyć swoją postać. Można to zrobić na dwa sposoby. Pierwszy to wylosowanie protagonisty. Jest to sposób całkowice automatyczny i wystarczy wcisnąć przycisk <span class='blueText'>'losuj'</span>. Drugim sposobem na stworzenie własnej postaci jest jej własnoręczne utworzenie za pomocą kreatora postaci. W tym celu należy wcisnąć przycisk <span class='blueText'>'wybierz'</span>. Co robisz?</p>");
 
-		$("#text").addClass("basicText medievalText");
+	$("#text").addClass("basicText medievalText");
 
-		//utworzenie diva dla wylosowanej postaci
-		functions.newElement("div", "drawnCharacter", "", $("#mainPart"));
+	//utworzenie diva dla wylosowanej postaci
+	functions.newElement("div", "drawnCharacter", "", $("#mainPart"));
 };
 
 /***/ }),

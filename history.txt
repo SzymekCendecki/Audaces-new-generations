@@ -238,3 +238,12 @@ Rozpoczęto pracę nad punktami cech postaci - ich zliczaniem w zależności od 
 
 13 sierpnia 2018 - wersja 0.6.39
 Stworzenie funkcji optymalizującej losowanie punktów cech oraz ich zliczanie uwzględniając profesję oraz rasę postaci - rozpoczęcie przerabiania - upraszczania kodu - pliku heroCreator.js ze względu na tą funkjcę optymalizującą.
+
+13 sierpnia 2018 - wersja 0.6.40
+Drobna poprawka nazewnictwa w funkcji zliczającej (optymalizującej) punkty cech.
+	Przeniesienie funkcji zliczającej (optymalizującej) punkty cech z pliku heroCreator.js do pliku functions.js.
+Poprawiono słowo "charisma" na "charyzma".
+	Drobna poprawka nazwy tablicy z modyfikatorami z "elf" na "elv".
+Dodano losowanie punktów cech dla elfa.
+ Dodano losowanie punktów cech dla krasnoluda.
+Dodano losowanie punktów cech dla orka.
