@@ -247,3 +247,8 @@ Poprawiono słowo "charisma" na "charyzma".
 Dodano losowanie punktów cech dla elfa.
  Dodano losowanie punktów cech dla krasnoluda.
 Dodano losowanie punktów cech dla orka.
+
+14 sierpnia 2018 - wersja 0.6.41
+Dodano losowanie koloru skóry, oczu, włosów, wagi i wzrostu.
+	Dodana nowa szerokość w stylach css 20%.
+Wprowadzono poprawkę szerokości wyświetlania: wylosowanych punktów siły, wytrzymałości, zręczności, inteligencji i charyzmy.

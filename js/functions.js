@@ -36,7 +36,7 @@ module.exports.clickFirstMenu = function(element, element2, idElement, textEleme
 module.exports.randomPoints = function(occupationsPoints, racePoints, text){
 	let randomPoints = Math.round(Math.random()*50);
 	let allPoints = randomPoints + occupationsPoints + racePoints;
-	$("#drawnCharacter").append(`<p class = "basicText center width23 medievalText fontSize11em">` + text + `: <span class="greenText">${allPoints}</span></p>`);
+	$("#drawnCharacter").append(`<p class = "basicText center width20 medievalText fontSize11em">` + text + `: <span class="greenText">${allPoints}</span></p>`);
 	console.log(randomPoints, occupationsPoints, racePoints, text);
 }
 

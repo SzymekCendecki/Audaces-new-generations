@@ -108,7 +108,7 @@ module.exports.clickFirstMenu = function (element, element2, idElement, textElem
 module.exports.randomPoints = function (occupationsPoints, racePoints, text) {
   var randomPoints = Math.round(Math.random() * 50);
   var allPoints = randomPoints + occupationsPoints + racePoints;
-  $("#drawnCharacter").append("<p class = \"basicText center width23 medievalText fontSize11em\">" + text + (": <span class=\"greenText\">" + allPoints + "</span></p>"));
+  $("#drawnCharacter").append("<p class = \"basicText center width20 medievalText fontSize11em\">" + text + (": <span class=\"greenText\">" + allPoints + "</span></p>"));
   console.log(randomPoints, occupationsPoints, racePoints, text);
 };
 
@@ -386,6 +386,31 @@ module.exports.randomChooseHeroBtns = function () {
 														functions.randomPoints(wizard[3], orc[3], "inteligencja");
 														functions.randomPoints(wizard[4], orc[4], "charyzma");
 													}
+
+		//losowanie koloru włosów
+		var randomHairNumber = Math.round(Math.random() * (hairColor.length - 1));
+		var hairHero = hairColor[randomHairNumber];
+		$("#drawnCharacter").append("<p class = \"basicText center width20 medievalText fontSize11em\">Kolor w\u0142os\xF3w: <span class=\"greenText\">" + hairHero + "</span></p>");
+
+		//losowanie koloru oczu
+		var randomEyesNumber = Math.round(Math.random() * (eyesColor.length - 1));
+		var eyesHero = eyesColor[randomEyesNumber];
+		$("#drawnCharacter").append("<p class = \"basicText center width20 medievalText fontSize11em\">Kolor oczu: <span class=\"greenText\">" + eyesHero + "</span></p>");
+
+		//losowanie koloru skóry
+		var randomSkinNumber = Math.round(Math.random() * (skinColor.length - 1));
+		var skinHero = skinColor[randomSkinNumber];
+		$("#drawnCharacter").append("<p class = \"basicText center width20 medievalText fontSize11em\">Kolor sk\xF3ry: <span class=\"greenText\">" + skinHero + "</span></p>");
+
+		//losowanie wagi
+		var randomWeightNumber = Math.round(Math.random() * (weight.length - 1));
+		var weightHero = weight[randomWeightNumber];
+		$("#drawnCharacter").append("<p class = \"basicText center width20 medievalText fontSize11em\">Waga: <span class=\"greenText\">" + weightHero + "</span></p>");
+
+		//losowanie wzrostu
+		var randomHeightNumber = Math.round(Math.random() * (height.length - 1));
+		var heightHero = height[randomHeightNumber];
+		$("#drawnCharacter").append("<p class = \"basicText center width20 medievalText fontSize11em\">Wzrost: <span class=\"greenText\">" + heightHero + "</span></p>");
 	}); //koniec zdarzenia losowania postaci
 }; //koniec module.exports.randomChooseHeroBtns
 

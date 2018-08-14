@@ -221,6 +221,31 @@ else if(raceHero == "ork" && occupationsHero == "czarodziej"){
 	functions.randomPoints(wizard[4], orc[4], `charyzma`);
 }
 
+//losowanie koloru włosów
+let randomHairNumber = Math.round(Math.random()*(hairColor.length-1));
+let hairHero = hairColor[randomHairNumber];
+$("#drawnCharacter").append(`<p class = "basicText center width20 medievalText fontSize11em">Kolor włosów: <span class="greenText">${hairHero}</span></p>`);
+
+//losowanie koloru oczu
+let randomEyesNumber = Math.round(Math.random()*(eyesColor.length-1));
+let eyesHero = eyesColor[randomEyesNumber];
+$("#drawnCharacter").append(`<p class = "basicText center width20 medievalText fontSize11em">Kolor oczu: <span class="greenText">${eyesHero}</span></p>`);
+
+//losowanie koloru skóry
+let randomSkinNumber = Math.round(Math.random()*(skinColor.length-1));
+let skinHero = skinColor[randomSkinNumber];
+$("#drawnCharacter").append(`<p class = "basicText center width20 medievalText fontSize11em">Kolor skóry: <span class="greenText">${skinHero}</span></p>`);
+
+//losowanie wagi
+let randomWeightNumber = Math.round(Math.random()*(weight.length-1));
+let weightHero = weight[randomWeightNumber];
+$("#drawnCharacter").append(`<p class = "basicText center width20 medievalText fontSize11em">Waga: <span class="greenText">${weightHero}</span></p>`);
+
+//losowanie wzrostu
+let randomHeightNumber = Math.round(Math.random()*(height.length-1));
+let heightHero = height[randomHeightNumber];
+$("#drawnCharacter").append(`<p class = "basicText center width20 medievalText fontSize11em">Wzrost: <span class="greenText">${heightHero}</span></p>`);
+
 });//koniec zdarzenia losowania postaci
 }//koniec module.exports.randomChooseHeroBtns
 
