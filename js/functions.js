@@ -33,11 +33,11 @@ module.exports.clickFirstMenu = function(element, element2, idElement, textEleme
 }
 
 //funckcja zliczająca punkty cech w zależności od rasy, profesji oraz wylosowanej liczby
-module.exports.randomPoints = function(occupationsPoints, racePoints, text){
+module.exports.randomPoints = function(occupationsPoints, racePoints, text, table, tablePosition){
 	let randomPoints = Math.round(Math.random()*50);
 	let allPoints = randomPoints + occupationsPoints + racePoints;
 	$("#drawnCharacter").append(`<p class = "basicText center width20 medievalText fontSize11em">` + text + `: <span class="greenText">${allPoints}</span></p>`);
-	console.log(randomPoints, occupationsPoints, racePoints, text);
+  table.splice(tablePosition, 1, allPoints);
 }
 
 

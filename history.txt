@@ -252,3 +252,13 @@ Dodano losowanie punktów cech dla orka.
 Dodano losowanie koloru skóry, oczu, włosów, wagi i wzrostu.
 	Dodana nowa szerokość w stylach css 20%.
 Wprowadzono poprawkę szerokości wyświetlania: wylosowanych punktów siły, wytrzymałości, zręczności, inteligencji i charyzmy.
+
+15 sierpnia 2018 - wersja 0.6.42
+Dodano tablicę zbiorczą dla wyboru postaci (losowanie lub przez kreator).
+	Dodano tablicę dla ekwipunku.
+Dodano tablicę dla umiejętności.
+	Wyolosowana postać dodawana jest do tablicy zbiorczej hero (na razie bez umiejętności i ekwipunku).
+Drobna poprawka dla funckji zliczania punktów cech - możliwość dodawania punktów do tablicy hero.
+ 	Drobna poprawa nazewnictwa w tabeli tarcz i zbroi.
+Dodano losowanie ekwipunku.
+	Dodano losowanie umiejętności.(czasem się powtarzają? do poprawki?).
