@@ -262,3 +262,6 @@ Drobna poprawka dla funckji zliczania punktów cech - możliwość dodawania pun
  	Drobna poprawa nazewnictwa w tabeli tarcz i zbroi.
 Dodano losowanie ekwipunku.
 	Dodano losowanie umiejętności.(czasem się powtarzają? do poprawki?).
+
+16 sierpnia 2018 - wersja 0.6.43
+Problem z losowaniem umiejętności (powtarzające sie umiejętności) rozwiązany.

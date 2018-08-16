@@ -304,111 +304,48 @@ let item5 = allEquip[item5Number];
 
 //dla wojownika
  if(occupationsHero === "wojownik"){
-	 let skill1Number =  Math.round(Math.random()*(skillsWarrior.length-1));
-	 let skill1 = skillsWarrior[skill1Number];
-	 skills.splice(0, 1, skill1);
-
-	 let skill2Number =  Math.round(Math.random()*(skillsWarrior.length-1));
-	 let skill2 = skillsWarrior[skill2Number];
-
- 	 let skill3Number =  Math.round(Math.random()*(skillsWarrior.length-1));
-	 let skill3 = skillsWarrior[skill3Number];
-
-
-	 if(skill2 !== skill1){
-		skills.splice(1, 1, skill2);
-	}else{
-		let skill2Number =  Math.round(Math.random()*(skillsWarrior.length-1));
-		let skill2 = skillsWarrior[skill2Number];
-		skills.splice(1, 1, skill2);
-	}
-
-	 if(skill3 !== skill2 || skill3 !== skill1){
-		skills.splice(2, 1, skill3);
-	}else{
-		let skill3Number =  Math.round(Math.random()*(skillsWarrior.length-1));
-		let skill3 = skillsWarrior[skill3Number];
-		skills.splice(2, 1, skill3);
-	}
-
-	 let skills1 = skills[0];
-	 let skills2 = skills[1];
-	 let skills3 = skills[2];
-
-	  $("#drawnCharacter").append(`<p class = "basicText center width100 medievalText fontSize11em">Umiejętności: <span class="greenText">${skills1}, ${skills2}, ${skills3}</span></p>`);
-
-	 console.log(skills);
+	for (let i=0; i<3; i++) {
+	 let  random = Math.round(Math.random()*(skillsWarrior.length-1));
+	 let is = false;
+  	for (let j=0; j<skills.length; j++)
+		if (skills[j] == random) is = true;
+		if (is) i--;
+	else skills[i] = random;
  }
+$("#drawnCharacter").append(`<p class = "basicText center width100 medievalText fontSize11em">Umiejętności: <span id='randomSkils'class="greenText"></span></p>`);
+
+for (let i=0; i<3; i++) $("#randomSkils").text(skillsWarrior[skills[0]] + ", " + skillsWarrior[skills[1]] + ", " + skillsWarrior[skills[2]]);
+}
 
  //dla złoczyńcy
 else if(occupationsHero === "złoczyńca"){
- 	 let skill1Number =  Math.round(Math.random()*(skillsCriminal.length-1));
- 	 let skill1 = skillsCriminal[skill1Number];
- 	 skills.splice(0, 1, skill1);
+	for (let i=0; i<3; i++) {
+	 let  random = Math.round(Math.random()*(skillsCriminal.length-1));
+	 let is = false;
+  	for (let j=0; j<skills.length; j++)
+		if (skills[j] == random) is = true;
+		if (is) i--;
+	else skills[i] = random;
+ }
+$("#drawnCharacter").append(`<p class = "basicText center width100 medievalText fontSize11em">Umiejętności: <span id='randomSkils'class="greenText"></span></p>`);
 
- 	 let skill2Number =  Math.round(Math.random()*(skillsCriminal.length-1));
- 	 let skill2 = skillsCriminal[skill2Number];
- 	 skills.splice(1, 1, skill2);
+for (let i=0; i<3; i++) $("#randomSkils").text(skillsCriminal[skills[0]] + ", " + skillsCriminal[skills[1]] + ", " + skillsCriminal[skills[2]]);
+}
 
-  	let skill3Number =  Math.round(Math.random()*(skillsCriminal.length-1));
- 	 let skill3 = skillsCriminal[skill3Number];
- 	 skills.splice(2, 1, skill3);
-
- 	 if(skill2 === skill1){
- 		let skill2Number =  Math.round(Math.random()*(skillsCriminal.length-1));
- 		let skill2 = skillsCriminal[skill2Number];
- 		skills.splice(1, 1, skill2);
- 	 }
-
- 	 if(skill3 === skill2 || skill3 === skill1){
- 		let skill3Number =  Math.round(Math.random()*(skillsCriminal.length-1));
- 		let skill3 = skillsCriminal[skill3Number];
- 		skills.splice(2, 1, skill3);
- 	 }
-
- 	 let skills1 = skills[0];
- 	 let skills2 = skills[1];
- 	 let skills3 = skills[2];
-
- 	  $("#drawnCharacter").append(`<p class = "basicText center width100 medievalText fontSize11em">Umiejętności: <span class="greenText">${skills1}, ${skills2}, ${skills3}</span></p>`);
-
- 	 console.log(skills);
-  }
-
-	//dla czarodzieja
+// dal czarodzieja
 	else if(occupationsHero === "czarodziej"){
-		let skill1Number =  Math.round(Math.random()*(skillsWizard.length-1));
-		let skill1 = skillsWizard[skill1Number];
-		skills.splice(0, 1, skill1);
-
-		let skill2Number =  Math.round(Math.random()*(skillsWizard.length-1));
-		let skill2 = skillsWizard[skill2Number];
-		skills.splice(1, 1, skill2);
-
-		 let skill3Number =  Math.round(Math.random()*(skillsWizard.length-1));
-		let skill3 = skillsWizard[skill3Number];
-		skills.splice(2, 1, skill3);
-
-		if(skill2 === skill1){
-		 let skill2Number =  Math.round(Math.random()*(skillsWizard.length-1));
-		 let skill2 = skillsWizard[skill2Number];
-		 skills.splice(1, 1, skill2);
+		for (let i=0; i<3; i++) {
+		 let  random = Math.round(Math.random()*(skillsWizard.length-1));
+		 let is = false;
+			for (let j=0; j<skills.length; j++)
+			if (skills[j] == random) is = true;
+			if (is) i--;
+		else skills[i] = random;
 		}
+		$("#drawnCharacter").append(`<p class = "basicText center width100 medievalText fontSize11em">Umiejętności: <span id='randomSkils'class="greenText"></span></p>`);
 
-		if(skill3 === skill2 || skill3 === skill1){
-		 let skill3Number =  Math.round(Math.random()*(skillsWizard.length-1));
-		 let skill3 = skillsWizard[skill3Number];
-		 skills.splice(2, 1, skill3);
-		}
-
-		let skills1 = skills[0];
-		let skills2 = skills[1];
-		let skills3 = skills[2];
-
-		 $("#drawnCharacter").append(`<p class = "basicText center width100 medievalText fontSize11em">Umiejętności: <span class="greenText">${skills1}, ${skills2}, ${skills3}</span></p>`);
-
-		console.log(skills);
-	 }
+		for (let i=0; i<3; i++) $("#randomSkils").text(skillsWizard[skills[0]] + ", " + skillsWizard[skills[1]] + ", " + skillsWizard[skills[2]]);
+	  }
 
 });//koniec zdarzenia losowania postaci
 }//koniec module.exports.randomChooseHeroBtns

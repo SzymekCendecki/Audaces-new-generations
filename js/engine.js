@@ -72,87 +72,56 @@
 
 //funkcja, która tworzy nowy element DOM
 module.exports.newElement = function (nameElement, idName, text, whereAppend) {
-  var newElement = document.createElement(nameElement);
-  newElement.id = idName;
-  newElement.innerText = text;
-  whereAppend.append(newElement);
+  var newElement = document.createElement(nameElement);newElement.id = idName;
+  newElement.innerText = text;whereAppend.append(newElement);
 };
 
 function newElement(nameElement, idName, text, whereAppend) {
-  var newElement = document.createElement(nameElement);
-  newElement.id = idName;
-  newElement.innerText = text;
+  var newElement = document.createElement(nameElement);newElement.id = idName;newElement.innerText = text;
   whereAppend.append(newElement);
 }
 
 //funkcja optymalizująca tworzenie inputów
 function createNewInputAppend(nameElement, name, id, value, type, whereAppend) {
-  var newElement = document.createElement(nameElement);
-  newElement.type = type;
-  newElement.name = name;
-  newElement.id = id;
-  newElement.value = value;
-  whereAppend.append(newElement);
+  var newElement = document.createElement(nameElement);newElement.type = type;newElement.name = name;newElement.id = id;newElement.value = value;whereAppend.append(newElement);
 }
 
 //funkcja klik dla pierwszego menu
 module.exports.clickFirstMenu = function (element, element2, idElement, textElement) {
   element.on("click", function () {
-    element2.children("p").remove();
-    newElement("p", idElement, textElement, element2);
-    element2.addClass("basicText medievalText");
+    element2.children("p").remove();newElement("p", idElement, textElement, element2);element2.addClass("basicText medievalText");
   });
 };
 
 //funckcja zliczająca punkty cech w zależności od rasy, profesji oraz wylosowanej liczby
 module.exports.randomPoints = function (occupationsPoints, racePoints, text, table, tablePosition) {
-  var randomPoints = Math.round(Math.random() * 50);
-  var allPoints = randomPoints + occupationsPoints + racePoints;
-  $("#drawnCharacter").append("<p class = \"basicText center width20 medievalText fontSize11em\">" + text + (": <span class=\"greenText\">" + allPoints + "</span></p>"));
-  table.splice(tablePosition, 1, allPoints);
+  var randomPoints = Math.round(Math.random() * 50);var allPoints = randomPoints + occupationsPoints + racePoints;$("#drawnCharacter").append("<p class = \"basicText center width20 medievalText fontSize11em\">" + text + (": <span class=\"greenText\">" + allPoints + "</span></p>"));table.splice(tablePosition, 1, allPoints);
 };
 
 //funkcja optymalizująca wybieranie rasy i profesji
 function clickRaceOccupation(element, text, number, sourceDescription, alert) {
   element.on("click", function () {
-    hero.splice(number, 1, text);
-    alert.addClass("greenText");
+    hero.splice(number, 1, text);alert.addClass("greenText");
     $("#choosenDescription").text(sourceDescription);
 
     if (text === "wojownik") {
-      choosenOccupation.splice(0, 1, 5);
-      choosenOccupation.splice(1, 1, 5);
-      choosenOccupation.splice(2, 1, 0);
-      choosenOccupation.splice(3, 1, 0);
-      choosenOccupation.splice(4, 1, 0);
+      choosenOccupation.splice(0, 1, 5);choosenOccupation.splice(1, 1, 5);choosenOccupation.splice(2, 1, 0);choosenOccupation.splice(3, 1, 0);choosenOccupation.splice(4, 1, 0);
     } else if (text === "złoczyńca") {
-      choosenOccupation.splice(0, 1, 0);
-      choosenOccupation.splice(1, 1, 0);
-      choosenOccupation.splice(2, 1, 10);
-      choosenOccupation.splice(3, 1, 0);
-      choosenOccupation.splice(4, 1, 0);
+      choosenOccupation.splice(0, 1, 0);choosenOccupation.splice(1, 1, 0);choosenOccupation.splice(2, 1, 10);
+      choosenOccupation.splice(3, 1, 0);choosenOccupation.splice(4, 1, 0);
     } else if (text === "czarodziej") {
-      choosenOccupation.splice(0, 1, 0);
-      choosenOccupation.splice(1, 1, 0);
-      choosenOccupation.splice(2, 1, 0);
-      choosenOccupation.splice(3, 1, 5);
-      choosenOccupation.splice(4, 1, 5);
+      choosenOccupation.splice(0, 1, 0);choosenOccupation.splice(1, 1, 0);choosenOccupation.splice(2, 1, 0);
+      choosenOccupation.splice(3, 1, 5);choosenOccupation.splice(4, 1, 5);
     } else if (text === "człowiek") {
-      choosenRace.splice(0, 1, 0);
-      choosenRace.splice(1, 1, 0);choosenRace.splice(2, 1, 0);
-      choosenRace.splice(3, 1, 0);choosenRace.splice(4, 1, 0);
+      choosenRace.splice(0, 1, 0);choosenRace.splice(1, 1, 0);choosenRace.splice(2, 1, 0);choosenRace.splice(3, 1, 0);choosenRace.splice(4, 1, 0);
     } else if (text === "elf") {
-      choosenRace.splice(0, 1, -5);
-      choosenRace.splice(1, 1, -5);choosenRace.splice(2, 1, 0);
-      choosenRace.splice(3, 1, 5);choosenRace.splice(4, 1, 5);
+      choosenRace.splice(0, 1, -5);choosenRace.splice(1, 1, -5);
+      choosenRace.splice(2, 1, 0);choosenRace.splice(3, 1, 5);choosenRace.splice(4, 1, 5);
     } else if (text === "krasnolud") {
-      choosenRace.splice(0, 1, 4);
-      choosenRace.splice(1, 1, 4);choosenRace.splice(2, 1, 0);
-      choosenRace.splice(3, 1, -2);choosenRace.splice(4, 1, -3);
+      choosenRace.splice(0, 1, 4);choosenRace.splice(1, 1, 4);
+      choosenRace.splice(2, 1, 0);choosenRace.splice(3, 1, -2);choosenRace.splice(4, 1, -3);
     } else if (text === "ork") {
-      choosenRace.splice(0, 1, 5);
-      choosenRace.splice(1, 1, 5);choosenRace.splice(2, 1, 0);
-      choosenRace.splice(3, 1, -5);choosenRace.splice(4, 1, -5);
+      choosenRace.splice(0, 1, 5);choosenRace.splice(1, 1, 5);choosenRace.splice(2, 1, 0);choosenRace.splice(3, 1, -5);choosenRace.splice(4, 1, -5);
     }
   });
 }
@@ -472,109 +441,50 @@ module.exports.randomChooseHeroBtns = function () {
 
 		//dla wojownika
 		if (occupationsHero === "wojownik") {
-			var skill1Number = Math.round(Math.random() * (skillsWarrior.length - 1));
-			var skill1 = skillsWarrior[skill1Number];
-			skills.splice(0, 1, skill1);
-
-			var skill2Number = Math.round(Math.random() * (skillsWarrior.length - 1));
-			var skill2 = skillsWarrior[skill2Number];
-
-			var skill3Number = Math.round(Math.random() * (skillsWarrior.length - 1));
-			var skill3 = skillsWarrior[skill3Number];
-
-			if (skill2 !== skill1) {
-				skills.splice(1, 1, skill2);
-			} else {
-				var _skill2Number = Math.round(Math.random() * (skillsWarrior.length - 1));
-				var _skill = skillsWarrior[_skill2Number];
-				skills.splice(1, 1, _skill);
+			for (var _i = 0; _i < 3; _i++) {
+				var random = Math.round(Math.random() * (skillsWarrior.length - 1));
+				var is = false;
+				for (var j = 0; j < skills.length; j++) {
+					if (skills[j] == random) is = true;
+				}if (is) _i--;else skills[_i] = random;
 			}
+			$("#drawnCharacter").append("<p class = \"basicText center width100 medievalText fontSize11em\">Umiej\u0119tno\u015Bci: <span id='randomSkils'class=\"greenText\"></span></p>");
 
-			if (skill3 !== skill2 || skill3 !== skill1) {
-				skills.splice(2, 1, skill3);
-			} else {
-				var _skill3Number = Math.round(Math.random() * (skillsWarrior.length - 1));
-				var _skill2 = skillsWarrior[_skill3Number];
-				skills.splice(2, 1, _skill2);
+			for (var _i2 = 0; _i2 < 3; _i2++) {
+				$("#randomSkils").text(skillsWarrior[skills[0]] + ", " + skillsWarrior[skills[1]] + ", " + skillsWarrior[skills[2]]);
 			}
-
-			var skills1 = skills[0];
-			var skills2 = skills[1];
-			var skills3 = skills[2];
-
-			$("#drawnCharacter").append("<p class = \"basicText center width100 medievalText fontSize11em\">Umiej\u0119tno\u015Bci: <span class=\"greenText\">" + skills1 + ", " + skills2 + ", " + skills3 + "</span></p>");
-
-			console.log(skills);
 		}
 
 		//dla złoczyńcy
 		else if (occupationsHero === "złoczyńca") {
-				var _skill1Number = Math.round(Math.random() * (skillsCriminal.length - 1));
-				var _skill3 = skillsCriminal[_skill1Number];
-				skills.splice(0, 1, _skill3);
-
-				var _skill2Number2 = Math.round(Math.random() * (skillsCriminal.length - 1));
-				var _skill4 = skillsCriminal[_skill2Number2];
-				skills.splice(1, 1, _skill4);
-
-				var _skill3Number2 = Math.round(Math.random() * (skillsCriminal.length - 1));
-				var _skill5 = skillsCriminal[_skill3Number2];
-				skills.splice(2, 1, _skill5);
-
-				if (_skill4 === _skill3) {
-					var _skill2Number3 = Math.round(Math.random() * (skillsCriminal.length - 1));
-					var _skill6 = skillsCriminal[_skill2Number3];
-					skills.splice(1, 1, _skill6);
+				for (var _i3 = 0; _i3 < 3; _i3++) {
+					var _random = Math.round(Math.random() * (skillsCriminal.length - 1));
+					var _is = false;
+					for (var _j = 0; _j < skills.length; _j++) {
+						if (skills[_j] == _random) _is = true;
+					}if (_is) _i3--;else skills[_i3] = _random;
 				}
+				$("#drawnCharacter").append("<p class = \"basicText center width100 medievalText fontSize11em\">Umiej\u0119tno\u015Bci: <span id='randomSkils'class=\"greenText\"></span></p>");
 
-				if (_skill5 === _skill4 || _skill5 === _skill3) {
-					var _skill3Number3 = Math.round(Math.random() * (skillsCriminal.length - 1));
-					var _skill7 = skillsCriminal[_skill3Number3];
-					skills.splice(2, 1, _skill7);
+				for (var _i4 = 0; _i4 < 3; _i4++) {
+					$("#randomSkils").text(skillsCriminal[skills[0]] + ", " + skillsCriminal[skills[1]] + ", " + skillsCriminal[skills[2]]);
 				}
-
-				var _skills = skills[0];
-				var _skills2 = skills[1];
-				var _skills3 = skills[2];
-
-				$("#drawnCharacter").append("<p class = \"basicText center width100 medievalText fontSize11em\">Umiej\u0119tno\u015Bci: <span class=\"greenText\">" + _skills + ", " + _skills2 + ", " + _skills3 + "</span></p>");
-
-				console.log(skills);
 			}
 
-			//dla czarodzieja
+			// dal czarodzieja
 			else if (occupationsHero === "czarodziej") {
-					var _skill1Number2 = Math.round(Math.random() * (skillsWizard.length - 1));
-					var _skill8 = skillsWizard[_skill1Number2];
-					skills.splice(0, 1, _skill8);
-
-					var _skill2Number4 = Math.round(Math.random() * (skillsWizard.length - 1));
-					var _skill9 = skillsWizard[_skill2Number4];
-					skills.splice(1, 1, _skill9);
-
-					var _skill3Number4 = Math.round(Math.random() * (skillsWizard.length - 1));
-					var _skill10 = skillsWizard[_skill3Number4];
-					skills.splice(2, 1, _skill10);
-
-					if (_skill9 === _skill8) {
-						var _skill2Number5 = Math.round(Math.random() * (skillsWizard.length - 1));
-						var _skill11 = skillsWizard[_skill2Number5];
-						skills.splice(1, 1, _skill11);
+					for (var _i5 = 0; _i5 < 3; _i5++) {
+						var _random2 = Math.round(Math.random() * (skillsWizard.length - 1));
+						var _is2 = false;
+						for (var _j2 = 0; _j2 < skills.length; _j2++) {
+							if (skills[_j2] == _random2) _is2 = true;
+						}if (_is2) _i5--;else skills[_i5] = _random2;
 					}
+					$("#drawnCharacter").append("<p class = \"basicText center width100 medievalText fontSize11em\">Umiej\u0119tno\u015Bci: <span id='randomSkils'class=\"greenText\"></span></p>");
 
-					if (_skill10 === _skill9 || _skill10 === _skill8) {
-						var _skill3Number5 = Math.round(Math.random() * (skillsWizard.length - 1));
-						var _skill12 = skillsWizard[_skill3Number5];
-						skills.splice(2, 1, _skill12);
+					for (var _i6 = 0; _i6 < 3; _i6++) {
+						$("#randomSkils").text(skillsWizard[skills[0]] + ", " + skillsWizard[skills[1]] + ", " + skillsWizard[skills[2]]);
 					}
-
-					var _skills4 = skills[0];
-					var _skills5 = skills[1];
-					var _skills6 = skills[2];
-
-					$("#drawnCharacter").append("<p class = \"basicText center width100 medievalText fontSize11em\">Umiej\u0119tno\u015Bci: <span class=\"greenText\">" + _skills4 + ", " + _skills5 + ", " + _skills6 + "</span></p>");
-
-					console.log(skills);
 				}
 	}); //koniec zdarzenia losowania postaci
 }; //koniec module.exports.randomChooseHeroBtns
