@@ -70,7 +70,7 @@ nav, #mainPart, #alerts{ height: 78vh; }
 //wyśrodkowanie tekstu
 .center{ text-align: center; }
 
-//szerokości
+//szerokości w procentach
 .width20{ width: 20%; }
 .width24{ width: 24%; }
 .width33{ width: 33%; }
@@ -81,10 +81,22 @@ nav, #mainPart, #alerts{ height: 78vh; }
 .blueText{ color: blue; }
 .greenText{ color: green; }
 
-//wielkość liter
+//wielkość liter w em' ach
+.fontSize08em{ font-size: 0.8em; }
+.fontSize09em{ font-size: 0.9em; }
+.fontSize1em{ font-size: 1em; }
 .fontSize11em{ font-size: 1.1em; }
 .fontSize12em{ font-size: 1.2em; }
 .fontSize13em{ font-size: 1.3em; }
 
 //złote podkreślenie
 .textUnderlineGold{ text-decoration: underline; text-decoration-color: gold; }
+
+//odsunięcie elementu od góry w procentach
+.marginTop5{ margin-top: 5%; }
+
+//odsunięcie elementu od góry w vh
+.marginTop4vh{ margin-top: 4vh; }
+
+//paddingi w procentach od góry i od dołu
+.paddingUpDown1{ padding: 1% 0 1% 0; }

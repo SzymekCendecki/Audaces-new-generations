@@ -220,7 +220,7 @@ module.exports.randomChooseHeroBtns = function () {
 
 	//losowanie postaci
 	$("#randomHero").on("click", function () {
-		$("#drawnCharacter").empty();
+		$("#drawnCharacter, #interactionsBtns").empty();
 		functions.newElement("p", "choosenHeroTitle", "WYLOSOWANA POSTAĆ", $("#drawnCharacter"));
 		$("#drawnCharacter").addClass("flexForBtns");
 		$("#choosenHeroTitle").addClass("basicText center medievalText width100 textUnderlineGold");
@@ -487,6 +487,29 @@ module.exports.randomChooseHeroBtns = function () {
 					}
 				}
 	}); //koniec zdarzenia losowania postaci
+
+
+	//ręczne tworzenie potstaci
+	$("#chooseHero").on("click", function () {
+		$("#drawnCharacter").empty();
+		functions.newElement("p", "choosenHeroTitle", "WYBIERANIE POSTACI", $("#drawnCharacter"));
+		$("#choosenHeroTitle").addClass("basicText center medievalText width100 textUnderlineGold");
+
+		//torzenie przycików dla tworzenia postaci
+		functions.newElement("button", "createName", "imię", $("#interactionsBtns"));
+		functions.newElement("button", "createRace", "rasa", $("#interactionsBtns"));
+		functions.newElement("button", "createOccupation", "profesja", $("#interactionsBtns"));
+		functions.newElement("button", "createFeatures", "cechy", $("#interactionsBtns"));
+		functions.newElement("button", "createFeatures2", "cechy 2", $("#interactionsBtns"));
+		functions.newElement("button", "createEquip", "ekwipunek", $("#interactionsBtns"));
+		functions.newElement("button", "createSkills", "umiejętności", $("#interactionsBtns"));
+		functions.newElement("button", "createInfo", "info", $("#interactionsBtns"));
+		$("#createName, #createRace, #createOccupation, #createFeatures, #createFeatures2, #createEquip, #createSkills, #createInfo").addClass("basicBtn btnNewGame");
+
+		$("#createName, #createRace").addClass("marginTop4vh");
+		$("#createEquip, #createSkills").addClass("fontSize08em paddingUpDown1");
+	}); //koniec ręcznego tworzenie postaci
+
 }; //koniec module.exports.randomChooseHeroBtns
 
 ///utworzenie paragrafu z opisem przycisków wylosuj i wybierz.

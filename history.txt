@@ -265,3 +265,10 @@ Dodano losowanie ekwipunku.
 
 16 sierpnia 2018 - wersja 0.6.43
 Problem z losowaniem umiejętności (powtarzające sie umiejętności) rozwiązany.
+
+17 sierpnia 2018 - wersja 0.6.44
+Rozpoczęcie pracy nad ręcznym tworzeniem postaci.
+	Dodanie w main.scss nowego stylu - marginTop5 - tworzący odstęp elementu od góry o 5% wysokości.
+Dodanie w main.scss nowego stylu - marginTop4vh - tworzący odstęp elementu od góry o 5vh wysokości.
+	Dodanie trzech nowych styli w main.scss - wilkości tekstu w em' ach.
+Dodanie nowego stylu w main.scss - odstęp wewnętrzny (padding) - od góry i od doły o 1 (w procentach).
