@@ -272,3 +272,16 @@ Rozpoczęcie pracy nad ręcznym tworzeniem postaci.
 Dodanie w main.scss nowego stylu - marginTop4vh - tworzący odstęp elementu od góry o 5vh wysokości.
 	Dodanie trzech nowych styli w main.scss - wilkości tekstu w em' ach.
 Dodanie nowego stylu w main.scss - odstęp wewnętrzny (padding) - od góry i od doły o 1 (w procentach).
+
+18 sierpnia 2018 - werja 0.6.45
+Dodano przycisk "Gra" dla wylosowanej postaci.
+	Utworzenie dodatkowego diva dla interakcji w ręcznym tworzenieu postaci.
+Drobna poprawka dla dodawania umiejętności do tablicy umiejętności podczas losowania postaci.
+	Dodano usuwanie z tablic ekwipinku i umiejętności dla wybrania ręcznego tworzenia postaci - tablice zostaną wyczyszczone po wciśnięciu przycisku "wybierz".
+Dodano czyszczenie tablicy hero dla przycisku "wybierz" - ustawia elementy w tablicy na wartości początkowe.
+	Poprawka dla wyświetlania się przycisków dla ręcznego wybierania postaci.
+Dodano dwa nowe style w main.scss - marginTop3 i marginTop4 - tworzący odstęp elementu od góry o 3 i 4 procent.
+	Dodano nowy styl do main.scss - boldText - dla pogrubienia tekstu.
+Dodano trzy nowe style do main.scss - marginLeft3, marginLeft4, marginLeft5 - odsunięcie elementu od lewej strony (w procentach).
+	Dodano nowy styl w main.scss - redText - czerwony kolor tekstu np. dla oznaczenia jaiegoś alarmu lub nie wybrania jakiejś rzeczy.
+Dodano zdarzenie dla przycisku "imię" - wybór imienia.

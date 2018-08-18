@@ -225,6 +225,11 @@ module.exports.randomChooseHeroBtns = function () {
 		$("#drawnCharacter").addClass("flexForBtns");
 		$("#choosenHeroTitle").addClass("basicText center medievalText width100 textUnderlineGold");
 
+		$("#playGame").remove();
+
+		functions.newElement("button", "playGame", "GRA", $("#mainBtns"));
+		$("#playGame").addClass("basicBtn medievalText btnNewGame");
+
 		//losowanie płci
 		var randomSexNumber = Math.round(Math.random() * (sex.length - 1));
 		var sexHero = sex[randomSexNumber];
@@ -433,65 +438,61 @@ module.exports.randomChooseHeroBtns = function () {
 		$("#drawnCharacter").append("<p class = \"basicText center width100 medievalText fontSize11em\">Ekwipunek: <span class=\"greenText\">" + item1 + ", " + item2 + ", " + item3 + ", " + item4 + ", " + item5 + "</span></p>");
 
 		//zastępowanie w dodatkowej tabeli wylosowanych rzeczy
-		for (var i = 0; i < allEquip.length; i++) {
-			equip.splice(i, 1, "item" + i);
-		}
+		equip.push(item1, item2, item3, item4, item5);
 
 		//losowanie umiejętności
-
 		//dla wojownika
 		if (occupationsHero === "wojownik") {
-			for (var _i = 0; _i < 3; _i++) {
-				var random = Math.round(Math.random() * (skillsWarrior.length - 1));
-				var is = false;
-				for (var j = 0; j < skills.length; j++) {
+			for (var i = 0; i < 3; i++) {
+				var random = Math.round(Math.random() * (skillsWarrior.length - 1));var is = false;for (var j = 0; j < skills.length; j++) {
 					if (skills[j] == random) is = true;
-				}if (is) _i--;else skills[_i] = random;
+				}if (is) i--;else skills[i] = random;
 			}
+
 			$("#drawnCharacter").append("<p class = \"basicText center width100 medievalText fontSize11em\">Umiej\u0119tno\u015Bci: <span id='randomSkils'class=\"greenText\"></span></p>");
 
-			for (var _i2 = 0; _i2 < 3; _i2++) {
+			for (var _i = 0; _i < 3; _i++) {
 				$("#randomSkils").text(skillsWarrior[skills[0]] + ", " + skillsWarrior[skills[1]] + ", " + skillsWarrior[skills[2]]);
-			}
+			}skills.splice(0, 1, skillsWarrior[skills[0]]);skills.splice(1, 1, skillsWarrior[skills[1]]);
+			skills.splice(2, 1, skillsWarrior[skills[2]]);
 		}
 
 		//dla złoczyńcy
 		else if (occupationsHero === "złoczyńca") {
-				for (var _i3 = 0; _i3 < 3; _i3++) {
-					var _random = Math.round(Math.random() * (skillsCriminal.length - 1));
-					var _is = false;
-					for (var _j = 0; _j < skills.length; _j++) {
+				for (var _i2 = 0; _i2 < 3; _i2++) {
+					var _random = Math.round(Math.random() * (skillsCriminal.length - 1));var _is = false;for (var _j = 0; _j < skills.length; _j++) {
 						if (skills[_j] == _random) _is = true;
-					}if (_is) _i3--;else skills[_i3] = _random;
+					}if (_is) _i2--;else skills[_i2] = _random;
 				}
+
 				$("#drawnCharacter").append("<p class = \"basicText center width100 medievalText fontSize11em\">Umiej\u0119tno\u015Bci: <span id='randomSkils'class=\"greenText\"></span></p>");
 
-				for (var _i4 = 0; _i4 < 3; _i4++) {
+				for (var _i3 = 0; _i3 < 3; _i3++) {
 					$("#randomSkils").text(skillsCriminal[skills[0]] + ", " + skillsCriminal[skills[1]] + ", " + skillsCriminal[skills[2]]);
-				}
+				}skills.splice(0, 1, skillsCriminal[skills[0]]);skills.splice(1, 1, skillsCriminal[skills[1]]);
+				skills.splice(2, 1, skillsCriminal[skills[2]]);
 			}
 
-			// dal czarodzieja
+			// dla czarodzieja
 			else if (occupationsHero === "czarodziej") {
-					for (var _i5 = 0; _i5 < 3; _i5++) {
-						var _random2 = Math.round(Math.random() * (skillsWizard.length - 1));
-						var _is2 = false;
-						for (var _j2 = 0; _j2 < skills.length; _j2++) {
+					for (var _i4 = 0; _i4 < 3; _i4++) {
+						var _random2 = Math.round(Math.random() * (skillsWizard.length - 1));var _is2 = false;for (var _j2 = 0; _j2 < skills.length; _j2++) {
 							if (skills[_j2] == _random2) _is2 = true;
-						}if (_is2) _i5--;else skills[_i5] = _random2;
+						}if (_is2) _i4--;else skills[_i4] = _random2;
 					}
+
 					$("#drawnCharacter").append("<p class = \"basicText center width100 medievalText fontSize11em\">Umiej\u0119tno\u015Bci: <span id='randomSkils'class=\"greenText\"></span></p>");
 
-					for (var _i6 = 0; _i6 < 3; _i6++) {
+					for (var _i5 = 0; _i5 < 3; _i5++) {
 						$("#randomSkils").text(skillsWizard[skills[0]] + ", " + skillsWizard[skills[1]] + ", " + skillsWizard[skills[2]]);
-					}
+					}skills.splice(0, 1, skillsWizard[skills[0]]);skills.splice(1, 1, skillsWizard[skills[1]]);
+					skills.splice(2, 1, skillsWizard[skills[2]]);
 				}
 	}); //koniec zdarzenia losowania postaci
 
-
 	//ręczne tworzenie potstaci
 	$("#chooseHero").on("click", function () {
-		$("#drawnCharacter").empty();
+		$("#drawnCharacter").empty();$("#playGame").hide();$("#interactionsBtns").empty();
 		functions.newElement("p", "choosenHeroTitle", "WYBIERANIE POSTACI", $("#drawnCharacter"));
 		$("#choosenHeroTitle").addClass("basicText center medievalText width100 textUnderlineGold");
 
@@ -508,8 +509,58 @@ module.exports.randomChooseHeroBtns = function () {
 
 		$("#createName, #createRace").addClass("marginTop4vh");
 		$("#createEquip, #createSkills").addClass("fontSize08em paddingUpDown1");
-	}); //koniec ręcznego tworzenie postaci
 
+		//utworzenie diva dla interakcji kreatora POSTACI
+		functions.newElement("div", "interactionCreator", "", $("#drawnCharacter"));
+
+		//usuwanie z tablic potencjalnych wyników ewentualnego losowania
+		equip.splice(0, 5);skills.splice(0, 3);
+
+		//ustawienie tablicy hero na początkowe zawartości
+		hero.splice(0, 1, "nie wybrano");hero.splice(1, 1, "nie wybrano");hero.splice(2, 1, "nie wybrano");hero.splice(3, 1, "nie wybrano");
+		hero.splice(4, 1, 0);hero.splice(5, 1, 0);hero.splice(6, 1, 0);hero.splice(7, 1, 0);
+		hero.splice(8, 1, 0);
+		hero.splice(9, 1, "nie wybrano");hero.splice(10, 1, "nie wybrano");hero.splice(11, 1, "nie wybrano");hero.splice(12, 1, "nie wybrano");hero.splice(13, 1, "nie wybrano");
+
+		//zdarzenie dla przycisku imię
+		$("#createName").on("click", function () {
+			$("#interactionCreator").empty();
+			functions.newElement("div", "description", "", $("#interactionCreator"));
+			$("#interactionCreator").addClass("width100");
+			functions.newElement("p", "title", "wybór imienia", $("#interactionCreator"));
+			$("#title").addClass("basicText medievalText textUnderlineGold");
+
+			functions.newElement("p", "descriptionName", "", $("#interactionCreator"));
+			$("#descriptionName").html("<p id='text'>Wpisz w pole niżej swoje imię oraz wciśnij przycisk <span class='blueText'>'zatwierdź'</span>. Możesz wpisać tylko litery, cyfry nie będą barne pod uwagę. Imię można zmieniać dowolną ilość razy.</p>");
+
+			functions.newElement("input", "giveName", "", $("#interactionCreator"));
+			functions.newElement("button", "acceptName", "zatwierdź", $("#interactionCreator"));
+
+			$("#descriptionName").addClass("medievalText boldText marginTop3");
+			$("#giveName").addClass("marginTop3");
+			$("#acceptName").addClass("marginLeft5 medievalText boldText btnNewGame width20");
+
+			//funkcja wpisywania imienia
+			$("#acceptName").on("click", function () {
+				var nameInput = $("#giveName").val().replace(/\d/g, '');
+				if (nameInput == "") {
+					$("#alerts").text("nie wybrano imienia").addClass("redText");
+				} else {
+					hero.splice(0, 1, nameInput);
+					$("#alerts").text("wybrane imię to: " + nameInput).addClass("greenText");
+				}
+
+				setTimeout(function () {
+					$("#alerts").empty();
+				}, 5000);
+				console.log(hero);
+			});
+		}); //koniec zdarzenia dla wybierania imienia
+
+		//0-imię, 1-płeć, 2-rasa, 3-profesja, 4-siła, 5-wytrzymałość, 6-zręczność, 7-inteligencja, 8-charyzma, 9-kolor oczu, 10-kolor włosów, 11-kolor skóry, 12 - waga, 13-wzrost
+		//let hero = ["nie wybrano", "nie wybrano", "nie wybrano", "nie wybrano", 0, 0, 0, 0, 0, "nie wybrano", "nie wybrano", "nie wybrano", "nie wybrano", "nie wybrano"];
+		console.log(hero);
+	}); //koniec ręcznego tworzenie postaci
 }; //koniec module.exports.randomChooseHeroBtns
 
 ///utworzenie paragrafu z opisem przycisków wylosuj i wybierz.

@@ -77,9 +77,13 @@ nav, #mainPart, #alerts{ height: 78vh; }
 .width49{ width: 49%; }
 .width100{ width: 100%; }
 
-// kolory tekstu
+//kolory tekstu
+.redText{ color: red;}
 .blueText{ color: blue; }
 .greenText{ color: green; }
+
+//tekst pogrubiony
+.boldText{ font-weight: bold; }
 
 //wielkość liter w em' ach
 .fontSize08em{ font-size: 0.8em; }
@@ -92,7 +96,14 @@ nav, #mainPart, #alerts{ height: 78vh; }
 //złote podkreślenie
 .textUnderlineGold{ text-decoration: underline; text-decoration-color: gold; }
 
+//odsunięcie elementu od lewej strony w procentach
+.marginLeft3{ margin-left: 3%; }
+.marginLeft4{ margin-left: 4%; }
+.marginLeft5{ margin-left: 5%; }
+
 //odsunięcie elementu od góry w procentach
+.marginTop3{ margin-top: 3%; }
+.marginTop4{ margin-top: 4%; }
 .marginTop5{ margin-top: 5%; }
 
 //odsunięcie elementu od góry w vh
