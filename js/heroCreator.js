@@ -402,10 +402,8 @@ $("#descriptionName").html("<p id='text'>Wpisz w pole niżej swoje imię oraz wc
 		 hero.splice(0, 1, nameInput);
 		 $("#alerts").html("<p class='greenText boldText fontSize12em medievalText'>wybrane imię to: <span class='blueText'>" + nameInput + "</span></p>");
 	}
-
 	setTimeout(function(){ $("#alerts").empty(); }, 5000);
-	console.log(hero);
-	});
+});
 }); //koniec zdarzenia dla wybierania imienia
 
 //zdarzenie dla wybierania rasy
@@ -432,28 +430,24 @@ $("#createRace").on("click", ()=>{
 		hero.splice(2, 1, "człowiek");
 		$("#alerts").html("<p class='greenText boldText fontSize12em medievalText'>wybrana rasa to: <span class='blueText'>człowiek</span></p>");
 		setTimeout(function(){ $("#alerts").empty(); }, 5000);
-		console.log(hero);
 	});
 
 	$("#elv").on("click", ()=>{
 		hero.splice(2, 1, "elf");
 		$("#alerts").html("<p class='greenText boldText fontSize12em medievalText'>wybrana rasa to: <span class='blueText'>elf</span></p>");
 		setTimeout(function(){ $("#alerts").empty(); }, 5000);
-		console.log(hero);
 	});
 
 	$("#dwarf").on("click", ()=>{
 		hero.splice(2, 1, "krasnolud");
 		$("#alerts").html("<p class='greenText boldText fontSize12em medievalText'>wybrana rasa to: <span class='blueText'>krasnolud</span></p>");
 		setTimeout(function(){ $("#alerts").empty(); }, 5000);
-		console.log(hero);
 	});
 
 	$("#orc").on("click", ()=>{
 		hero.splice(2, 1, "ork");
 		$("#alerts").html("<p class='greenText boldText fontSize12em medievalText'>wybrana rasa to: <span class='blueText'>ork</span></p>");
 		setTimeout(function(){ $("#alerts").empty(); }, 5000);
-		console.log(hero);
 	});
 });//koniec zdarzenia dla wybierania rasy
 
@@ -480,21 +474,18 @@ $("#createOccupation").on("click", ()=>{
 		hero.splice(3, 1, "wojownik");
 		$("#alerts").html("<p class='greenText boldText fontSize12em medievalText'>wybrana profesja to: <span class='blueText'>wojownik</span></p>");
 		setTimeout(function(){ $("#alerts").empty(); }, 5000);
-		console.log(hero);
 	});
 
 	$("#criminal").on("click", ()=>{
 		hero.splice(3, 1, "złoczyńca");
 		$("#alerts").html("<p class='greenText boldText fontSize12em medievalText'>wybrana profesja to: <span class='blueText'>złoczyńca</span></p>");
 		setTimeout(function(){ $("#alerts").empty(); }, 5000);
-		console.log(hero);
 	});
 
 	$("#wizard").on("click", ()=>{
 		hero.splice(3, 1, "czarodziej");
 		$("#alerts").html("<p class='greenText boldText fontSize12em medievalText'>wybrana profesja to: <span class='blueText'>czarodziej</span></p>");
 		setTimeout(function(){ $("#alerts").empty(); }, 5000);
-		console.log(hero);
 	});
 });//koniec zdarzenia dla wybierania profesji
 
@@ -527,24 +518,51 @@ $("#createFeatures").on("click", () =>{
 				if(randomFeatures[0] !== 0 && randomFeatures[1] !== 0 && randomFeatures[2] !== 0 && randomFeatures[3] !== 0 && randomFeatures[4] !== 0){
 					$("#alerts").html("<p class='greenText boldText fontSize12em medievalText'> wylosowano wszystkie cechy</p>");
 					setTimeout(function(){ $("#alerts").empty(); }, 5000);
-					console.log(randomFeatures);
 				} }); }
-				
+
 				//funkcje losujące punkty cech
 				randomPointsFeatures($("#force"), "randomForcePoints", 0);
 				randomPointsFeatures($("#strength"), "randomStrenghtPoints", 1);
 				randomPointsFeatures($("#dexterity"), "randomDexterityPoints", 2);
 				randomPointsFeatures($("#intelligence"), "randomIntelligencePoints", 3);
 				randomPointsFeatures($("#charisma"), "randomCharismaPoints", 4);
-
-
 }); //koniec losowania cech
+
+$("#createFeatures2").on("click", ()=>{
+	$("#interactionCreator").empty();
+	functions.newElement("div", "description", "", $("#interactionCreator"));
+	$("#interactionCreator").addClass("width100");
+	functions.newElement("p", "title", "wybór cech", $("#interactionCreator"));
+	$("#title").addClass("basicText medievalText textUnderlineGold");
+
+	functions.newElement("p", "descriptionName", "", $("#interactionCreator"));
+	$("#descriptionName").html("<p id='text'>W tej części kreatora należy wybrać płeć, kolor włosów, oczu, skóry, wagę i wzrost. Poniżej są przyciski dzięki, którym należy to zrobić.</p>");
+
+	$("#descriptionName").addClass("medievalText boldText marginTop3");
+
+	functions.newElement("p", "titleSex", "wybór płci", $("#interactionCreator"));
+	$("#titleSex").addClass("basicText medievalText textUnderlineGold");
+
+	functions.newElement("button", "women", "kobieta", $("#interactionCreator"));
+	functions.newElement("button", "man", "mężczyzna", $("#interactionCreator"));
+	functions.newElement("button", "other", "nie wiadomo", $("#interactionCreator"));
+
+	$("#women, #man, #other").addClass("basicBtn btnNewGame medievalText width20 marginTop1 marginLeft10");
+
+	functions.newElement("p", "titleHair", "kolor włosów", $("#interactionCreator"));
+	$("#titleHair").addClass("basicText medievalText textUnderlineGold");
+
+	functions.newElement("button", "blonde", "blond", $("#interactionCreator"));
+	functions.newElement("button", "red", "rude", $("#interactionCreator"));
+	functions.newElement("button", "black", "czarne", $("#interactionCreator"));
+	functions.newElement("button", "colors", "farbowane", $("#interactionCreator"));
+
+	$("#blonde, #red, #black, #colors").addClass("basicBtn btnNewGame medievalText width20 marginTop1 marginLeft5");
+});
+
 
 //0-imię, 1-płeć, 2-rasa, 3-profesja, 4-siła, 5-wytrzymałość, 6-zręczność, 7-inteligencja, 8-charyzma, 9-kolor oczu, 10-kolor włosów, 11-kolor skóry, 12 - waga, 13-wzrost
 //let hero = ["nie wybrano", "nie wybrano", "nie wybrano", "nie wybrano", 0, 0, 0, 0, 0, "nie wybrano", "nie wybrano", "nie wybrano", "nie wybrano", "nie wybrano"];
-console.log(hero);
-
-
 });//koniec ręcznego tworzenie postaci
 }//koniec module.exports.randomChooseHeroBtns
 

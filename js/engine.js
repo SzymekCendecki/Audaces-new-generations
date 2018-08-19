@@ -552,11 +552,9 @@ module.exports.randomChooseHeroBtns = function () {
 					hero.splice(0, 1, nameInput);
 					$("#alerts").html("<p class='greenText boldText fontSize12em medievalText'>wybrane imię to: <span class='blueText'>" + nameInput + "</span></p>");
 				}
-
 				setTimeout(function () {
 					$("#alerts").empty();
 				}, 5000);
-				console.log(hero);
 			});
 		}); //koniec zdarzenia dla wybierania imienia
 
@@ -586,7 +584,6 @@ module.exports.randomChooseHeroBtns = function () {
 				setTimeout(function () {
 					$("#alerts").empty();
 				}, 5000);
-				console.log(hero);
 			});
 
 			$("#elv").on("click", function () {
@@ -595,7 +592,6 @@ module.exports.randomChooseHeroBtns = function () {
 				setTimeout(function () {
 					$("#alerts").empty();
 				}, 5000);
-				console.log(hero);
 			});
 
 			$("#dwarf").on("click", function () {
@@ -604,7 +600,6 @@ module.exports.randomChooseHeroBtns = function () {
 				setTimeout(function () {
 					$("#alerts").empty();
 				}, 5000);
-				console.log(hero);
 			});
 
 			$("#orc").on("click", function () {
@@ -613,7 +608,6 @@ module.exports.randomChooseHeroBtns = function () {
 				setTimeout(function () {
 					$("#alerts").empty();
 				}, 5000);
-				console.log(hero);
 			});
 		}); //koniec zdarzenia dla wybierania rasy
 
@@ -642,7 +636,6 @@ module.exports.randomChooseHeroBtns = function () {
 				setTimeout(function () {
 					$("#alerts").empty();
 				}, 5000);
-				console.log(hero);
 			});
 
 			$("#criminal").on("click", function () {
@@ -651,7 +644,6 @@ module.exports.randomChooseHeroBtns = function () {
 				setTimeout(function () {
 					$("#alerts").empty();
 				}, 5000);
-				console.log(hero);
 			});
 
 			$("#wizard").on("click", function () {
@@ -660,7 +652,6 @@ module.exports.randomChooseHeroBtns = function () {
 				setTimeout(function () {
 					$("#alerts").empty();
 				}, 5000);
-				console.log(hero);
 			});
 		}); //koniec zdarzenia dla wybierania profesji
 
@@ -695,7 +686,6 @@ module.exports.randomChooseHeroBtns = function () {
 						setTimeout(function () {
 							$("#alerts").empty();
 						}, 5000);
-						console.log(randomFeatures);
 					}
 				});
 			}
@@ -708,9 +698,40 @@ module.exports.randomChooseHeroBtns = function () {
 			randomPointsFeatures($("#charisma"), "randomCharismaPoints", 4);
 		}); //koniec losowania cech
 
+		$("#createFeatures2").on("click", function () {
+			$("#interactionCreator").empty();
+			functions.newElement("div", "description", "", $("#interactionCreator"));
+			$("#interactionCreator").addClass("width100");
+			functions.newElement("p", "title", "wybór cech", $("#interactionCreator"));
+			$("#title").addClass("basicText medievalText textUnderlineGold");
+
+			functions.newElement("p", "descriptionName", "", $("#interactionCreator"));
+			$("#descriptionName").html("<p id='text'>W tej części kreatora należy wybrać płeć, kolor włosów, oczu, skóry, wagę i wzrost. Poniżej są przyciski dzięki, którym należy to zrobić.</p>");
+
+			$("#descriptionName").addClass("medievalText boldText marginTop3");
+
+			functions.newElement("p", "titleSex", "wybór płci", $("#interactionCreator"));
+			$("#titleSex").addClass("basicText medievalText textUnderlineGold");
+
+			functions.newElement("button", "women", "kobieta", $("#interactionCreator"));
+			functions.newElement("button", "man", "mężczyzna", $("#interactionCreator"));
+			functions.newElement("button", "other", "nie wiadomo", $("#interactionCreator"));
+
+			$("#women, #man, #other").addClass("basicBtn btnNewGame medievalText width20 marginTop1 marginLeft10");
+
+			functions.newElement("p", "titleHair", "kolor włosów", $("#interactionCreator"));
+			$("#titleHair").addClass("basicText medievalText textUnderlineGold");
+
+			functions.newElement("button", "blonde", "blond", $("#interactionCreator"));
+			functions.newElement("button", "red", "rude", $("#interactionCreator"));
+			functions.newElement("button", "black", "czarne", $("#interactionCreator"));
+			functions.newElement("button", "colors", "farbowane", $("#interactionCreator"));
+
+			$("#blonde, #red, #black, #colors").addClass("basicBtn btnNewGame medievalText width20 marginTop1 marginLeft5");
+		});
+
 		//0-imię, 1-płeć, 2-rasa, 3-profesja, 4-siła, 5-wytrzymałość, 6-zręczność, 7-inteligencja, 8-charyzma, 9-kolor oczu, 10-kolor włosów, 11-kolor skóry, 12 - waga, 13-wzrost
 		//let hero = ["nie wybrano", "nie wybrano", "nie wybrano", "nie wybrano", 0, 0, 0, 0, 0, "nie wybrano", "nie wybrano", "nie wybrano", "nie wybrano", "nie wybrano"];
-		console.log(hero);
 	}); //koniec ręcznego tworzenie postaci
 }; //koniec module.exports.randomChooseHeroBtns
 

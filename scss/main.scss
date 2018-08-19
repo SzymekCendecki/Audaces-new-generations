@@ -59,12 +59,9 @@ nav, #mainPart, #alerts{ height: 78vh; }
 .boldText{ font-weight: bold; }
 
 //wielkość liter w em' ach
-.fontSize08em{ font-size: 0.8em; }
-.fontSize09em{ font-size: 0.9em; }
-.fontSize1em{ font-size: 1em; }
-.fontSize11em{ font-size: 1.1em; }
-.fontSize12em{ font-size: 1.2em; }
-.fontSize13em{ font-size: 1.3em; }
+.fontSize08em{ font-size: 0.8em; } .fontSize09em{ font-size: 0.9em; }
+.fontSize1em{ font-size: 1em; } .fontSize11em{ font-size: 1.1em; }
+.fontSize12em{ font-size: 1.2em; } .fontSize13em{ font-size: 1.3em; }
 
 //złote podkreślenie
 .textUnderlineGold{ text-decoration: underline; text-decoration-color: gold; }
@@ -73,9 +70,13 @@ nav, #mainPart, #alerts{ height: 78vh; }
 .marginLeft3{ margin-left: 3%; }
 .marginLeft4{ margin-left: 4%; }
 .marginLeft5{ margin-left: 5%; }
+.marginLeft10{ margin-left: 10%; }
+.marginLeft15{ margin-left: 15%; }
 .marginLeft25{ margin-left: 25%; }
 
 //odsunięcie elementu od góry w procentach
+.marginTop1{ margin-top: 1%; }
+.marginTop2{ margin-top: 2%; }
 .marginTop3{ margin-top: 3%; }
 .marginTop4{ margin-top: 4%; }
 .marginTop5{ margin-top: 5%; }
