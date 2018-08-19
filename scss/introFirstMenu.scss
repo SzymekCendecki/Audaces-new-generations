@@ -2,153 +2,54 @@
 body{ background: lightgray; }
 
 #mainPart{
-  h2{
-    margin-top: 25vh;
-    text-align: center;
-    color: navy;
-    font-size: 5em;
-    font-family: 'Titan One', cursive;
-    font-style: italic;
-    text-shadow: 0 1px 0 #0040ff,
-                 0 2px 0 #0080ff,
-                 0 3px 0 #00bfff,
-                 0 4px 0 #00ffff,
-  }
+  h2{ margin-top: 25vh; text-align: center; color: navy; font-size: 5em;
+    font-family: 'Titan One', cursive; font-style: italic;
+    text-shadow: 0 1px 0 #0040ff, 0 2px 0 #0080ff, 0 3px 0 #00bfff, 0 4px 0 #00ffff; }
 
-  h3{
-    font-size: 1.5em;
-    text-align: center;
-    font-style: italic;
-    font-family: 'Fredoka One', cursive;
-    text-shadow: 0 1px 0 #484848,
-                 0 2px 0 #606060,
-                 0 3px 0 #787878,
-                 0 4px 0 #9f9f9f;
-  }
+  h3{ font-size: 1.5em; text-align: center; font-style: italic; font-family: 'Fredoka One', cursive;
+    text-shadow: 0 1px 0 #484848, 0 2px 0 #606060, 0 3px 0 #787878, 0 4px 0 #9f9f9f; }
 }
 
 //style dla tytułu gry
-.medievalTextTitle{
-  font-family: 'MedievalSharp', cursive;
-  text-align: center;
-}
+.medievalTextTitle{ font-family: 'MedievalSharp', cursive; text-align: center; }
 
-.gameTitle{
-  color: green;
-  font-weight: bold;
-  font-size: 7em;
-  margin-top: 22vh;
-  font-style: italic;
-  text-shadow: 0 1px 0 #66FF00,
-               0 2px 0 #99FF33,
-               0 3px 0 #CCFF66,
-               0 4px 0 #FFFF99,
-}
+.gameTitle{ color: green; font-weight: bold; font-size: 7em; margin-top: 22vh; font-style: italic;
+  text-shadow: 0 1px 0 #66FF00, 0 2px 0 #99FF33, 0 3px 0 #CCFF66, 0 4px 0 #FFFF99; }
 
-.subGameTitle{
-  font-weight: bold;
-  font-size: 2.5em;
-  font-style: italic;
-  text-shadow: 0 1px 0 #484848,
-               0 2px 0 #606060,
-               0 3px 0 #787878,
-               0 4px 0 #9f9f9f;
-}
+.subGameTitle{ font-weight: bold; font-size: 2.5em; font-style: italic;
+  text-shadow: 0 1px 0 #484848, 0 2px 0 #606060, 0 3px 0 #787878, 0 4px 0 #9f9f9f; }
 
-#titleGameHeader{
-  width: 100%;
-  font-family: 'MedievalSharp', cursive;
-  text-align: center;
-  color: green;
-  font-weight: bold;
-  font-size: 1.7em;
-  font-style: italic;
-  text-shadow: 0 1px 0 #66FF00,
-               0 2px 0 #99FF33,
-               0 3px 0 #CCFF66,
-               0 4px 0 #FFFF99;
-}
+#titleGameHeader{ width: 100%; font-family: 'MedievalSharp', cursive; text-align: center;
+  color: green; font-weight: bold; font-size: 1.7em; font-style: italic;
+  text-shadow: 0 1px 0 #66FF00, 0 2px 0 #99FF33, 0 3px 0 #CCFF66, 0 4px 0 #FFFF99; }
 
-#subTitleGameHeader{
-  width: 100%;
-  text-align: center;
-  font-weight: bold;
-  font-style: italic;
-  color: black;
-  font-size: 0.7em;
-  text-shadow: 0 1px 0 lightgray,
-                0 2px 0 #fff;
-}
+#subTitleGameHeader{ width: 100%; text-align: center; font-weight: bold; font-style: italic;
+  color: black; font-size: 0.7em; text-shadow: 0 1px 0 lightgray, 0 2px 0 #fff; }
 
-.btnInfo{
-  background: linear-gradient(#FFF, #FF8C00);
-  font-family: 'MedievalSharp', cursive;
-  box-shadow: 0 1px 0 #606060,
-              0 2px 0 #606060,
-               0 3px 0 #838383,
-               0 4px 0 #838383,
-               0 5px 0 #a6a6a6,
-               0 5px 0 #a6a6a6,
-               0 6px 0 #ededed,
-               0 7px 0 #ededed;
-}
+.btnInfo{ background: linear-gradient(#FFF, #FF8C00);   font-family: 'MedievalSharp', cursive;
+box-shadow: 0 1px 0 #606060, 0 2px 0 #606060, 0 3px 0 #838383, 0 4px 0 #838383, 0 5px 0 #a6a6a6,
+ 0 5px 0 #a6a6a6, 0 6px 0 #ededed, 0 7px 0 #ededed; }
 
-.btnLicence{
-  background: linear-gradient(#FFF, #8A2BE2);
-  font-family: 'MedievalSharp', cursive;
-  box-shadow: 0 1px 0 #606060,
-              0 2px 0 #606060,
-               0 3px 0 #838383,
-               0 4px 0 #838383,
-               0 5px 0 #a6a6a6,
-               0 5px 0 #a6a6a6,
-               0 6px 0 #ededed,
-               0 7px 0 #ededed;
-}
+.btnLicence{ background: linear-gradient(#FFF, #8A2BE2); font-family: 'MedievalSharp', cursive;
+box-shadow: 0 1px 0 #606060, 0 2px 0 #606060, 0 3px 0 #838383, 0 4px 0 #838383, 0 5px 0 #a6a6a6,
+  0 5px 0 #a6a6a6, 0 6px 0 #ededed, 0 7px 0 #ededed; }
 
-.btnTutorial{
-   background: linear-gradient(#FFF, #BDB76B);
-   font-family: 'MedievalSharp', cursive;
-   margin-top: 1.75vh;
-   box-shadow: 0 1px 0 #606060,
-               0 2px 0 #606060,
-                0 3px 0 #838383,
-                0 4px 0 #838383,
-                0 5px 0 #a6a6a6,
-                0 5px 0 #a6a6a6,
-                0 6px 0 #ededed,
-                0 7px 0 #ededed;
- }
+.btnTutorial{ background: linear-gradient(#FFF, #BDB76B); font-family: 'MedievalSharp', cursive; margin-top: 1.75vh;
+box-shadow: 0 1px 0 #606060, 0 2px 0 #606060, 0 3px 0 #838383, 0 4px 0 #838383, 0 5px 0 #a6a6a6,
+0 5px 0 #a6a6a6, 0 6px 0 #ededed, 0 7px 0 #ededed; }
 
-.btnNewGame{
-  background: linear-gradient(#FFF, green);
-  font-family: 'MedievalSharp', cursive;
-  margin-top: 1.75vh;
-  box-shadow: 0 1px 0 #606060,
-              0 2px 0 #606060,
-               0 3px 0 #838383,
-               0 4px 0 #838383,
-               0 5px 0 #a6a6a6,
-               0 5px 0 #a6a6a6,
-               0 6px 0 #ededed,
-               0 7px 0 #ededed;
-}
+.btnNewGame{ background: linear-gradient(#FFF, green);font-family: 'MedievalSharp', cursive;
+margin-top: 1.75vh; box-shadow: 0 1px 0 #606060, 0 2px 0 #606060, 0 3px 0 #838383,
+0 4px 0 #838383, 0 5px 0 #a6a6a6, 0 5px 0 #a6a6a6, 0 6px 0 #ededed, 0 7px 0 #ededed; }
 
 .btnInfo:hover, .btnLicence:hover, .btnTutorial:hover, .btnNewGame:hover{
-  color: white;
-  text-shadow: 1px 1px black;
-}
+  color: white;  text-shadow: 1px 1px black; }
 
 //"symulacja" wciśnięcia przycisków
 .btnInfo:active, .btnLicence:active, .btnTutorial:active, .btnNewGame:active, #name:active, #race:active, #occupation:active, #features:active, #features2:active, #equipment:active, #skills:active, #infoCreator:active, #acceptName:active, #startGame:active{
-  transform: translate(0, 4px);
-  box-shadow:  0 1px 0 #a6a6a6,
-               0 2px 0 #a6a6a6,
-               0 3px 0 #ededed,
-               0 4px 0 #ededed;
-}
+  transform: translate(0, 4px); box-shadow:  0 1px 0 #a6a6a6, 0 2px 0 #a6a6a6, 0 3px 0 #ededed,
+  0 4px 0 #ededed; }
 
 //likwidacja niebieskiego obramowania, gdy wciska się przycisk
 .btnInfo:focus, .btnLicence:focus, .btnTutorial:focus, .btnNewGame:focus, #acceptName:focus{
-  outline: none;
-}
+  outline: none; }

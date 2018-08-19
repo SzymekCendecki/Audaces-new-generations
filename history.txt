@@ -285,3 +285,12 @@ Dodano dwa nowe style w main.scss - marginTop3 i marginTop4 - tworzący odstęp 
 Dodano trzy nowe style do main.scss - marginLeft3, marginLeft4, marginLeft5 - odsunięcie elementu od lewej strony (w procentach).
 	Dodano nowy styl w main.scss - redText - czerwony kolor tekstu np. dla oznaczenia jaiegoś alarmu lub nie wybrania jakiejś rzeczy.
 Dodano zdarzenie dla przycisku "imię" - wybór imienia.
+
+19 sierpnia 2018 - wersja 0.6.46
+Drobna optymalizacja wielkości plików introFrirstMenu.scss i main.scss - polegająca na zmiejszeniu czytelności plików na rzecz ich mniejszego rozmiaru.
+	Dodano nowy styl do main.scss - marginLeft25 - oduwający element od lewej strony o 25 procent.
+Poprawiono wygląd oraz sposób wyświetlania komuikatów w części alertowej - dla przycisku "imię".
+	Poprawiono wygląd pola do wpisywania imienia - powiększono oraz zmieniono fonty, a także przesunięto go oraz przycisk na środek.
+Dodano nowy styl bckgGreen do main.scss - tworzy zielone tło.
+	Dodano przyciski i zdarzenia dla wybierania rasy.
+Dodano przyciski i zdarzenia dla losowania podstwowych punktów cech.
