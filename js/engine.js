@@ -717,6 +717,30 @@ module.exports.randomChooseHeroBtns = function () {
 			functions.newElement("button", "man", "mężczyzna", $("#interactionCreator"));
 			functions.newElement("button", "other", "nie wiadomo", $("#interactionCreator"));
 
+			$("#women").on("click", function () {
+				hero.splice(1, 1, "kobieta");
+				$("#alerts").html("<p class='greenText boldText fontSize12em medievalText'> wybrano płeć: <span class='blueText'> kobieta</span></p>");
+				setTimeout(function () {
+					$("#alerts").empty();
+				}, 5000);
+			});
+
+			$("#man").on("click", function () {
+				hero.splice(1, 1, "kobieta");
+				$("#alerts").html("<p class='greenText boldText fontSize12em medievalText'> wybrano płeć: <span class='blueText'> mężczyzna</span></p>");
+				setTimeout(function () {
+					$("#alerts").empty();
+				}, 5000);
+			});
+
+			$("#other").on("click", function () {
+				hero.splice(1, 1, "kobieta");
+				$("#alerts").html("<p class='greenText boldText fontSize12em medievalText'> wybrano płeć: <span class='blueText'> nie wiadomo</span></p>");
+				setTimeout(function () {
+					$("#alerts").empty();
+				}, 5000);
+			});
+
 			$("#women, #man, #other").addClass("basicBtn btnNewGame medievalText width20 marginTop1 marginLeft10");
 
 			functions.newElement("p", "titleHair", "kolor włosów", $("#interactionCreator"));
@@ -724,11 +748,188 @@ module.exports.randomChooseHeroBtns = function () {
 
 			functions.newElement("button", "blonde", "blond", $("#interactionCreator"));
 			functions.newElement("button", "red", "rude", $("#interactionCreator"));
-			functions.newElement("button", "black", "czarne", $("#interactionCreator"));
+			functions.newElement("button", "dark", "czarne", $("#interactionCreator"));
 			functions.newElement("button", "colors", "farbowane", $("#interactionCreator"));
 
-			$("#blonde, #red, #black, #colors").addClass("basicBtn btnNewGame medievalText width20 marginTop1 marginLeft5");
-		});
+			$("#blonde").on("click", function () {
+				hero.splice(10, 1, "blond");
+				$("#alerts").html("<p class='greenText boldText fontSize12em medievalText'> wybrano kolor włosów: <span class='blueText'> blond</span></p>");
+				setTimeout(function () {
+					$("#alerts").empty();
+				}, 5000);
+			});
+
+			$("#red").on("click", function () {
+				hero.splice(10, 1, "rude");
+				$("#alerts").html("<p class='greenText boldText fontSize12em medievalText'> wybrano kolor włosów: <span class='blueText'> rude</span></p>");
+				setTimeout(function () {
+					$("#alerts").empty();
+				}, 5000);
+			});
+
+			$("#dark").on("click", function () {
+				hero.splice(10, 1, "czarne");
+				$("#alerts").html("<p class='greenText boldText fontSize12em medievalText'> wybrano kolor włosów: <span class='blueText'> czarne</span></p>");
+				setTimeout(function () {
+					$("#alerts").empty();
+				}, 5000);
+			});
+
+			$("#colors").on("click", function () {
+				hero.splice(10, 1, "farbowane");
+				$("#alerts").html("<p class='greenText boldText fontSize12em medievalText'> wybrano kolor włosów: <span class='blueText'> farbowane</span></p>");
+				setTimeout(function () {
+					$("#alerts").empty();
+				}, 5000);
+			});
+
+			$("#blonde, #red, #dark, #colors").addClass("basicBtn btnNewGame medievalText width20 marginTop1 marginLeft5");
+
+			functions.newElement("p", "titleSkin", "kolor skóry", $("#interactionCreator"));
+			$("#titleSkin").addClass("basicText medievalText textUnderlineGold");
+
+			functions.newElement("button", "white", "biała", $("#interactionCreator"));
+			functions.newElement("button", "brown", "brązowa", $("#interactionCreator"));
+			functions.newElement("button", "black", "czarna", $("#interactionCreator"));
+			functions.newElement("button", "redSkin", "czerwona", $("#interactionCreator"));
+			functions.newElement("button", "yellow", "żółta", $("#interactionCreator"));
+			functions.newElement("button", "green", "zielona", $("#interactionCreator"));
+			functions.newElement("button", "tawny", "brunatna", $("#interactionCreator"));
+			functions.newElement("button", "azure", "błęitna", $("#interactionCreator"));
+
+			$("#white").on("click", function () {
+				hero.splice(11, 1, "biała");
+				$("#alerts").html("<p class='greenText boldText fontSize12em medievalText'> wybrano kolor skóry: <span class='blueText'> biała</span></p>");
+				setTimeout(function () {
+					$("#alerts").empty();
+				}, 5000);
+			});
+
+			$("#brown").on("click", function () {
+				hero.splice(11, 1, "brązowa");
+				$("#alerts").html("<p class='greenText boldText fontSize12em medievalText'> wybrano kolor skóry: <span class='blueText'> brązowa</span></p>");
+				setTimeout(function () {
+					$("#alerts").empty();
+				}, 5000);
+			});
+
+			$("#black").on("click", function () {
+				hero.splice(11, 1, "czarna");
+				$("#alerts").html("<p class='greenText boldText fontSize12em medievalText'> wybrano kolor skóry: <span class='blueText'> czarna</span></p>");
+				setTimeout(function () {
+					$("#alerts").empty();
+				}, 5000);
+			});
+
+			$("#redSkin").on("click", function () {
+				hero.splice(11, 1, "czerwona");
+				$("#alerts").html("<p class='greenText boldText fontSize12em medievalText'> wybrano kolor skóry: <span class='blueText'> czerwona</span></p>");
+				setTimeout(function () {
+					$("#alerts").empty();
+				}, 5000);
+			});
+
+			$("#yellow").on("click", function () {
+				hero.splice(11, 1, "zółta");
+				$("#alerts").html("<p class='greenText boldText fontSize12em medievalText'> wybrano kolor skóry: <span class='blueText'> żółta</span></p>");
+				setTimeout(function () {
+					$("#alerts").empty();
+				}, 5000);
+			});
+
+			$("#green").on("click", function () {
+				hero.splice(11, 1, "zielona");
+				$("#alerts").html("<p class='greenText boldText fontSize12em medievalText'> wybrano kolor skóry: <span class='blueText'> zielona</span></p>");
+				setTimeout(function () {
+					$("#alerts").empty();
+				}, 5000);
+			});
+
+			$("#tawny").on("click", function () {
+				hero.splice(11, 1, "brunatna");
+				$("#alerts").html("<p class='greenText boldText fontSize12em medievalText'> wybrano kolor skóry: <span class='blueText'> brunatna</span></p>");
+				setTimeout(function () {
+					$("#alerts").empty();
+				}, 5000);
+			});
+
+			$("#azure").on("click", function () {
+				hero.splice(11, 1, "błękitna");
+				$("#alerts").html("<p class='greenText boldText fontSize12em medievalText'> wybrano kolor skóry: <span class='blueText'> błękitna</span></p>");
+				setTimeout(function () {
+					$("#alerts").empty();
+				}, 5000);
+			});
+
+			$("#white, #brown, #black, #redSkin, #yellow, #green, #tawny, #azure").addClass("basicBtn btnNewGame medievalText width20 marginTop1 marginLeft5");
+
+			functions.newElement("p", "titleWeight", "waga", $("#interactionCreator"));
+			$("#titleWeight").addClass("basicText medievalText textUnderlineGold");
+
+			functions.newElement("button", "lessWeight", "niedowaga", $("#interactionCreator"));
+			functions.newElement("button", "normalWeight", "normalna", $("#interactionCreator"));
+			functions.newElement("button", "overWeight", "nadwaga", $("#interactionCreator"));
+
+			$("#lessWeight, #normalWeight, #overWeight").addClass("basicBtn btnNewGame medievalText width20 marginTop1 marginLeft10");
+
+			$("#lessWeight").on("click", function () {
+				hero.splice(12, 1, "niedowaga");
+				$("#alerts").html("<p class='greenText boldText fontSize12em medievalText'> wybrano wagę: <span class='blueText'> niedowaga</span></p>");
+				setTimeout(function () {
+					$("#alerts").empty();
+				}, 5000);
+			});
+
+			$("#normalWeight").on("click", function () {
+				hero.splice(12, 1, "normalna");
+				$("#alerts").html("<p class='greenText boldText fontSize12em medievalText'> wybrano wagę: <span class='blueText'> normalna</span></p>");
+				setTimeout(function () {
+					$("#alerts").empty();
+				}, 5000);
+			});
+
+			$("#overWeight").on("click", function () {
+				hero.splice(12, 1, "nadwaga");
+				$("#alerts").html("<p class='greenText boldText fontSize12em medievalText'> wybrano wagę: <span class='blueText'> nadwaga</span></p>");
+				setTimeout(function () {
+					$("#alerts").empty();
+				}, 5000);
+			});
+
+			functions.newElement("p", "titleHeight", "wzrost", $("#interactionCreator"));
+			$("#titleHeight").addClass("basicText medievalText textUnderlineGold");
+
+			functions.newElement("button", "short", "niski", $("#interactionCreator"));
+			functions.newElement("button", "normal", "normalny", $("#interactionCreator"));
+			functions.newElement("button", "tall", "wysoki", $("#interactionCreator"));
+
+			$("#short").on("click", function () {
+				hero.splice(13, 1, "niski");
+				$("#alerts").html("<p class='greenText boldText fontSize12em medievalText'> wybrano wzrost: <span class='blueText'> niski</span></p>");
+				setTimeout(function () {
+					$("#alerts").empty();
+				}, 5000);
+			});
+
+			$("#normal").on("click", function () {
+				hero.splice(13, 1, "normalna");
+				$("#alerts").html("<p class='greenText boldText fontSize12em medievalText'> wybrano wzrost: <span class='blueText'> normalny</span></p>");
+				setTimeout(function () {
+					$("#alerts").empty();
+				}, 5000);
+			});
+
+			$("#tall").on("click", function () {
+				hero.splice(13, 1, "wysoki");
+				$("#alerts").html("<p class='greenText boldText fontSize12em medievalText'> wybrano wzrost: <span class='blueText'> wysoki</span></p>");
+				setTimeout(function () {
+					$("#alerts").empty();
+				}, 5000);
+			});
+
+			$("#short, #normal, #tall").addClass("basicBtn btnNewGame medievalText width20 marginTop1 marginLeft10");
+		}); // koniec przycisku "cechy 2"
+
 
 		//0-imię, 1-płeć, 2-rasa, 3-profesja, 4-siła, 5-wytrzymałość, 6-zręczność, 7-inteligencja, 8-charyzma, 9-kolor oczu, 10-kolor włosów, 11-kolor skóry, 12 - waga, 13-wzrost
 		//let hero = ["nie wybrano", "nie wybrano", "nie wybrano", "nie wybrano", 0, 0, 0, 0, 0, "nie wybrano", "nie wybrano", "nie wybrano", "nie wybrano", "nie wybrano"];

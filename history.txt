@@ -298,3 +298,10 @@ Dodano przyciski i zdarzenia dla losowania podstwowych punktów cech.
 19 sierpnia 2018 - wersja 0.6.47
 Dodano dwa style do main.scss - marginTop1 i marginTop2 - mające tworzyć odstęp od góry o 1 i 2 procent.
  	Dodano dwa style do main.scss - marginLeft10 i marginLeft15 - odsuwają elementy od lewej strony o 10 i 15 procent.
+
+20 sierpnia 2018 - wersja 0.6.48
+Dodano zdarzenia dla wyboru płci.
+	Dodano zdarzenia dla wyboru koloru włosów.
+Dodano przyciski i zdarzenia dla wyboru koloru skóry.
+	Dodano przyciski i zdarzenia dla wyboru wagi.
+Dodano przyciski i zdarzenia dla wyboru wzrostu.
