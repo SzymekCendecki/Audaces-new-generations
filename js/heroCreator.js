@@ -663,7 +663,6 @@ $("#createFeatures2").on("click", ()=>{
 
 		$("#white, #brown, #black, #redSkin, #yellow, #green, #tawny, #azure").addClass("basicBtn btnNewGame medievalText width20 marginTop1 marginLeft5");
 
-
 		functions.newElement("p", "titleWeight", "waga", $("#interactionCreator"));
 		$("#titleWeight").addClass("basicText medievalText textUnderlineGold");
 
@@ -719,52 +718,42 @@ $("#createFeatures2").on("click", ()=>{
 	$("#short, #normal, #tall").addClass("basicBtn btnNewGame medievalText width20 marginTop1 marginLeft10");
 });// koniec przycisku "cechy 2"
 
-//tworzenie ekwipunku
+//wybieranie ekwipunku
 $("#createEquip").on("click", ()=>{
-	$("#interactionCreator").empty();
-	functions.newElement("div", "description", "", $("#interactionCreator"));
-	$("#interactionCreator").addClass("width100");
-	functions.newElement("p", "title", "wybór ekwipunku", $("#interactionCreator"));
-	$("#title").addClass("basicText medievalText textUnderlineGold");
+  $("#interactionCreator").empty();
+  functions.newElement("div", "description", "", $("#interactionCreator"));
+  $("#interactionCreator").addClass("width100");
+  functions.newElement("p", "title", "wybór ekwipunku", $("#interactionCreator"));
+  $("#title").addClass("basicText medievalText textUnderlineGold");
 
-	functions.newElement("p", "descriptionName", "", $("#interactionCreator"));
+  functions.newElement("p", "descriptionName", "", $("#interactionCreator"));
 	$("#descriptionName").html("<p id='text'>Ta część podzielona jest zasadniczo na dwie części. W pierwszej możesz wybrać (w sumie) pięć rzeczy z kategorii: broń, zbroje, tarcze i inne. W drugiej części dzięki przyciskom, będzie można usunąć wcześniej wybrane przedmioty.</p>");
+ 	$("#descriptionName").addClass("medievalText boldText marginTop3");
 
-	$("#descriptionName").addClass("medievalText boldText marginTop3");
+  function chooseItem(whatClick, whatPush){
+  	whatClick.on("click", () =>{
+  		if(equip.length <= 4){
+        $("#alerts").html("<p class='greenText boldText fontSize12em medievalText'> wybrano rzecz: <span class='blueText'> " + whatPush + "</span></p>");
+    		setTimeout(function(){ $("#alerts").empty(); }, 5000);
 
-
-	function chooseItem(whatClick, whatPush){
-	whatClick.on("click", () =>{
-		if(equip.length <= 4){
-			equip.push(whatPush);
-			$("#alerts #equipmentAlert").removeClass("redText");
-			$("#alerts #equipmentAlert").addClass("greenText");
-			$("#btnToRemove").text(createNewElementAppend("button", whatPush, whatPush, $("#btnToRemove")));
-			$("#btnToRemove").find("button").addClass("width15 bold");
-
-			let allBtnRemove = document.querySelectorAll("#btnToRemove button"), i;
-			for(i=0; i<allBtnRemove.length; i++){
-				allBtnRemove[i].addEventListener("click", function(e){
-				if(equip.indexOf(this.id) !== -1){
-				equip.splice(equip.indexOf(this.id), 1);
-				this.remove(); }
-			if(equip.length === 0){
-				$("#alerts #equipmentAlert").removeClass("greenText");
-				$("#alerts #equipmentAlert").addClass("redText");
-			}else if(equip.length < 5){
-				$("#subAlert").text("").removeClass("redText");
-			}
-				});
-			}
-		}else{
-			$("#subAlert").text("Już zostało wybrane pięć przedmiotów").addClass("redText");
-		}
-	}); //koniec funkcji kliknięcia w przycisk	
+  			$("#btnToRemove").text(functions.newElement("button", whatPush, whatPush, $("#btnToRemove")));
+  			$("#btnToRemove").find("button").addClass("basicBtn btnNewGame medievalText width20 marginTop1 marginLeft5");
+        equip.push(whatPush);
+        console.log(equip);
+  		}else{
+        $("#alerts").html("<p class='redText boldText fontSize12em medievalText'>Już zostało wybrane pięć przedmiotów.");
+        setTimeout(function(){ $("#alerts").empty(); }, 5000);
+        equip.splice(5, 1);
+        console.log(equip);
+  			}
+      }); //koniec funkcji kliknięcia w przycisk
+}
 
 //broń
 	functions.newElement("p", "weapon", "broń", $("#interactionCreator"));
 	$("#weapon").addClass("basicText medievalText textUnderlineGold");
 	functions.newElement("button", "dagger", "sztylet", $("#interactionCreator"));
+  chooseItem($("#dagger"), "sztylet");
 	functions.newElement("button", "woodenStick", "drewniana pałka", $("#interactionCreator"));
 	functions.newElement("button", "shortSword", "krótki miecz", $("#interactionCreator"));
 	functions.newElement("button", "sabre", "szabla", $("#interactionCreator"));
@@ -822,8 +811,12 @@ $("#createEquip").on("click", ()=>{
 			functions.newElement("button", "tinders", "hubka i krzesiwo", $("#interactionCreator"));
 
 			$("#stick, #moneyBag, #travelBag, #purse, #backpack, #canteen, #pot, #blanket, #tubePartschmen, #penWriting, #parchments5pieces, #ordinaryClothing, #fussyHat, #coat, #leatherBelt, #needlesThread, #saddleCloth, #tent, #woodenBowl, #torch, #oliveLamp, #oilLamp, #rope5m, #tinders").addClass("basicBtn btnNewGame medievalText width20 marginTop1 marginLeft5");
-	});//koniec tworzenia ekwipunku
 
+      functions.newElement("p", "toRemove", "do usunięcia", $("#interactionCreator"));
+      $("#toRemove").addClass("basicText medievalText textUnderlineGold");
+
+      functions.newElement("div", "btnToRemove", "", $("#interactionCreator"));
+	});//koniec tworzenia ekwipunku
 
 //0-imię, 1-płeć, 2-rasa, 3-profesja, 4-siła, 5-wytrzymałość, 6-zręczność, 7-inteligencja, 8-charyzma, 9-kolor oczu, 10-kolor włosów, 11-kolor skóry, 12 - waga, 13-wzrost
 //let hero = ["nie wybrano", "nie wybrano", "nie wybrano", "nie wybrano", 0, 0, 0, 0, 0, "nie wybrano", "nie wybrano", "nie wybrano", "nie wybrano", "nie wybrano"];
@@ -833,9 +826,8 @@ $("#createEquip").on("click", ()=>{
 ///utworzenie paragrafu z opisem przycisków wylosuj i wybierz.
 module.exports.textDescription = function(){
   $("#mainPart").html("<p id='text'>Zanim zaczniesz grę, muszisz stworzyć swoją postać. Można to zrobić na dwa sposoby. Pierwszy to wylosowanie protagonisty. Jest to sposób całkowice automatyczny i wystarczy wcisnąć przycisk <span class='blueText'>'losuj'</span>. Drugim sposobem na stworzenie własnej postaci jest jej własnoręczne utworzenie za pomocą kreatora postaci. W tym celu należy wcisnąć przycisk <span class='blueText'>'wybierz'</span>. Co robisz?</p>");
-
   $("#text").addClass("basicText medievalText");
 
-   //utworzenie diva dla wylosowanej postaci
+ //utworzenie diva dla wylosowanej postaci
 	functions.newElement("div", "drawnCharacter", "", $("#mainPart"));
 }
