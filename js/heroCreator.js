@@ -717,9 +717,112 @@ $("#createFeatures2").on("click", ()=>{
 		});
 
 	$("#short, #normal, #tall").addClass("basicBtn btnNewGame medievalText width20 marginTop1 marginLeft10");
-
-
 });// koniec przycisku "cechy 2"
+
+//tworzenie ekwipunku
+$("#createEquip").on("click", ()=>{
+	$("#interactionCreator").empty();
+	functions.newElement("div", "description", "", $("#interactionCreator"));
+	$("#interactionCreator").addClass("width100");
+	functions.newElement("p", "title", "wybór ekwipunku", $("#interactionCreator"));
+	$("#title").addClass("basicText medievalText textUnderlineGold");
+
+	functions.newElement("p", "descriptionName", "", $("#interactionCreator"));
+	$("#descriptionName").html("<p id='text'>Ta część podzielona jest zasadniczo na dwie części. W pierwszej możesz wybrać (w sumie) pięć rzeczy z kategorii: broń, zbroje, tarcze i inne. W drugiej części dzięki przyciskom, będzie można usunąć wcześniej wybrane przedmioty.</p>");
+
+	$("#descriptionName").addClass("medievalText boldText marginTop3");
+
+
+	function chooseItem(whatClick, whatPush){
+	whatClick.on("click", () =>{
+		if(equip.length <= 4){
+			equip.push(whatPush);
+			$("#alerts #equipmentAlert").removeClass("redText");
+			$("#alerts #equipmentAlert").addClass("greenText");
+			$("#btnToRemove").text(createNewElementAppend("button", whatPush, whatPush, $("#btnToRemove")));
+			$("#btnToRemove").find("button").addClass("width15 bold");
+
+			let allBtnRemove = document.querySelectorAll("#btnToRemove button"), i;
+			for(i=0; i<allBtnRemove.length; i++){
+				allBtnRemove[i].addEventListener("click", function(e){
+				if(equip.indexOf(this.id) !== -1){
+				equip.splice(equip.indexOf(this.id), 1);
+				this.remove(); }
+			if(equip.length === 0){
+				$("#alerts #equipmentAlert").removeClass("greenText");
+				$("#alerts #equipmentAlert").addClass("redText");
+			}else if(equip.length < 5){
+				$("#subAlert").text("").removeClass("redText");
+			}
+				});
+			}
+		}else{
+			$("#subAlert").text("Już zostało wybrane pięć przedmiotów").addClass("redText");
+		}
+	}); //koniec funkcji kliknięcia w przycisk	
+
+//broń
+	functions.newElement("p", "weapon", "broń", $("#interactionCreator"));
+	$("#weapon").addClass("basicText medievalText textUnderlineGold");
+	functions.newElement("button", "dagger", "sztylet", $("#interactionCreator"));
+	functions.newElement("button", "woodenStick", "drewniana pałka", $("#interactionCreator"));
+	functions.newElement("button", "shortSword", "krótki miecz", $("#interactionCreator"));
+	functions.newElement("button", "sabre", "szabla", $("#interactionCreator"));
+	functions.newElement("button", "spear", "włócznia", $("#interactionCreator"));
+	functions.newElement("button", "slingshot", "proca", $("#interactionCreator"));
+	functions.newElement("button", "bow", "łuk", $("#interactionCreator"));
+
+	$("#dagger, #woodenStick, #shortSword, #sabre, #spear, #slingshot, #bow").addClass("basicBtn btnNewGame medievalText width20 marginTop1 marginLeft5");
+
+	//zbroje
+		functions.newElement("p", "armor", "zbroje", $("#interactionCreator"));
+		$("#armor").addClass("basicText medievalText textUnderlineGold");
+		functions.newElement("button", "gambison", "przeszywanica", $("#interactionCreator"));
+		functions.newElement("button", "leather", "zbr. skórzana", $("#interactionCreator"));
+		functions.newElement("button", "studded", "zbr. ćwiekowana", $("#interactionCreator"));
+
+		$("#gambison, #leather, #studded").addClass("basicBtn btnNewGame medievalText width20 marginTop1 marginLeft10");
+
+	//tarcze
+		functions.newElement("p", "shield", "tarcze", $("#interactionCreator"));
+		$("#shield").addClass("basicText medievalText textUnderlineGold");
+		functions.newElement("button", "buckler", "puklerz", $("#interactionCreator"));
+		functions.newElement("button", "smallWodden", "mała tarcza drew.", $("#interactionCreator"));
+		functions.newElement("button", "smallMetal", "mała tarcza metal.", $("#interactionCreator"));
+
+		$("#buckler, #smallWodden, #smallMetal").addClass("basicBtn btnNewGame medievalText width20 marginTop1 marginLeft10");
+
+		//inne
+			functions.newElement("p", "other", "inne", $("#interactionCreator"));
+			$("#other").addClass("basicText medievalText textUnderlineGold");
+
+			functions.newElement("button", "stick", "kostur", $("#interactionCreator"));
+			functions.newElement("button", "moneyBag", "mieszek", $("#interactionCreator"));
+			functions.newElement("button", "travelBag", "torba podróżna", $("#interactionCreator"));
+			functions.newElement("button", "purse", "sakwa", $("#interactionCreator"));
+			functions.newElement("button", "backpack", "plecak", $("#interactionCreator"));
+			functions.newElement("button", "canteen", "manierka", $("#interactionCreator"));
+			functions.newElement("button", "pot", "sagan", $("#interactionCreator"));
+			functions.newElement("button", "blanket", "koc", $("#interactionCreator"));
+			functions.newElement("button", "tubePartschmen", "tuba na pergaminy", $("#interactionCreator"));
+			functions.newElement("button", "penWriting", "pęk piór do pisania", $("#interactionCreator"));
+			functions.newElement("button", "parchments5pieces", "pergaminy 5szt.", $("#interactionCreator"));
+			functions.newElement("button", "ordinaryClothing", "zwykłe ubranie", $("#interactionCreator"));
+			functions.newElement("button", "fussyHat", "fikuśna czapka", $("#interactionCreator"));
+			functions.newElement("button", "coat", "płaszcz", $("#interactionCreator"));
+			functions.newElement("button", "leatherBelt", "skórzany pas", $("#interactionCreator"));
+			functions.newElement("button", "needlesThread", "igły i nici", $("#interactionCreator"));
+			functions.newElement("button", "saddleCloth", "derka", $("#interactionCreator"));
+			functions.newElement("button", "tent", "namiot", $("#interactionCreator"));
+			functions.newElement("button", "woodenBowl", "drewniana miska", $("#interactionCreator"));
+			functions.newElement("button", "torch", "pochodnia", $("#interactionCreator"));
+			functions.newElement("button", "oliveLamp", "lampa oliwna", $("#interactionCreator"));
+			functions.newElement("button", "oilLamp", "kaganek", $("#interactionCreator"));
+			functions.newElement("button", "rope5m", "lina 5m", $("#interactionCreator"));
+			functions.newElement("button", "tinders", "hubka i krzesiwo", $("#interactionCreator"));
+
+			$("#stick, #moneyBag, #travelBag, #purse, #backpack, #canteen, #pot, #blanket, #tubePartschmen, #penWriting, #parchments5pieces, #ordinaryClothing, #fussyHat, #coat, #leatherBelt, #needlesThread, #saddleCloth, #tent, #woodenBowl, #torch, #oliveLamp, #oilLamp, #rope5m, #tinders").addClass("basicBtn btnNewGame medievalText width20 marginTop1 marginLeft5");
+	});//koniec tworzenia ekwipunku
 
 
 //0-imię, 1-płeć, 2-rasa, 3-profesja, 4-siła, 5-wytrzymałość, 6-zręczność, 7-inteligencja, 8-charyzma, 9-kolor oczu, 10-kolor włosów, 11-kolor skóry, 12 - waga, 13-wzrost

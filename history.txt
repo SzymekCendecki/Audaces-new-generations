@@ -305,3 +305,7 @@ Dodano zdarzenia dla wyboru płci.
 Dodano przyciski i zdarzenia dla wyboru koloru skóry.
 	Dodano przyciski i zdarzenia dla wyboru wagi.
 Dodano przyciski i zdarzenia dla wyboru wzrostu.
+
+21 sierpnia 2018 - wersja 0.6.49
+Dodano przyciski dla ekwipunku.
+	Skopiowanie funkcji chooseItem z poprzedniej wersji (do przerobienia na obecną wesję).
