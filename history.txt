@@ -313,3 +313,6 @@ Dodano przyciski dla ekwipunku.
 22 sierpnia 2018 - wersja 0.6.50
 Naprawiony błąd w funkcji chooseItem - brak }.
 	Rozpoczęto dostosowanie funkcji chooseItem do potrzeb gry.
+
+23 sierpnia 2018 - wersja 0.6.51
+Ukończono dostosowanie dodawanie i usuwanie rzeczy z ekwipunku (na razie tylo dla sztyletu).

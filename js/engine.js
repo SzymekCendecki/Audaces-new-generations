@@ -672,7 +672,7 @@ module.exports.randomChooseHeroBtns = function () {
 			functions.newElement("button", "strength", "wytrzymałość", $("#interactionCreator"));
 			functions.newElement("button", "dexterity", "zręczność", $("#interactionCreator"));
 			functions.newElement("button", "intelligence", "inteligencja", $("#interactionCreator"));
-			functions.newElement("button", "charisma", "charisma", $("#interactionCreator"));
+			functions.newElement("button", "charisma", "charyzma", $("#interactionCreator"));
 
 			$("#force, #strength, #dexterity, #intelligence, #charisma").addClass("basicBtn btnNewGame medievalText width20 marginTop5 marginLeft4");
 
@@ -953,14 +953,27 @@ module.exports.randomChooseHeroBtns = function () {
 						$("#btnToRemove").text(functions.newElement("button", whatPush, whatPush, $("#btnToRemove")));
 						$("#btnToRemove").find("button").addClass("basicBtn btnNewGame medievalText width20 marginTop1 marginLeft5");
 						equip.push(whatPush);
-						console.log(equip);
+
+						var allBtnRemove = document.querySelectorAll("#btnToRemove button"),
+						    i = void 0;
+						for (i = 0; i < allBtnRemove.length; i++) {
+							allBtnRemove[i].addEventListener("click", function (e) {
+								if (equip.indexOf(this.id) !== -1) {
+									equip.splice(equip.indexOf(this.id), 1);
+									this.remove();
+									$("#alerts").html("<p class='redText boldText fontSize12em medievalText'>usunięto: <span class='blueText'>" + this.id + "</span>");
+									setTimeout(function () {
+										$("#alerts").empty();
+									}, 5000);
+								}
+							});
+						}
 					} else {
 						$("#alerts").html("<p class='redText boldText fontSize12em medievalText'>Już zostało wybrane pięć przedmiotów.");
 						setTimeout(function () {
 							$("#alerts").empty();
 						}, 5000);
 						equip.splice(5, 1);
-						console.log(equip);
 					}
 				}); //koniec funkcji kliknięcia w przycisk
 			}
@@ -1032,6 +1045,23 @@ module.exports.randomChooseHeroBtns = function () {
 			$("#toRemove").addClass("basicText medievalText textUnderlineGold");
 
 			functions.newElement("div", "btnToRemove", "", $("#interactionCreator"));
+
+			//pętla dla przycisków usuwania przedmiotów, gdy pownownie wejdzie się w opcje wybiernia przedmiotów
+			for (var j = 0; j < equip.length; j++) {
+				functions.newElement("button", j, equip[j], $("#btnToRemove"));
+				$("#btnToRemove").find("button").addClass("basicBtn btnNewGame medievalText width20 marginTop1 marginLeft5");
+				var allBtnRemove = document.querySelectorAll("#btnToRemove button"),
+				    i = void 0;
+				for (i = 0; i < allBtnRemove.length; i++) {
+					allBtnRemove[i].addEventListener("click", function (e) {
+						if (equip.indexOf($(this).text()) !== -1) {
+							equip.splice(equip.indexOf($(this).text()), 1);
+							this.remove();
+						}
+						this.remove();
+					});
+				}
+			}
 		}); //koniec tworzenia ekwipunku
 
 		//0-imię, 1-płeć, 2-rasa, 3-profesja, 4-siła, 5-wytrzymałość, 6-zręczność, 7-inteligencja, 8-charyzma, 9-kolor oczu, 10-kolor włosów, 11-kolor skóry, 12 - waga, 13-wzrost
