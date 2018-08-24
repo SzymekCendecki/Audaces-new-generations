@@ -316,3 +316,10 @@ Naprawiony błąd w funkcji chooseItem - brak }.
 
 23 sierpnia 2018 - wersja 0.6.51
 Ukończono dostosowanie dodawanie i usuwanie rzeczy z ekwipunku (na razie tylo dla sztyletu).
+
+24 sierpnia 2018 - wersja 0.6.52
+Przeniesienie funkcji akceptowania imienia do pliku functions.js.
+	Utworzenie funkcji, która czyści diva interactionCreator, dodaje diva description oraz tytuł główny każdej części, w "ręcznym" tworzeniu postaci.
+Utworzenie jednej funkcji dla tworzenia opisu głównego dla każdej części wybierania ręcznego tworzenia postaci.
+	Utworzenie jednej funkcji dla wyboru rasy.
+Utworzenie jednej funkcji dla wyboru profesji.
