@@ -323,3 +323,16 @@ Przeniesienie funkcji akceptowania imienia do pliku functions.js.
 Utworzenie jednej funkcji dla tworzenia opisu głównego dla każdej części wybierania ręcznego tworzenia postaci.
 	Utworzenie jednej funkcji dla wyboru rasy.
 Utworzenie jednej funkcji dla wyboru profesji.
+
+25 sierpnia 2018 - wersja 0.6.53
+Przeniesienie funkcji losującej punkty (w "ręcznym" tworzeniu postaci) cech z pliku heroCreator.js do pliku functions.js.
+	Utworzono jedną funkcje dla wybierania płci, koloru włosów, skóry, wagi i wzrostu. Przeniesiono je do pliku functions.js
+Przeniesiono funkcję wybierania i usuwania rzeczy (część 1) z pliku heroCreator.js do pliku functions.js. (gdy pierwszy raz się wejdzie do części z wybieraniem ekwipunku).
+	Przeniesiono funkcję wybierania i usuwania rzeczy (część 2) z pliku heroCreator.js do pliku functions.js. (gdy ponownie się wejdzie do części z wybieraniem ekwipunku).
+Dodano funkcję chooseItem do reszty przycisków do wybierania ekwipunku.
+	Dodano przyciski dla wybierania koloru oczu oraz funkcję optymalizującą do pliku functions.js.
+
+25 sierpnia 2018 - wersja 0.6.54
+Poprawka dla dodawania i usuwania rzeczy z ekwipunku, gry tworzy się postać "ręcznie".
+	Naprawiony błąd losowania punktów (nie były losowane) cech postaci - dziwnie nie było funkcji za to odpowiedzialnej. Została ona przywrócona.
+Poprawka dla tablicy ekwipunku - ekwipunek wylosowany automatycznie nie przechodzi do trybu wybierania ręcznego - podczas przechodzenia między automatycznym a "ręcznym" tworzeniem postaci tablica ekwipunku jest czyszczona.

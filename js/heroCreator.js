@@ -195,11 +195,11 @@ else if(raceHero == "elf" && occupationsHero == "czarodziej"){
 
 //krasnolud - wojownik
 	else if(raceHero == "krasnolud" && occupationsHero == "wojownik"){
-		functions.randomPoints(warrior[0], dwarf[0], `siła`, hero, 4);
-		functions.randomPoints(warrior[1], dwarf[1], `wytrzymałość`, hero, 5);
-		functions.randomPoints(warrior[2], dwarf[2], `zręczność`, hero, 6);
-		functions.randomPoints(warrior[3], dwarf[3], `inteligencja`, hero, 7);
-		functions.randomPoints(warrior[4], dwarf[4], `charyzma`, hero, 8);
+	functions.randomPoints(warrior[0], dwarf[0], `siła`, hero, 4);
+	functions.randomPoints(warrior[1], dwarf[1], `wytrzymałość`, hero, 5);
+	functions.randomPoints(warrior[2], dwarf[2], `zręczność`, hero, 6);
+	functions.randomPoints(warrior[3], dwarf[3], `inteligencja`, hero, 7);
+	functions.randomPoints(warrior[4], dwarf[4], `charyzma`, hero, 8);
 	}
 
 //krasnolud złoczyńca
@@ -346,7 +346,10 @@ else if(occupationsHero === "czarodziej"){ for (let i=0; i<3; i++) { let random 
 //ręczne tworzenie potstaci
 $("#chooseHero").on("click", ()=>{ $("#drawnCharacter").empty(); $("#playGame").hide(); $("#interactionsBtns").empty(); functions.newElement("p", "choosenHeroTitle", "WYBIERANIE POSTACI", $("#drawnCharacter")); $("#choosenHeroTitle").addClass("basicText center medievalText width100 textUnderlineGold");
 
-	//torzenie przycików dla tworzenia postaci
+//czysczenie tablicy ekwipunku z wybranych wcześniej rzeczy
+equip.splice(0, 5);
+
+	//tworzenie przycików dla tworzenia postaci
 	functions.newElement("button", "createName", "imię", $("#interactionsBtns"));
 	functions.newElement("button", "createRace", "rasa", $("#interactionsBtns"));
 	functions.newElement("button", "createOccupation", "profesja", $("#interactionsBtns"));
@@ -432,22 +435,12 @@ functions.newElement("button", "charisma", "charyzma", $("#interactionCreator"))
 
 $("#force, #strength, #dexterity, #intelligence, #charisma").addClass("basicBtn btnNewGame medievalText width20 marginTop5 marginLeft4");
 
-	//funkcja optymalizująca losowanie cechy
-			function randomPointsFeatures(element, name, number){
-				element.on("click", ()=>{
-				let name = Math.round(Math.random()*50);
-				randomFeatures.splice(number, 1, name);
-				if(randomFeatures[0] !== 0 && randomFeatures[1] !== 0 && randomFeatures[2] !== 0 && randomFeatures[3] !== 0 && randomFeatures[4] !== 0){
-					$("#alerts").html("<p class='greenText boldText fontSize12em medievalText'> wylosowano wszystkie cechy</p>");
-					setTimeout(function(){ $("#alerts").empty(); }, 5000);
-				} }); }
-
-				//funkcje losujące punkty cech
-				randomPointsFeatures($("#force"), "randomForcePoints", 0);
-				randomPointsFeatures($("#strength"), "randomStrenghtPoints", 1);
-				randomPointsFeatures($("#dexterity"), "randomDexterityPoints", 2);
-				randomPointsFeatures($("#intelligence"), "randomIntelligencePoints", 3);
-				randomPointsFeatures($("#charisma"), "randomCharismaPoints", 4);
+//funkcje losujące punkty cech
+	functions.randomPointsFeatures($("#force"), "randomForcePoints", 0, randomFeatures);
+	functions.randomPointsFeatures($("#strength"), "randomStrenghtPoints", 1, randomFeatures);
+	functions.randomPointsFeatures($("#dexterity"), "randomDexterityPoints", 2, randomFeatures);
+	functions.randomPointsFeatures($("#intelligence"), "randomIntelligencePoints", 3, randomFeatures);
+	functions.randomPointsFeatures($("#charisma"), "randomCharismaPoints", 4, randomFeatures);
 }); //koniec losowania cech
 
 $("#createFeatures2").on("click", ()=>{
@@ -461,62 +454,41 @@ functions.newElement("button", "women", "kobieta", $("#interactionCreator"));
 functions.newElement("button", "man", "mężczyzna", $("#interactionCreator"));
 functions.newElement("button", "other", "nie wiadomo", $("#interactionCreator"));
 
-	$("#women").on("click", ()=>{
-		hero.splice(1, 1, "kobieta");
-		$("#alerts").html("<p class='greenText boldText fontSize12em medievalText'> wybrano płeć: <span class='blueText'> kobieta</span></p>");
-		setTimeout(function(){ $("#alerts").empty(); }, 5000);
-	});
+$("#women").on("click", ()=>{ functions.sex(hero, "kobieta"); });
+$("#man").on("click", ()=>{ functions.sex(hero, "mężczyzna"); });
+$("#other").on("click", ()=>{ functions.sex(hero, "nie wiadomo"); });
 
-	$("#man").on("click", ()=>{
-		hero.splice(1, 1, "kobieta");
-		$("#alerts").html("<p class='greenText boldText fontSize12em medievalText'> wybrano płeć: <span class='blueText'> mężczyzna</span></p>");
-		setTimeout(function(){ $("#alerts").empty(); }, 5000);
-	});
+$("#women, #man, #other").addClass("basicBtn btnNewGame medievalText width20 marginTop1 marginLeft10");
 
-	$("#other").on("click", ()=>{
-		hero.splice(1, 1, "kobieta");
-		$("#alerts").html("<p class='greenText boldText fontSize12em medievalText'> wybrano płeć: <span class='blueText'> nie wiadomo</span></p>");
-		setTimeout(function(){ $("#alerts").empty(); }, 5000);
-	});
+functions.newElement("p", "titleEye", "kolor oczy", $("#interactionCreator"));	$("#titleEye").addClass("basicText medievalText textUnderlineGold");
+functions.newElement("button", "hazel", "piwne", $("#interactionCreator"));
+functions.newElement("button", "gray", "szare", $("#interactionCreator"));
+functions.newElement("button", "brownEyes", "brązowe", $("#interactionCreator"));
+functions.newElement("button", "blue", "niebieskie", $("#interactionCreator"));
 
-	$("#women, #man, #other").addClass("basicBtn btnNewGame medievalText width20 marginTop1 marginLeft10");
+$("#hazel").on("click", ()=>{ functions.eyes(hero, "piwne");	});
+$("#gray").on("click", ()=>{ functions.eyes(hero, "szare");	});
+$("#brownEyes").on("click", ()=>{ functions.eyes(hero, "brązowe");	});
+$("#blue").on("click", ()=>{ functions.eyes(hero, "niebieskie");	});
 
-	functions.newElement("p", "titleHair", "kolor włosów", $("#interactionCreator"));
-	$("#titleHair").addClass("basicText medievalText textUnderlineGold");
+$("#hazel, #gray, #brownEyes, #blue").addClass("basicBtn btnNewGame medievalText width20 marginTop1 marginLeft5");
 
-	functions.newElement("button", "blonde", "blond", $("#interactionCreator"));
-	functions.newElement("button", "red", "rude", $("#interactionCreator"));
-	functions.newElement("button", "dark", "czarne", $("#interactionCreator"));
-	functions.newElement("button", "colors", "farbowane", $("#interactionCreator"));
+functions.newElement("p", "titleHair", "kolor włosów", $("#interactionCreator"));	$("#titleHair").addClass("basicText medievalText textUnderlineGold");
 
-	$("#blonde").on("click", ()=>{
-		hero.splice(10, 1, "blond");
-		$("#alerts").html("<p class='greenText boldText fontSize12em medievalText'> wybrano kolor włosów: <span class='blueText'> blond</span></p>");
-		setTimeout(function(){ $("#alerts").empty(); }, 5000);
-	});
+functions.newElement("button", "blonde", "blond", $("#interactionCreator"));
+functions.newElement("button", "red", "rude", $("#interactionCreator"));
+functions.newElement("button", "dark", "czarne", $("#interactionCreator"));
+functions.newElement("button", "colors", "farbowane", $("#interactionCreator"));
 
-	$("#red").on("click", ()=>{
-		hero.splice(10, 1, "rude");
-		$("#alerts").html("<p class='greenText boldText fontSize12em medievalText'> wybrano kolor włosów: <span class='blueText'> rude</span></p>");
-		setTimeout(function(){ $("#alerts").empty(); }, 5000);
-	});
+$("#blonde").on("click", ()=>{ functions.hair(hero, "blond");	});
+$("#red").on("click", ()=>{ functions.hair(hero, "rude");	});
+$("#dark").on("click", ()=>{ functions.hair(hero, "czarne");	});
+$("#colors").on("click", ()=>{ functions.hair(hero, "farbowane");	});
 
-	$("#dark").on("click", ()=>{
-		hero.splice(10, 1, "czarne");
-		$("#alerts").html("<p class='greenText boldText fontSize12em medievalText'> wybrano kolor włosów: <span class='blueText'> czarne</span></p>");
-		setTimeout(function(){ $("#alerts").empty(); }, 5000);
-	});
+$("#blonde, #red, #dark, #colors").addClass("basicBtn btnNewGame medievalText width20 marginTop1 marginLeft5");
 
-	$("#colors").on("click", ()=>{
-		hero.splice(10, 1, "farbowane");
-		$("#alerts").html("<p class='greenText boldText fontSize12em medievalText'> wybrano kolor włosów: <span class='blueText'> farbowane</span></p>");
-		setTimeout(function(){ $("#alerts").empty(); }, 5000);
-	});
-
-	$("#blonde, #red, #dark, #colors").addClass("basicBtn btnNewGame medievalText width20 marginTop1 marginLeft5");
-
-	functions.newElement("p", "titleSkin", "kolor skóry", $("#interactionCreator"));
-	$("#titleSkin").addClass("basicText medievalText textUnderlineGold");
+functions.newElement("p", "titleSkin", "kolor skóry", $("#interactionCreator"));
+$("#titleSkin").addClass("basicText medievalText textUnderlineGold");
 
 	functions.newElement("button", "white", "biała", $("#interactionCreator"));
 	functions.newElement("button", "brown", "brązowa", $("#interactionCreator"));
@@ -527,143 +499,50 @@ functions.newElement("button", "other", "nie wiadomo", $("#interactionCreator"))
 	functions.newElement("button", "tawny", "brunatna", $("#interactionCreator"));
 	functions.newElement("button", "azure", "błęitna", $("#interactionCreator"));
 
-	$("#white").on("click", ()=>{
-		hero.splice(11, 1, "biała");
-		$("#alerts").html("<p class='greenText boldText fontSize12em medievalText'> wybrano kolor skóry: <span class='blueText'> biała</span></p>");
-		setTimeout(function(){ $("#alerts").empty(); }, 5000);
-	});
+	$("#white").on("click", ()=>{ functions.skin(hero, "biała"); });
+	$("#brown").on("click", ()=>{ functions.skin(hero, "brązowa"); });
+	$("#black").on("click", ()=>{ functions.skin(hero, "czarna"); });
+	$("#redSkin").on("click", ()=>{ functions.skin(hero, "czerwona"); });
+	$("#yellow").on("click", ()=>{ functions.skin(hero, "żółta"); });
+	$("#green").on("click", ()=>{ functions.skin(hero, "zielona"); });
+	$("#tawny").on("click", ()=>{ functions.skin(hero, "brunatna"); });
+	$("#azure").on("click", ()=>{ functions.skin(hero, "błękitna"); });
 
-	$("#brown").on("click", ()=>{
-		hero.splice(11, 1, "brązowa");
-		$("#alerts").html("<p class='greenText boldText fontSize12em medievalText'> wybrano kolor skóry: <span class='blueText'> brązowa</span></p>");
-		setTimeout(function(){ $("#alerts").empty(); }, 5000);
-	});
+$("#white, #brown, #black, #redSkin, #yellow, #green, #tawny, #azure").addClass("basicBtn btnNewGame medievalText width20 marginTop1 marginLeft5");
 
-	$("#black").on("click", ()=>{
-		hero.splice(11, 1, "czarna");
-		$("#alerts").html("<p class='greenText boldText fontSize12em medievalText'> wybrano kolor skóry: <span class='blueText'> czarna</span></p>");
-		setTimeout(function(){ $("#alerts").empty(); }, 5000);
-	});
+functions.newElement("p", "titleWeight", "waga", $("#interactionCreator"));
+$("#titleWeight").addClass("basicText medievalText textUnderlineGold");
 
-	$("#redSkin").on("click", ()=>{
-		hero.splice(11, 1, "czerwona");
-		$("#alerts").html("<p class='greenText boldText fontSize12em medievalText'> wybrano kolor skóry: <span class='blueText'> czerwona</span></p>");
-		setTimeout(function(){ $("#alerts").empty(); }, 5000);
-	});
+functions.newElement("button", "lessWeight", "niedowaga", $("#interactionCreator"));
+functions.newElement("button", "normalWeight", "normalna", $("#interactionCreator"));
+functions.newElement("button", "overWeight", "nadwaga", $("#interactionCreator"));
 
-	$("#yellow").on("click", ()=>{
-		hero.splice(11, 1, "zółta");
-		$("#alerts").html("<p class='greenText boldText fontSize12em medievalText'> wybrano kolor skóry: <span class='blueText'> żółta</span></p>");
-		setTimeout(function(){ $("#alerts").empty(); }, 5000);
-	});
+$("#lessWeight, #normalWeight, #overWeight").addClass("basicBtn btnNewGame medievalText width20 marginTop1 marginLeft10");
 
-	$("#green").on("click", ()=>{
-		hero.splice(11, 1, "zielona");
-		$("#alerts").html("<p class='greenText boldText fontSize12em medievalText'> wybrano kolor skóry: <span class='blueText'> zielona</span></p>");
-		setTimeout(function(){ $("#alerts").empty(); }, 5000);
-	});
-
-	$("#tawny").on("click", ()=>{
-		hero.splice(11, 1, "brunatna");
-		$("#alerts").html("<p class='greenText boldText fontSize12em medievalText'> wybrano kolor skóry: <span class='blueText'> brunatna</span></p>");
-		setTimeout(function(){ $("#alerts").empty(); }, 5000);
-	});
-
-	$("#azure").on("click", ()=>{
-		hero.splice(11, 1, "błękitna");
-		$("#alerts").html("<p class='greenText boldText fontSize12em medievalText'> wybrano kolor skóry: <span class='blueText'> błękitna</span></p>");
-		setTimeout(function(){ $("#alerts").empty(); }, 5000);
-	});
-
-		$("#white, #brown, #black, #redSkin, #yellow, #green, #tawny, #azure").addClass("basicBtn btnNewGame medievalText width20 marginTop1 marginLeft5");
-
-		functions.newElement("p", "titleWeight", "waga", $("#interactionCreator"));
-		$("#titleWeight").addClass("basicText medievalText textUnderlineGold");
-
-		functions.newElement("button", "lessWeight", "niedowaga", $("#interactionCreator"));
-		functions.newElement("button", "normalWeight", "normalna", $("#interactionCreator"));
-		functions.newElement("button", "overWeight", "nadwaga", $("#interactionCreator"));
-
-	$("#lessWeight, #normalWeight, #overWeight").addClass("basicBtn btnNewGame medievalText width20 marginTop1 marginLeft10");
-
-	$("#lessWeight").on("click", ()=>{
-		hero.splice(12, 1, "niedowaga");
-		$("#alerts").html("<p class='greenText boldText fontSize12em medievalText'> wybrano wagę: <span class='blueText'> niedowaga</span></p>");
-		setTimeout(function(){ $("#alerts").empty(); }, 5000);
-	});
-
-	$("#normalWeight").on("click", ()=>{
-		hero.splice(12, 1, "normalna");
-		$("#alerts").html("<p class='greenText boldText fontSize12em medievalText'> wybrano wagę: <span class='blueText'> normalna</span></p>");
-		setTimeout(function(){ $("#alerts").empty(); }, 5000);
-	});
-
-	$("#overWeight").on("click", ()=>{
-		hero.splice(12, 1, "nadwaga");
-		$("#alerts").html("<p class='greenText boldText fontSize12em medievalText'> wybrano wagę: <span class='blueText'> nadwaga</span></p>");
-		setTimeout(function(){ $("#alerts").empty(); }, 5000);
-	});
+$("#lessWeight").on("click", ()=>{ functions.weight(hero, "niedowaga"); });
+$("#normalWeight").on("click", ()=>{ functions.weight(hero, "normalna"); });
+$("#overWeight").on("click", ()=>{ functions.weight(hero, "nadwaga"); });
 
 	functions.newElement("p", "titleHeight", "wzrost", $("#interactionCreator"));
 	$("#titleHeight").addClass("basicText medievalText textUnderlineGold");
 
-		functions.newElement("button", "short", "niski", $("#interactionCreator"));
-		functions.newElement("button", "normal", "normalny", $("#interactionCreator"));
-		functions.newElement("button", "tall", "wysoki", $("#interactionCreator"));
+functions.newElement("button", "short", "niski", $("#interactionCreator"));
+functions.newElement("button", "normal", "normalny", $("#interactionCreator"));
+functions.newElement("button", "tall", "wysoki", $("#interactionCreator"));
 
-		$("#short").on("click", ()=>{
-			hero.splice(13, 1, "niski");
-			$("#alerts").html("<p class='greenText boldText fontSize12em medievalText'> wybrano wzrost: <span class='blueText'> niski</span></p>");
-			setTimeout(function(){ $("#alerts").empty(); }, 5000);
-		});
+$("#short").on("click", ()=>{ functions.height(hero, "niski"); });
+$("#normal").on("click", ()=>{ functions.height(hero, "normalny"); });
+$("#tall").on("click", ()=>{ functions.height(hero, "wysoki"); });
 
-		$("#normal").on("click", ()=>{
-			hero.splice(13, 1, "normalna");
-			$("#alerts").html("<p class='greenText boldText fontSize12em medievalText'> wybrano wzrost: <span class='blueText'> normalny</span></p>");
-			setTimeout(function(){ $("#alerts").empty(); }, 5000);
-		});
-
-		$("#tall").on("click", ()=>{
-			hero.splice(13, 1, "wysoki");
-			$("#alerts").html("<p class='greenText boldText fontSize12em medievalText'> wybrano wzrost: <span class='blueText'> wysoki</span></p>");
-			setTimeout(function(){ $("#alerts").empty(); }, 5000);
-		});
-
-	$("#short, #normal, #tall").addClass("basicBtn btnNewGame medievalText width20 marginTop1 marginLeft10");
+$("#short, #normal, #tall").addClass("basicBtn btnNewGame medievalText width20 marginTop1 marginLeft10");
 });// koniec przycisku "cechy 2"
 
 //wybieranie ekwipunku
-$("#createEquip").on("click", ()=>{
-functions.clearStart("wybór ekwipunku");
-	functions.description("Ta część podzielona jest zasadniczo na dwie części. W pierwszej możesz wybrać (w sumie) pięć rzeczy z kategorii: broń, zbroje, tarcze i inne. W drugiej części dzięki przyciskom, będzie można usunąć wcześniej wybrane przedmioty.");
+$("#createEquip").on("click", ()=>{ functions.clearStart("wybór ekwipunku");
+functions.description("Ta część podzielona jest zasadniczo na dwie części. W pierwszej możesz wybrać (w sumie) pięć rzeczy z kategorii: broń, zbroje, tarcze i inne. W drugiej części dzięki przyciskom, będzie można usunąć wcześniej wybrane przedmioty.");
 
-  function chooseItem(whatClick, whatPush){
-  	whatClick.on("click", () =>{
-  		if(equip.length <= 4){
-        $("#alerts").html("<p class='greenText boldText fontSize12em medievalText'> wybrano rzecz: <span class='blueText'> " + whatPush + "</span></p>");
-    		setTimeout(function(){ $("#alerts").empty(); }, 5000);
-
-  			$("#btnToRemove").text(functions.newElement("button", whatPush, whatPush, $("#btnToRemove")));
-  			$("#btnToRemove").find("button").addClass("basicBtn btnNewGame medievalText width20 marginTop1 marginLeft5");
-        equip.push(whatPush);
-
-				let allBtnRemove = document.querySelectorAll("#btnToRemove button"), i;
-					for(i=0; i<allBtnRemove.length; i++){
-						allBtnRemove[i].addEventListener("click", function(e){
-							if(equip.indexOf(this.id) !== -1){
-								equip.splice(equip.indexOf(this.id), 1);
-								this.remove();
-								$("#alerts").html("<p class='redText boldText fontSize12em medievalText'>usunięto: <span class='blueText'>" + this.id + "</span>");
-				        setTimeout(function(){ $("#alerts").empty(); }, 5000);
-							}
-						});
-					}
-  		}else{
-        $("#alerts").html("<p class='redText boldText fontSize12em medievalText'>Już zostało wybrane pięć przedmiotów.");
-        setTimeout(function(){ $("#alerts").empty(); }, 5000);
-        equip.splice(5, 1);
-  		}
-  	}); //koniec funkcji kliknięcia w przycisk
+//funkcja wybierania i usuwania rzeczy z ekwipunku
+function chooseItem(whatClick, whatPush){ whatClick.on("click", () =>{ 	functions.itemsAddRemove(whatClick, whatPush, equip); }); //koniec funkcji wybierania i usuwania rzeczy z ekwipunku
 }
 
 //broń
@@ -672,11 +551,17 @@ functions.clearStart("wybór ekwipunku");
 	functions.newElement("button", "dagger", "sztylet", $("#interactionCreator"));
   chooseItem($("#dagger"), "sztylet");
 	functions.newElement("button", "woodenStick", "drewniana pałka", $("#interactionCreator"));
+	chooseItem($("#woodenStick"), "drewniana pałka");
 	functions.newElement("button", "shortSword", "krótki miecz", $("#interactionCreator"));
+	chooseItem($("#shortSword"), "krótki miecz");
 	functions.newElement("button", "sabre", "szabla", $("#interactionCreator"));
+	chooseItem($("#sabre"), "szable");
 	functions.newElement("button", "spear", "włócznia", $("#interactionCreator"));
+	chooseItem($("#spear"), "włócznia");
 	functions.newElement("button", "slingshot", "proca", $("#interactionCreator"));
+	chooseItem($("#slingshot"), "proca");
 	functions.newElement("button", "bow", "łuk", $("#interactionCreator"));
+	chooseItem($("#bow"), "łuk");
 
 	$("#dagger, #woodenStick, #shortSword, #sabre, #spear, #slingshot, #bow").addClass("basicBtn btnNewGame medievalText width20 marginTop1 marginLeft5");
 
@@ -684,8 +569,11 @@ functions.clearStart("wybór ekwipunku");
 		functions.newElement("p", "armor", "zbroje", $("#interactionCreator"));
 		$("#armor").addClass("basicText medievalText textUnderlineGold");
 		functions.newElement("button", "gambison", "przeszywanica", $("#interactionCreator"));
+		chooseItem($("#gambison"), "przeszywanica");
 		functions.newElement("button", "leather", "zbr. skórzana", $("#interactionCreator"));
+		chooseItem($("#leather"), "zbr. skórzana");
 		functions.newElement("button", "studded", "zbr. ćwiekowana", $("#interactionCreator"));
+		chooseItem($("#studded"), "zbr. ćwiekowana");
 
 		$("#gambison, #leather, #studded").addClass("basicBtn btnNewGame medievalText width20 marginTop1 marginLeft10");
 
@@ -693,8 +581,11 @@ functions.clearStart("wybór ekwipunku");
 		functions.newElement("p", "shield", "tarcze", $("#interactionCreator"));
 		$("#shield").addClass("basicText medievalText textUnderlineGold");
 		functions.newElement("button", "buckler", "puklerz", $("#interactionCreator"));
+		chooseItem($("#buckler"), "puklerz");
 		functions.newElement("button", "smallWodden", "mała tarcza drew.", $("#interactionCreator"));
+		chooseItem($("#smallWodden"), "mała tarcza drew.");
 		functions.newElement("button", "smallMetal", "mała tarcza metal.", $("#interactionCreator"));
+		chooseItem($("#smallMetal"), "mała tarcza metal.");
 
 		$("#buckler, #smallWodden, #smallMetal").addClass("basicBtn btnNewGame medievalText width20 marginTop1 marginLeft10");
 
@@ -703,29 +594,54 @@ functions.clearStart("wybór ekwipunku");
 			$("#other").addClass("basicText medievalText textUnderlineGold");
 
 			functions.newElement("button", "stick", "kostur", $("#interactionCreator"));
+				chooseItem($("#stick"), "kostur");
 			functions.newElement("button", "moneyBag", "mieszek", $("#interactionCreator"));
+				chooseItem($("#moneyBag"), "mieszek");
 			functions.newElement("button", "travelBag", "torba podróżna", $("#interactionCreator"));
+				chooseItem($("#travelBag"), "torba podróżna");
 			functions.newElement("button", "purse", "sakwa", $("#interactionCreator"));
+				chooseItem($("#purse"), "sakwa");
 			functions.newElement("button", "backpack", "plecak", $("#interactionCreator"));
+				chooseItem($("#backpack"), "plecak");
 			functions.newElement("button", "canteen", "manierka", $("#interactionCreator"));
+				chooseItem($("#canteen"), "manierka");
 			functions.newElement("button", "pot", "sagan", $("#interactionCreator"));
+				chooseItem($("#pot"), "sagan");
 			functions.newElement("button", "blanket", "koc", $("#interactionCreator"));
-			functions.newElement("button", "tubePartschmen", "tuba na pergaminy", $("#interactionCreator"));
+			chooseItem($("#blanket"), "koc");
+			functions.newElement("button", "tubePartschmen", "tuba na pergaminy",
+			$("#interactionCreator"));
+			chooseItem($("#tubePartschmen"), "tuba na pergaminy");
 			functions.newElement("button", "penWriting", "pęk piór do pisania", $("#interactionCreator"));
+			chooseItem($("#penWriting"), "pęk piór do pisania");
 			functions.newElement("button", "parchments5pieces", "pergaminy 5szt.", $("#interactionCreator"));
+			chooseItem($("#parchments5pieces"), "pergaminy 5szt.");
 			functions.newElement("button", "ordinaryClothing", "zwykłe ubranie", $("#interactionCreator"));
+			chooseItem($("#ordinaryClothing"), "zwykłe ubranie");
 			functions.newElement("button", "fussyHat", "fikuśna czapka", $("#interactionCreator"));
+			chooseItem($("#fussyHat"), "fikuśna czapka");
 			functions.newElement("button", "coat", "płaszcz", $("#interactionCreator"));
+			chooseItem($("#coat"), "płaszcz");
 			functions.newElement("button", "leatherBelt", "skórzany pas", $("#interactionCreator"));
+			chooseItem($("#leatherBelt"), "skórza pas");
 			functions.newElement("button", "needlesThread", "igły i nici", $("#interactionCreator"));
+			chooseItem($("#needlesThread"), "igły i nici");
 			functions.newElement("button", "saddleCloth", "derka", $("#interactionCreator"));
+			chooseItem($("#saddleCloth"), "derka");
 			functions.newElement("button", "tent", "namiot", $("#interactionCreator"));
+			chooseItem($("#tent"), "namiot");
 			functions.newElement("button", "woodenBowl", "drewniana miska", $("#interactionCreator"));
+			chooseItem($("#woodenBowl"), "drewniana miska");
 			functions.newElement("button", "torch", "pochodnia", $("#interactionCreator"));
+			chooseItem($("#torch"), "pochodnia");
 			functions.newElement("button", "oliveLamp", "lampa oliwna", $("#interactionCreator"));
+			chooseItem($("#oliveLamp"), "lampa oliwna");
 			functions.newElement("button", "oilLamp", "kaganek", $("#interactionCreator"));
+			chooseItem($("#oilLamp"), "kaganek");
 			functions.newElement("button", "rope5m", "lina 5m", $("#interactionCreator"));
+			chooseItem($("#rope5m"), "lina 5m");
 			functions.newElement("button", "tinders", "hubka i krzesiwo", $("#interactionCreator"));
+			chooseItem($("#tinders"), "hubka i krzesiwo");
 
 			$("#stick, #moneyBag, #travelBag, #purse, #backpack, #canteen, #pot, #blanket, #tubePartschmen, #penWriting, #parchments5pieces, #ordinaryClothing, #fussyHat, #coat, #leatherBelt, #needlesThread, #saddleCloth, #tent, #woodenBowl, #torch, #oliveLamp, #oilLamp, #rope5m, #tinders").addClass("basicBtn btnNewGame medievalText width20 marginTop1 marginLeft5");
 
@@ -734,21 +650,9 @@ functions.clearStart("wybór ekwipunku");
 
       functions.newElement("div", "btnToRemove", "", $("#interactionCreator"));
 
-			//pętla dla przycisków usuwania przedmiotów, gdy pownownie wejdzie się w opcje wybiernia przedmiotów
-	for(let j=0; j<equip.length; j++){
-		functions.newElement("button", j, equip[j], $("#btnToRemove"));
-		$("#btnToRemove").find("button").addClass("basicBtn btnNewGame medievalText width20 marginTop1 marginLeft5");
-		let allBtnRemove = document.querySelectorAll("#btnToRemove button"), i;
-		for(i=0; i<allBtnRemove.length; i++){
-				allBtnRemove[i].addEventListener("click", function(e){
-					if(equip.indexOf($(this).text()) !== -1){
-						equip.splice(equip.indexOf($(this).text()), 1);
-						this.remove();
-					}
-				this.remove();
-				});
-			}
-	}
+//pętla dla przycisków usuwania przedmiotów, gdy pownownie wejdzie się w opcje wybiernia przedmiotów
+		functions.loopForRemove(equip);
+
 });//koniec tworzenia ekwipunku
 });//koniec ręcznego tworzenie postaci
 }//koniec module.exports.randomChooseHeroBtns

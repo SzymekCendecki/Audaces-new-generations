@@ -93,6 +93,11 @@ module.exports.clickFirstMenu = function (element, element2, idElement, textElem
   });
 };
 
+//funkcja losowania punktów cech postaci w oparciu o rasę, profesję i wylosowaną liczbę
+module.exports.randomPoints = function (occupationsPoints, racePoints, text, table, tablePosition) {
+  var randomPoints = Math.round(Math.random() * 50);var allPoints = randomPoints + occupationsPoints + racePoints;$("#drawnCharacter").append("<p class = \"basicText center width20 medievalText fontSize11em\">" + text + (": <span class=\"greenText\">" + allPoints + "</span></p>"));table.splice(tablePosition, 1, allPoints);
+};
+
 //-----------------funkcje "ręcznego" tworzenia postaci----------------//
 //funkcja czyszczenia diva interactionCreator, dodawania diva description oraz tytułu głównego
 module.exports.clearStart = function (text) {
@@ -119,9 +124,105 @@ module.exports.oneOccupation = function (hero, text) {
   }, 5000);
 };
 
-//funckcja zliczająca punkty cech w zależności od rasy, profesji oraz wylosowanej liczby
-module.exports.randomPoints = function (occupationsPoints, racePoints, text, table, tablePosition) {
-  var randomPoints = Math.round(Math.random() * 50);var allPoints = randomPoints + occupationsPoints + racePoints;$("#drawnCharacter").append("<p class = \"basicText center width20 medievalText fontSize11em\">" + text + (": <span class=\"greenText\">" + allPoints + "</span></p>"));table.splice(tablePosition, 1, allPoints);
+//funkcja losując punkty cechy - "ręczne" tworzenie postaci
+module.exports.randomPointsFeatures = function (element, name, number, randomFeatures) {
+  element.on("click", function () {
+    var name = Math.round(Math.random() * 50);randomFeatures.splice(number, 1, name);if (randomFeatures[0] !== 0 && randomFeatures[1] !== 0 && randomFeatures[2] !== 0 && randomFeatures[3] !== 0 && randomFeatures[4] !== 0) {
+      $("#alerts").html("<p class='greenText boldText fontSize12em medievalText'> wylosowano wszystkie cechy</p>");setTimeout(function () {
+        $("#alerts").empty();
+      }, 5000);
+    }
+  });
+};
+
+//zdarzenie wyboru płci
+module.exports.sex = function (hero, text) {
+  hero.splice(1, 1, text);
+  $("#alerts").html("<p class='greenText boldText fontSize12em medievalText'> wybrano płeć: <span class='blueText'> " + text + "</span></p>");setTimeout(function () {
+    $("#alerts").empty();
+  }, 5000);
+};
+
+//zdarzenie wyboru koloru oczu
+module.exports.eyes = function (hero, text) {
+  hero.splice(9, 1, text);
+  $("#alerts").html("<p class='greenText boldText fontSize12em medievalText'> wybrano kolor oczu: <span class='blueText'> " + text + "</span></p>");setTimeout(function () {
+    $("#alerts").empty();
+  }, 5000);
+};
+
+//zdarzenie wyboru koloru włosów
+module.exports.hair = function (hero, text) {
+  hero.splice(10, 1, text);
+  $("#alerts").html("<p class='greenText boldText fontSize12em medievalText'> wybrano kolor włosów: <span class='blueText'> " + text + "</span></p>");setTimeout(function () {
+    $("#alerts").empty();
+  }, 5000);
+};
+
+//zdarzenie wyboru koloru skóry
+module.exports.skin = function (hero, text) {
+  hero.splice(11, 1, text);
+  $("#alerts").html("<p class='greenText boldText fontSize12em medievalText'> wybrano kolor skóry: <span class='blueText'> " + text + "</span></p>");setTimeout(function () {
+    $("#alerts").empty();
+  }, 5000);
+};
+
+//zdarzenie wyboru koloru wagi
+module.exports.weight = function (hero, text) {
+  hero.splice(12, 1, text);
+  $("#alerts").html("<p class='greenText boldText fontSize12em medievalText'> wybrano wagę: <span class='blueText'> " + text + "</span></p>");setTimeout(function () {
+    $("#alerts").empty();
+  }, 5000);
+};
+
+//zdarzenie wyboru wzrostu
+module.exports.height = function (hero, text) {
+  hero.splice(13, 1, text);
+  $("#alerts").html("<p class='greenText boldText fontSize12em medievalText'> wybrano wzrost: <span class='blueText'> " + text + "</span></p>");setTimeout(function () {
+    $("#alerts").empty();
+  }, 5000);
+};
+
+//funkcja dodawania i usuwania rzeczy do ekwipunku
+module.exports.itemsAddRemove = function (whatClick, whatPush, equip) {
+  if (equip.length < 5) {
+    if (equip.indexOf(whatPush) !== -1) {
+      var number = 0;number = number + equip.length;$("#alerts").html("<p class='greenText boldText fontSize12em medievalText'> wybrano rzecz: <span class='blueText'> " + whatPush + "</span></p>");setTimeout(function () {
+        $("#alerts").empty();
+      }, 5000);$("#btnToRemove").text(newElement("button", whatPush + number, whatPush, $("#btnToRemove")));
+    } else {
+      $("#alerts").html("<p class='greenText boldText fontSize12em medievalText'> wybrano rzecz: <span class='blueText'> " + whatPush + "</span></p>");setTimeout(function () {
+        $("#alerts").empty();
+      }, 5000);$("#btnToRemove").text(newElement("button", whatPush, whatPush, $("#btnToRemove")));
+    }
+    $("#btnToRemove").find("button").addClass("basicBtn btnNewGame medievalText width20 marginTop1 marginLeft5");equip.push(whatPush);var allBtnRemove = document.querySelectorAll("#btnToRemove button"),
+        i = void 0;for (i = 0; i < allBtnRemove.length; i++) {
+      allBtnRemove[i].addEventListener("click", function (e) {
+        equip.splice(equip.indexOf(this.id), 1);this.remove();$("#alerts").html("<p class='redText boldText fontSize12em medievalText'>usunięto: <span class='blueText'>" + this.id + "</span>");setTimeout(function () {
+          $("#alerts").empty();
+        }, 5000);
+      });
+    }
+  } else {
+    $("#alerts").html("<p class='redText boldText fontSize12em medievalText'>Już zostało wybrane pięć przedmiotów.");setTimeout(function () {
+      $("#alerts").empty();
+    }, 5000);equip.splice(5, 1);
+  }
+};
+
+//pętla dla przycisków usuwania przedmiotów, gdy pownownie wejdzie się w opcje wybiernia przedmiotów
+module.exports.loopForRemove = function (equip) {
+  for (var j = 0; j < equip.length; j++) {
+    newElement("button", j, equip[j], $("#btnToRemove"));$("#btnToRemove").find("button").addClass("basicBtn btnNewGame medievalText width20 marginTop1 marginLeft5");var allBtnRemove = document.querySelectorAll("#btnToRemove button"),
+        i = void 0;
+    for (i = 0; i < allBtnRemove.length; i++) {
+      allBtnRemove[i].addEventListener("click", function (e) {
+        if (equip.indexOf($(this).text()) !== -1) {
+          equip.splice(equip.indexOf($(this).text()), 1);this.remove();
+        }this.remove();
+      });
+    }
+  }
 };
 
 //funkcja optymalizująca wybieranie rasy i profesji
@@ -536,7 +637,10 @@ module.exports.randomChooseHeroBtns = function () {
 	$("#chooseHero").on("click", function () {
 		$("#drawnCharacter").empty();$("#playGame").hide();$("#interactionsBtns").empty();functions.newElement("p", "choosenHeroTitle", "WYBIERANIE POSTACI", $("#drawnCharacter"));$("#choosenHeroTitle").addClass("basicText center medievalText width100 textUnderlineGold");
 
-		//torzenie przycików dla tworzenia postaci
+		//czysczenie tablicy ekwipunku z wybranych wcześniej rzeczy
+		equip.splice(0, 5);
+
+		//tworzenie przycików dla tworzenia postaci
 		functions.newElement("button", "createName", "imię", $("#interactionsBtns"));
 		functions.newElement("button", "createRace", "rasa", $("#interactionsBtns"));
 		functions.newElement("button", "createOccupation", "profesja", $("#interactionsBtns"));
@@ -638,26 +742,12 @@ module.exports.randomChooseHeroBtns = function () {
 
 			$("#force, #strength, #dexterity, #intelligence, #charisma").addClass("basicBtn btnNewGame medievalText width20 marginTop5 marginLeft4");
 
-			//funkcja optymalizująca losowanie cechy
-			function randomPointsFeatures(element, name, number) {
-				element.on("click", function () {
-					var name = Math.round(Math.random() * 50);
-					randomFeatures.splice(number, 1, name);
-					if (randomFeatures[0] !== 0 && randomFeatures[1] !== 0 && randomFeatures[2] !== 0 && randomFeatures[3] !== 0 && randomFeatures[4] !== 0) {
-						$("#alerts").html("<p class='greenText boldText fontSize12em medievalText'> wylosowano wszystkie cechy</p>");
-						setTimeout(function () {
-							$("#alerts").empty();
-						}, 5000);
-					}
-				});
-			}
-
 			//funkcje losujące punkty cech
-			randomPointsFeatures($("#force"), "randomForcePoints", 0);
-			randomPointsFeatures($("#strength"), "randomStrenghtPoints", 1);
-			randomPointsFeatures($("#dexterity"), "randomDexterityPoints", 2);
-			randomPointsFeatures($("#intelligence"), "randomIntelligencePoints", 3);
-			randomPointsFeatures($("#charisma"), "randomCharismaPoints", 4);
+			functions.randomPointsFeatures($("#force"), "randomForcePoints", 0, randomFeatures);
+			functions.randomPointsFeatures($("#strength"), "randomStrenghtPoints", 1, randomFeatures);
+			functions.randomPointsFeatures($("#dexterity"), "randomDexterityPoints", 2, randomFeatures);
+			functions.randomPointsFeatures($("#intelligence"), "randomIntelligencePoints", 3, randomFeatures);
+			functions.randomPointsFeatures($("#charisma"), "randomCharismaPoints", 4, randomFeatures);
 		}); //koniec losowania cech
 
 		$("#createFeatures2").on("click", function () {
@@ -672,33 +762,39 @@ module.exports.randomChooseHeroBtns = function () {
 			functions.newElement("button", "other", "nie wiadomo", $("#interactionCreator"));
 
 			$("#women").on("click", function () {
-				hero.splice(1, 1, "kobieta");
-				$("#alerts").html("<p class='greenText boldText fontSize12em medievalText'> wybrano płeć: <span class='blueText'> kobieta</span></p>");
-				setTimeout(function () {
-					$("#alerts").empty();
-				}, 5000);
+				functions.sex(hero, "kobieta");
 			});
-
 			$("#man").on("click", function () {
-				hero.splice(1, 1, "kobieta");
-				$("#alerts").html("<p class='greenText boldText fontSize12em medievalText'> wybrano płeć: <span class='blueText'> mężczyzna</span></p>");
-				setTimeout(function () {
-					$("#alerts").empty();
-				}, 5000);
+				functions.sex(hero, "mężczyzna");
 			});
-
 			$("#other").on("click", function () {
-				hero.splice(1, 1, "kobieta");
-				$("#alerts").html("<p class='greenText boldText fontSize12em medievalText'> wybrano płeć: <span class='blueText'> nie wiadomo</span></p>");
-				setTimeout(function () {
-					$("#alerts").empty();
-				}, 5000);
+				functions.sex(hero, "nie wiadomo");
 			});
 
 			$("#women, #man, #other").addClass("basicBtn btnNewGame medievalText width20 marginTop1 marginLeft10");
 
-			functions.newElement("p", "titleHair", "kolor włosów", $("#interactionCreator"));
-			$("#titleHair").addClass("basicText medievalText textUnderlineGold");
+			functions.newElement("p", "titleEye", "kolor oczy", $("#interactionCreator"));$("#titleEye").addClass("basicText medievalText textUnderlineGold");
+			functions.newElement("button", "hazel", "piwne", $("#interactionCreator"));
+			functions.newElement("button", "gray", "szare", $("#interactionCreator"));
+			functions.newElement("button", "brownEyes", "brązowe", $("#interactionCreator"));
+			functions.newElement("button", "blue", "niebieskie", $("#interactionCreator"));
+
+			$("#hazel").on("click", function () {
+				functions.eyes(hero, "piwne");
+			});
+			$("#gray").on("click", function () {
+				functions.eyes(hero, "szare");
+			});
+			$("#brownEyes").on("click", function () {
+				functions.eyes(hero, "brązowe");
+			});
+			$("#blue").on("click", function () {
+				functions.eyes(hero, "niebieskie");
+			});
+
+			$("#hazel, #gray, #brownEyes, #blue").addClass("basicBtn btnNewGame medievalText width20 marginTop1 marginLeft5");
+
+			functions.newElement("p", "titleHair", "kolor włosów", $("#interactionCreator"));$("#titleHair").addClass("basicText medievalText textUnderlineGold");
 
 			functions.newElement("button", "blonde", "blond", $("#interactionCreator"));
 			functions.newElement("button", "red", "rude", $("#interactionCreator"));
@@ -706,35 +802,16 @@ module.exports.randomChooseHeroBtns = function () {
 			functions.newElement("button", "colors", "farbowane", $("#interactionCreator"));
 
 			$("#blonde").on("click", function () {
-				hero.splice(10, 1, "blond");
-				$("#alerts").html("<p class='greenText boldText fontSize12em medievalText'> wybrano kolor włosów: <span class='blueText'> blond</span></p>");
-				setTimeout(function () {
-					$("#alerts").empty();
-				}, 5000);
+				functions.hair(hero, "blond");
 			});
-
 			$("#red").on("click", function () {
-				hero.splice(10, 1, "rude");
-				$("#alerts").html("<p class='greenText boldText fontSize12em medievalText'> wybrano kolor włosów: <span class='blueText'> rude</span></p>");
-				setTimeout(function () {
-					$("#alerts").empty();
-				}, 5000);
+				functions.hair(hero, "rude");
 			});
-
 			$("#dark").on("click", function () {
-				hero.splice(10, 1, "czarne");
-				$("#alerts").html("<p class='greenText boldText fontSize12em medievalText'> wybrano kolor włosów: <span class='blueText'> czarne</span></p>");
-				setTimeout(function () {
-					$("#alerts").empty();
-				}, 5000);
+				functions.hair(hero, "czarne");
 			});
-
 			$("#colors").on("click", function () {
-				hero.splice(10, 1, "farbowane");
-				$("#alerts").html("<p class='greenText boldText fontSize12em medievalText'> wybrano kolor włosów: <span class='blueText'> farbowane</span></p>");
-				setTimeout(function () {
-					$("#alerts").empty();
-				}, 5000);
+				functions.hair(hero, "farbowane");
 			});
 
 			$("#blonde, #red, #dark, #colors").addClass("basicBtn btnNewGame medievalText width20 marginTop1 marginLeft5");
@@ -752,67 +829,28 @@ module.exports.randomChooseHeroBtns = function () {
 			functions.newElement("button", "azure", "błęitna", $("#interactionCreator"));
 
 			$("#white").on("click", function () {
-				hero.splice(11, 1, "biała");
-				$("#alerts").html("<p class='greenText boldText fontSize12em medievalText'> wybrano kolor skóry: <span class='blueText'> biała</span></p>");
-				setTimeout(function () {
-					$("#alerts").empty();
-				}, 5000);
+				functions.skin(hero, "biała");
 			});
-
 			$("#brown").on("click", function () {
-				hero.splice(11, 1, "brązowa");
-				$("#alerts").html("<p class='greenText boldText fontSize12em medievalText'> wybrano kolor skóry: <span class='blueText'> brązowa</span></p>");
-				setTimeout(function () {
-					$("#alerts").empty();
-				}, 5000);
+				functions.skin(hero, "brązowa");
 			});
-
 			$("#black").on("click", function () {
-				hero.splice(11, 1, "czarna");
-				$("#alerts").html("<p class='greenText boldText fontSize12em medievalText'> wybrano kolor skóry: <span class='blueText'> czarna</span></p>");
-				setTimeout(function () {
-					$("#alerts").empty();
-				}, 5000);
+				functions.skin(hero, "czarna");
 			});
-
 			$("#redSkin").on("click", function () {
-				hero.splice(11, 1, "czerwona");
-				$("#alerts").html("<p class='greenText boldText fontSize12em medievalText'> wybrano kolor skóry: <span class='blueText'> czerwona</span></p>");
-				setTimeout(function () {
-					$("#alerts").empty();
-				}, 5000);
+				functions.skin(hero, "czerwona");
 			});
-
 			$("#yellow").on("click", function () {
-				hero.splice(11, 1, "zółta");
-				$("#alerts").html("<p class='greenText boldText fontSize12em medievalText'> wybrano kolor skóry: <span class='blueText'> żółta</span></p>");
-				setTimeout(function () {
-					$("#alerts").empty();
-				}, 5000);
+				functions.skin(hero, "żółta");
 			});
-
 			$("#green").on("click", function () {
-				hero.splice(11, 1, "zielona");
-				$("#alerts").html("<p class='greenText boldText fontSize12em medievalText'> wybrano kolor skóry: <span class='blueText'> zielona</span></p>");
-				setTimeout(function () {
-					$("#alerts").empty();
-				}, 5000);
+				functions.skin(hero, "zielona");
 			});
-
 			$("#tawny").on("click", function () {
-				hero.splice(11, 1, "brunatna");
-				$("#alerts").html("<p class='greenText boldText fontSize12em medievalText'> wybrano kolor skóry: <span class='blueText'> brunatna</span></p>");
-				setTimeout(function () {
-					$("#alerts").empty();
-				}, 5000);
+				functions.skin(hero, "brunatna");
 			});
-
 			$("#azure").on("click", function () {
-				hero.splice(11, 1, "błękitna");
-				$("#alerts").html("<p class='greenText boldText fontSize12em medievalText'> wybrano kolor skóry: <span class='blueText'> błękitna</span></p>");
-				setTimeout(function () {
-					$("#alerts").empty();
-				}, 5000);
+				functions.skin(hero, "błękitna");
 			});
 
 			$("#white, #brown, #black, #redSkin, #yellow, #green, #tawny, #azure").addClass("basicBtn btnNewGame medievalText width20 marginTop1 marginLeft5");
@@ -827,27 +865,13 @@ module.exports.randomChooseHeroBtns = function () {
 			$("#lessWeight, #normalWeight, #overWeight").addClass("basicBtn btnNewGame medievalText width20 marginTop1 marginLeft10");
 
 			$("#lessWeight").on("click", function () {
-				hero.splice(12, 1, "niedowaga");
-				$("#alerts").html("<p class='greenText boldText fontSize12em medievalText'> wybrano wagę: <span class='blueText'> niedowaga</span></p>");
-				setTimeout(function () {
-					$("#alerts").empty();
-				}, 5000);
+				functions.weight(hero, "niedowaga");
 			});
-
 			$("#normalWeight").on("click", function () {
-				hero.splice(12, 1, "normalna");
-				$("#alerts").html("<p class='greenText boldText fontSize12em medievalText'> wybrano wagę: <span class='blueText'> normalna</span></p>");
-				setTimeout(function () {
-					$("#alerts").empty();
-				}, 5000);
+				functions.weight(hero, "normalna");
 			});
-
 			$("#overWeight").on("click", function () {
-				hero.splice(12, 1, "nadwaga");
-				$("#alerts").html("<p class='greenText boldText fontSize12em medievalText'> wybrano wagę: <span class='blueText'> nadwaga</span></p>");
-				setTimeout(function () {
-					$("#alerts").empty();
-				}, 5000);
+				functions.weight(hero, "nadwaga");
 			});
 
 			functions.newElement("p", "titleHeight", "wzrost", $("#interactionCreator"));
@@ -858,27 +882,13 @@ module.exports.randomChooseHeroBtns = function () {
 			functions.newElement("button", "tall", "wysoki", $("#interactionCreator"));
 
 			$("#short").on("click", function () {
-				hero.splice(13, 1, "niski");
-				$("#alerts").html("<p class='greenText boldText fontSize12em medievalText'> wybrano wzrost: <span class='blueText'> niski</span></p>");
-				setTimeout(function () {
-					$("#alerts").empty();
-				}, 5000);
+				functions.height(hero, "niski");
 			});
-
 			$("#normal").on("click", function () {
-				hero.splice(13, 1, "normalna");
-				$("#alerts").html("<p class='greenText boldText fontSize12em medievalText'> wybrano wzrost: <span class='blueText'> normalny</span></p>");
-				setTimeout(function () {
-					$("#alerts").empty();
-				}, 5000);
+				functions.height(hero, "normalny");
 			});
-
 			$("#tall").on("click", function () {
-				hero.splice(13, 1, "wysoki");
-				$("#alerts").html("<p class='greenText boldText fontSize12em medievalText'> wybrano wzrost: <span class='blueText'> wysoki</span></p>");
-				setTimeout(function () {
-					$("#alerts").empty();
-				}, 5000);
+				functions.height(hero, "wysoki");
 			});
 
 			$("#short, #normal, #tall").addClass("basicBtn btnNewGame medievalText width20 marginTop1 marginLeft10");
@@ -889,40 +899,11 @@ module.exports.randomChooseHeroBtns = function () {
 			functions.clearStart("wybór ekwipunku");
 			functions.description("Ta część podzielona jest zasadniczo na dwie części. W pierwszej możesz wybrać (w sumie) pięć rzeczy z kategorii: broń, zbroje, tarcze i inne. W drugiej części dzięki przyciskom, będzie można usunąć wcześniej wybrane przedmioty.");
 
+			//funkcja wybierania i usuwania rzeczy z ekwipunku
 			function chooseItem(whatClick, whatPush) {
 				whatClick.on("click", function () {
-					if (equip.length <= 4) {
-						$("#alerts").html("<p class='greenText boldText fontSize12em medievalText'> wybrano rzecz: <span class='blueText'> " + whatPush + "</span></p>");
-						setTimeout(function () {
-							$("#alerts").empty();
-						}, 5000);
-
-						$("#btnToRemove").text(functions.newElement("button", whatPush, whatPush, $("#btnToRemove")));
-						$("#btnToRemove").find("button").addClass("basicBtn btnNewGame medievalText width20 marginTop1 marginLeft5");
-						equip.push(whatPush);
-
-						var allBtnRemove = document.querySelectorAll("#btnToRemove button"),
-						    i = void 0;
-						for (i = 0; i < allBtnRemove.length; i++) {
-							allBtnRemove[i].addEventListener("click", function (e) {
-								if (equip.indexOf(this.id) !== -1) {
-									equip.splice(equip.indexOf(this.id), 1);
-									this.remove();
-									$("#alerts").html("<p class='redText boldText fontSize12em medievalText'>usunięto: <span class='blueText'>" + this.id + "</span>");
-									setTimeout(function () {
-										$("#alerts").empty();
-									}, 5000);
-								}
-							});
-						}
-					} else {
-						$("#alerts").html("<p class='redText boldText fontSize12em medievalText'>Już zostało wybrane pięć przedmiotów.");
-						setTimeout(function () {
-							$("#alerts").empty();
-						}, 5000);
-						equip.splice(5, 1);
-					}
-				}); //koniec funkcji kliknięcia w przycisk
+					functions.itemsAddRemove(whatClick, whatPush, equip);
+				}); //koniec funkcji wybierania i usuwania rzeczy z ekwipunku
 			}
 
 			//broń
@@ -931,11 +912,17 @@ module.exports.randomChooseHeroBtns = function () {
 			functions.newElement("button", "dagger", "sztylet", $("#interactionCreator"));
 			chooseItem($("#dagger"), "sztylet");
 			functions.newElement("button", "woodenStick", "drewniana pałka", $("#interactionCreator"));
+			chooseItem($("#woodenStick"), "drewniana pałka");
 			functions.newElement("button", "shortSword", "krótki miecz", $("#interactionCreator"));
+			chooseItem($("#shortSword"), "krótki miecz");
 			functions.newElement("button", "sabre", "szabla", $("#interactionCreator"));
+			chooseItem($("#sabre"), "szable");
 			functions.newElement("button", "spear", "włócznia", $("#interactionCreator"));
+			chooseItem($("#spear"), "włócznia");
 			functions.newElement("button", "slingshot", "proca", $("#interactionCreator"));
+			chooseItem($("#slingshot"), "proca");
 			functions.newElement("button", "bow", "łuk", $("#interactionCreator"));
+			chooseItem($("#bow"), "łuk");
 
 			$("#dagger, #woodenStick, #shortSword, #sabre, #spear, #slingshot, #bow").addClass("basicBtn btnNewGame medievalText width20 marginTop1 marginLeft5");
 
@@ -943,8 +930,11 @@ module.exports.randomChooseHeroBtns = function () {
 			functions.newElement("p", "armor", "zbroje", $("#interactionCreator"));
 			$("#armor").addClass("basicText medievalText textUnderlineGold");
 			functions.newElement("button", "gambison", "przeszywanica", $("#interactionCreator"));
+			chooseItem($("#gambison"), "przeszywanica");
 			functions.newElement("button", "leather", "zbr. skórzana", $("#interactionCreator"));
+			chooseItem($("#leather"), "zbr. skórzana");
 			functions.newElement("button", "studded", "zbr. ćwiekowana", $("#interactionCreator"));
+			chooseItem($("#studded"), "zbr. ćwiekowana");
 
 			$("#gambison, #leather, #studded").addClass("basicBtn btnNewGame medievalText width20 marginTop1 marginLeft10");
 
@@ -952,8 +942,11 @@ module.exports.randomChooseHeroBtns = function () {
 			functions.newElement("p", "shield", "tarcze", $("#interactionCreator"));
 			$("#shield").addClass("basicText medievalText textUnderlineGold");
 			functions.newElement("button", "buckler", "puklerz", $("#interactionCreator"));
+			chooseItem($("#buckler"), "puklerz");
 			functions.newElement("button", "smallWodden", "mała tarcza drew.", $("#interactionCreator"));
+			chooseItem($("#smallWodden"), "mała tarcza drew.");
 			functions.newElement("button", "smallMetal", "mała tarcza metal.", $("#interactionCreator"));
+			chooseItem($("#smallMetal"), "mała tarcza metal.");
 
 			$("#buckler, #smallWodden, #smallMetal").addClass("basicBtn btnNewGame medievalText width20 marginTop1 marginLeft10");
 
@@ -962,29 +955,53 @@ module.exports.randomChooseHeroBtns = function () {
 			$("#other").addClass("basicText medievalText textUnderlineGold");
 
 			functions.newElement("button", "stick", "kostur", $("#interactionCreator"));
+			chooseItem($("#stick"), "kostur");
 			functions.newElement("button", "moneyBag", "mieszek", $("#interactionCreator"));
+			chooseItem($("#moneyBag"), "mieszek");
 			functions.newElement("button", "travelBag", "torba podróżna", $("#interactionCreator"));
+			chooseItem($("#travelBag"), "torba podróżna");
 			functions.newElement("button", "purse", "sakwa", $("#interactionCreator"));
+			chooseItem($("#purse"), "sakwa");
 			functions.newElement("button", "backpack", "plecak", $("#interactionCreator"));
+			chooseItem($("#backpack"), "plecak");
 			functions.newElement("button", "canteen", "manierka", $("#interactionCreator"));
+			chooseItem($("#canteen"), "manierka");
 			functions.newElement("button", "pot", "sagan", $("#interactionCreator"));
+			chooseItem($("#pot"), "sagan");
 			functions.newElement("button", "blanket", "koc", $("#interactionCreator"));
+			chooseItem($("#blanket"), "koc");
 			functions.newElement("button", "tubePartschmen", "tuba na pergaminy", $("#interactionCreator"));
+			chooseItem($("#tubePartschmen"), "tuba na pergaminy");
 			functions.newElement("button", "penWriting", "pęk piór do pisania", $("#interactionCreator"));
+			chooseItem($("#penWriting"), "pęk piór do pisania");
 			functions.newElement("button", "parchments5pieces", "pergaminy 5szt.", $("#interactionCreator"));
+			chooseItem($("#parchments5pieces"), "pergaminy 5szt.");
 			functions.newElement("button", "ordinaryClothing", "zwykłe ubranie", $("#interactionCreator"));
+			chooseItem($("#ordinaryClothing"), "zwykłe ubranie");
 			functions.newElement("button", "fussyHat", "fikuśna czapka", $("#interactionCreator"));
+			chooseItem($("#fussyHat"), "fikuśna czapka");
 			functions.newElement("button", "coat", "płaszcz", $("#interactionCreator"));
+			chooseItem($("#coat"), "płaszcz");
 			functions.newElement("button", "leatherBelt", "skórzany pas", $("#interactionCreator"));
+			chooseItem($("#leatherBelt"), "skórza pas");
 			functions.newElement("button", "needlesThread", "igły i nici", $("#interactionCreator"));
+			chooseItem($("#needlesThread"), "igły i nici");
 			functions.newElement("button", "saddleCloth", "derka", $("#interactionCreator"));
+			chooseItem($("#saddleCloth"), "derka");
 			functions.newElement("button", "tent", "namiot", $("#interactionCreator"));
+			chooseItem($("#tent"), "namiot");
 			functions.newElement("button", "woodenBowl", "drewniana miska", $("#interactionCreator"));
+			chooseItem($("#woodenBowl"), "drewniana miska");
 			functions.newElement("button", "torch", "pochodnia", $("#interactionCreator"));
+			chooseItem($("#torch"), "pochodnia");
 			functions.newElement("button", "oliveLamp", "lampa oliwna", $("#interactionCreator"));
+			chooseItem($("#oliveLamp"), "lampa oliwna");
 			functions.newElement("button", "oilLamp", "kaganek", $("#interactionCreator"));
+			chooseItem($("#oilLamp"), "kaganek");
 			functions.newElement("button", "rope5m", "lina 5m", $("#interactionCreator"));
+			chooseItem($("#rope5m"), "lina 5m");
 			functions.newElement("button", "tinders", "hubka i krzesiwo", $("#interactionCreator"));
+			chooseItem($("#tinders"), "hubka i krzesiwo");
 
 			$("#stick, #moneyBag, #travelBag, #purse, #backpack, #canteen, #pot, #blanket, #tubePartschmen, #penWriting, #parchments5pieces, #ordinaryClothing, #fussyHat, #coat, #leatherBelt, #needlesThread, #saddleCloth, #tent, #woodenBowl, #torch, #oliveLamp, #oilLamp, #rope5m, #tinders").addClass("basicBtn btnNewGame medievalText width20 marginTop1 marginLeft5");
 
@@ -994,21 +1011,7 @@ module.exports.randomChooseHeroBtns = function () {
 			functions.newElement("div", "btnToRemove", "", $("#interactionCreator"));
 
 			//pętla dla przycisków usuwania przedmiotów, gdy pownownie wejdzie się w opcje wybiernia przedmiotów
-			for (var j = 0; j < equip.length; j++) {
-				functions.newElement("button", j, equip[j], $("#btnToRemove"));
-				$("#btnToRemove").find("button").addClass("basicBtn btnNewGame medievalText width20 marginTop1 marginLeft5");
-				var allBtnRemove = document.querySelectorAll("#btnToRemove button"),
-				    i = void 0;
-				for (i = 0; i < allBtnRemove.length; i++) {
-					allBtnRemove[i].addEventListener("click", function (e) {
-						if (equip.indexOf($(this).text()) !== -1) {
-							equip.splice(equip.indexOf($(this).text()), 1);
-							this.remove();
-						}
-						this.remove();
-					});
-				}
-			}
+			functions.loopForRemove(equip);
 		}); //koniec tworzenia ekwipunku
 	}); //koniec ręcznego tworzenie postaci
 }; //koniec module.exports.randomChooseHeroBtns
