@@ -132,6 +132,7 @@ module.exports.randomPointsFeatures = function (element, name, number, randomFea
         $("#alerts").empty();
       }, 5000);
     }
+    console.log(randomFeatures);
   });
 };
 
@@ -210,8 +211,35 @@ module.exports.itemsAddRemove = function (whatClick, whatPush, equip) {
   }
 };
 
+//"funkcja" dodawania i usuwania umiejętności
+module.exports.skillsAddRemove = function (whatClick, whatPush, skills) {
+  if (skills.length <= 2) {
+    if (skills.indexOf(whatPush) !== -1) {
+      $("#alerts").html("<p class='redText boldText fontSize12em medievalText'>Ta umiejętność została już wybrana.</p>");setTimeout(function () {
+        $("#alerts").empty();
+      }, 5000);
+    } else {
+      skills.push(whatPush);newElement("button", whatPush, whatPush, $("#btnToRemove"), "bold");$("#alerts").html("<p class='greenText boldText fontSize12em medievalText'>wybrana rasa to: <span class='blueText'>" + whatPush + "</span></p>");setTimeout(function () {
+        $("#alerts").empty();
+      }, 5000);
+    }
+  } else if (skills.length > 2) {
+    $("#alerts").html("<p class='redText boldText fontSize12em medievalText'>Już zostały wybrane trzy umiejętności.</p>");setTimeout(function () {
+      $("#alerts").empty();
+    }, 5000);
+  }
+  var allBtnRemove = document.querySelectorAll("#btnToRemove button"),
+      i = void 0;$("#btnToRemove").find("button").addClass("basicBtn btnNewGame medievalText width20 marginTop1 marginLeft5");for (i = 0; i < allBtnRemove.length; i++) {
+    allBtnRemove[i].addEventListener("click", function (e) {
+      if (skills.indexOf(this.id) !== -1) {
+        skills.splice(skills.indexOf(this.id), 1);this.remove();
+      }
+    });
+  }
+};
+
 //pętla dla przycisków usuwania przedmiotów, gdy pownownie wejdzie się w opcje wybiernia przedmiotów
-module.exports.loopForRemove = function (equip) {
+module.exports.itemForRemove = function (equip) {
   for (var j = 0; j < equip.length; j++) {
     newElement("button", j, equip[j], $("#btnToRemove"));$("#btnToRemove").find("button").addClass("basicBtn btnNewGame medievalText width20 marginTop1 marginLeft5");var allBtnRemove = document.querySelectorAll("#btnToRemove button"),
         i = void 0;
@@ -225,12 +253,26 @@ module.exports.loopForRemove = function (equip) {
   }
 };
 
+//pętla dla przycisków usuwania umiejętności, gdy pownownie wejdzie się w opcje wybiernia umiejętności
+module.exports.skillsToRemove = function (skills) {
+  for (var j = 0; j < skills.length; j++) {
+    newElement("button", j, skills[j], $("#btnToRemove"));$("#btnToRemove").find("button").addClass("basicBtn btnNewGame medievalText width20 marginTop1 marginLeft5");var allBtnRemove = document.querySelectorAll("#btnToRemove button"),
+        i = void 0;
+    for (i = 0; i < allBtnRemove.length; i++) {
+      allBtnRemove[i].addEventListener("click", function (e) {
+        if (skills.indexOf($(this).text()) !== -1) {
+          skills.splice(skills.indexOf($(this).text()), 1);this.remove();
+        }this.remove();
+      });
+    }
+  }
+};
+
 //funkcja optymalizująca wybieranie rasy i profesji
 function clickRaceOccupation(element, text, number, sourceDescription, alert) {
   element.on("click", function () {
     hero.splice(number, 1, text);alert.addClass("greenText");
     $("#choosenDescription").text(sourceDescription);
-
     if (text === "wojownik") {
       choosenOccupation.splice(0, 1, 5);choosenOccupation.splice(1, 1, 5);choosenOccupation.splice(2, 1, 0);choosenOccupation.splice(3, 1, 0);choosenOccupation.splice(4, 1, 0);
     } else if (text === "złoczyńca") {
@@ -373,6 +415,11 @@ module.exports.randomChooseHeroBtns = function () {
 		functions.newElement("button", "playGame", "GRA", $("#mainBtns"));
 		$("#playGame").addClass("basicBtn medievalText btnNewGame");
 
+		//usuwanie z tablic potencjalnych wyników ewentualnego wybierania
+		equip.splice(0, 5);skills.splice(0, 3);
+		randomFeatures.splice(0, 1, 0);randomFeatures.splice(1, 1, 0);randomFeatures.splice(2, 1, 0);
+		randomFeatures.splice(3, 1, 0);randomFeatures.splice(4, 1, 0);
+
 		//losowanie płci
 		var randomSexNumber = Math.round(Math.random() * (sex.length - 1));
 		var sexHero = sex[randomSexNumber];
@@ -416,17 +463,13 @@ module.exports.randomChooseHeroBtns = function () {
 		//losowanie punktów cech w zależności od rasy i profesji
 		//człowiek - wojownik
 		if (raceHero == "człowiek" && occupationsHero == "wojownik") {
-			functions.randomPoints(warrior[0], human[0], "si\u0142a", hero, 4);
-			functions.randomPoints(warrior[1], human[1], "wytrzyma\u0142o\u015B\u0107", hero, 5);
-			functions.randomPoints(warrior[2], human[2], "zr\u0119czno\u015B\u0107", hero, 6);
-			functions.randomPoints(warrior[3], human[3], "inteligencja", hero, 7);
+			functions.randomPoints(warrior[0], human[0], "si\u0142a", hero, 4);functions.randomPoints(warrior[1], human[1], "wytrzyma\u0142o\u015B\u0107", hero, 5);functions.randomPoints(warrior[2], human[2], "zr\u0119czno\u015B\u0107", hero, 6);functions.randomPoints(warrior[3], human[3], "inteligencja", hero, 7);
 			functions.randomPoints(warrior[4], human[4], "charyzma", hero, 8);
 		}
 
 		//człowiek - złoczyńca
 		else if (raceHero == "człowiek" && occupationsHero == "złoczyńca") {
-				functions.randomPoints(criminal[0], human[0], "si\u0142a", hero, 4);
-				functions.randomPoints(criminal[1], human[1], "wytrzyma\u0142o\u015B\u0107", hero, 5);
+				functions.randomPoints(criminal[0], human[0], "si\u0142a", hero, 4);functions.randomPoints(criminal[1], human[1], "wytrzyma\u0142o\u015B\u0107", hero, 5);
 				functions.randomPoints(criminal[2], human[2], "zr\u0119czno\u015B\u0107", hero, 6);
 				functions.randomPoints(criminal[3], human[3], "inteligencja", hero, 7);
 				functions.randomPoints(criminal[4], human[4], "charyzma", hero, 8);
@@ -434,26 +477,19 @@ module.exports.randomChooseHeroBtns = function () {
 
 			//człowiek czarodziej
 			else if (raceHero == "człowiek" && occupationsHero == "czarodziej") {
-					functions.randomPoints(wizard[0], human[0], "si\u0142a", hero, 4);
-					functions.randomPoints(wizard[1], human[1], "wytrzyma\u0142o\u015B\u0107", hero, 5);
-					functions.randomPoints(wizard[2], human[2], "zr\u0119czno\u015B\u0107", hero, 6);
-					functions.randomPoints(wizard[3], human[3], "inteligencja", hero, 7);
+					functions.randomPoints(wizard[0], human[0], "si\u0142a", hero, 4);functions.randomPoints(wizard[1], human[1], "wytrzyma\u0142o\u015B\u0107", hero, 5);functions.randomPoints(wizard[2], human[2], "zr\u0119czno\u015B\u0107", hero, 6);functions.randomPoints(wizard[3], human[3], "inteligencja", hero, 7);
 					functions.randomPoints(wizard[4], human[4], "charyzma", hero, 8);
 				}
 
 				//elf - wojownik
 				else if (raceHero == "elf" && occupationsHero == "wojownik") {
-						functions.randomPoints(warrior[0], elv[0], "si\u0142a", hero, 4);
-						functions.randomPoints(warrior[1], elv[1], "wytrzyma\u0142o\u015B\u0107", hero, 5);
-						functions.randomPoints(warrior[2], elv[2], "zr\u0119czno\u015B\u0107", hero, 6);
-						functions.randomPoints(warrior[3], elv[3], "inteligencja", hero, 7);
-						functions.randomPoints(warrior[4], elv[4], "charyzma", hero, 8);
+						functions.randomPoints(warrior[0], elv[0], "si\u0142a", hero, 4);functions.randomPoints(warrior[1], elv[1], "wytrzyma\u0142o\u015B\u0107", hero, 5);
+						functions.randomPoints(warrior[2], elv[2], "zr\u0119czno\u015B\u0107", hero, 6);functions.randomPoints(warrior[3], elv[3], "inteligencja", hero, 7);functions.randomPoints(warrior[4], elv[4], "charyzma", hero, 8);
 					}
 
 					//elf złoczyńca
 					else if (raceHero == "elf" && occupationsHero == "złoczyńca") {
-							functions.randomPoints(criminal[0], elv[0], "si\u0142a", hero, 4);
-							functions.randomPoints(criminal[1], elv[1], "wytrzyma\u0142o\u015B\u0107", hero, 5);
+							functions.randomPoints(criminal[0], elv[0], "si\u0142a", hero, 4);functions.randomPoints(criminal[1], elv[1], "wytrzyma\u0142o\u015B\u0107", hero, 5);
 							functions.randomPoints(criminal[2], elv[2], "zr\u0119czno\u015B\u0107", hero, 6);
 							functions.randomPoints(criminal[3], elv[3], "inteligencja", hero, 7);
 							functions.randomPoints(criminal[4], elv[4], "charyzma", hero, 8);
@@ -461,17 +497,13 @@ module.exports.randomChooseHeroBtns = function () {
 
 						//elf czarodziej
 						else if (raceHero == "elf" && occupationsHero == "czarodziej") {
-								functions.randomPoints(wizard[0], elv[0], "si\u0142a", hero, 4);
-								functions.randomPoints(wizard[1], elv[1], "wytrzyma\u0142o\u015B\u0107", hero, 5);
-								functions.randomPoints(wizard[2], elv[2], "zr\u0119czno\u015B\u0107", hero, 6);
-								functions.randomPoints(wizard[3], elv[3], "inteligencja", hero, 7);
+								functions.randomPoints(wizard[0], elv[0], "si\u0142a", hero, 4);functions.randomPoints(wizard[1], elv[1], "wytrzyma\u0142o\u015B\u0107", hero, 5);functions.randomPoints(wizard[2], elv[2], "zr\u0119czno\u015B\u0107", hero, 6);functions.randomPoints(wizard[3], elv[3], "inteligencja", hero, 7);
 								functions.randomPoints(wizard[4], elv[4], "charyzma", hero, 8);
 							}
 
 							//krasnolud - wojownik
 							else if (raceHero == "krasnolud" && occupationsHero == "wojownik") {
-									functions.randomPoints(warrior[0], dwarf[0], "si\u0142a", hero, 4);
-									functions.randomPoints(warrior[1], dwarf[1], "wytrzyma\u0142o\u015B\u0107", hero, 5);
+									functions.randomPoints(warrior[0], dwarf[0], "si\u0142a", hero, 4);functions.randomPoints(warrior[1], dwarf[1], "wytrzyma\u0142o\u015B\u0107", hero, 5);
 									functions.randomPoints(warrior[2], dwarf[2], "zr\u0119czno\u015B\u0107", hero, 6);
 									functions.randomPoints(warrior[3], dwarf[3], "inteligencja", hero, 7);
 									functions.randomPoints(warrior[4], dwarf[4], "charyzma", hero, 8);
@@ -479,8 +511,7 @@ module.exports.randomChooseHeroBtns = function () {
 
 								//krasnolud złoczyńca
 								else if (raceHero == "krasnolud" && occupationsHero == "złoczyńca") {
-										functions.randomPoints(criminal[0], dwarf[0], "si\u0142a", hero, 4);
-										functions.randomPoints(criminal[1], dwarf[1], "wytrzyma\u0142o\u015B\u0107", hero, 5);
+										functions.randomPoints(criminal[0], dwarf[0], "si\u0142a", hero, 4);functions.randomPoints(criminal[1], dwarf[1], "wytrzyma\u0142o\u015B\u0107", hero, 5);
 										functions.randomPoints(criminal[2], dwarf[2], "zr\u0119czno\u015B\u0107", hero, 6);
 										functions.randomPoints(criminal[3], dwarf[3], "inteligencja", hero, 7);
 										functions.randomPoints(criminal[4], dwarf[4], "charyzma", hero, 8);
@@ -488,36 +519,26 @@ module.exports.randomChooseHeroBtns = function () {
 
 									//krasnolud czarodziej
 									else if (raceHero == "krasnolud" && occupationsHero == "czarodziej") {
-											functions.randomPoints(wizard[0], dwarf[0], "si\u0142a", hero, 4);
-											functions.randomPoints(wizard[1], dwarf[1], "wytrzyma\u0142o\u015B\u0107", hero, 5);
-											functions.randomPoints(wizard[2], dwarf[2], "zr\u0119czno\u015B\u0107", hero, 6);
-											functions.randomPoints(wizard[3], dwarf[3], "inteligencja", hero, 7);
+											functions.randomPoints(wizard[0], dwarf[0], "si\u0142a", hero, 4);functions.randomPoints(wizard[1], dwarf[1], "wytrzyma\u0142o\u015B\u0107", hero, 5);functions.randomPoints(wizard[2], dwarf[2], "zr\u0119czno\u015B\u0107", hero, 6);functions.randomPoints(wizard[3], dwarf[3], "inteligencja", hero, 7);
 											functions.randomPoints(wizard[4], dwarf[4], "charyzma", hero, 8);
 										}
+
 										//ork - wojownik
 										else if (raceHero == "ork" && occupationsHero == "wojownik") {
-												functions.randomPoints(warrior[0], orc[0], "si\u0142a", hero, 4);
-												functions.randomPoints(warrior[1], orc[1], "wytrzyma\u0142o\u015B\u0107", hero, 5);
-												functions.randomPoints(warrior[2], orc[2], "zr\u0119czno\u015B\u0107", hero, 6);
-												functions.randomPoints(warrior[3], orc[3], "inteligencja", hero, 7);
-												functions.randomPoints(warrior[4], orc[4], "charyzma", hero, 8);
+												functions.randomPoints(warrior[0], orc[0], "si\u0142a", hero, 4);functions.randomPoints(warrior[1], orc[1], "wytrzyma\u0142o\u015B\u0107", hero, 5);
+												functions.randomPoints(warrior[2], orc[2], "zr\u0119czno\u015B\u0107", hero, 6);functions.randomPoints(warrior[3], orc[3], "inteligencja", hero, 7);functions.randomPoints(warrior[4], orc[4], "charyzma", hero, 8);
 											}
 
 											//ork złoczyńca
 											else if (raceHero == "ork" && occupationsHero == "złoczyńca") {
-													functions.randomPoints(criminal[0], orc[0], "si\u0142a", hero, 4);
-													functions.randomPoints(criminal[1], orc[1], "wytrzyma\u0142o\u015B\u0107", hero, 5);
-													functions.randomPoints(criminal[2], orc[2], "zr\u0119czno\u015B\u0107", hero, 6);
+													functions.randomPoints(criminal[0], orc[0], "si\u0142a", hero, 4);functions.randomPoints(criminal[1], orc[1], "wytrzyma\u0142o\u015B\u0107", hero, 5);functions.randomPoints(criminal[2], orc[2], "zr\u0119czno\u015B\u0107", hero, 6);
 													functions.randomPoints(criminal[3], orc[3], "inteligencja", hero, 7);
 													functions.randomPoints(criminal[4], orc[4], "charyzma", hero, 8);
 												}
 
 												//ork czarodziej
 												else if (raceHero == "ork" && occupationsHero == "czarodziej") {
-														functions.randomPoints(wizard[0], orc[0], "si\u0142a", hero, 4);
-														functions.randomPoints(wizard[1], orc[1], "wytrzyma\u0142o\u015B\u0107", hero, 5);
-														functions.randomPoints(wizard[2], orc[2], "zr\u0119czno\u015B\u0107", hero, 6);
-														functions.randomPoints(wizard[3], orc[3], "inteligencja", hero, 7);
+														functions.randomPoints(wizard[0], orc[0], "si\u0142a", hero, 4);functions.randomPoints(wizard[1], orc[1], "wytrzyma\u0142o\u015B\u0107", hero, 5);functions.randomPoints(wizard[2], orc[2], "zr\u0119czno\u015B\u0107", hero, 6);functions.randomPoints(wizard[3], orc[3], "inteligencja", hero, 7);
 														functions.randomPoints(wizard[4], orc[4], "charyzma", hero, 8);
 													}
 
@@ -532,8 +553,6 @@ module.exports.randomChooseHeroBtns = function () {
 		var eyesHero = eyesColor[randomEyesNumber];
 		$("#drawnCharacter").append("<p class = \"basicText center width20 medievalText fontSize11em\">Kolor oczu: <span class=\"greenText\">" + eyesHero + "</span></p>");
 		hero.splice(9, 1, eyesHero);
-
-		//0-imię, 1-płeć, 2-rasa, 3-profesja, 4-siła, 5-wytrzymałość, 6-zręczność, 7-inteligencja, 8-charyzma, 9-kolor oczu, 10-kolor włosów, 11-kolor skóry, 12 - waga, 13-wzrost
 
 		//losowanie koloru skóry
 		var randomSkinNumber = Math.round(Math.random() * (skinColor.length - 1));
@@ -658,8 +677,8 @@ module.exports.randomChooseHeroBtns = function () {
 		functions.newElement("div", "interactionCreator", "", $("#drawnCharacter"));
 
 		//usuwanie z tablic potencjalnych wyników ewentualnego losowania
-		equip.splice(0, 5);skills.splice(0, 3);
-
+		equip.splice(0, 5);skills.splice(0, 3);randomFeatures.splice(0, 1, 0);randomFeatures.splice(1, 1, 0);randomFeatures.splice(2, 1, 0);
+		randomFeatures.splice(3, 1, 0);randomFeatures.splice(4, 1, 0);
 		//ustawienie tablicy hero na początkowe zawartości
 		hero.splice(0, 1, "nie wybrano");hero.splice(1, 1, "nie wybrano");hero.splice(2, 1, "nie wybrano");hero.splice(3, 1, "nie wybrano");
 		hero.splice(4, 1, 0);hero.splice(5, 1, 0);hero.splice(6, 1, 0);hero.splice(7, 1, 0);
@@ -1011,8 +1030,232 @@ module.exports.randomChooseHeroBtns = function () {
 			functions.newElement("div", "btnToRemove", "", $("#interactionCreator"));
 
 			//pętla dla przycisków usuwania przedmiotów, gdy pownownie wejdzie się w opcje wybiernia przedmiotów
-			functions.loopForRemove(equip);
+			functions.itemForRemove(equip);
 		}); //koniec tworzenia ekwipunku
+
+		//zdarzenie dla "ręcznego" wybierania umiejętności
+		$("#createSkills").on("click", function () {
+			functions.clearStart("wybór umiejętności");
+			functions.description("W tej części kreatora należy wybrać płeć, kolor włosów, oczu, skóry, wagę i wzrost. Poniżej są przyciski dzięki, którym należy to zrobić.");
+
+			functions.newElement("p", "titleWarrior", "wojownik", $("#interactionCreator"));
+			$("#titleWarrior").addClass("basicText medievalText textUnderlineGold");
+
+			//funkcja wybierania umiejętności
+			function chooseSkill(whatClick, whatPush) {
+				whatClick.on("click", function () {
+					functions.skillsAddRemove(whatClick, whatPush, skills);
+				});
+			}
+
+			//przyciski dla umiejętności wojownika
+			functions.newElement("button", "survival", "szt. przetrwania", $("#interactionCreator"));
+			chooseSkill($("#survival"), "szt. przetrwania");
+			functions.newElement("button", "discipline", "dyscyplina", $("#interactionCreator"));
+			chooseSkill($("#discipline"), "dyscyplina");
+			functions.newElement("button", "argumentation", "dowodzenie", $("#interactionCreator"));
+			chooseSkill($("#argumentation"), "dowodzenie");
+			functions.newElement("button", "impactShield", "uderzenie tarczą", $("#interactionCreator"));
+			chooseSkill($("#impactShield"), "uderzenie tarczą");
+			functions.newElement("button", "horsebackRiding", "jazda konna", $("#interactionCreator"));
+			chooseSkill($("#horsebackRiding"), "jazda konna");
+			functions.newElement("button", "dagger", "sztylet", $("#interactionCreator"));
+			chooseSkill($("#dagger"), "sztylet");
+			functions.newElement("button", "shortSword", "krótki miecz", $("#interactionCreator"));
+			chooseSkill($("#shortSword"), "krótki miecz");
+			functions.newElement("button", "sabre", "szabla", $("#interactionCreator"));
+			chooseSkill($("#sabre"), "szabla");
+			functions.newElement("button", "spear", "włócznia", $("#interactionCreator"));
+			chooseSkill($("#spear"), "włócznia");
+			functions.newElement("button", "bow", "łuk", $("#interactionCreator"));
+			chooseSkill($("#bow"), "łuk");
+			functions.newElement("button", "buckler", "puklerz", $("#interactionCreator"));
+			chooseSkill($("#buckler"), "puklerz");
+			functions.newElement("button", "smallWoodenShield", "mała tarcza drew.", $("#interactionCreator"));
+			chooseSkill($("#smallWoodenShield"), "mała tarcza drew.");
+			functions.newElement("button", "smallMetalShield", "mała tarcza metal.", $("#interactionCreator"));
+			chooseSkill($("#smallMetalShield"), "mała tarcza metal.");
+
+			$("#survival, #discipline, #argumentation, #impactShield, #horsebackRiding, #dagger, #shortSword, #sabre, #spear, #bow, #buckler, #smallWoodenShield, #smallMetalShield").addClass("basicBtn btnNewGame medievalText width20 marginTop1 marginLeft5");
+
+			//przyciski dla umiejętności złoczyńcy
+			functions.newElement("p", "titleCriminal", "złoczyńca", $("#interactionCreator"));
+			$("#titleCriminal").addClass("basicText medievalText textUnderlineGold");
+
+			functions.newElement("button", "poisons", "trucizny", $("#interactionCreator"));
+			chooseSkill($("#poisons"), "trucizny");
+			functions.newElement("button", "climb", "wspinaczka", $("#interactionCreator"));
+			chooseSkill($("#climb"), "wspinaczka");
+			functions.newElement("button", "acting", "aktorstwo", $("#interactionCreator"));
+			chooseSkill($("#acting"), "aktorstwo");
+			functions.newElement("button", "acrobatics", "akrobatyka", $("#interactionCreator"));
+			chooseSkill($("#acrobatics"), "akrobatyka");
+			functions.newElement("button", "traps", "pułapki", $("#interactionCreator"));
+			chooseSkill($("#traps"), "pułapki");
+			functions.newElement("button", "sneak", "skradanie się", $("#interactionCreator"));
+			chooseSkill($("#sneak"), "skradanie się");
+			functions.newElement("button", "theft", "kradzież", $("#interactionCreator"));
+			chooseSkill($("#theft"), "kradzież");
+			functions.newElement("button", "dodge", "uniki", $("#interactionCreator"));
+			chooseSkill($("#dodge"), "uniki");
+			functions.newElement("button", "bluff", "blefowanie", $("#interactionCreator"));
+			chooseSkill($("#bluff"), "blefownie");
+			functions.newElement("button", "woddenStick", "drewniana pałka", $("#interactionCreator"));
+			chooseSkill($("#woodenStick"), "drewniana pałka");
+
+			$("#poisons, #climb, #acting, #acrobatics, #traps, #sneak, #theft, #dodge, #bluff, #woddenStick").addClass("basicBtn btnNewGame medievalText width20 marginTop1 marginLeft5");
+
+			//przyciski dla umiejętności czarodzieja
+			functions.newElement("p", "titleWizard", "czarodziej", $("#interactionCreator"));
+			$("#titleWizard").addClass("basicText medievalText textUnderlineGold");
+
+			functions.newElement("button", "writingRead", "czytanie i pisanie", $("#interactionCreator"));
+			chooseSkill($("#writingRead"), "czytanie i pisanie");
+			functions.newElement("button", "summonOvertake", "przyw./odp. demona", $("#interactionCreator"));
+			chooseSkill($("#summonOvertake"), "przyw./odp. demona");
+			functions.newElement("button", "divination", "wróżbiarstwo", $("#interactionCreator"));
+			chooseSkill($("#divination"), "wróżbiarstwo");
+			functions.newElement("button", "healing", "leczenie ran", $("#interactionCreator"));
+			chooseSkill($("#healing"), "leczenie ran");
+			functions.newElement("button", "castSpell", "rzucanie czarów", $("#interactionCreator"));
+			chooseSkill($("#castSpell"), "rzucanie czarów");
+			functions.newElement("button", "createPotion", "tworz. eliksirów", $("#interactionCreator"));
+			chooseSkill($("#createPotion"), "tworz. eliksirów");
+			functions.newElement("button", "createMagItem", "tworz. mag. przedm.", $("#interactionCreator"));
+			chooseSkill($("#createMagItem"), "tworz. mag. przedm.");
+			functions.newElement("button", "createBalm", "tworzenie maści", $("#interactionCreator"));
+			chooseSkill($("#createBalm"), "tworzenie maści");
+			functions.newElement("button", "createRunes", "tworzenie run", $("#interactionCreator"));
+			chooseSkill($("#createRunes"), "tworzenie run");
+			functions.newElement("button", "astrology", "astrologia", $("#interactionCreator"));
+			chooseSkill($("#astrology"), "astrologia");
+			functions.newElement("button", "herbalism", "zielarstwo", $("#interactionCreator"));
+			chooseSkill($("#herbalism"), "zielarstwo");
+
+			$("#writingRead, #summonOvertake, #divination, #healing, #castSpell, #createPotion, #createMagItem, #createBalm, #createRunes, #astrology, #herbalism").addClass("basicBtn btnNewGame medievalText width20 marginTop1 marginLeft5");
+
+			$("#summonOvertake").addClass("fontSize09em");
+			$("#createMagItem").addClass("fontSize09em");
+
+			functions.newElement("p", "toRemove", "do usunięcia", $("#interactionCreator"));
+			$("#toRemove").addClass("basicText medievalText textUnderlineGold");
+
+			functions.newElement("div", "btnToRemove", "", $("#interactionCreator"));
+
+			//pętla dla przycisków usuwania umiejetności, gdy pownownie wejdzie się w opcje wybiernia umiejętności
+			functions.skillsToRemove(skills);
+		}); //koniec zdarzenia dla "ręcznego" wybierania umiejętności
+
+		//zdarzenie dla informacji zbiorczej wszystkich dokonanych wyborów
+		$("#createInfo").on("click", function () {
+			functions.clearStart("Twoja postać.");
+			functions.description("Poniżej znajdują się Twoje wybory. W tej sekcji możesz je sprawdzić oraz zastanowić się nad ewentualnymi zmianami. Po dokonaniu wszystkich wyborów, to po lewej stronie pod przyciskami powinien ukazać się przycisk rozpoczynający grę.");
+
+			//funkcja do zliczania wszystkich punktów cech
+			//gdy nie wybrano profesji ani rasy oraz jeżeli wylosowano (lub nie wylosowano) punkty cech
+			if (hero[2] == "nie wybrano" && hero[3] == "nie wybrano") {
+				hero.splice(4, 1, randomFeatures[0]);hero.splice(5, 1, randomFeatures[1]);hero.splice(6, 1, randomFeatures[2]);hero.splice(7, 1, randomFeatures[3]);hero.splice(8, 1, randomFeatures[4]);
+			}
+			//dla człowieka i profesji
+			else if (hero[2] == "człowiek" && hero[3] == "nie wybrano") {
+					hero.splice(4, 1, randomFeatures[0]);hero.splice(5, 1, randomFeatures[1]);hero.splice(6, 1, randomFeatures[2]);hero.splice(7, 1, randomFeatures[3]);hero.splice(8, 1, randomFeatures[4]);
+				} else if (hero[2] == "człowiek" && hero[3] == "wojownik") {
+					hero.splice(4, 1, randomFeatures[0] + warrior[0]);hero.splice(5, 1, randomFeatures[1] + warrior[1]);hero.splice(6, 1, randomFeatures[2] + warrior[2]);hero.splice(7, 1, randomFeatures[3] + warrior[3]);hero.splice(8, 1, randomFeatures[4] + warrior[4]);
+				} else if (hero[2] == "człowiek" && hero[3] == "złoczyńca") {
+					hero.splice(4, 1, randomFeatures[0] + criminal[0]);hero.splice(5, 1, randomFeatures[1] + criminal[1]);hero.splice(6, 1, randomFeatures[2] + criminal[2]);hero.splice(7, 1, randomFeatures[3] + criminal[3]);hero.splice(8, 1, randomFeatures[4] + criminal[4]);
+				} else if (hero[2] == "człowiek" && hero[3] == "czarodziej") {
+					hero.splice(4, 1, randomFeatures[0] + wizard[0]);hero.splice(5, 1, randomFeatures[1] + wizard[1]);hero.splice(6, 1, randomFeatures[2] + wizard[2]);hero.splice(7, 1, randomFeatures[3] + wizard[3]);hero.splice(8, 1, randomFeatures[4] + wizard[4]);
+				}
+
+				//dla elfa i profesji oraz jeżeli wylosowano (lub nie wylosowano) punkty cech
+				else if (hero[2] == "elf" && hero[3] == "nie wybrano") {
+						hero.splice(4, 1, randomFeatures[0] + elv[0]);hero.splice(5, 1, randomFeatures[1] + elv[1]);
+						hero.splice(6, 1, randomFeatures[2] + elv[2]);hero.splice(7, 1, randomFeatures[3] + elv[3]);
+						hero.splice(8, 1, randomFeatures[4] + elv[4]);
+					} else if (hero[2] == "elf" && hero[3] == "wojownik") {
+						hero.splice(4, 1, randomFeatures[0] + elv[0] + warrior[0]);hero.splice(5, 1, randomFeatures[1] + elv[1] + warrior[1]);hero.splice(6, 1, randomFeatures[2] + elv[2] + warrrior[2]);hero.splice(7, 1, randomFeatures[3] + elv[3] + warrrior[3]);hero.splice(8, 1, randomFeatures[4] + elv[4] + warrrior[4]);
+					} else if (hero[2] == "elf" && hero[3] == "złoczyńca") {
+						hero.splice(4, 1, randomFeatures[0] + elv[0] + criminal[0]);hero.splice(5, 1, randomFeatures[1] + elv[1] + criminal[1]);hero.splice(6, 1, randomFeatures[2] + elv[2] + criminal[2]);hero.splice(7, 1, randomFeatures[3] + elv[3] + criminal[3]);
+						hero.splice(8, 1, randomFeatures[4] + elv[4] + criminal[4]);
+					} else if (hero[2] == "elf" && hero[3] == "czarodziej") {
+						hero.splice(4, 1, randomFeatures[0] + elv[0] + wizard[0]);hero.splice(5, 1, randomFeatures[1] + elv[1] + wizard[1]);hero.splice(6, 1, randomFeatures[2] + elv[2] + wizard[2]);
+						hero.splice(7, 1, randomFeatures[3] + elv[3] + wizard[3]);hero.splice(8, 1, randomFeatures[4] + elv[4] + wizard[4]);
+					}
+
+					//dla krasnoluda i profesji oraz jeżeli wylosowano (lub nie wylosowano) punkty cech
+					else if (hero[2] == "krasnolud" && hero[3] == "nie wybrano") {
+							hero.splice(4, 1, randomFeatures[0] + dwarf[0]);hero.splice(5, 1, randomFeatures[1] + dwarf[1]);hero.splice(6, 1, randomFeatures[2] + dwarf[2]);hero.splice(7, 1, randomFeatures[3] + dwarf[3]);hero.splice(8, 1, randomFeatures[4] + dwarf[4]);
+						} else if (hero[2] == "krasnolud" && hero[3] == "wojownik") {
+							hero.splice(4, 1, randomFeatures[0] + dwarf[0] + warrior[0]);hero.splice(5, 1, randomFeatures[1] + dwarf[1] + warrior[1]);hero.splice(6, 1, randomFeatures[2] + dwarf[2] + warrior[2]);hero.splice(7, 1, randomFeatures[3] + dwarf[3] + warrior[3]);hero.splice(8, 1, randomFeatures[4] + dwarf[4] + warrior[4]);
+						} else if (hero[2] == "krasnolud" && hero[3] == "złoczyńca") {
+							hero.splice(4, 1, randomFeatures[0] + dwarf[0] + criminal[0]);hero.splice(5, 1, randomFeatures[1] + dwarf[1] + criminal[1]);hero.splice(6, 1, randomFeatures[2] + dwarf[2] + criminal[2]);hero.splice(7, 1, randomFeatures[3] + dwarf[3] + criminal[3]);hero.splice(8, 1, randomFeatures[4] + dwarf[4] + criminal[4]);
+						} else if (hero[2] == "krasnolud" && hero[3] == "czarodziej") {
+							hero.splice(4, 1, randomFeatures[0] + dwarf[0] + wizard[0]);hero.splice(5, 1, randomFeatures[1] + dwarf[1] + wizard[1]);hero.splice(6, 1, randomFeatures[2] + dwarf[2] + wizard[2]);hero.splice(7, 1, randomFeatures[3] + dwarf[3] + wizard[3]);hero.splice(8, 1, randomFeatures[4] + dwarf[4] + wizard[4]);
+						}
+
+						//dla orka i profesji oraz jeżeli wylosowano (lub nie wylosowano) punkty cech
+						else if (hero[2] == "ork" && hero[3] == "nie wybrano") {
+								hero.splice(4, 1, randomFeatures[0] + orc[0]);hero.splice(5, 1, randomFeatures[1] + orc[1]);
+								hero.splice(6, 1, randomFeatures[2] + orc[2]);hero.splice(7, 1, randomFeatures[3] + orc[3]);
+								hero.splice(8, 1, randomFeatures[4] + orc[4]);
+							} else if (hero[2] == "ork" && hero[3] == "wojownik") {
+								hero.splice(4, 1, randomFeatures[0] + orc[0] + warrior[0]);hero.splice(5, 1, randomFeatures[1] + orc[1] + warrior[1]);hero.splice(6, 1, randomFeatures[2] + orc[2] + warrior[2]);
+								hero.splice(7, 1, randomFeatures[3] + orc[3] + warrior[3]);hero.splice(8, 1, randomFeatures[4] + orc[4] + warrior[4]);
+							} else if (hero[2] == "ork" && hero[3] == "złoczyńca") {
+								hero.splice(4, 1, randomFeatures[0] + orc[0] + criminal[0]);hero.splice(5, 1, randomFeatures[1] + orc[1] + criminal[1]);hero.splice(6, 1, randomFeatures[2] + orc[2] + criminal[2]);hero.splice(7, 1, randomFeatures[3] + orc[3] + criminal[3]);hero.splice(8, 1, randomFeatures[4] + orc[4] + criminal[4]);
+							} else if (hero[2] == "ork" && hero[3] == "czarodziej") {
+								hero.splice(4, 1, randomFeatures[0] + orc[0] + wizard[0]);hero.splice(5, 1, randomFeatures[1] + orc[1] + wizard[1]);hero.splice(6, 1, randomFeatures[2] + orc[2] + wizard[2]);hero.splice(7, 1, randomFeatures[3] + orc[3] + wizard[3]);hero.splice(8, 1, randomFeatures[4] + orc[4] + wizard[4]);
+							}
+
+							//punkty cech jezeli ne wybrało się rasy a wybrało się profesję (z wylosowanymi, lub nie, punktami cech)
+							else if (hero[2] == "nie wybrano" && hero[3] == "wojownik") {
+									hero.splice(4, 1, randomFeatures[0] + warrior[0]);hero.splice(5, 1, randomFeatures[1] + warrior[1]);hero.splice(6, 1, randomFeatures[2] + warrior[2]);hero.splice(7, 1, randomFeatures[3] + warrior[3]);hero.splice(8, 1, randomFeatures[4] + warrior[4]);
+								} else if (hero[2] == "nie wybrano" && hero[3] == "złoczyńca") {
+									hero.splice(4, 1, randomFeatures[0] + criminal[0]);hero.splice(5, 1, randomFeatures[1] + criminal[1]);hero.splice(6, 1, randomFeatures[2] + criminal[2]);hero.splice(7, 1, randomFeatures[3] + criminal[3]);hero.splice(8, 1, randomFeatures[4] + criminal[4]);
+								} else if (hero[2] == "nie wybrano" && hero[3] == "czarodziej") {
+									hero.splice(4, 1, randomFeatures[0] + wizard[0]);hero.splice(5, 1, randomFeatures[1] + wizard[1]);hero.splice(6, 1, randomFeatures[2] + wizard[2]);hero.splice(7, 1, randomFeatures[3] + wizard[3]);hero.splice(8, 1, randomFeatures[4] + wizard[4]);
+								}
+			//0-imię, 1-płeć, 2-rasa, 3-profesja, 4-siła, 5-wytrzymałość, 6-zręczność, 7-inteligencja, 8-charyzma, 9-kolor oczu, 10-kolor włosów, 11-kolor skóry, 12 - waga, 13-wzrost
+
+			functions.newElement("div", "first", "", $("#interactionCreator"));
+			$("#first").addClass("flexForBtns");
+			$("#first").append("<p class='basicText center width33 medievalText fontSize11em'>Imię: <span class='greenText'>" + hero[0] + "</span></p>");
+			$("#first").append("<p class='basicText center width33 medievalText fontSize11em'>Płeć: <span class='greenText'>" + hero[1] + "</span></p>");
+			$("#first").append("<p class='basicText center width33 medievalText fontSize11em'>Rasa: <span class='greenText'>" + hero[2] + "</span></p>");
+			$("#first").append("<p class='basicText center width33 medievalText fontSize11em'>Profesja: <span class='greenText'>" + hero[3] + "</span></p>");
+
+			functions.newElement("div", "second", "", $("#interactionCreator"));
+			$("#second").addClass("flexForBtns");
+
+			$("#second").append("<p class='basicText center width24 medievalText fontSize11em'>Siła: <span class='greenText'>" + hero[4] + "</span></p>");
+			$("#second").append("<p class='basicText center width24 medievalText fontSize11em'>wytrzymałość: <span class='greenText'>" + hero[5] + "</span></p>");
+			$("#second").append("<p class='basicText center width24 medievalText fontSize11em'>zręczność: <span class='greenText'>" + hero[6] + "</span></p>");
+			$("#second").append("<p class='basicText center width24 medievalText fontSize11em'>Inteligencja: <span class='greenText'>" + hero[7] + "</span></p>");
+			$("#second").append("<p class='basicText center width24 medievalText fontSize11em'>charyzma: <span class='greenText'>" + hero[8] + "</span></p>");
+
+			functions.newElement("div", "third", "", $("#interactionCreator"));
+			$("#third").addClass("flexForBtns");
+
+			$("#third").append("<p class='basicText center width33 medievalText fontSize11em'>Kolor oczu: <span class='greenText'>" + hero[9] + "</span></p>");
+			$("#third").append("<p class='basicText center width33 medievalText fontSize11em'>Kolor włosów: <span class='greenText'>" + hero[10] + "</span></p>");
+			$("#third").append("<p class='basicText center width33 medievalText fontSize11em'>Kolor skóry: <span class='greenText'>" + hero[11] + "</span></p>");
+			$("#third").append("<p class='basicText center width33 medievalText fontSize11em'>Waga: <span class='greenText'>" + hero[12] + "</span></p>");
+			$("#third").append("<p class='basicText center width33 medievalText fontSize11em'>Wzrost: <span class='greenText'>" + hero[13] + "</span></p>");
+
+			functions.newElement("div", "fourth", "", $("#interactionCreator"));
+			$("#fourth").append("<p class='basicText center width100 medievalText fontSize11em'>Umiejętności: <span class='greenText'>" + skills + "</span></p>");
+
+			functions.newElement("div", "fifth", "", $("#interactionCreator"));
+			$("#fifth").append("<p class='basicText center width100 medievalText fontSize11em'>Ekwipunek: <span class='greenText'>" + equip + "</span></p>");
+
+			//walidacja dokonanych wyborów
+			if (hero[0] == "nie wybrano" || hero[1] == "nie wybrano" || hero[2] == "nie wybrano" || hero[3] == "nie wybrano" || hero[4] == 0 || hero[5] == 0 || hero[6] == 0 || hero[7] == 0 || hero[8] == 0 || hero[9] == "nie wybrano" || hero[10] == "nie wybrano" || hero[11] == "nie wybrano" || hero[12] == "nie wybrano" || hero[13] == "nie wybrano" || equip.length == 0 || skills.length == 0) {
+				$("#playGame").remove();
+			} else {
+				functions.newElement("button", "playGame", "GRA", $("#mainBtns"));
+				$("#playGame").addClass("basicBtn medievalText btnNewGame");
+			}
+		}); //koniec zdarzenia dla informacji zbiorczej wszystkich dokonanych wyborów
 	}); //koniec ręcznego tworzenie postaci
 }; //koniec module.exports.randomChooseHeroBtns
 

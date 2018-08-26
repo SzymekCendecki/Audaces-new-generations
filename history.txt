@@ -336,3 +336,11 @@ Dodano funkcję chooseItem do reszty przycisków do wybierania ekwipunku.
 Poprawka dla dodawania i usuwania rzeczy z ekwipunku, gry tworzy się postać "ręcznie".
 	Naprawiony błąd losowania punktów (nie były losowane) cech postaci - dziwnie nie było funkcji za to odpowiedzialnej. Została ona przywrócona.
 Poprawka dla tablicy ekwipunku - ekwipunek wylosowany automatycznie nie przechodzi do trybu wybierania ręcznego - podczas przechodzenia między automatycznym a "ręcznym" tworzeniem postaci tablica ekwipunku jest czyszczona.
+
+26 sierpnia 2018 - wersja 0.6.55
+Dodano przyciski wybierania umiejętności dla "ręcznego" tworzenia postaci.
+	Skopiowanie została funkcja chooseItem z poprzedniej wersji gry AUDACES oraz została wstępnie dostosowana do potrzeb.
+Dodano funkcje dla wybierania i usuwania umiejętności w trybie "ręcznego" tworzenia postaci.
+	Dodano inforamcję zbiorczą dla "ręcznego" tworzenia postaci - na razie bez zliczania punktów cech postaci.
+Dodano zliczanie punktów cech w oparciu o rasę, profesję i wylosowane punkty.
+	Dodano walidację wyborów (w trybie "ręcznego" tworzenia postaci) pod przyciskiem "info". Gdy warunki będą spełnione pojawi się przycisk "GRA".

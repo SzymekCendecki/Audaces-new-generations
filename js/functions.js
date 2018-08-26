@@ -33,7 +33,9 @@ module.exports.oneOccupation = function(hero, text){ hero.splice(3, 1, text); $(
 //funkcja losując punkty cechy - "ręczne" tworzenie postaci
 module.exports.randomPointsFeatures = function(element, name, number, randomFeatures){
 element.on("click", ()=>{ let name = Math.round(Math.random()*50);   randomFeatures.splice(number, 1, name); if(randomFeatures[0] !== 0 && randomFeatures[1] !== 0 && randomFeatures[2] !== 0 && randomFeatures[3] !== 0 && randomFeatures[4] !== 0){
-$("#alerts").html("<p class='greenText boldText fontSize12em medievalText'> wylosowano wszystkie cechy</p>"); setTimeout(function(){ $("#alerts").empty(); }, 5000); } }); }
+$("#alerts").html("<p class='greenText boldText fontSize12em medievalText'> wylosowano wszystkie cechy</p>"); setTimeout(function(){ $("#alerts").empty(); }, 5000); }
+console.log(randomFeatures);
+}); }
 
 //zdarzenie wyboru płci
 module.exports.sex = function(hero, text){ hero.splice(1, 1, text);
@@ -65,15 +67,23 @@ if(equip.length < 5){ if(equip.indexOf(whatPush) !== -1){ let number = 0; number
 $("#btnToRemove").find("button").addClass("basicBtn btnNewGame medievalText width20 marginTop1 marginLeft5"); equip.push(whatPush); let allBtnRemove = document.querySelectorAll("#btnToRemove button"), i; for(i=0; i<allBtnRemove.length; i++){ allBtnRemove[i].addEventListener("click", function(e){ equip.splice(equip.indexOf(this.id), 1); this.remove(); $("#alerts").html("<p class='redText boldText fontSize12em medievalText'>usunięto: <span class='blueText'>" + this.id + "</span>"); setTimeout(function(){ $("#alerts").empty(); }, 5000); }); }
 }else{ $("#alerts").html("<p class='redText boldText fontSize12em medievalText'>Już zostało wybrane pięć przedmiotów."); setTimeout(function(){ $("#alerts").empty(); }, 5000); equip.splice(5, 1); } }
 
+//"funkcja" dodawania i usuwania umiejętności
+module.exports.skillsAddRemove = function(whatClick, whatPush, skills){ if(skills.length <= 2){
+if(skills.indexOf(whatPush) !== -1){ $("#alerts").html("<p class='redText boldText fontSize12em medievalText'>Ta umiejętność została już wybrana.</p>"); setTimeout(function(){ $("#alerts").empty(); }, 5000); }else{ skills.push(whatPush); newElement("button", whatPush, whatPush, $("#btnToRemove"), "bold"); $("#alerts").html("<p class='greenText boldText fontSize12em medievalText'>wybrana rasa to: <span class='blueText'>" + whatPush + "</span></p>"); setTimeout(function(){ $("#alerts").empty(); }, 5000); } }else if(skills.length > 2){ $("#alerts").html("<p class='redText boldText fontSize12em medievalText'>Już zostały wybrane trzy umiejętności.</p>"); setTimeout(function(){ $("#alerts").empty(); }, 5000); }
+ let allBtnRemove = document.querySelectorAll("#btnToRemove button"), i;  $("#btnToRemove").find("button").addClass("basicBtn btnNewGame medievalText width20 marginTop1 marginLeft5"); for(i=0; i<allBtnRemove.length; i++){ allBtnRemove[i].addEventListener("click", function(e) { if(skills.indexOf(this.id) !== -1){ skills.splice(skills.indexOf(this.id), 1);  this.remove(); } }); } }
+
 //pętla dla przycisków usuwania przedmiotów, gdy pownownie wejdzie się w opcje wybiernia przedmiotów
-module.exports.loopForRemove = function(equip){ for(let j=0; j<equip.length; j++){    newElement("button", j, equip[j], $("#btnToRemove"));  $("#btnToRemove").find("button").addClass("basicBtn btnNewGame medievalText width20 marginTop1 marginLeft5"); let allBtnRemove = document.querySelectorAll("#btnToRemove button"), i;
+module.exports.itemForRemove = function(equip){ for(let j=0; j<equip.length; j++){    newElement("button", j, equip[j], $("#btnToRemove"));  $("#btnToRemove").find("button").addClass("basicBtn btnNewGame medievalText width20 marginTop1 marginLeft5"); let allBtnRemove = document.querySelectorAll("#btnToRemove button"), i;
 for(i=0; i<allBtnRemove.length; i++){ allBtnRemove[i].addEventListener("click", function(e){   if(equip.indexOf($(this).text()) !== -1){ equip.splice(equip.indexOf($(this).text()), 1);      this.remove(); } this.remove(); }); } } }
+
+//pętla dla przycisków usuwania umiejętności, gdy pownownie wejdzie się w opcje wybiernia umiejętności
+module.exports.skillsToRemove = function(skills){ for(let j=0; j<skills.length; j++){    newElement("button", j, skills[j], $("#btnToRemove"));  $("#btnToRemove").find("button").addClass("basicBtn btnNewGame medievalText width20 marginTop1 marginLeft5"); let allBtnRemove = document.querySelectorAll("#btnToRemove button"), i;
+for(i=0; i<allBtnRemove.length; i++){ allBtnRemove[i].addEventListener("click", function(e){   if(skills.indexOf($(this).text()) !== -1){ skills.splice(skills.indexOf($(this).text()), 1);  this.remove(); } this.remove(); }); } } }
 
 //funkcja optymalizująca wybieranie rasy i profesji
   function clickRaceOccupation(element, text, number, sourceDescription, alert){
   element.on("click", ()=>{ hero.splice(number, 1, text); alert.addClass("greenText");
   $("#choosenDescription").text(sourceDescription);
-
   if(text === "wojownik"){ choosenOccupation.splice(0, 1, 5); choosenOccupation.splice(1, 1, 5); choosenOccupation.splice(2, 1, 0); choosenOccupation.splice(3, 1, 0);     choosenOccupation.splice(4, 1, 0);
   }else if(text === "złoczyńca"){choosenOccupation.splice(0, 1, 0); choosenOccupation.splice(1, 1, 0); choosenOccupation.splice(2, 1, 10);
   choosenOccupation.splice(3, 1, 0); choosenOccupation.splice(4, 1, 0);
