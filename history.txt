@@ -344,3 +344,9 @@ Dodano funkcje dla wybierania i usuwania umiejętności w trybie "ręcznego" two
 	Dodano inforamcję zbiorczą dla "ręcznego" tworzenia postaci - na razie bez zliczania punktów cech postaci.
 Dodano zliczanie punktów cech w oparciu o rasę, profesję i wylosowane punkty.
 	Dodano walidację wyborów (w trybie "ręcznego" tworzenia postaci) pod przyciskiem "info". Gdy warunki będą spełnione pojawi się przycisk "GRA".
+
+27 sierpnia 2018 - wersja 0.6.56
+Dodano funkcję czyszcznia dla przycisku "GRA".
+	Dodano plik intro.js oraz tekst intro.
+Dodano funcję usuwającą tekst intro po 30 sekundach.
+	Usunięto pokazywanie w console.log wylosowanych cech z "ręcznego" tworzenia postaci.

@@ -132,7 +132,6 @@ module.exports.randomPointsFeatures = function (element, name, number, randomFea
         $("#alerts").empty();
       }, 5000);
     }
-    console.log(randomFeatures);
   });
 };
 
@@ -317,6 +316,7 @@ module.exports.acceptName = function (hero) {
 
 //import funkcji z pliku zewnętrznego
 var functions = __webpack_require__(0); //podstawowe funkcje
+var intro = __webpack_require__(6); // intro gry (te po kreatorze postaci);
 
 //tablica z imionami męskimi
 var namesMan = ["Wortigern", "Gintor", "Hegel", "Derig", "Diggramon", "Zengowetoryk", "Deggetm", "Zigamon", "Birduk", "Ardenor", "Winterks", "Joluntik", "Menigor", "Oltis", "Kurdir"];
@@ -414,6 +414,11 @@ module.exports.randomChooseHeroBtns = function () {
 
 		functions.newElement("button", "playGame", "GRA", $("#mainBtns"));
 		$("#playGame").addClass("basicBtn medievalText btnNewGame");
+
+		$("#playGame").on("click", function () {
+			$("#mainBtns, #interactionsBtns, #mainPart").empty();
+			intro.intro();
+		});
 
 		//usuwanie z tablic potencjalnych wyników ewentualnego wybierania
 		equip.splice(0, 5);skills.splice(0, 3);
@@ -1254,6 +1259,10 @@ module.exports.randomChooseHeroBtns = function () {
 			} else {
 				functions.newElement("button", "playGame", "GRA", $("#mainBtns"));
 				$("#playGame").addClass("basicBtn medievalText btnNewGame");
+				$("#playGame").on("click", function () {
+					$("#mainBtns, #interactionsBtns, #mainPart").empty();
+					intro.intro();
+				});
 			}
 		}); //koniec zdarzenia dla informacji zbiorczej wszystkich dokonanych wyborów
 	}); //koniec ręcznego tworzenie postaci
@@ -1408,6 +1417,50 @@ module.exports.text6 = "Twoja historia zaczyna się w mieście Erharuf.";
 module.exports.text7 = " W ostatnim bezpiecznym mieście przed Dzikimi Pustkowiami.";
 
 module.exports.text8 = "Na usilną prośbę znajomego kapłana zgadzasz się dostarczyć małą paczkę dla tamtejszego mnicha, rezydującego w niewielkiej wiosce, która leży tuż przy granicy z Dzikimi Pustkowiami.";
+
+/***/ }),
+/* 6 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+//import funkcji z pliku zewnętrznego
+var functions = __webpack_require__(0); //podstawowe funkcje
+
+var text1 = "Mówią, że Dzikie Pustkowia to kraina opuszczona przez Bogów.";
+
+var text2 = "Pełna siedzib mrocznych kultów, wyrzutków społeczeństwa, krwiożerczych bestii i demonów, przywołanych czarną magią z innych wymiarów.";
+
+var text3 = " Krąży wiele legend o ukrytych, nieprzebranych skarbach, o herosach - smokobójcach.";
+
+var text4 = "Dzikie Pustkowia fascynuję i przerażają, jednak wielu śmiałków wędruje w tą część świata w poszukiwaniu bogactw i chwały.";
+
+var text5 = "Większość nie wraca... ";
+
+var text6 = "Twoja historia zaczyna się w mieście Erharuf.";
+
+var text7 = " W ostatnim bezpiecznym mieście przed Dzikimi Pustkowiami.";
+
+var text8 = "Na usilną prośbę znajomego kapłana zgadzasz się dostarczyć małą paczkę dla tamtejszego mnicha, rezydującego w niewielkiej wiosce, która leży tuż przy granicy z Dzikimi Pustkowiami.";
+
+module.exports.intro = function () {
+  setTimeout(function () {
+    functions.newElement("p", "text1", text1, $("#mainPart"));
+    functions.newElement("p", "text2", text2, $("#mainPart"));
+    functions.newElement("p", "text3", text3, $("#mainPart"));
+    functions.newElement("p", "text4", text4, $("#mainPart"));
+    functions.newElement("p", "text5", text5, $("#mainPart"));
+    functions.newElement("p", "text6", text6, $("#mainPart"));
+    functions.newElement("p", "text7", text7, $("#mainPart"));
+    functions.newElement("p", "text8", text8, $("#mainPart"));
+    $("#text1, #text2, #text3, #text4, #text5, #text6, #text7, #text8").addClass("basicText center width100 medievalText fontSize11em");
+  }, 100);
+
+  setTimeout(function () {
+    $("#mainPart").empty();
+  }, 30000);
+};
 
 /***/ })
 /******/ ]);

@@ -1,5 +1,6 @@
 //import funkcji z pliku zewnętrznego
 let functions = require("./functions.js"); //podstawowe funkcje
+let intro = require("./intro.js");// intro gry (te po kreatorze postaci);
 
 //tablica z imionami męskimi
 let namesMan = ["Wortigern", "Gintor", "Hegel", "Derig", "Diggramon", "Zengowetoryk", "Deggetm", "Zigamon", "Birduk", "Ardenor", "Winterks", "Joluntik", "Menigor", "Oltis", "Kurdir"];
@@ -97,6 +98,11 @@ module.exports.randomChooseHeroBtns = function(){
 
 		 functions.newElement("button", "playGame", "GRA", $("#mainBtns"));
 		 $("#playGame").addClass("basicBtn medievalText btnNewGame");
+
+     $("#playGame").on("click", ()=>{
+        $("#mainBtns, #interactionsBtns, #mainPart").empty();
+        intro.intro();
+     });
 
 		 //usuwanie z tablic potencjalnych wyników ewentualnego wybierania
 		 	equip.splice(0, 5); skills.splice(0, 3);
@@ -823,6 +829,10 @@ if(hero[0] == "nie wybrano" || hero[1] == "nie wybrano" || hero[2] == "nie wybra
 }else{
 	functions.newElement("button", "playGame", "GRA", $("#mainBtns"));
 	$("#playGame").addClass("basicBtn medievalText btnNewGame");
+  $("#playGame").on("click", ()=>{
+        $("#mainBtns, #interactionsBtns, #mainPart").empty();
+          intro.intro();
+  });
 }
 });//koniec zdarzenia dla informacji zbiorczej wszystkich dokonanych wyborów
 

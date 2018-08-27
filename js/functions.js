@@ -33,9 +33,7 @@ module.exports.oneOccupation = function(hero, text){ hero.splice(3, 1, text); $(
 //funkcja losując punkty cechy - "ręczne" tworzenie postaci
 module.exports.randomPointsFeatures = function(element, name, number, randomFeatures){
 element.on("click", ()=>{ let name = Math.round(Math.random()*50);   randomFeatures.splice(number, 1, name); if(randomFeatures[0] !== 0 && randomFeatures[1] !== 0 && randomFeatures[2] !== 0 && randomFeatures[3] !== 0 && randomFeatures[4] !== 0){
-$("#alerts").html("<p class='greenText boldText fontSize12em medievalText'> wylosowano wszystkie cechy</p>"); setTimeout(function(){ $("#alerts").empty(); }, 5000); }
-console.log(randomFeatures);
-}); }
+$("#alerts").html("<p class='greenText boldText fontSize12em medievalText'> wylosowano wszystkie cechy</p>"); setTimeout(function(){ $("#alerts").empty(); }, 5000); } }); }
 
 //zdarzenie wyboru płci
 module.exports.sex = function(hero, text){ hero.splice(1, 1, text);
