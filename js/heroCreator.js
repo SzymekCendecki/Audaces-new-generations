@@ -837,6 +837,8 @@ if(hero[0] == "nie wybrano" || hero[1] == "nie wybrano" || hero[2] == "nie wybra
 });//koniec zdarzenia dla informacji zbiorczej wszystkich dokonanych wyborów
 
 });//koniec ręcznego tworzenie postaci
+
+module.exports.hero = hero;
 }//koniec module.exports.randomChooseHeroBtns
 
 ///utworzenie paragrafu z opisem przycisków wylosuj i wybierz.

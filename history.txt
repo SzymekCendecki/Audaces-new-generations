@@ -350,3 +350,8 @@ Dodano funkcję czyszcznia dla przycisku "GRA".
 	Dodano plik intro.js oraz tekst intro.
 Dodano funcję usuwającą tekst intro po 30 sekundach.
 	Usunięto pokazywanie w console.log wylosowanych cech z "ręcznego" tworzenia postaci.
+
+28 sierpnia 2018 - wersja 0.6.57
+Dodano przyciski: "cechy", "ekwipunek", "umiejętności", "zadania".
+	Dodany plik theGame.js;
+Wstępny test z przyciskiem "Cechy" - pokazał dokonane losowanie w kreatorze postaci - do poprawy.

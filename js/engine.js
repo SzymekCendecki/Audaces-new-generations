@@ -316,7 +316,7 @@ module.exports.acceptName = function (hero) {
 
 //import funkcji z pliku zewnętrznego
 var functions = __webpack_require__(0); //podstawowe funkcje
-var intro = __webpack_require__(6); // intro gry (te po kreatorze postaci);
+var intro = __webpack_require__(5); // intro gry (te po kreatorze postaci);
 
 //tablica z imionami męskimi
 var namesMan = ["Wortigern", "Gintor", "Hegel", "Derig", "Diggramon", "Zengowetoryk", "Deggetm", "Zigamon", "Birduk", "Ardenor", "Winterks", "Joluntik", "Menigor", "Oltis", "Kurdir"];
@@ -1266,6 +1266,8 @@ module.exports.randomChooseHeroBtns = function () {
 			}
 		}); //koniec zdarzenia dla informacji zbiorczej wszystkich dokonanych wyborów
 	}); //koniec ręcznego tworzenie postaci
+
+	module.exports.hero = hero;
 }; //koniec module.exports.randomChooseHeroBtns
 
 ///utworzenie paragrafu z opisem przycisków wylosuj i wybierz.
@@ -1295,7 +1297,7 @@ module.exports = __webpack_require__(3);
 var functions = __webpack_require__(0); //podstawowe funkcje
 var introFirstMenu = __webpack_require__(4); //plik z częścią intro oraz pierwszym menu
 var heroCreator = __webpack_require__(1);
-var introGame = __webpack_require__(5);
+var introGame = __webpack_require__(6);
 
 document.addEventListener("DOMContentLoaded", function () {
 	console.log("NIEWIERNE PSY RULEZ!!!!");
@@ -1402,31 +1404,10 @@ module.exports.clicksFirstMenu = function () {
 "use strict";
 
 
-module.exports.text1 = "Mówią, że Dzikie Pustkowia to kraina opuszczona przez Bogów.";
-
-module.exports.text2 = "Pełna siedzib mrocznych kultów, wyrzutków społeczeństwa, krwiożerczych bestii i demonów, przywołanych czarną magią z innych wymiarów.";
-
-module.exports.text3 = " Krąży wiele legend o ukrytych, nieprzebranych skarbach, o herosach - smokobójcach.";
-
-module.exports.text4 = "Dzikie Pustkowia fascynuję i przerażają, jednak wielu śmiałków wędruje w tą część świata w poszukiwaniu bogactw i chwały.";
-
-module.exports.text5 = "Większość nie wraca... ";
-
-module.exports.text6 = "Twoja historia zaczyna się w mieście Erharuf.";
-
-module.exports.text7 = " W ostatnim bezpiecznym mieście przed Dzikimi Pustkowiami.";
-
-module.exports.text8 = "Na usilną prośbę znajomego kapłana zgadzasz się dostarczyć małą paczkę dla tamtejszego mnicha, rezydującego w niewielkiej wiosce, która leży tuż przy granicy z Dzikimi Pustkowiami.";
-
-/***/ }),
-/* 6 */
-/***/ (function(module, exports, __webpack_require__) {
-
-"use strict";
-
-
 //import funkcji z pliku zewnętrznego
 var functions = __webpack_require__(0); //podstawowe funkcje
+var theGame = __webpack_require__(7); //gra
+var heroCreator = __webpack_require__(1);
 
 var text1 = "Mówią, że Dzikie Pustkowia to kraina opuszczona przez Bogów.";
 
@@ -1458,9 +1439,57 @@ module.exports.intro = function () {
   }, 100);
 
   setTimeout(function () {
-    $("#mainPart").empty();
+    $("#text1, #text2, #text3, #text4, #text5, #text6, #text7, #text8").hide();
+    functions.newElement("button", "features", "cechy", $("#heroBtns"));
+    functions.newElement("button", "equip", "ekwipunek", $("#heroBtns"));
+    functions.newElement("button", "skills", "umiejętności", $("#heroBtns"));
+    functions.newElement("button", "tasks", "zadania", $("#heroBtns"));
+
+    $("#features, #equip, #skills, #tasks").addClass("basicBtn btnNewGame");
+    $("#equip, #skills").addClass("fontSize09em paddingUpDown1");
+
+    functions.newElement("p", "info", heroCreator.hero, $("#mainPart"));
+    $("#info").hide();
+
+    $("#features").on("click", function () {
+      $("#info").show();
+    });
   }, 30000);
 };
+
+/***/ }),
+/* 6 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+module.exports.text1 = "Mówią, że Dzikie Pustkowia to kraina opuszczona przez Bogów.";
+
+module.exports.text2 = "Pełna siedzib mrocznych kultów, wyrzutków społeczeństwa, krwiożerczych bestii i demonów, przywołanych czarną magią z innych wymiarów.";
+
+module.exports.text3 = " Krąży wiele legend o ukrytych, nieprzebranych skarbach, o herosach - smokobójcach.";
+
+module.exports.text4 = "Dzikie Pustkowia fascynuję i przerażają, jednak wielu śmiałków wędruje w tą część świata w poszukiwaniu bogactw i chwały.";
+
+module.exports.text5 = "Większość nie wraca... ";
+
+module.exports.text6 = "Twoja historia zaczyna się w mieście Erharuf.";
+
+module.exports.text7 = " W ostatnim bezpiecznym mieście przed Dzikimi Pustkowiami.";
+
+module.exports.text8 = "Na usilną prośbę znajomego kapłana zgadzasz się dostarczyć małą paczkę dla tamtejszego mnicha, rezydującego w niewielkiej wiosce, która leży tuż przy granicy z Dzikimi Pustkowiami.";
+
+/***/ }),
+/* 7 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+//import funkcji z pliku zewnętrznego
+var functions = __webpack_require__(0); //podstawowe funkcje
+var heroCreator = __webpack_require__(1);
 
 /***/ })
 /******/ ]);

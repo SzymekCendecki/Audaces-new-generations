@@ -1,5 +1,7 @@
 //import funkcji z pliku zewnętrznego
 let functions = require("./functions.js"); //podstawowe funkcje
+let theGame = require("./theGame.js"); //gra
+let heroCreator = require("./heroCreator.js");
 
 let text1 = "Mówią, że Dzikie Pustkowia to kraina opuszczona przez Bogów.";
 
@@ -30,7 +32,22 @@ module.exports.intro = function(){
       $("#text1, #text2, #text3, #text4, #text5, #text6, #text7, #text8").addClass("basicText center width100 medievalText fontSize11em");
   }, 100);
 
-  setTimeout(() =>{
-    $("#mainPart").empty();
- }, 30000);
+  setTimeout(function(){
+    $("#text1, #text2, #text3, #text4, #text5, #text6, #text7, #text8").hide();
+    functions.newElement("button", "features", "cechy", $("#heroBtns"));
+    functions.newElement("button", "equip", "ekwipunek", $("#heroBtns"));
+    functions.newElement("button", "skills", "umiejętności", $("#heroBtns"));
+    functions.newElement("button", "tasks", "zadania", $("#heroBtns"));
+
+    $("#features, #equip, #skills, #tasks").addClass("basicBtn btnNewGame");
+    $("#equip, #skills").addClass("fontSize09em paddingUpDown1");
+
+    functions.newElement("p", "info", heroCreator.hero, $("#mainPart"));
+    $("#info").hide();
+
+  $("#features").on("click", ()=>{
+      $("#info").show();
+  });
+
+  }, 30000);
 }
