@@ -89,3 +89,11 @@ nav, #mainPart, #alerts{ height: 78vh; }
 
 //kolor tła
 .bckgGreen{ background-color: green; }
+
+//warstwy
+.zindex1{
+  position: absolute;
+  left: 0px;
+  top: 15%; 
+  z-index: 1;
+ }

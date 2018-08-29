@@ -42,12 +42,15 @@ module.exports.intro = function(){
     $("#features, #equip, #skills, #tasks").addClass("basicBtn btnNewGame");
     $("#equip, #skills").addClass("fontSize09em paddingUpDown1");
 
-    functions.newElement("p", "info", heroCreator.hero, $("#mainPart"));
-    $("#info").hide();
+    functions.newElement("div", "info", "", $("#mainPart"));
 
   $("#features").on("click", ()=>{
-      $("#info").show();
+    $("#info").html("<div class='width100 flexForBtns medievalText greenText, boldText fontSize1em zindex1 bckgGreen'><p>imię: <span class='blueText'>" + heroCreator.hero[0] + "</span></p><p>płeć: <span class='blueText'>" + heroCreator.hero[1] + "</span></p><p>rasa: <span class='blueText'>" + heroCreator.hero[2] + "</span></p><p>profesja: <span class='blueText'>" + heroCreator.hero[3] + "</p><button id='close'>zamknij</button></div>");
+
+    $("#close").on("click", ()=>{ $("#info").empty(); });
   });
+
+  $("#mainPart").append("<div class='basicText medievalText'>Stoisz w swoim pokoju, w którym znajduje się tylko łóżko, szafa, mały stolik i drewniana skrzynia. Na stoliku leży zawniątko, które musisz oddać mnichowi w przygranicznej wiosce. Co robisz?</div>");
 
   }, 30000);
 }

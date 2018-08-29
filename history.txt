@@ -355,3 +355,8 @@ Dodano funcję usuwającą tekst intro po 30 sekundach.
 Dodano przyciski: "cechy", "ekwipunek", "umiejętności", "zadania".
 	Dodany plik theGame.js;
 Wstępny test z przyciskiem "Cechy" - pokazał dokonane losowanie w kreatorze postaci - do poprawy.
+
+29 sierpnia 2018 - wersja 0.6.58
+Dodano nowy styl zindex1 dla ustawiania warstwy warstwy na poziomie 1.
+	Poprawiono diva info.
+Rozpoczęto pracę nad zdarzeneim dla przycisku cechy.

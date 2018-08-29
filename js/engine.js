@@ -1297,7 +1297,7 @@ module.exports = __webpack_require__(3);
 var functions = __webpack_require__(0); //podstawowe funkcje
 var introFirstMenu = __webpack_require__(4); //plik z częścią intro oraz pierwszym menu
 var heroCreator = __webpack_require__(1);
-var introGame = __webpack_require__(6);
+var introGame = __webpack_require__(7);
 
 document.addEventListener("DOMContentLoaded", function () {
 	console.log("NIEWIERNE PSY RULEZ!!!!");
@@ -1406,7 +1406,7 @@ module.exports.clicksFirstMenu = function () {
 
 //import funkcji z pliku zewnętrznego
 var functions = __webpack_require__(0); //podstawowe funkcje
-var theGame = __webpack_require__(7); //gra
+var theGame = __webpack_require__(6); //gra
 var heroCreator = __webpack_require__(1);
 
 var text1 = "Mówią, że Dzikie Pustkowia to kraina opuszczona przez Bogów.";
@@ -1448,17 +1448,33 @@ module.exports.intro = function () {
     $("#features, #equip, #skills, #tasks").addClass("basicBtn btnNewGame");
     $("#equip, #skills").addClass("fontSize09em paddingUpDown1");
 
-    functions.newElement("p", "info", heroCreator.hero, $("#mainPart"));
-    $("#info").hide();
+    functions.newElement("div", "info", "", $("#mainPart"));
 
     $("#features").on("click", function () {
-      $("#info").show();
+      $("#info").html("<div class='width100 flexForBtns medievalText greenText, boldText fontSize1em zindex1 bckgGreen'><p>imię: <span class='blueText'>" + heroCreator.hero[0] + "</span></p><p>płeć: <span class='blueText'>" + heroCreator.hero[1] + "</span></p><p>rasa: <span class='blueText'>" + heroCreator.hero[2] + "</span></p><p>profesja: <span class='blueText'>" + heroCreator.hero[3] + "</p><button id='close'>zamknij</button></div>");
+
+      $("#close").on("click", function () {
+        $("#info").empty();
+      });
     });
+
+    $("#mainPart").append("<div class='basicText medievalText'>Stoisz w swoim pokoju, w którym znajduje się tylko łóżko, szafa, mały stolik i drewniana skrzynia. Na stoliku leży zawniątko, które musisz oddać mnichowi w przygranicznej wiosce. Co robisz?</div>");
   }, 30000);
 };
 
 /***/ }),
 /* 6 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+//import funkcji z pliku zewnętrznego
+var functions = __webpack_require__(0); //podstawowe funkcje
+var heroCreator = __webpack_require__(1);
+
+/***/ }),
+/* 7 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -1479,17 +1495,6 @@ module.exports.text6 = "Twoja historia zaczyna się w mieście Erharuf.";
 module.exports.text7 = " W ostatnim bezpiecznym mieście przed Dzikimi Pustkowiami.";
 
 module.exports.text8 = "Na usilną prośbę znajomego kapłana zgadzasz się dostarczyć małą paczkę dla tamtejszego mnicha, rezydującego w niewielkiej wiosce, która leży tuż przy granicy z Dzikimi Pustkowiami.";
-
-/***/ }),
-/* 7 */
-/***/ (function(module, exports, __webpack_require__) {
-
-"use strict";
-
-
-//import funkcji z pliku zewnętrznego
-var functions = __webpack_require__(0); //podstawowe funkcje
-var heroCreator = __webpack_require__(1);
 
 /***/ })
 /******/ ]);
