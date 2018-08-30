@@ -360,3 +360,11 @@ Wstępny test z przyciskiem "Cechy" - pokazał dokonane losowanie w kreatorze po
 Dodano nowy styl zindex1 dla ustawiania warstwy warstwy na poziomie 1.
 	Poprawiono diva info.
 Rozpoczęto pracę nad zdarzeneim dla przycisku cechy.
+
+30 sierpnia 2018 - wersja 0.6.59
+Wyeksportowano niezbędne tablice z pliku heroCreator.js.
+	Dodano w pliku (i od razu wyeksportowano) heroCreator.js tablice z zadaniami (w tym momencie jednym - zniesienie paczki mnichowi).
+Dodano w pliku main.scss nowe style dla szerokości: 15, 50, 66, 75 i 90 - wszystko w procentach.
+	Dodano w pliku main.scss nowy styl dla koloru tła bckgRed - ustawia tło na czerwony.
+Dodano nowy styl do main.scss - whiteTextShadow11 - ustawia kolor cienia tekstu na biały w ofległości 1px.
+	Dodano trzy nowe style w main.scss dla koloru textu navyText, blackText i goldText - ustawiający kolor teksty na kolor navy (taki granatowy?), czarny i złoty.

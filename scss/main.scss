@@ -44,16 +44,24 @@ nav, #mainPart, #alerts{ height: 78vh; }
 .center{ text-align: center; }
 
 //szerokości w procentach
+.width15{ width: 15%; }
 .width20{ width: 20%; }
 .width24{ width: 24%; }
 .width33{ width: 33%; }
 .width49{ width: 49%; }
+.width50{ width: 50%; }
+.width66{ width: 66%; }
+.width75{ width: 75%; }
+.width90{ width: 90%; }
 .width100{ width: 100%; }
 
 //kolory tekstu
 .redText{ color: red;}
 .blueText{ color: blue; }
 .greenText{ color: green; }
+.goldText{ color: gold; }
+.navyText{ color: navy; }
+.blackText{ color: black; }
 
 //tekst pogrubiony
 .boldText{ font-weight: bold; }
@@ -89,11 +97,17 @@ nav, #mainPart, #alerts{ height: 78vh; }
 
 //kolor tła
 .bckgGreen{ background-color: green; }
+.bckgRed{ background-color: red; }
+
+//cień dla tekstu
+.whiteTextShadow11{
+  text-shadow: 1px 1px white;
+}
 
 //warstwy
 .zindex1{
   position: absolute;
-  left: 0px;
-  top: 15%; 
   z-index: 1;
- }
+  top: 15%;
+  left: 12.5%;
+}

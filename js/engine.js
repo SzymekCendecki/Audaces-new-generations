@@ -1267,7 +1267,11 @@ module.exports.randomChooseHeroBtns = function () {
 		}); //koniec zdarzenia dla informacji zbiorczej wszystkich dokonanych wyborów
 	}); //koniec ręcznego tworzenie postaci
 
+	//eksport tablic do gry
 	module.exports.hero = hero;
+	module.exports.equip = equip;
+	module.exports.skills = skills;
+	module.exports.tasks = ["zanieś paczkę mnichowi"];
 }; //koniec module.exports.randomChooseHeroBtns
 
 ///utworzenie paragrafu z opisem przycisków wylosuj i wybierz.
@@ -1451,7 +1455,7 @@ module.exports.intro = function () {
     functions.newElement("div", "info", "", $("#mainPart"));
 
     $("#features").on("click", function () {
-      $("#info").html("<div class='width100 flexForBtns medievalText greenText, boldText fontSize1em zindex1 bckgGreen'><p>imię: <span class='blueText'>" + heroCreator.hero[0] + "</span></p><p>płeć: <span class='blueText'>" + heroCreator.hero[1] + "</span></p><p>rasa: <span class='blueText'>" + heroCreator.hero[2] + "</span></p><p>profesja: <span class='blueText'>" + heroCreator.hero[3] + "</p><button id='close'>zamknij</button></div>");
+      $("#info").html("<div class='width75 flexForBtns medievalText greenText, boldText fontSize1em zindex1 bckgGreen'><p class='width100 textUnderlineGold medievalText center paddingUpDown1'>TWÓJ PROTAGONISTA</p><p class='width24 navyText'>imię: <span class='blackText boldText fontSize12em'>" + heroCreator.hero[0] + "</span></p><p class='width24 navyText'>płeć: <span class='blackText boldText fontSize12em'>" + heroCreator.hero[1] + "</span></p><p class='width24 navyText'>rasa: <span class='blackText boldText fontSize12em'>" + heroCreator.hero[2] + "</span></p><p class='width24 navyText'>profesja: <span class='blackText fontSize12em'>" + heroCreator.hero[3] + "</p><button id='close' class='bckgRed fontSize12em width15 boldText medievalText whiteTextShadow11 paddingUpDown1 marginTop1'>zamknij</button></div>");
 
       $("#close").on("click", function () {
         $("#info").empty();

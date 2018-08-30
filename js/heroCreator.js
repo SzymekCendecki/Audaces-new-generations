@@ -838,7 +838,11 @@ if(hero[0] == "nie wybrano" || hero[1] == "nie wybrano" || hero[2] == "nie wybra
 
 });//koniec ręcznego tworzenie postaci
 
+//eksport tablic do gry
 module.exports.hero = hero;
+module.exports.equip = equip;
+module.exports.skills = skills;
+module.exports.tasks = ["zanieś paczkę mnichowi"];
 }//koniec module.exports.randomChooseHeroBtns
 
 ///utworzenie paragrafu z opisem przycisków wylosuj i wybierz.
