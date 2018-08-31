@@ -368,3 +368,7 @@ Dodano w pliku main.scss nowe style dla szerokości: 15, 50, 66, 75 i 90 - wszys
 	Dodano w pliku main.scss nowy styl dla koloru tła bckgRed - ustawia tło na czerwony.
 Dodano nowy styl do main.scss - whiteTextShadow11 - ustawia kolor cienia tekstu na biały w ofległości 1px.
 	Dodano trzy nowe style w main.scss dla koloru textu navyText, blackText i goldText - ustawiający kolor teksty na kolor navy (taki granatowy?), czarny i złoty.
+
+31 sierpnia 2018 - wersja 0.6.60
+Przeorganizowano nieco pokazywanie cech postaci pod przyciskiem cechy - podzielono zawartość tablicy hero na poszczególne divy.
+	Dodano blokowanie/ odblokowanie przycisków cechy, ekwipunek, umiejętności oraz zadania, w momencie naciśnięcia któregoś z tych przycisków i zamknięcia okna z informacją.
