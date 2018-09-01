@@ -78,6 +78,9 @@ let equip = [];
 //tablica umiejętności
 let skills = [];
 
+//tablica ze złotem
+let gold = [0];
+
 //utworzenie przycisków wylosuj i wybierz postać
 module.exports.randomChooseHeroBtns = function(){
 	//utworzenie przycisku wylosuj postać
@@ -843,6 +846,7 @@ module.exports.hero = hero;
 module.exports.equip = equip;
 module.exports.skills = skills;
 module.exports.tasks = ["zanieś paczkę mnichowi"];
+module.exports.gold = gold;
 }//koniec module.exports.randomChooseHeroBtns
 
 ///utworzenie paragrafu z opisem przycisków wylosuj i wybierz.

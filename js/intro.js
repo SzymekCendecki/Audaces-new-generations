@@ -2,6 +2,7 @@
 let functions = require("./functions.js"); //podstawowe funkcje
 let theGame = require("./theGame.js"); //gra
 let heroCreator = require("./heroCreator.js");
+let room = require("./room.js");
 
 let text1 = "Mówią, że Dzikie Pustkowia to kraina opuszczona przez Bogów.";
 
@@ -48,15 +49,15 @@ module.exports.intro = function(){
     $("#outRoom").prop("disabled", true);
 
     //utworzenie przycisków interakcji dla pierwszego paragrafu - pokoju
-    functions.newElement("button", "lookAround", "rozejrzyj się", $("#interactionsBtns"));
+    functions.newElement("button", "lookAroundRoom", "rozejrzyj się", $("#interactionsBtns"));
     functions.newElement("button", "wardrobe", "szafa", $("#interactionsBtns"));
     functions.newElement("button", "chest", "skrzynia", $("#interactionsBtns"));
     functions.newElement("button", "package", "paczka", $("#interactionsBtns"));
 
     //dodanie styli dla przycisów interakcji pierwszego paragrafu
-    $("#outRoom, #lookAround, #wardrobe, #chest, #package").addClass("basicBtn");
+    $("#outRoom, #lookAroundRoom, #wardrobe, #chest, #package").addClass("basicBtn");
     $("#outRoom").addClass("bckgRed medievalText marginTop4 shadowForBtn");
-    $("#lookAround").addClass("bckgBlue medievalText marginTop4 shadowForBtn fontSize09em paddingUpDown1");
+    $("#lookAroundRoom").addClass("bckgBlue medievalText marginTop4 shadowForBtn fontSize09em paddingUpDown1");
     $("#wardrobe, #chest").addClass("bckgGreen medievalText marginTop4 shadowForBtn");
     $("#package").addClass("bckgYellow medievalText marginTop4 shadowForBtn marginTop4");
 
@@ -77,49 +78,13 @@ module.exports.intro = function(){
 
   //zdarzenia dla przycisków interakcji pierwszego paragrafu
   //zdarzenie rozglądania się
-  $("#lookAround").on("click", ()=>{
-    $("#description").html("<p class='basicText medievalText'>Rozglądasz się po pokoju. Widzisz drewnianą szafę, stojącą w rogu pokoju. Pod oknem stoi niewielka, drewniana skrzynia. Naprzeciw drzwi stoi łóżko. W pomieszczeniu niemiłosiernie wali stęchlizną i kupą szczurów.</p><button id='close' class='bckgRed fontSize12em width15 boldText medievalText whiteTextShadow11 paddingUpDown1 marginTop4'>zamknij</button>");
-    $("#close").on("click", ()=>{ $("#description").empty(); });
-  });
+  $("#lookAroundRoom").on("click", ()=>{ room.lookAround(); });
 
-let equip = heroCreator.equip;
-let skills = heroCreator.skills;
+  //zdarzenie dla szafy
+  $("#wardrobe").on("click", ()=>{ room.wardrobe(); });
 
-//zdarzenie dla szafy
-  $("#wardrobe").on("click", ()=>{
-    if (equip.indexOf('płaszcz') !== -1) {
-      if(heroCreator.hero[1] === "kobieta"){
-        $("#description").html("<p class='basicText medievalText boldText'>Otworzyłaś szafę. Jest pusta.</p><button id='close' class='bckgRed fontSize12em width15 boldText medievalText whiteTextShadow11 paddingUpDown1 marginLeft10 marginTop4'>zamknij</button>");
-        $("#close").on("click", ()=>{
-           $("#description").empty();
-         });
-      }else if(heroCreator.hero[1] === "mężczyzna" || heroCreator.hero[1] === "nie wiadomo"){
-        $("#description").html("<p class='basicText medievalText boldText'>Otworzyłeś szafę. Jest pusta.</p><button id='close' class='bckgRed fontSize12em width15 boldText medievalText whiteTextShadow11 paddingUpDown1 marginLeft10 marginTop4'>zamknij</button>");
-        $("#close").on("click", ()=>{
-          $("#description").empty();
-       });
-      }
-    }else{
-      if(heroCreator.hero[1] === "kobieta"){
-        $("#description").html("<p class='basicText medievalText boldText'>Otworzyłaś szafę, w której wisi płaszcz.</p><button id='coat' class='basicBtn bckgGreen medievalText whiteTextShadow11 width15 boldText'>weź płaszcz</button><button id='close' class='bckgRed fontSize12em width15 boldText medievalText whiteTextShadow11 paddingUpDown1 marginLeft10 marginTop4'>zamknij</button>");
-        $("#coat").on("click", ()=>{
-          equip.push("płaszcz");
-          $("#coat").remove(); });
-        $("#close").on("click", ()=>{
-          $("#description").empty();
-        });
-      }else if(heroCreator.hero[1] === "mężczyzna" || heroCreator.hero[1] === "nie wiadomo"){
-        $("#description").html("<p class='basicText medievalText boldText'>Otworzyłeś szafę, w której wisi płaszcz.</p><button id='coat' class='basicBtn bckgGreen medievalText whiteTextShadow11 width15 boldText'>weź płaszcz</button><button id='close' class='bckgRed fontSize12em width15 boldText medievalText whiteTextShadow11 paddingUpDown1 marginLeft10 marginTop4'>zamknij</button>");
-        $("#coat").on("click", ()=>{
-          equip.push("płaszcz");
-          $("#coat").remove();
-        });
-        $("#close").on("click", ()=>{
-          $("#description").empty();
-        });
-      }
-  }
-});
+  //zdarzenie dla skrzyni
+  $("#chest").on("click", ()=>{ room.chest(); });
 
   }, 30000);
 }

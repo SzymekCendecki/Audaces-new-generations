@@ -380,3 +380,13 @@ Dodanie zdarzenia wyświetlania dla przycisku "ekwipunek".
 	Dodano dwa nowe style do main.scss - bckgBlue i bckgYellow - ustawiają kolo tła na niebieski i żółty.
 Dodano przyciski interakcji dla pierwszego paragrafu: "wyjdź", "rozejrzyj się", "szafa", "skrzynia", "paczka".
 	Dodano zdarzenia dla przycisku: "rozejrzyj się" i "szafa";
+
+2 sierpnia 2018 - wersja 0.6.62
+Dodano blokowanie/odblokowanie przycisków: "rozejrzyj się", "szafa", "skrzynia", "paczka".
+	Przeniesienie zawartości zdarzenia przycisku "rozejrzyj się" z pliku intro.js do pliku room.js.
+Drobna poprawka nazewnictwa diva "rozglądania" się po pokoju z lookAround na lookAroundRoom.
+	Przeniesienie zawartości zdarzenia przycisku "szafa" z pliku intro.js do pliku room.js.
+Dodano trzy nowe style w main.scss marginLeft50, marginLeft75, marginLeft90 i marginLeft100 -  tóre dsuwają element w lewo o 50, 75, 90 i 100 procent;
+ Dodano dwa nowe style marginTop10 i marginTop15 w pliku main.scss - które odsuwają element od góry o 10 i 15 procent.
+Dodano stan złota w ekwipunku.
+	Dodano zdarzenia dla przycisku skrzyni. 

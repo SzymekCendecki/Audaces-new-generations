@@ -394,6 +394,9 @@ var equip = [];
 //tablica umiejętności
 var skills = [];
 
+//tablica ze złotem
+var gold = [0];
+
 //utworzenie przycisków wylosuj i wybierz postać
 module.exports.randomChooseHeroBtns = function () {
 	//utworzenie przycisku wylosuj postać
@@ -1272,6 +1275,7 @@ module.exports.randomChooseHeroBtns = function () {
 	module.exports.equip = equip;
 	module.exports.skills = skills;
 	module.exports.tasks = ["zanieś paczkę mnichowi"];
+	module.exports.gold = gold;
 }; //koniec module.exports.randomChooseHeroBtns
 
 ///utworzenie paragrafu z opisem przycisków wylosuj i wybierz.
@@ -1412,6 +1416,7 @@ module.exports.clicksFirstMenu = function () {
 var functions = __webpack_require__(0); //podstawowe funkcje
 var theGame = __webpack_require__(6); //gra
 var heroCreator = __webpack_require__(1);
+var room = __webpack_require__(8);
 
 var text1 = "Mówią, że Dzikie Pustkowia to kraina opuszczona przez Bogów.";
 
@@ -1458,15 +1463,15 @@ module.exports.intro = function () {
     $("#outRoom").prop("disabled", true);
 
     //utworzenie przycisków interakcji dla pierwszego paragrafu - pokoju
-    functions.newElement("button", "lookAround", "rozejrzyj się", $("#interactionsBtns"));
+    functions.newElement("button", "lookAroundRoom", "rozejrzyj się", $("#interactionsBtns"));
     functions.newElement("button", "wardrobe", "szafa", $("#interactionsBtns"));
     functions.newElement("button", "chest", "skrzynia", $("#interactionsBtns"));
     functions.newElement("button", "package", "paczka", $("#interactionsBtns"));
 
     //dodanie styli dla przycisów interakcji pierwszego paragrafu
-    $("#outRoom, #lookAround, #wardrobe, #chest, #package").addClass("basicBtn");
+    $("#outRoom, #lookAroundRoom, #wardrobe, #chest, #package").addClass("basicBtn");
     $("#outRoom").addClass("bckgRed medievalText marginTop4 shadowForBtn");
-    $("#lookAround").addClass("bckgBlue medievalText marginTop4 shadowForBtn fontSize09em paddingUpDown1");
+    $("#lookAroundRoom").addClass("bckgBlue medievalText marginTop4 shadowForBtn fontSize09em paddingUpDown1");
     $("#wardrobe, #chest").addClass("bckgGreen medievalText marginTop4 shadowForBtn");
     $("#package").addClass("bckgYellow medievalText marginTop4 shadowForBtn marginTop4");
 
@@ -1495,51 +1500,18 @@ module.exports.intro = function () {
 
     //zdarzenia dla przycisków interakcji pierwszego paragrafu
     //zdarzenie rozglądania się
-    $("#lookAround").on("click", function () {
-      $("#description").html("<p class='basicText medievalText'>Rozglądasz się po pokoju. Widzisz drewnianą szafę, stojącą w rogu pokoju. Pod oknem stoi niewielka, drewniana skrzynia. Naprzeciw drzwi stoi łóżko. W pomieszczeniu niemiłosiernie wali stęchlizną i kupą szczurów.</p><button id='close' class='bckgRed fontSize12em width15 boldText medievalText whiteTextShadow11 paddingUpDown1 marginTop4'>zamknij</button>");
-      $("#close").on("click", function () {
-        $("#description").empty();
-      });
+    $("#lookAroundRoom").on("click", function () {
+      room.lookAround();
     });
-
-    var equip = heroCreator.equip;
-    var skills = heroCreator.skills;
 
     //zdarzenie dla szafy
     $("#wardrobe").on("click", function () {
-      if (equip.indexOf('płaszcz') !== -1) {
-        if (heroCreator.hero[1] === "kobieta") {
-          $("#description").html("<p class='basicText medievalText boldText'>Otworzyłaś szafę. Jest pusta.</p><button id='close' class='bckgRed fontSize12em width15 boldText medievalText whiteTextShadow11 paddingUpDown1 marginLeft10 marginTop4'>zamknij</button>");
-          $("#close").on("click", function () {
-            $("#description").empty();
-          });
-        } else if (heroCreator.hero[1] === "mężczyzna" || heroCreator.hero[1] === "nie wiadomo") {
-          $("#description").html("<p class='basicText medievalText boldText'>Otworzyłeś szafę. Jest pusta.</p><button id='close' class='bckgRed fontSize12em width15 boldText medievalText whiteTextShadow11 paddingUpDown1 marginLeft10 marginTop4'>zamknij</button>");
-          $("#close").on("click", function () {
-            $("#description").empty();
-          });
-        }
-      } else {
-        if (heroCreator.hero[1] === "kobieta") {
-          $("#description").html("<p class='basicText medievalText boldText'>Otworzyłaś szafę, w której wisi płaszcz.</p><button id='coat' class='basicBtn bckgGreen medievalText whiteTextShadow11 width15 boldText'>weź płaszcz</button><button id='close' class='bckgRed fontSize12em width15 boldText medievalText whiteTextShadow11 paddingUpDown1 marginLeft10 marginTop4'>zamknij</button>");
-          $("#coat").on("click", function () {
-            equip.push("płaszcz");
-            $("#coat").remove();
-          });
-          $("#close").on("click", function () {
-            $("#description").empty();
-          });
-        } else if (heroCreator.hero[1] === "mężczyzna" || heroCreator.hero[1] === "nie wiadomo") {
-          $("#description").html("<p class='basicText medievalText boldText'>Otworzyłeś szafę, w której wisi płaszcz.</p><button id='coat' class='basicBtn bckgGreen medievalText whiteTextShadow11 width15 boldText'>weź płaszcz</button><button id='close' class='bckgRed fontSize12em width15 boldText medievalText whiteTextShadow11 paddingUpDown1 marginLeft10 marginTop4'>zamknij</button>");
-          $("#coat").on("click", function () {
-            equip.push("płaszcz");
-            $("#coat").remove();
-          });
-          $("#close").on("click", function () {
-            $("#description").empty();
-          });
-        }
-      }
+      room.wardrobe();
+    });
+
+    //zdarzenie dla skrzyni
+    $("#chest").on("click", function () {
+      room.chest();
     });
   }, 30000);
 };
@@ -1558,40 +1530,40 @@ var heroCreator = __webpack_require__(1);
 //zdarzenie dla przycisku "cechy"
 module.exports.btnFeatures = function () {
   $("#info").html("<div class='width75 flexForBtns medievalText greenText, boldText fontSize1em zindex1 bckgGreen'><p class='width100 textUnderlineGold medievalText center paddingUpDown1 fontSize13em'>TWÓJ PROTAGONISTA</p><div class='width90 flexForBtns marginTop2'><p class='width24 navyText'>imię: <span class='blackText boldText fontSize12em'>" + heroCreator.hero[0] + "</span></p><p class='width24 navyText'>płeć: <span class='blackText boldText fontSize12em'>" + heroCreator.hero[1] + "</span></p><p class='width24 navyText'>rasa: <span class='blackText boldText fontSize12em'>" + heroCreator.hero[2] + "</span></p><p class='width24 navyText'>profesja: <span class='blackText fontSize12em'>" + heroCreator.hero[3] + "</p></div><div class='width90 flexForBtns marginTop2'><p class='width33 navyText'>siła: <span class='blackText boldText fontSize12em'>" + heroCreator.hero[4] + "</span></p><p class='width33 navyText'>wytrzymałość: <span class='blackText boldText fontSize12em'>" + heroCreator.hero[5] + "</span></p><p class='width33 navyText'>zręczność: <span class='blackText boldText fontSize12em'>" + heroCreator.hero[6] + "</span></p><p class='width33 navyText'>inteligencja: <span class='blackText boldText fontSize12em'>" + heroCreator.hero[7] + "</span></p><p class='width33 navyText'>charyzma: <span class='blackText boldText fontSize12em'>" + heroCreator.hero[8] + "</span></p></div><div class='width90 flexForBtns marginTop2'><p class='width33 navyText'>kolor oczu: <span class='blackText boldText fontSize12em'>" + heroCreator.hero[9] + "</span></p><p class='width33 navyText'>kolor włosów: <span class='blackText boldText fontSize12em'>" + heroCreator.hero[10] + "</span></p><p class='width33 navyText'>kolor skóry: <span class='blackText boldText fontSize12em'>" + heroCreator.hero[11] + "</span></p><p class='width33 navyText'>waga: <span class='blackText boldText fontSize12em'>" + heroCreator.hero[12] + "</span></p><p class='width33 navyText'>wzrost: <span class='blackText boldText fontSize12em'>" + heroCreator.hero[13] + "</span></p></div><button id='close' class='bckgRed fontSize12em width15 boldText medievalText whiteTextShadow11 paddingUpDown1 marginTop4'>zamknij</button></div>");
-  $("#features, #equip, #skills, #tasks").prop("disabled", true);
+  $("#features, #equip, #skills, #tasks, #lookAroundRoom, #wardrobe, #chest, #package").prop("disabled", true);
 
   $("#close").on("click", function () {
-    $("#info").empty();$("#features, #equip, #skills, #tasks").prop("disabled", false);
+    $("#info").empty();$("#features, #equip, #skills, #tasks, #lookAroundRoom, #wardrobe, #chest, #package").prop("disabled", false);
   });
 };
 
 //zdarzenie dla przycisku "ewipunku"
 module.exports.btnEquip = function () {
-  $("#info").html("<div class='width75 flexForBtns medievalText greenText, boldText fontSize1em zindex1 bckgGreen'><p class='width100 textUnderlineGold medievalText center paddingUpDown1 fontSize13em'>EKWIPUNEK</p><div class='width100 flexForBtns marginTop2'><p class='width90'><span class='blackText boldText fontSize12em'>" + heroCreator.equip + "</span></p></div><button id='close' class='bckgRed fontSize12em width15 boldText medievalText whiteTextShadow11 paddingUpDown1 marginTop4'>zamknij</button></div>");
-  $("#features, #equip, #skills, #tasks").prop("disabled", true);
+  $("#info").html("<div class='width75 flexForBtns medievalText greenText, boldText fontSize1em zindex1 bckgGreen'><p class='width100 textUnderlineGold medievalText center paddingUpDown1 fontSize13em'>EKWIPUNEK</p><div class='width100 flexForBtns marginTop2'><p class='width90'><span class='blackText boldText fontSize12em'>" + heroCreator.equip + "</span></p><p class='width90 navyText'>złoto: <span class='blackText boldText fontSize12em'>" + heroCreator.gold + "</span></p</div></div><button id='close' class='bckgRed fontSize12em width15 boldText medievalText whiteTextShadow11 paddingUpDown1 marginTop4'>zamknij</button>");
+  $("#features, #equip, #skills, #tasks, #lookAroundRoom, #wardrobe, #chest, #package").prop("disabled", true);
 
   $("#close").on("click", function () {
-    $("#info").empty();$("#features, #equip, #skills, #tasks").prop("disabled", false);
+    $("#info").empty();$("#features, #equip, #skills, #tasks, #lookAroundRoom, #wardrobe, #chest, #package").prop("disabled", false);
   });
 };
 
 //zdarzenie dla przycisku "umiejętności"
 module.exports.btnSkills = function () {
   $("#info").html("<div class='width75 flexForBtns medievalText greenText, boldText fontSize1em zindex1 bckgGreen'><p class='width100 textUnderlineGold medievalText center paddingUpDown1 fontSize13em'>UMIEJĘTNOŚCI</p><div class='width100 flexForBtns marginTop2'><p class='width90'><span class='blackText boldText fontSize12em'>" + heroCreator.skills + "</span></p></div><button id='close' class='bckgRed fontSize12em width15 boldText medievalText whiteTextShadow11 paddingUpDown1 marginTop4'>zamknij</button></div>");
-  $("#features, #equip, #skills, #tasks").prop("disabled", true);
+  $("#features, #equip, #skills, #tasks, #lookAroundRoom, #wardrobe, #chest, #package").prop("disabled", true);
 
   $("#close").on("click", function () {
-    $("#info").empty();$("#features, #equip, #skills, #tasks").prop("disabled", false);
+    $("#info").empty();$("#features, #equip, #skills, #tasks, #lookAroundRoom, #wardrobe, #chest, #package").prop("disabled", false);
   });
 };
 
 //zdarzenie dla przycisku "zadania"
 module.exports.btnTasks = function () {
   $("#info").html("<div class='width75 flexForBtns medievalText greenText, boldText fontSize1em zindex1 bckgGreen'><p class='width100 textUnderlineGold medievalText center paddingUpDown1 fontSize13em'>ZADANIA</p><div class='width100 flexForBtns marginTop2'><p class='width90'><span class='blackText boldText fontSize12em'>" + heroCreator.tasks + "</span></p></div><button id='close' class='bckgRed fontSize12em width15 boldText medievalText whiteTextShadow11 paddingUpDown1 marginTop4'>zamknij</button></div>");
-  $("#features, #equip, #skills, #tasks").prop("disabled", true);
+  $("#features, #equip, #skills, #tasks, #lookAroundRoom, #wardrobe, #chest, #package").prop("disabled", true);
 
   $("#close").on("click", function () {
-    $("#info").empty();$("#features, #equip, #skills, #tasks").prop("disabled", false);
+    $("#info").empty();$("#features, #equip, #skills, #tasks, #lookAroundRoom, #wardrobe, #chest, #package").prop("disabled", false);
   });
 };
 
@@ -1617,6 +1589,103 @@ module.exports.text6 = "Twoja historia zaczyna się w mieście Erharuf.";
 module.exports.text7 = " W ostatnim bezpiecznym mieście przed Dzikimi Pustkowiami.";
 
 module.exports.text8 = "Na usilną prośbę znajomego kapłana zgadzasz się dostarczyć małą paczkę dla tamtejszego mnicha, rezydującego w niewielkiej wiosce, która leży tuż przy granicy z Dzikimi Pustkowiami.";
+
+/***/ }),
+/* 8 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+var heroCreator = __webpack_require__(1);
+
+//zawartość zdarzenia dla przycisku rozejrzyj się
+module.exports.lookAround = function () {
+  $("#description").html("<p class='basicText medievalText'>Rozglądasz się po pokoju. Widzisz drewnianą szafę, stojącą w rogu pokoju. Pod oknem stoi niewielka, drewniana skrzynia. Naprzeciw drzwi stoi łóżko. W pomieszczeniu niemiłosiernie wali stęchlizną i kupą szczurów.</p><button id='close' class='bckgRed fontSize12em width15 boldText medievalText whiteTextShadow11 paddingUpDown1 marginTop4'>zamknij</button>");
+  $("#close").on("click", function () {
+    $("#description").empty();
+  });
+};
+
+//zawartość zdarzenia dla przycisku szafa
+module.exports.wardrobe = function () {
+  if (heroCreator.equip.indexOf('płaszcz') !== -1) {
+    if (heroCreator.hero[1] === "kobieta") {
+      $("#description").html("<p class='basicText medievalText boldText'>Otworzyłaś szafę. Jest pusta.</p><button id='close' class='bckgRed fontSize12em width15 boldText medievalText whiteTextShadow11 paddingUpDown1 marginLeft10 marginTop4'>zamknij</button>");
+      $("#close").on("click", function () {
+        $("#description").empty();
+      });
+    } else if (heroCreator.hero[1] === "mężczyzna" || heroCreator.hero[1] === "nie wiadomo") {
+      $("#description").html("<p class='basicText medievalText boldText'>Otworzyłeś szafę. Jest pusta.</p><button id='close' class='bckgRed fontSize12em width15 boldText medievalText whiteTextShadow11 paddingUpDown1 marginLeft10 marginTop4'>zamknij</button>");
+      $("#close").on("click", function () {
+        $("#description").empty();
+      });
+    }
+  } else {
+    if (heroCreator.hero[1] === "kobieta") {
+      $("#description").html("<p class='basicText medievalText boldText'>Otworzyłaś szafę, w której wisi płaszcz.</p><button id='coat' class='basicBtn bckgGreen medievalText whiteTextShadow11 width15 boldText'>weź płaszcz</button><button id='close' class='bckgRed fontSize12em width15 boldText medievalText whiteTextShadow11 paddingUpDown1 marginLeft10 marginTop4'>zamknij</button>");
+      $("#coat").on("click", function () {
+        heroCreator.equip.push("płaszcz");
+        $("#coat").remove();
+      });
+      $("#close").on("click", function () {
+        $("#description").empty();
+      });
+    } else if (heroCreator.hero[1] === "mężczyzna" || heroCreator.hero[1] === "nie wiadomo") {
+      $("#description").html("<p class='basicText medievalText boldText'>Otworzyłeś szafę, w której wisi płaszcz.</p><button id='coat' class='basicBtn bckgGreen medievalText whiteTextShadow11 width15 boldText'>weź płaszcz</button><button id='close' class='bckgRed fontSize12em width15 boldText medievalText whiteTextShadow11 paddingUpDown1 marginLeft10 marginTop4'>zamknij</button>");
+      $("#coat").on("click", function () {
+        heroCreator.equip.push("płaszcz");
+        $("#coat").remove();
+      });
+      $("#close").on("click", function () {
+        $("#description").empty();
+      });
+    }
+  }
+};
+
+//zdarzenia dla przycisku skrzynia
+module.exports.chest = function () {
+  if (heroCreator.gold[0] > 0) {
+    if (heroCreator.hero[1] === "kobieta") {
+      $("#description").html("<p class='basicText medievalText boldText'>Otworzyłaś skrzynię. Jest pusta.</p><button id='close' class='bckgRed fontSize12em width15 boldText medievalText whiteTextShadow11 paddingUpDown1 marginLeft10 marginTop4'>zamknij</button>");
+      $("#close").on("click", function () {
+        $("#description").empty();
+      });
+    } else if (heroCreator.hero[1] === "mężczyzna" || heroCreator.hero[1] === "nie wiadomo") {
+      $("#description").html("<p class='basicText medievalText boldText'>Otworzyłeś skrzynię. Jest pusta.</p><button id='close' class='bckgRed fontSize12em width15 boldText medievalText whiteTextShadow11 paddingUpDown1 marginLeft10 marginTop4'>zamknij</button>");
+      $("#close").on("click", function () {
+        $("#description").empty();
+      });
+    }
+  } else {
+    if (heroCreator.hero[1] === "kobieta") {
+      $("#description").html("<p class='basicText medievalText boldText'>Otworzyłaś skrzynię, w której znajduje się 12 sztuk złota.</p><button id='coat' class='basicBtn bckgGreen medievalText whiteTextShadow11 width15 boldText'>weź złoto</button><button id='close' class='bckgRed fontSize12em width15 boldText medievalText whiteTextShadow11 paddingUpDown1 marginLeft10 marginTop4'>zamknij</button>");
+      $("#coat").on("click", function () {
+        heroCreator.gold.splice(0, 1, 12);
+        $("#description").html("<p class='basicText medievalText boldText'>Skrzynia jest pusta.</p><button id='close' class='bckgRed fontSize12em width15 boldText medievalText whiteTextShadow11 paddingUpDown1 marginLeft10 marginTop4'>zamknij</button>");
+        $("#close").on("click", function () {
+          $("#description").empty();
+        });
+      });
+      $("#close").on("click", function () {
+        $("#description").empty();
+      });
+    } else if (heroCreator.hero[1] === "mężczyzna" || heroCreator.hero[1] === "nie wiadomo") {
+      $("#description").html("<p class='basicText medievalText boldText'>Otworzyłeś skrzynię, w której znajduje się 12 sztuk złota.</p><button id='coat' class='basicBtn bckgGreen medievalText whiteTextShadow11 width15 boldText'>weź złoto</button><button id='close' class='bckgRed fontSize12em width15 boldText medievalText whiteTextShadow11 paddingUpDown1 marginLeft10 marginTop4'>zamknij</button>");
+      $("#coat").on("click", function () {
+        heroCreator.gold.splice(0, 1, 12);
+        $("#description").html("<p class='basicText medievalText boldText'>Skrzynia jest pusta.</p><button id='close' class='bckgRed fontSize12em width15 boldText medievalText whiteTextShadow11 paddingUpDown1 marginLeft10 marginTop4'>zamknij</button>");
+        $("#close").on("click", function () {
+          $("#description").empty();
+        });
+      });
+      $("#close").on("click", function () {
+        $("#description").empty();
+      });
+    }
+  }
+};
 
 /***/ })
 /******/ ]);
