@@ -98,10 +98,16 @@ nav, #mainPart, #alerts{ height: 78vh; }
 //kolor tła
 .bckgGreen{ background-color: green; }
 .bckgRed{ background-color: red; }
+.bckgBlue{ background-color: blue; }
+.bckgYellow{ background-color: yellow; }
 
 //cień dla tekstu
-.whiteTextShadow11{
-  text-shadow: 1px 1px white;
+.whiteTextShadow11{ text-shadow: 1px 1px white; }
+
+//cień dla przycisku
+.shadowForBtn{
+  box-shadow: 0 1px 0 #606060, 0 2px 0 #606060, 0 3px 0 #838383, 0 4px 0 #838383, 0 5px 0 #a6a6a6,
+   0 5px 0 #a6a6a6, 0 6px 0 #ededed, 0 7px 0 #ededed;
 }
 
 //warstwy

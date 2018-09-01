@@ -372,3 +372,11 @@ Dodano nowy styl do main.scss - whiteTextShadow11 - ustawia kolor cienia tekstu 
 31 sierpnia 2018 - wersja 0.6.60
 Przeorganizowano nieco pokazywanie cech postaci pod przyciskiem cechy - podzielono zawartość tablicy hero na poszczególne divy.
 	Dodano blokowanie/ odblokowanie przycisków cechy, ekwipunek, umiejętności oraz zadania, w momencie naciśnięcia któregoś z tych przycisków i zamknięcia okna z informacją.
+
+1 września 2018 - wersja 0.6.61
+Przeniesienie zawartości zdarzenia z pliku intro.js do pliku theGame.js.
+	Drobna poprawka wyświetlania dla zawartości przycisku "cechy".
+Dodanie zdarzenia wyświetlania dla przycisku "ekwipunek".
+	Dodano dwa nowe style do main.scss - bckgBlue i bckgYellow - ustawiają kolo tła na niebieski i żółty.
+Dodano przyciski interakcji dla pierwszego paragrafu: "wyjdź", "rozejrzyj się", "szafa", "skrzynia", "paczka".
+	Dodano zdarzenia dla przycisku: "rozejrzyj się" i "szafa";

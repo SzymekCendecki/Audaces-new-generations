@@ -1444,27 +1444,103 @@ module.exports.intro = function () {
 
   setTimeout(function () {
     $("#text1, #text2, #text3, #text4, #text5, #text6, #text7, #text8").hide();
+
+    //utworzenie głownych przycisków: cechy, ekwipunek, umijętności i zadania
     functions.newElement("button", "features", "cechy", $("#heroBtns"));
     functions.newElement("button", "equip", "ekwipunek", $("#heroBtns"));
     functions.newElement("button", "skills", "umiejętności", $("#heroBtns"));
     functions.newElement("button", "tasks", "zadania", $("#heroBtns"));
-
     $("#features, #equip, #skills, #tasks").addClass("basicBtn btnNewGame");
     $("#equip, #skills").addClass("fontSize09em paddingUpDown1");
 
+    //utworzenie przyciku wyjdź dla paragrafu pierwszego - pokoju - w tym miejscu zablokowane odpalenie zdarzenia
+    functions.newElement("button", "outRoom", "wyjdź", $("#mainBtns"));
+    $("#outRoom").prop("disabled", true);
+
+    //utworzenie przycisków interakcji dla pierwszego paragrafu - pokoju
+    functions.newElement("button", "lookAround", "rozejrzyj się", $("#interactionsBtns"));
+    functions.newElement("button", "wardrobe", "szafa", $("#interactionsBtns"));
+    functions.newElement("button", "chest", "skrzynia", $("#interactionsBtns"));
+    functions.newElement("button", "package", "paczka", $("#interactionsBtns"));
+
+    //dodanie styli dla przycisów interakcji pierwszego paragrafu
+    $("#outRoom, #lookAround, #wardrobe, #chest, #package").addClass("basicBtn");
+    $("#outRoom").addClass("bckgRed medievalText marginTop4 shadowForBtn");
+    $("#lookAround").addClass("bckgBlue medievalText marginTop4 shadowForBtn fontSize09em paddingUpDown1");
+    $("#wardrobe, #chest").addClass("bckgGreen medievalText marginTop4 shadowForBtn");
+    $("#package").addClass("bckgYellow medievalText marginTop4 shadowForBtn marginTop4");
+
+    //główny tekst opisowy dla paragrafu - pokój - paragraf pierwszy
+    $("#mainPart").html("<div class='basicText medievalText'>Stoisz w swoim pokoju, w którym znajduje się tylko łóżko, szafa, mały stolik i drewniana skrzynia. Na stoliku leży zawniątko, które musisz oddać mnichowi w przygranicznej wiosce. Co robisz?</div>");
+
+    //utworzenie "okna dialogowego"
     functions.newElement("div", "info", "", $("#mainPart"));
 
-    $("#features").on("click", function () {
-      $("#info").html("<div class='width75 flexForBtns medievalText greenText, boldText fontSize1em zindex1 bckgGreen'><p class='width100 textUnderlineGold medievalText center paddingUpDown1'>TWÓJ PROTAGONISTA</p><div class='width100 flexForBtns'><p class='width24 navyText'>imię: <span class='blackText boldText fontSize12em'>" + heroCreator.hero[0] + "</span></p><p class='width24 navyText'>płeć: <span class='blackText boldText fontSize12em'>" + heroCreator.hero[1] + "</span></p><p class='width24 navyText'>rasa: <span class='blackText boldText fontSize12em'>" + heroCreator.hero[2] + "</span></p><p class='width24 navyText'>profesja: <span class='blackText fontSize12em'>" + heroCreator.hero[3] + "</p></div><div class='width100 flexForBtns'><p class='width24 navyText'>siła: <span class='blackText boldText fontSize12em'>" + heroCreator.hero[4] + "</span></p><p class='width24 navyText'>wytrzymałość: <span class='blackText boldText fontSize12em'>" + heroCreator.hero[5] + "</span></p><p class='width24 navyText'>zręczność: <span class='blackText boldText fontSize12em'>" + heroCreator.hero[6] + "</span></p><p class='width24 navyText'>inteligencja: <span class='blackText boldText fontSize12em'>" + heroCreator.hero[7] + "</span></p><p class='width24 navyText'>charyzma: <span class='blackText boldText fontSize12em'>" + heroCreator.hero[8] + "</span></p></div><div class='width100 flexForBtns'><p class='width24 navyText'>kolor oczu: <span class='blackText boldText fontSize12em'>" + heroCreator.hero[9] + "</span></p><p class='width24 navyText'>kolor włosów: <span class='blackText boldText fontSize12em'>" + heroCreator.hero[10] + "</span></p><p class='width24 navyText'>kolor skóry: <span class='blackText boldText fontSize12em'>" + heroCreator.hero[11] + "</span></p><p class='width24 navyText'>waga: <span class='blackText boldText fontSize12em'>" + heroCreator.hero[12] + "</span></p><p class='width24 navyText'>wzrost: <span class='blackText boldText fontSize12em'>" + heroCreator.hero[13] + "</span></p></div><button id='close' class='bckgRed fontSize12em width15 boldText medievalText whiteTextShadow11 paddingUpDown1 marginTop1'>zamknij</button></div>");
-      $("#features, #equip, #skills, #tasks").prop("disabled", true);
+    //utworzenie "pomocniczego" diva opisującego paragraf - lokację, w której znajduje się aktualnie gracz
+    functions.newElement("div", "description", "", $("#mainPart"));
 
+    //zdarzenie dla przycisków głownych: cechy, ekwipunek, umiejętności zadania
+    $("#features").on("click", function () {
+      theGame.btnFeatures();
+    });
+    $("#equip").on("click", function () {
+      theGame.btnEquip();
+    });
+    $("#skills").on("click", function () {
+      theGame.btnSkills();
+    });
+    $("#tasks").on("click", function () {
+      theGame.btnTasks();
+    });
+
+    //zdarzenia dla przycisków interakcji pierwszego paragrafu
+    //zdarzenie rozglądania się
+    $("#lookAround").on("click", function () {
+      $("#description").html("<p class='basicText medievalText'>Rozglądasz się po pokoju. Widzisz drewnianą szafę, stojącą w rogu pokoju. Pod oknem stoi niewielka, drewniana skrzynia. Naprzeciw drzwi stoi łóżko. W pomieszczeniu niemiłosiernie wali stęchlizną i kupą szczurów.</p><button id='close' class='bckgRed fontSize12em width15 boldText medievalText whiteTextShadow11 paddingUpDown1 marginTop4'>zamknij</button>");
       $("#close").on("click", function () {
-        $("#info").empty();
-        $("#features, #equip, #skills, #tasks").prop("disabled", false);
+        $("#description").empty();
       });
     });
 
-    $("#mainPart").append("<div class='basicText medievalText'>Stoisz w swoim pokoju, w którym znajduje się tylko łóżko, szafa, mały stolik i drewniana skrzynia. Na stoliku leży zawniątko, które musisz oddać mnichowi w przygranicznej wiosce. Co robisz?</div>");
+    var equip = heroCreator.equip;
+    var skills = heroCreator.skills;
+
+    //zdarzenie dla szafy
+    $("#wardrobe").on("click", function () {
+      if (equip.indexOf('płaszcz') !== -1) {
+        if (heroCreator.hero[1] === "kobieta") {
+          $("#description").html("<p class='basicText medievalText boldText'>Otworzyłaś szafę. Jest pusta.</p><button id='close' class='bckgRed fontSize12em width15 boldText medievalText whiteTextShadow11 paddingUpDown1 marginLeft10 marginTop4'>zamknij</button>");
+          $("#close").on("click", function () {
+            $("#description").empty();
+          });
+        } else if (heroCreator.hero[1] === "mężczyzna" || heroCreator.hero[1] === "nie wiadomo") {
+          $("#description").html("<p class='basicText medievalText boldText'>Otworzyłeś szafę. Jest pusta.</p><button id='close' class='bckgRed fontSize12em width15 boldText medievalText whiteTextShadow11 paddingUpDown1 marginLeft10 marginTop4'>zamknij</button>");
+          $("#close").on("click", function () {
+            $("#description").empty();
+          });
+        }
+      } else {
+        if (heroCreator.hero[1] === "kobieta") {
+          $("#description").html("<p class='basicText medievalText boldText'>Otworzyłaś szafę, w której wisi płaszcz.</p><button id='coat' class='basicBtn bckgGreen medievalText whiteTextShadow11 width15 boldText'>weź płaszcz</button><button id='close' class='bckgRed fontSize12em width15 boldText medievalText whiteTextShadow11 paddingUpDown1 marginLeft10 marginTop4'>zamknij</button>");
+          $("#coat").on("click", function () {
+            equip.push("płaszcz");
+            $("#coat").remove();
+          });
+          $("#close").on("click", function () {
+            $("#description").empty();
+          });
+        } else if (heroCreator.hero[1] === "mężczyzna" || heroCreator.hero[1] === "nie wiadomo") {
+          $("#description").html("<p class='basicText medievalText boldText'>Otworzyłeś szafę, w której wisi płaszcz.</p><button id='coat' class='basicBtn bckgGreen medievalText whiteTextShadow11 width15 boldText'>weź płaszcz</button><button id='close' class='bckgRed fontSize12em width15 boldText medievalText whiteTextShadow11 paddingUpDown1 marginLeft10 marginTop4'>zamknij</button>");
+          $("#coat").on("click", function () {
+            equip.push("płaszcz");
+            $("#coat").remove();
+          });
+          $("#close").on("click", function () {
+            $("#description").empty();
+          });
+        }
+      }
+    });
   }, 30000);
 };
 
@@ -1478,6 +1554,46 @@ module.exports.intro = function () {
 //import funkcji z pliku zewnętrznego
 var functions = __webpack_require__(0); //podstawowe funkcje
 var heroCreator = __webpack_require__(1);
+
+//zdarzenie dla przycisku "cechy"
+module.exports.btnFeatures = function () {
+  $("#info").html("<div class='width75 flexForBtns medievalText greenText, boldText fontSize1em zindex1 bckgGreen'><p class='width100 textUnderlineGold medievalText center paddingUpDown1 fontSize13em'>TWÓJ PROTAGONISTA</p><div class='width90 flexForBtns marginTop2'><p class='width24 navyText'>imię: <span class='blackText boldText fontSize12em'>" + heroCreator.hero[0] + "</span></p><p class='width24 navyText'>płeć: <span class='blackText boldText fontSize12em'>" + heroCreator.hero[1] + "</span></p><p class='width24 navyText'>rasa: <span class='blackText boldText fontSize12em'>" + heroCreator.hero[2] + "</span></p><p class='width24 navyText'>profesja: <span class='blackText fontSize12em'>" + heroCreator.hero[3] + "</p></div><div class='width90 flexForBtns marginTop2'><p class='width33 navyText'>siła: <span class='blackText boldText fontSize12em'>" + heroCreator.hero[4] + "</span></p><p class='width33 navyText'>wytrzymałość: <span class='blackText boldText fontSize12em'>" + heroCreator.hero[5] + "</span></p><p class='width33 navyText'>zręczność: <span class='blackText boldText fontSize12em'>" + heroCreator.hero[6] + "</span></p><p class='width33 navyText'>inteligencja: <span class='blackText boldText fontSize12em'>" + heroCreator.hero[7] + "</span></p><p class='width33 navyText'>charyzma: <span class='blackText boldText fontSize12em'>" + heroCreator.hero[8] + "</span></p></div><div class='width90 flexForBtns marginTop2'><p class='width33 navyText'>kolor oczu: <span class='blackText boldText fontSize12em'>" + heroCreator.hero[9] + "</span></p><p class='width33 navyText'>kolor włosów: <span class='blackText boldText fontSize12em'>" + heroCreator.hero[10] + "</span></p><p class='width33 navyText'>kolor skóry: <span class='blackText boldText fontSize12em'>" + heroCreator.hero[11] + "</span></p><p class='width33 navyText'>waga: <span class='blackText boldText fontSize12em'>" + heroCreator.hero[12] + "</span></p><p class='width33 navyText'>wzrost: <span class='blackText boldText fontSize12em'>" + heroCreator.hero[13] + "</span></p></div><button id='close' class='bckgRed fontSize12em width15 boldText medievalText whiteTextShadow11 paddingUpDown1 marginTop4'>zamknij</button></div>");
+  $("#features, #equip, #skills, #tasks").prop("disabled", true);
+
+  $("#close").on("click", function () {
+    $("#info").empty();$("#features, #equip, #skills, #tasks").prop("disabled", false);
+  });
+};
+
+//zdarzenie dla przycisku "ewipunku"
+module.exports.btnEquip = function () {
+  $("#info").html("<div class='width75 flexForBtns medievalText greenText, boldText fontSize1em zindex1 bckgGreen'><p class='width100 textUnderlineGold medievalText center paddingUpDown1 fontSize13em'>EKWIPUNEK</p><div class='width100 flexForBtns marginTop2'><p class='width90'><span class='blackText boldText fontSize12em'>" + heroCreator.equip + "</span></p></div><button id='close' class='bckgRed fontSize12em width15 boldText medievalText whiteTextShadow11 paddingUpDown1 marginTop4'>zamknij</button></div>");
+  $("#features, #equip, #skills, #tasks").prop("disabled", true);
+
+  $("#close").on("click", function () {
+    $("#info").empty();$("#features, #equip, #skills, #tasks").prop("disabled", false);
+  });
+};
+
+//zdarzenie dla przycisku "umiejętności"
+module.exports.btnSkills = function () {
+  $("#info").html("<div class='width75 flexForBtns medievalText greenText, boldText fontSize1em zindex1 bckgGreen'><p class='width100 textUnderlineGold medievalText center paddingUpDown1 fontSize13em'>UMIEJĘTNOŚCI</p><div class='width100 flexForBtns marginTop2'><p class='width90'><span class='blackText boldText fontSize12em'>" + heroCreator.skills + "</span></p></div><button id='close' class='bckgRed fontSize12em width15 boldText medievalText whiteTextShadow11 paddingUpDown1 marginTop4'>zamknij</button></div>");
+  $("#features, #equip, #skills, #tasks").prop("disabled", true);
+
+  $("#close").on("click", function () {
+    $("#info").empty();$("#features, #equip, #skills, #tasks").prop("disabled", false);
+  });
+};
+
+//zdarzenie dla przycisku "zadania"
+module.exports.btnTasks = function () {
+  $("#info").html("<div class='width75 flexForBtns medievalText greenText, boldText fontSize1em zindex1 bckgGreen'><p class='width100 textUnderlineGold medievalText center paddingUpDown1 fontSize13em'>ZADANIA</p><div class='width100 flexForBtns marginTop2'><p class='width90'><span class='blackText boldText fontSize12em'>" + heroCreator.tasks + "</span></p></div><button id='close' class='bckgRed fontSize12em width15 boldText medievalText whiteTextShadow11 paddingUpDown1 marginTop4'>zamknij</button></div>");
+  $("#features, #equip, #skills, #tasks").prop("disabled", true);
+
+  $("#close").on("click", function () {
+    $("#info").empty();$("#features, #equip, #skills, #tasks").prop("disabled", false);
+  });
+};
 
 /***/ }),
 /* 7 */
