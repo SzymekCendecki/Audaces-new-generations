@@ -60,7 +60,7 @@
 /******/ 	__webpack_require__.p = "";
 /******/
 /******/ 	// Load entry module and return exports
-/******/ 	return __webpack_require__(__webpack_require__.s = 2);
+/******/ 	return __webpack_require__(__webpack_require__.s = 4);
 /******/ })
 /************************************************************************/
 /******/ ([
@@ -70,253 +70,9 @@
 "use strict";
 
 
-//funkcja, która tworzy nowy element DOM
-module.exports.newElement = function (nameElement, idName, text, whereAppend) {
-  var newElement = document.createElement(nameElement);newElement.id = idName;
-  newElement.innerText = text;whereAppend.append(newElement);
-};
-
-function newElement(nameElement, idName, text, whereAppend) {
-  var newElement = document.createElement(nameElement);newElement.id = idName;newElement.innerText = text;
-  whereAppend.append(newElement);
-}
-
-//funkcja optymalizująca tworzenie inputów
-function createNewInputAppend(nameElement, name, id, value, type, whereAppend) {
-  var newElement = document.createElement(nameElement);newElement.type = type;newElement.name = name;newElement.id = id;newElement.value = value;whereAppend.append(newElement);
-}
-
-//funkcja klik dla pierwszego menu
-module.exports.clickFirstMenu = function (element, element2, idElement, textElement) {
-  element.on("click", function () {
-    element2.children("p").remove();newElement("p", idElement, textElement, element2);element2.addClass("basicText medievalText");
-  });
-};
-
-//funkcja losowania punktów cech postaci w oparciu o rasę, profesję i wylosowaną liczbę
-module.exports.randomPoints = function (occupationsPoints, racePoints, text, table, tablePosition) {
-  var randomPoints = Math.round(Math.random() * 50);var allPoints = randomPoints + occupationsPoints + racePoints;$("#drawnCharacter").append("<p class = \"basicText center width20 medievalText fontSize11em\">" + text + (": <span class=\"greenText\">" + allPoints + "</span></p>"));table.splice(tablePosition, 1, allPoints);
-};
-
-//-----------------funkcje "ręcznego" tworzenia postaci----------------//
-//funkcja czyszczenia diva interactionCreator, dodawania diva description oraz tytułu głównego
-module.exports.clearStart = function (text) {
-  $("#interactionCreator").empty();newElement("div", "description", "", $("#interactionCreator"));$("#interactionCreator").addClass("width100");newElement("p", "title", text, $("#interactionCreator"));$("#title").addClass("basicText medievalText textUnderlineGold");
-};
-
-//funkcja tworzenia opisu głównego w "ręcznym" tworzeniu postaci
-module.exports.description = function (text2) {
-  newElement("p", "descriptionName", "", $("#interactionCreator"));$("#descriptionName").html("<p id='text'>" + text2 + "</p>");
-  $("#descriptionName").addClass("medievalText boldText marginTop3");
-};
-
-//jedna funkcja dla wyboru rasy
-module.exports.oneRace = function (hero, text) {
-  hero.splice(2, 1, text);$("#alerts").html("<p class='greenText boldText fontSize12em medievalText'>wybrana rasa to: <span class='blueText'>" + text + "</span></p>");setTimeout(function () {
-    $("#alerts").empty();
-  }, 5000);
-};
-
-//jedna funkcja dla wyboru profesji
-module.exports.oneOccupation = function (hero, text) {
-  hero.splice(3, 1, text);$("#alerts").html("<p class='greenText boldText fontSize12em medievalText'>wybrana profesja to: <span class='blueText'>" + text + "</span></p>");setTimeout(function () {
-    $("#alerts").empty();
-  }, 5000);
-};
-
-//funkcja losując punkty cechy - "ręczne" tworzenie postaci
-module.exports.randomPointsFeatures = function (element, name, number, randomFeatures) {
-  element.on("click", function () {
-    var name = Math.round(Math.random() * 50);randomFeatures.splice(number, 1, name);if (randomFeatures[0] !== 0 && randomFeatures[1] !== 0 && randomFeatures[2] !== 0 && randomFeatures[3] !== 0 && randomFeatures[4] !== 0) {
-      $("#alerts").html("<p class='greenText boldText fontSize12em medievalText'> wylosowano wszystkie cechy</p>");setTimeout(function () {
-        $("#alerts").empty();
-      }, 5000);
-    }
-  });
-};
-
-//zdarzenie wyboru płci
-module.exports.sex = function (hero, text) {
-  hero.splice(1, 1, text);
-  $("#alerts").html("<p class='greenText boldText fontSize12em medievalText'> wybrano płeć: <span class='blueText'> " + text + "</span></p>");setTimeout(function () {
-    $("#alerts").empty();
-  }, 5000);
-};
-
-//zdarzenie wyboru koloru oczu
-module.exports.eyes = function (hero, text) {
-  hero.splice(9, 1, text);
-  $("#alerts").html("<p class='greenText boldText fontSize12em medievalText'> wybrano kolor oczu: <span class='blueText'> " + text + "</span></p>");setTimeout(function () {
-    $("#alerts").empty();
-  }, 5000);
-};
-
-//zdarzenie wyboru koloru włosów
-module.exports.hair = function (hero, text) {
-  hero.splice(10, 1, text);
-  $("#alerts").html("<p class='greenText boldText fontSize12em medievalText'> wybrano kolor włosów: <span class='blueText'> " + text + "</span></p>");setTimeout(function () {
-    $("#alerts").empty();
-  }, 5000);
-};
-
-//zdarzenie wyboru koloru skóry
-module.exports.skin = function (hero, text) {
-  hero.splice(11, 1, text);
-  $("#alerts").html("<p class='greenText boldText fontSize12em medievalText'> wybrano kolor skóry: <span class='blueText'> " + text + "</span></p>");setTimeout(function () {
-    $("#alerts").empty();
-  }, 5000);
-};
-
-//zdarzenie wyboru koloru wagi
-module.exports.weight = function (hero, text) {
-  hero.splice(12, 1, text);
-  $("#alerts").html("<p class='greenText boldText fontSize12em medievalText'> wybrano wagę: <span class='blueText'> " + text + "</span></p>");setTimeout(function () {
-    $("#alerts").empty();
-  }, 5000);
-};
-
-//zdarzenie wyboru wzrostu
-module.exports.height = function (hero, text) {
-  hero.splice(13, 1, text);
-  $("#alerts").html("<p class='greenText boldText fontSize12em medievalText'> wybrano wzrost: <span class='blueText'> " + text + "</span></p>");setTimeout(function () {
-    $("#alerts").empty();
-  }, 5000);
-};
-
-//funkcja dodawania i usuwania rzeczy do ekwipunku
-module.exports.itemsAddRemove = function (whatClick, whatPush, equip) {
-  if (equip.length < 5) {
-    if (equip.indexOf(whatPush) !== -1) {
-      var number = 0;number = number + equip.length;$("#alerts").html("<p class='greenText boldText fontSize12em medievalText'> wybrano rzecz: <span class='blueText'> " + whatPush + "</span></p>");setTimeout(function () {
-        $("#alerts").empty();
-      }, 5000);$("#btnToRemove").text(newElement("button", whatPush + number, whatPush, $("#btnToRemove")));
-    } else {
-      $("#alerts").html("<p class='greenText boldText fontSize12em medievalText'> wybrano rzecz: <span class='blueText'> " + whatPush + "</span></p>");setTimeout(function () {
-        $("#alerts").empty();
-      }, 5000);$("#btnToRemove").text(newElement("button", whatPush, whatPush, $("#btnToRemove")));
-    }
-    $("#btnToRemove").find("button").addClass("basicBtn btnNewGame medievalText width20 marginTop1 marginLeft5");equip.push(whatPush);var allBtnRemove = document.querySelectorAll("#btnToRemove button"),
-        i = void 0;for (i = 0; i < allBtnRemove.length; i++) {
-      allBtnRemove[i].addEventListener("click", function (e) {
-        equip.splice(equip.indexOf(this.id), 1);this.remove();$("#alerts").html("<p class='redText boldText fontSize12em medievalText'>usunięto: <span class='blueText'>" + this.id + "</span>");setTimeout(function () {
-          $("#alerts").empty();
-        }, 5000);
-      });
-    }
-  } else {
-    $("#alerts").html("<p class='redText boldText fontSize12em medievalText'>Już zostało wybrane pięć przedmiotów.");setTimeout(function () {
-      $("#alerts").empty();
-    }, 5000);equip.splice(5, 1);
-  }
-};
-
-//"funkcja" dodawania i usuwania umiejętności
-module.exports.skillsAddRemove = function (whatClick, whatPush, skills) {
-  if (skills.length <= 2) {
-    if (skills.indexOf(whatPush) !== -1) {
-      $("#alerts").html("<p class='redText boldText fontSize12em medievalText'>Ta umiejętność została już wybrana.</p>");setTimeout(function () {
-        $("#alerts").empty();
-      }, 5000);
-    } else {
-      skills.push(whatPush);newElement("button", whatPush, whatPush, $("#btnToRemove"), "bold");$("#alerts").html("<p class='greenText boldText fontSize12em medievalText'>wybrana rasa to: <span class='blueText'>" + whatPush + "</span></p>");setTimeout(function () {
-        $("#alerts").empty();
-      }, 5000);
-    }
-  } else if (skills.length > 2) {
-    $("#alerts").html("<p class='redText boldText fontSize12em medievalText'>Już zostały wybrane trzy umiejętności.</p>");setTimeout(function () {
-      $("#alerts").empty();
-    }, 5000);
-  }
-  var allBtnRemove = document.querySelectorAll("#btnToRemove button"),
-      i = void 0;$("#btnToRemove").find("button").addClass("basicBtn btnNewGame medievalText width20 marginTop1 marginLeft5");for (i = 0; i < allBtnRemove.length; i++) {
-    allBtnRemove[i].addEventListener("click", function (e) {
-      if (skills.indexOf(this.id) !== -1) {
-        skills.splice(skills.indexOf(this.id), 1);this.remove();
-      }
-    });
-  }
-};
-
-//pętla dla przycisków usuwania przedmiotów, gdy pownownie wejdzie się w opcje wybiernia przedmiotów
-module.exports.itemForRemove = function (equip) {
-  for (var j = 0; j < equip.length; j++) {
-    newElement("button", j, equip[j], $("#btnToRemove"));$("#btnToRemove").find("button").addClass("basicBtn btnNewGame medievalText width20 marginTop1 marginLeft5");var allBtnRemove = document.querySelectorAll("#btnToRemove button"),
-        i = void 0;
-    for (i = 0; i < allBtnRemove.length; i++) {
-      allBtnRemove[i].addEventListener("click", function (e) {
-        if (equip.indexOf($(this).text()) !== -1) {
-          equip.splice(equip.indexOf($(this).text()), 1);this.remove();
-        }this.remove();
-      });
-    }
-  }
-};
-
-//pętla dla przycisków usuwania umiejętności, gdy pownownie wejdzie się w opcje wybiernia umiejętności
-module.exports.skillsToRemove = function (skills) {
-  for (var j = 0; j < skills.length; j++) {
-    newElement("button", j, skills[j], $("#btnToRemove"));$("#btnToRemove").find("button").addClass("basicBtn btnNewGame medievalText width20 marginTop1 marginLeft5");var allBtnRemove = document.querySelectorAll("#btnToRemove button"),
-        i = void 0;
-    for (i = 0; i < allBtnRemove.length; i++) {
-      allBtnRemove[i].addEventListener("click", function (e) {
-        if (skills.indexOf($(this).text()) !== -1) {
-          skills.splice(skills.indexOf($(this).text()), 1);this.remove();
-        }this.remove();
-      });
-    }
-  }
-};
-
-//funkcja optymalizująca wybieranie rasy i profesji
-function clickRaceOccupation(element, text, number, sourceDescription, alert) {
-  element.on("click", function () {
-    hero.splice(number, 1, text);alert.addClass("greenText");
-    $("#choosenDescription").text(sourceDescription);
-    if (text === "wojownik") {
-      choosenOccupation.splice(0, 1, 5);choosenOccupation.splice(1, 1, 5);choosenOccupation.splice(2, 1, 0);choosenOccupation.splice(3, 1, 0);choosenOccupation.splice(4, 1, 0);
-    } else if (text === "złoczyńca") {
-      choosenOccupation.splice(0, 1, 0);choosenOccupation.splice(1, 1, 0);choosenOccupation.splice(2, 1, 10);
-      choosenOccupation.splice(3, 1, 0);choosenOccupation.splice(4, 1, 0);
-    } else if (text === "czarodziej") {
-      choosenOccupation.splice(0, 1, 0);choosenOccupation.splice(1, 1, 0);choosenOccupation.splice(2, 1, 0);
-      choosenOccupation.splice(3, 1, 5);choosenOccupation.splice(4, 1, 5);
-    } else if (text === "człowiek") {
-      choosenRace.splice(0, 1, 0);choosenRace.splice(1, 1, 0);choosenRace.splice(2, 1, 0);choosenRace.splice(3, 1, 0);choosenRace.splice(4, 1, 0);
-    } else if (text === "elf") {
-      choosenRace.splice(0, 1, -5);choosenRace.splice(1, 1, -5);
-      choosenRace.splice(2, 1, 0);choosenRace.splice(3, 1, 5);choosenRace.splice(4, 1, 5);
-    } else if (text === "krasnolud") {
-      choosenRace.splice(0, 1, 4);choosenRace.splice(1, 1, 4);
-      choosenRace.splice(2, 1, 0);choosenRace.splice(3, 1, -2);choosenRace.splice(4, 1, -3);
-    } else if (text === "ork") {
-      choosenRace.splice(0, 1, 5);choosenRace.splice(1, 1, 5);choosenRace.splice(2, 1, 0);choosenRace.splice(3, 1, -5);choosenRace.splice(4, 1, -5);
-    }
-  });
-}
-
-//funkcja akceptowania imienia
-module.exports.acceptName = function (hero) {
-  $("#acceptName").on("click", function () {
-    var nameInput = $("#giveName").val().replace(/\d/g, '');if (nameInput == "") {
-      $("#alerts").html("<p class='redText boldText fontSize12em medievalText'>nie wybrano imienia</p>");
-    } else {
-      hero.splice(0, 1, nameInput);$("#alerts").html("<p class='greenText boldText fontSize12em medievalText'>wybrane imię to: <span class='blueText'>" + nameInput + "</span></p>");
-    }setTimeout(function () {
-      $("#alerts").empty();
-    }, 5000);
-  });
-};
-
-/***/ }),
-/* 1 */
-/***/ (function(module, exports, __webpack_require__) {
-
-"use strict";
-
-
 //import funkcji z pliku zewnętrznego
-var functions = __webpack_require__(0); //podstawowe funkcje
-var intro = __webpack_require__(5); // intro gry (te po kreatorze postaci);
+var functions = __webpack_require__(1); //podstawowe funkcje
+var intro = __webpack_require__(7); // intro gry (te po kreatorze postaci);
 
 //tablica z imionami męskimi
 var namesMan = ["Wortigern", "Gintor", "Hegel", "Derig", "Diggramon", "Zengowetoryk", "Deggetm", "Zigamon", "Birduk", "Ardenor", "Winterks", "Joluntik", "Menigor", "Oltis", "Kurdir"];
@@ -1288,316 +1044,258 @@ module.exports.textDescription = function () {
 };
 
 /***/ }),
+/* 1 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+//funkcja, która tworzy nowy element DOM
+module.exports.newElement = function (nameElement, idName, text, whereAppend) {
+  var newElement = document.createElement(nameElement);newElement.id = idName;
+  newElement.innerText = text;whereAppend.append(newElement);
+};
+
+function newElement(nameElement, idName, text, whereAppend) {
+  var newElement = document.createElement(nameElement);newElement.id = idName;newElement.innerText = text;
+  whereAppend.append(newElement);
+}
+
+//funkcja optymalizująca tworzenie inputów
+function createNewInputAppend(nameElement, name, id, value, type, whereAppend) {
+  var newElement = document.createElement(nameElement);newElement.type = type;newElement.name = name;newElement.id = id;newElement.value = value;whereAppend.append(newElement);
+}
+
+//funkcja klik dla pierwszego menu
+module.exports.clickFirstMenu = function (element, element2, idElement, textElement) {
+  element.on("click", function () {
+    element2.children("p").remove();newElement("p", idElement, textElement, element2);element2.addClass("basicText medievalText");
+  });
+};
+
+//funkcja losowania punktów cech postaci w oparciu o rasę, profesję i wylosowaną liczbę
+module.exports.randomPoints = function (occupationsPoints, racePoints, text, table, tablePosition) {
+  var randomPoints = Math.round(Math.random() * 50);var allPoints = randomPoints + occupationsPoints + racePoints;$("#drawnCharacter").append("<p class = \"basicText center width20 medievalText fontSize11em\">" + text + (": <span class=\"greenText\">" + allPoints + "</span></p>"));table.splice(tablePosition, 1, allPoints);
+};
+
+//-----------------funkcje "ręcznego" tworzenia postaci----------------//
+//funkcja czyszczenia diva interactionCreator, dodawania diva description oraz tytułu głównego
+module.exports.clearStart = function (text) {
+  $("#interactionCreator").empty();newElement("div", "description", "", $("#interactionCreator"));$("#interactionCreator").addClass("width100");newElement("p", "title", text, $("#interactionCreator"));$("#title").addClass("basicText medievalText textUnderlineGold");
+};
+
+//funkcja tworzenia opisu głównego w "ręcznym" tworzeniu postaci
+module.exports.description = function (text2) {
+  newElement("p", "descriptionName", "", $("#interactionCreator"));$("#descriptionName").html("<p id='text'>" + text2 + "</p>");
+  $("#descriptionName").addClass("medievalText boldText marginTop3");
+};
+
+//jedna funkcja dla wyboru rasy
+module.exports.oneRace = function (hero, text) {
+  hero.splice(2, 1, text);$("#alerts").html("<p class='greenText boldText fontSize12em medievalText'>wybrana rasa to: <span class='blueText'>" + text + "</span></p>");setTimeout(function () {
+    $("#alerts").empty();
+  }, 5000);
+};
+
+//jedna funkcja dla wyboru profesji
+module.exports.oneOccupation = function (hero, text) {
+  hero.splice(3, 1, text);$("#alerts").html("<p class='greenText boldText fontSize12em medievalText'>wybrana profesja to: <span class='blueText'>" + text + "</span></p>");setTimeout(function () {
+    $("#alerts").empty();
+  }, 5000);
+};
+
+//funkcja losując punkty cechy - "ręczne" tworzenie postaci
+module.exports.randomPointsFeatures = function (element, name, number, randomFeatures) {
+  element.on("click", function () {
+    var name = Math.round(Math.random() * 50);randomFeatures.splice(number, 1, name);if (randomFeatures[0] !== 0 && randomFeatures[1] !== 0 && randomFeatures[2] !== 0 && randomFeatures[3] !== 0 && randomFeatures[4] !== 0) {
+      $("#alerts").html("<p class='greenText boldText fontSize12em medievalText'> wylosowano wszystkie cechy</p>");setTimeout(function () {
+        $("#alerts").empty();
+      }, 5000);
+    }
+  });
+};
+
+//zdarzenie wyboru płci
+module.exports.sex = function (hero, text) {
+  hero.splice(1, 1, text);
+  $("#alerts").html("<p class='greenText boldText fontSize12em medievalText'> wybrano płeć: <span class='blueText'> " + text + "</span></p>");setTimeout(function () {
+    $("#alerts").empty();
+  }, 5000);
+};
+
+//zdarzenie wyboru koloru oczu
+module.exports.eyes = function (hero, text) {
+  hero.splice(9, 1, text);
+  $("#alerts").html("<p class='greenText boldText fontSize12em medievalText'> wybrano kolor oczu: <span class='blueText'> " + text + "</span></p>");setTimeout(function () {
+    $("#alerts").empty();
+  }, 5000);
+};
+
+//zdarzenie wyboru koloru włosów
+module.exports.hair = function (hero, text) {
+  hero.splice(10, 1, text);
+  $("#alerts").html("<p class='greenText boldText fontSize12em medievalText'> wybrano kolor włosów: <span class='blueText'> " + text + "</span></p>");setTimeout(function () {
+    $("#alerts").empty();
+  }, 5000);
+};
+
+//zdarzenie wyboru koloru skóry
+module.exports.skin = function (hero, text) {
+  hero.splice(11, 1, text);
+  $("#alerts").html("<p class='greenText boldText fontSize12em medievalText'> wybrano kolor skóry: <span class='blueText'> " + text + "</span></p>");setTimeout(function () {
+    $("#alerts").empty();
+  }, 5000);
+};
+
+//zdarzenie wyboru koloru wagi
+module.exports.weight = function (hero, text) {
+  hero.splice(12, 1, text);
+  $("#alerts").html("<p class='greenText boldText fontSize12em medievalText'> wybrano wagę: <span class='blueText'> " + text + "</span></p>");setTimeout(function () {
+    $("#alerts").empty();
+  }, 5000);
+};
+
+//zdarzenie wyboru wzrostu
+module.exports.height = function (hero, text) {
+  hero.splice(13, 1, text);
+  $("#alerts").html("<p class='greenText boldText fontSize12em medievalText'> wybrano wzrost: <span class='blueText'> " + text + "</span></p>");setTimeout(function () {
+    $("#alerts").empty();
+  }, 5000);
+};
+
+//funkcja dodawania i usuwania rzeczy do ekwipunku
+module.exports.itemsAddRemove = function (whatClick, whatPush, equip) {
+  if (equip.length < 5) {
+    if (equip.indexOf(whatPush) !== -1) {
+      var number = 0;number = number + equip.length;$("#alerts").html("<p class='greenText boldText fontSize12em medievalText'> wybrano rzecz: <span class='blueText'> " + whatPush + "</span></p>");setTimeout(function () {
+        $("#alerts").empty();
+      }, 5000);$("#btnToRemove").text(newElement("button", whatPush + number, whatPush, $("#btnToRemove")));
+    } else {
+      $("#alerts").html("<p class='greenText boldText fontSize12em medievalText'> wybrano rzecz: <span class='blueText'> " + whatPush + "</span></p>");setTimeout(function () {
+        $("#alerts").empty();
+      }, 5000);$("#btnToRemove").text(newElement("button", whatPush, whatPush, $("#btnToRemove")));
+    }
+    $("#btnToRemove").find("button").addClass("basicBtn btnNewGame medievalText width20 marginTop1 marginLeft5");equip.push(whatPush);var allBtnRemove = document.querySelectorAll("#btnToRemove button"),
+        i = void 0;for (i = 0; i < allBtnRemove.length; i++) {
+      allBtnRemove[i].addEventListener("click", function (e) {
+        equip.splice(equip.indexOf(this.id), 1);this.remove();$("#alerts").html("<p class='redText boldText fontSize12em medievalText'>usunięto: <span class='blueText'>" + this.id + "</span>");setTimeout(function () {
+          $("#alerts").empty();
+        }, 5000);
+      });
+    }
+  } else {
+    $("#alerts").html("<p class='redText boldText fontSize12em medievalText'>Już zostało wybrane pięć przedmiotów.");setTimeout(function () {
+      $("#alerts").empty();
+    }, 5000);equip.splice(5, 1);
+  }
+};
+
+//"funkcja" dodawania i usuwania umiejętności
+module.exports.skillsAddRemove = function (whatClick, whatPush, skills) {
+  if (skills.length <= 2) {
+    if (skills.indexOf(whatPush) !== -1) {
+      $("#alerts").html("<p class='redText boldText fontSize12em medievalText'>Ta umiejętność została już wybrana.</p>");setTimeout(function () {
+        $("#alerts").empty();
+      }, 5000);
+    } else {
+      skills.push(whatPush);newElement("button", whatPush, whatPush, $("#btnToRemove"), "bold");$("#alerts").html("<p class='greenText boldText fontSize12em medievalText'>wybrana rasa to: <span class='blueText'>" + whatPush + "</span></p>");setTimeout(function () {
+        $("#alerts").empty();
+      }, 5000);
+    }
+  } else if (skills.length > 2) {
+    $("#alerts").html("<p class='redText boldText fontSize12em medievalText'>Już zostały wybrane trzy umiejętności.</p>");setTimeout(function () {
+      $("#alerts").empty();
+    }, 5000);
+  }
+  var allBtnRemove = document.querySelectorAll("#btnToRemove button"),
+      i = void 0;$("#btnToRemove").find("button").addClass("basicBtn btnNewGame medievalText width20 marginTop1 marginLeft5");for (i = 0; i < allBtnRemove.length; i++) {
+    allBtnRemove[i].addEventListener("click", function (e) {
+      if (skills.indexOf(this.id) !== -1) {
+        skills.splice(skills.indexOf(this.id), 1);this.remove();
+      }
+    });
+  }
+};
+
+//pętla dla przycisków usuwania przedmiotów, gdy pownownie wejdzie się w opcje wybiernia przedmiotów
+module.exports.itemForRemove = function (equip) {
+  for (var j = 0; j < equip.length; j++) {
+    newElement("button", j, equip[j], $("#btnToRemove"));$("#btnToRemove").find("button").addClass("basicBtn btnNewGame medievalText width20 marginTop1 marginLeft5");var allBtnRemove = document.querySelectorAll("#btnToRemove button"),
+        i = void 0;
+    for (i = 0; i < allBtnRemove.length; i++) {
+      allBtnRemove[i].addEventListener("click", function (e) {
+        if (equip.indexOf($(this).text()) !== -1) {
+          equip.splice(equip.indexOf($(this).text()), 1);this.remove();
+        }this.remove();
+      });
+    }
+  }
+};
+
+//pętla dla przycisków usuwania umiejętności, gdy pownownie wejdzie się w opcje wybiernia umiejętności
+module.exports.skillsToRemove = function (skills) {
+  for (var j = 0; j < skills.length; j++) {
+    newElement("button", j, skills[j], $("#btnToRemove"));$("#btnToRemove").find("button").addClass("basicBtn btnNewGame medievalText width20 marginTop1 marginLeft5");var allBtnRemove = document.querySelectorAll("#btnToRemove button"),
+        i = void 0;
+    for (i = 0; i < allBtnRemove.length; i++) {
+      allBtnRemove[i].addEventListener("click", function (e) {
+        if (skills.indexOf($(this).text()) !== -1) {
+          skills.splice(skills.indexOf($(this).text()), 1);this.remove();
+        }this.remove();
+      });
+    }
+  }
+};
+
+//funkcja optymalizująca wybieranie rasy i profesji
+function clickRaceOccupation(element, text, number, sourceDescription, alert) {
+  element.on("click", function () {
+    hero.splice(number, 1, text);alert.addClass("greenText");
+    $("#choosenDescription").text(sourceDescription);
+    if (text === "wojownik") {
+      choosenOccupation.splice(0, 1, 5);choosenOccupation.splice(1, 1, 5);choosenOccupation.splice(2, 1, 0);choosenOccupation.splice(3, 1, 0);choosenOccupation.splice(4, 1, 0);
+    } else if (text === "złoczyńca") {
+      choosenOccupation.splice(0, 1, 0);choosenOccupation.splice(1, 1, 0);choosenOccupation.splice(2, 1, 10);
+      choosenOccupation.splice(3, 1, 0);choosenOccupation.splice(4, 1, 0);
+    } else if (text === "czarodziej") {
+      choosenOccupation.splice(0, 1, 0);choosenOccupation.splice(1, 1, 0);choosenOccupation.splice(2, 1, 0);
+      choosenOccupation.splice(3, 1, 5);choosenOccupation.splice(4, 1, 5);
+    } else if (text === "człowiek") {
+      choosenRace.splice(0, 1, 0);choosenRace.splice(1, 1, 0);choosenRace.splice(2, 1, 0);choosenRace.splice(3, 1, 0);choosenRace.splice(4, 1, 0);
+    } else if (text === "elf") {
+      choosenRace.splice(0, 1, -5);choosenRace.splice(1, 1, -5);
+      choosenRace.splice(2, 1, 0);choosenRace.splice(3, 1, 5);choosenRace.splice(4, 1, 5);
+    } else if (text === "krasnolud") {
+      choosenRace.splice(0, 1, 4);choosenRace.splice(1, 1, 4);
+      choosenRace.splice(2, 1, 0);choosenRace.splice(3, 1, -2);choosenRace.splice(4, 1, -3);
+    } else if (text === "ork") {
+      choosenRace.splice(0, 1, 5);choosenRace.splice(1, 1, 5);choosenRace.splice(2, 1, 0);choosenRace.splice(3, 1, -5);choosenRace.splice(4, 1, -5);
+    }
+  });
+}
+
+//funkcja akceptowania imienia
+module.exports.acceptName = function (hero) {
+  $("#acceptName").on("click", function () {
+    var nameInput = $("#giveName").val().replace(/\d/g, '');if (nameInput == "") {
+      $("#alerts").html("<p class='redText boldText fontSize12em medievalText'>nie wybrano imienia</p>");
+    } else {
+      hero.splice(0, 1, nameInput);$("#alerts").html("<p class='greenText boldText fontSize12em medievalText'>wybrane imię to: <span class='blueText'>" + nameInput + "</span></p>");
+    }setTimeout(function () {
+      $("#alerts").empty();
+    }, 5000);
+  });
+};
+
+/***/ }),
 /* 2 */
 /***/ (function(module, exports, __webpack_require__) {
 
-module.exports = __webpack_require__(3);
-
-
-/***/ }),
-/* 3 */
-/***/ (function(module, exports, __webpack_require__) {
-
 "use strict";
 
 
-//import z plików zewnętrznych
-var functions = __webpack_require__(0); //podstawowe funkcje
-var introFirstMenu = __webpack_require__(4); //plik z częścią intro oraz pierwszym menu
-var heroCreator = __webpack_require__(1);
-var introGame = __webpack_require__(7);
-
-document.addEventListener("DOMContentLoaded", function () {
-	console.log("NIEWIERNE PSY RULEZ!!!!");
-
-	//intro i pierwsze menu
-	introFirstMenu.gameTitle();
-
-	//przejście z nazwy gry do pierwszego toFirstMenu
-	introFirstMenu.toFirstMenu();
-
-	//utworzenie przycisków pierwszego menu
-	introFirstMenu.btnsMenuFirst();
-
-	//funkcje zdarzeń (kliknięcia w przyciski) dla pierwszego menu
-	introFirstMenu.clicksFirstMenu();
-}); //koniec DOMContentLoaded
-
-/***/ }),
-/* 4 */
-/***/ (function(module, exports, __webpack_require__) {
-
-"use strict";
-
-
-//import funkcji z pliku zewnętrznego
-var functions = __webpack_require__(0); //podstawowe funkcje
-var heroCreator = __webpack_require__(1); //plik tworzenia postaci
-
-//funkcja tytuły gry
-module.exports.gameTitle = function () {
-  //utworzenie paragarafów dla tytułu gry
-  functions.newElement("p", "titleGameHeader", "AUDACES", $("header"));
-  functions.newElement("p", "subTitleGameHeader", "serce ze stali", $("#titleGameHeader"));
-
-  $("#titleGameHeader").hide();
-
-  //pokazanie tytułu i podtytułu gry
-  setTimeout(function () {
-    $("#studioTitle h2").replaceWith("<p class='medievalTextTitle gameTitle'>Audaces</p>");
-    $("#studioTitle h3").replaceWith("<p class='medievalTextTitle subGameTitle'>serce z żelaza</p>");
-    $("#studioTitle").fadeIn(6000);$("#studioTitle").delay(2000).fadeOut(6000);
-  }, 6200);
-};
-
-//przejście z nazwy gry do pierwszego toFirstMenu
-module.exports.toFirstMenu = function () {
-  //zmiana koloru tła na beżowy
-  setTimeout(function () {
-    $("body").css("backgroundColor", "beige");
-  }, 19000);
-
-  //usunięcie diva o id studioTitle
-  setTimeout(function () {
-    $("#studioTitle").remove();
-    $("#titleGameHeader, #subTitleGameHeader").fadeIn(1500);
-    $("#info, #licence, #tutorial, #newGame").delay(1500).show().addClass("basicBtn");
-    $("#info").addClass("btnInfo");
-    $("#licence").addClass("btnLicence");
-    $("#tutorial").addClass("btnTutorial");
-    $("#newGame").addClass("btnNewGame");
-    functions.newElement("p", "textHello", textHello, $("#mainPart"));
-    $("#textHello").addClass("basicText medievalText");
-  }, 20000);
-};
-
-//utworzenie przycisków pierwszego menu
-module.exports.btnsMenuFirst = function () {
-  functions.newElement("button", "info", "info", $("#mainBtns"));
-  functions.newElement("button", "licence", "licencja", $("#mainBtns"));
-  functions.newElement("button", "tutorial", "tutorial", $("#mainBtns"));
-  functions.newElement("button", "newGame", "Nowa Gra", $("#mainBtns"));
-  $("#info, #licence, #tutorial, #newGame").hide();
-};
-
-//tekst powitalny
-var textHello = "Witaj w grze 'Audaces - serce z żelaza', pierwszej grze tekstowej Niewiernych Psów. Poniżej znajdują się cztery przyciski, dzięki którym poznasz podsatwowe informacje o Niewiernych Psach, licencji gry, jsamouczka obsługi interfejsu gry oraz rozpoczniesz grę AUDACES - serce z żelaza. Także tego. Studio Niewiernych Psów, życzy miłej zabawy.";
-
-//tekst dla informacji w menu pierwszym
-var info = "Ta wersja gry została stworzona jako poprawiona wersja, projektu końcowego kursu front'endowego, a także jako modernizacja tej samej gry sprzed kursu. Gra ma także na celu przetestowanie mechaniki 'papierowej' wersji systemu gry Audaces. Projekt będzie rozwijalny także po skończeniu kursu. Wszystkie wersje tej gry zostały wydane przez niezależne studio Niewierne Psy. Gra powstała dzięki użytym technologiom: HTML5, SASS, jQuery, EcmaScript 6. Fonty pobrane z: fonts.google.com/.";
-
-//tekst dla licencji
-var licence = "UMOWA LICENCYJNA UŻYTKOWNIKA APLIKACJI AUDACES (oraz wszystkich jego wesji). POSIADAJĄC APLIKACJĘ AKCEPTUJESZ PONIŻSZE WARUNKI LICENCJI. Autor informuje, iż zawarte treści w aplikacji mogą być niestosowne dla osób niepełnoletnich, o innym światopoglądzie lub wyznawanej religii. Użytkownik używa aplikację na własne ryzyko. Twórca tej aplikacji infourmuje, iż aplikacja ta została stowrzona w celach hobbystycznych oraz w celu nauki programowania. Aplikacja ta może zawierać błędy, które niekoniecznie muszą być poprawione. Autor nie udziela żadnych gwarancji, obietnic oraz zapewnień na tą aplikację (i jej wersje) i nie odpowiada za błędne działanie lub użytkowanie programu. Autor aplikacji nie bierze na siebie żadnych reklamacji w sprawie wadliwego działania programu oraz nie poczuwa się do zadość uczynienia za spowodowane szkody. Prawa autorskie należą do Szymona Cendeckiego. Audaces jest rozprowadzany na zasadzie FREEWARE czyli: użytkownik dostaje aplikację za darmo, nie może w żaden sposób zmieniać aplikacji, może wykorzystywać aplikację na własny użytek, zabrnia się wykorzystywać aplikację w celach komercyjnych, zabrania się ujawniania kodu źródłowego.";
-
-//tekst dla tutorialu
-var tutorial = "Początek gry. Ekran składa się z powitania oraz czterech przycisków. Po wciśnięciu przycisku Info, Licencja lub Tutorial obok pojawi się odpowiednia informacja. Po wciśnięciu przycisku Nowa gra, użytkownik rozpocznie grę. Po rozpoczęciu gry, użytkownik będzie mógł stworzyć swoją. Po stworzeniu postaci, użytkownik przejdze do gry. Ekran będzie podzielony na część z przyciskami, główną, w której będzie rozgrywała się gra oraz na część z komunikatami. Część z przyciskami będzie posiadała przyciski umożliwiające dostęp do cech postaci, ekwipunku, umiejętności itd. oraz do opcji, które będzie mógł wybrać w trakcie gry. W głównej części pojawi się główna gra. Na jej podstawie gracz będzie mógł dokonywać wyborów z listy przycików. W części komunikatów będą pojawiać się komunikaty dotyczące podjętych działań.";
-
-//zdarzenia dla pierwszego menu
-module.exports.clicksFirstMenu = function () {
-  functions.clickFirstMenu($("#info"), $("#mainPart"), "textInfo", info);
-  functions.clickFirstMenu($("#licence"), $("#mainPart"), "textLicence", licence);
-  functions.clickFirstMenu($("#tutorial"), $("#mainPart"), "textTutorial", tutorial);
-
-  $("#newGame").on("click", function () {
-    $("#mainBtns, #mainPart").empty();
-    heroCreator.randomChooseHeroBtns();
-    heroCreator.textDescription();
-  });
-};
-
-/***/ }),
-/* 5 */
-/***/ (function(module, exports, __webpack_require__) {
-
-"use strict";
-
-
-//import funkcji z pliku zewnętrznego
-var functions = __webpack_require__(0); //podstawowe funkcje
-var theGame = __webpack_require__(6); //gra
-var heroCreator = __webpack_require__(1);
-var room = __webpack_require__(8);
-
-var text1 = "Mówią, że Dzikie Pustkowia to kraina opuszczona przez Bogów.";
-
-var text2 = "Pełna siedzib mrocznych kultów, wyrzutków społeczeństwa, krwiożerczych bestii i demonów, przywołanych czarną magią z innych wymiarów.";
-
-var text3 = " Krąży wiele legend o ukrytych, nieprzebranych skarbach, o herosach - smokobójcach.";
-
-var text4 = "Dzikie Pustkowia fascynuję i przerażają, jednak wielu śmiałków wędruje w tą część świata w poszukiwaniu bogactw i chwały.";
-
-var text5 = "Większość nie wraca... ";
-
-var text6 = "Twoja historia zaczyna się w mieście Erharuf.";
-
-var text7 = " W ostatnim bezpiecznym mieście przed Dzikimi Pustkowiami.";
-
-var text8 = "Na usilną prośbę znajomego kapłana zgadzasz się dostarczyć małą paczkę dla tamtejszego mnicha, rezydującego w niewielkiej wiosce, która leży tuż przy granicy z Dzikimi Pustkowiami.";
-
-module.exports.intro = function () {
-  setTimeout(function () {
-    functions.newElement("p", "text1", text1, $("#mainPart"));
-    functions.newElement("p", "text2", text2, $("#mainPart"));
-    functions.newElement("p", "text3", text3, $("#mainPart"));
-    functions.newElement("p", "text4", text4, $("#mainPart"));
-    functions.newElement("p", "text5", text5, $("#mainPart"));
-    functions.newElement("p", "text6", text6, $("#mainPart"));
-    functions.newElement("p", "text7", text7, $("#mainPart"));
-    functions.newElement("p", "text8", text8, $("#mainPart"));
-    $("#text1, #text2, #text3, #text4, #text5, #text6, #text7, #text8").addClass("basicText center width100 medievalText fontSize11em");
-  }, 100);
-
-  setTimeout(function () {
-    $("#text1, #text2, #text3, #text4, #text5, #text6, #text7, #text8").hide();
-
-    //utworzenie głownych przycisków: cechy, ekwipunek, umijętności i zadania
-    functions.newElement("button", "features", "cechy", $("#heroBtns"));
-    functions.newElement("button", "equip", "ekwipunek", $("#heroBtns"));
-    functions.newElement("button", "skills", "umiejętności", $("#heroBtns"));
-    functions.newElement("button", "tasks", "zadania", $("#heroBtns"));
-    $("#features, #equip, #skills, #tasks").addClass("basicBtn btnNewGame");
-    $("#equip, #skills").addClass("fontSize09em paddingUpDown1");
-
-    //utworzenie przyciku wyjdź dla paragrafu pierwszego - pokoju - w tym miejscu zablokowane odpalenie zdarzenia
-    functions.newElement("button", "outRoom", "wyjdź", $("#mainBtns"));
-    $("#outRoom").prop("disabled", true);
-
-    //utworzenie przycisków interakcji dla pierwszego paragrafu - pokoju
-    functions.newElement("button", "lookAroundRoom", "rozejrzyj się", $("#interactionsBtns"));
-    functions.newElement("button", "wardrobe", "szafa", $("#interactionsBtns"));
-    functions.newElement("button", "chest", "skrzynia", $("#interactionsBtns"));
-    functions.newElement("button", "package", "paczka", $("#interactionsBtns"));
-
-    //dodanie styli dla przycisów interakcji pierwszego paragrafu
-    $("#outRoom, #lookAroundRoom, #wardrobe, #chest, #package").addClass("basicBtn");
-    $("#outRoom").addClass("bckgRed medievalText marginTop4 shadowForBtn");
-    $("#lookAroundRoom").addClass("bckgBlue medievalText marginTop4 shadowForBtn fontSize09em paddingUpDown1");
-    $("#wardrobe, #chest").addClass("bckgGreen medievalText marginTop4 shadowForBtn");
-    $("#package").addClass("bckgYellow medievalText marginTop4 shadowForBtn marginTop4");
-
-    //główny tekst opisowy dla paragrafu - pokój - paragraf pierwszy
-    $("#mainPart").html("<div class='basicText medievalText'>Stoisz w swoim pokoju, w którym znajduje się tylko łóżko, szafa, mały stolik i drewniana skrzynia. Na stoliku leży zawniątko, które musisz oddać mnichowi w przygranicznej wiosce. Co robisz?</div>");
-
-    //utworzenie "okna dialogowego"
-    functions.newElement("div", "info", "", $("#mainPart"));
-
-    //utworzenie "pomocniczego" diva opisującego paragraf - lokację, w której znajduje się aktualnie gracz
-    functions.newElement("div", "description", "", $("#mainPart"));
-
-    //zdarzenie dla przycisków głownych: cechy, ekwipunek, umiejętności zadania
-    $("#features").on("click", function () {
-      theGame.btnFeatures();
-    });
-    $("#equip").on("click", function () {
-      theGame.btnEquip();
-    });
-    $("#skills").on("click", function () {
-      theGame.btnSkills();
-    });
-    $("#tasks").on("click", function () {
-      theGame.btnTasks();
-    });
-
-    //zdarzenia dla przycisków interakcji pierwszego paragrafu
-    //zdarzenie rozglądania się
-    $("#lookAroundRoom").on("click", function () {
-      room.lookAround();
-    });
-
-    //zdarzenie dla szafy
-    $("#wardrobe").on("click", function () {
-      room.wardrobe();
-    });
-
-    //zdarzenie dla skrzyni
-    $("#chest").on("click", function () {
-      room.chest();
-    });
-  }, 30000);
-};
-
-/***/ }),
-/* 6 */
-/***/ (function(module, exports, __webpack_require__) {
-
-"use strict";
-
-
-//import funkcji z pliku zewnętrznego
-var functions = __webpack_require__(0); //podstawowe funkcje
-var heroCreator = __webpack_require__(1);
-
-//zdarzenie dla przycisku "cechy"
-module.exports.btnFeatures = function () {
-  $("#info").html("<div class='width75 flexForBtns medievalText greenText, boldText fontSize1em zindex1 bckgGreen'><p class='width100 textUnderlineGold medievalText center paddingUpDown1 fontSize13em'>TWÓJ PROTAGONISTA</p><div class='width90 flexForBtns marginTop2'><p class='width24 navyText'>imię: <span class='blackText boldText fontSize12em'>" + heroCreator.hero[0] + "</span></p><p class='width24 navyText'>płeć: <span class='blackText boldText fontSize12em'>" + heroCreator.hero[1] + "</span></p><p class='width24 navyText'>rasa: <span class='blackText boldText fontSize12em'>" + heroCreator.hero[2] + "</span></p><p class='width24 navyText'>profesja: <span class='blackText fontSize12em'>" + heroCreator.hero[3] + "</p></div><div class='width90 flexForBtns marginTop2'><p class='width33 navyText'>siła: <span class='blackText boldText fontSize12em'>" + heroCreator.hero[4] + "</span></p><p class='width33 navyText'>wytrzymałość: <span class='blackText boldText fontSize12em'>" + heroCreator.hero[5] + "</span></p><p class='width33 navyText'>zręczność: <span class='blackText boldText fontSize12em'>" + heroCreator.hero[6] + "</span></p><p class='width33 navyText'>inteligencja: <span class='blackText boldText fontSize12em'>" + heroCreator.hero[7] + "</span></p><p class='width33 navyText'>charyzma: <span class='blackText boldText fontSize12em'>" + heroCreator.hero[8] + "</span></p></div><div class='width90 flexForBtns marginTop2'><p class='width33 navyText'>kolor oczu: <span class='blackText boldText fontSize12em'>" + heroCreator.hero[9] + "</span></p><p class='width33 navyText'>kolor włosów: <span class='blackText boldText fontSize12em'>" + heroCreator.hero[10] + "</span></p><p class='width33 navyText'>kolor skóry: <span class='blackText boldText fontSize12em'>" + heroCreator.hero[11] + "</span></p><p class='width33 navyText'>waga: <span class='blackText boldText fontSize12em'>" + heroCreator.hero[12] + "</span></p><p class='width33 navyText'>wzrost: <span class='blackText boldText fontSize12em'>" + heroCreator.hero[13] + "</span></p></div><button id='close' class='bckgRed fontSize12em width15 boldText medievalText whiteTextShadow11 paddingUpDown1 marginTop4'>zamknij</button></div>");
-  $("#features, #equip, #skills, #tasks, #lookAroundRoom, #wardrobe, #chest, #package").prop("disabled", true);
-
-  $("#close").on("click", function () {
-    $("#info").empty();$("#features, #equip, #skills, #tasks, #lookAroundRoom, #wardrobe, #chest, #package").prop("disabled", false);
-  });
-};
-
-//zdarzenie dla przycisku "ewipunku"
-module.exports.btnEquip = function () {
-  $("#info").html("<div class='width75 flexForBtns medievalText greenText, boldText fontSize1em zindex1 bckgGreen'><p class='width100 textUnderlineGold medievalText center paddingUpDown1 fontSize13em'>EKWIPUNEK</p><div class='width100 flexForBtns marginTop2'><p class='width90'><span class='blackText boldText fontSize12em'>" + heroCreator.equip + "</span></p><p class='width90 navyText'>złoto: <span class='blackText boldText fontSize12em'>" + heroCreator.gold + "</span></p</div></div><button id='close' class='bckgRed fontSize12em width15 boldText medievalText whiteTextShadow11 paddingUpDown1 marginTop4'>zamknij</button>");
-  $("#features, #equip, #skills, #tasks, #lookAroundRoom, #wardrobe, #chest, #package").prop("disabled", true);
-
-  $("#close").on("click", function () {
-    $("#info").empty();$("#features, #equip, #skills, #tasks, #lookAroundRoom, #wardrobe, #chest, #package").prop("disabled", false);
-  });
-};
-
-//zdarzenie dla przycisku "umiejętności"
-module.exports.btnSkills = function () {
-  $("#info").html("<div class='width75 flexForBtns medievalText greenText, boldText fontSize1em zindex1 bckgGreen'><p class='width100 textUnderlineGold medievalText center paddingUpDown1 fontSize13em'>UMIEJĘTNOŚCI</p><div class='width100 flexForBtns marginTop2'><p class='width90'><span class='blackText boldText fontSize12em'>" + heroCreator.skills + "</span></p></div><button id='close' class='bckgRed fontSize12em width15 boldText medievalText whiteTextShadow11 paddingUpDown1 marginTop4'>zamknij</button></div>");
-  $("#features, #equip, #skills, #tasks, #lookAroundRoom, #wardrobe, #chest, #package").prop("disabled", true);
-
-  $("#close").on("click", function () {
-    $("#info").empty();$("#features, #equip, #skills, #tasks, #lookAroundRoom, #wardrobe, #chest, #package").prop("disabled", false);
-  });
-};
-
-//zdarzenie dla przycisku "zadania"
-module.exports.btnTasks = function () {
-  $("#info").html("<div class='width75 flexForBtns medievalText greenText, boldText fontSize1em zindex1 bckgGreen'><p class='width100 textUnderlineGold medievalText center paddingUpDown1 fontSize13em'>ZADANIA</p><div class='width100 flexForBtns marginTop2'><p class='width90'><span class='blackText boldText fontSize12em'>" + heroCreator.tasks + "</span></p></div><button id='close' class='bckgRed fontSize12em width15 boldText medievalText whiteTextShadow11 paddingUpDown1 marginTop4'>zamknij</button></div>");
-  $("#features, #equip, #skills, #tasks, #lookAroundRoom, #wardrobe, #chest, #package").prop("disabled", true);
-
-  $("#close").on("click", function () {
-    $("#info").empty();$("#features, #equip, #skills, #tasks, #lookAroundRoom, #wardrobe, #chest, #package").prop("disabled", false);
-  });
-};
-
-/***/ }),
-/* 7 */
-/***/ (function(module, exports, __webpack_require__) {
-
-"use strict";
-
-
-module.exports.text1 = "Mówią, że Dzikie Pustkowia to kraina opuszczona przez Bogów.";
-
-module.exports.text2 = "Pełna siedzib mrocznych kultów, wyrzutków społeczeństwa, krwiożerczych bestii i demonów, przywołanych czarną magią z innych wymiarów.";
-
-module.exports.text3 = " Krąży wiele legend o ukrytych, nieprzebranych skarbach, o herosach - smokobójcach.";
-
-module.exports.text4 = "Dzikie Pustkowia fascynuję i przerażają, jednak wielu śmiałków wędruje w tą część świata w poszukiwaniu bogactw i chwały.";
-
-module.exports.text5 = "Większość nie wraca... ";
-
-module.exports.text6 = "Twoja historia zaczyna się w mieście Erharuf.";
-
-module.exports.text7 = " W ostatnim bezpiecznym mieście przed Dzikimi Pustkowiami.";
-
-module.exports.text8 = "Na usilną prośbę znajomego kapłana zgadzasz się dostarczyć małą paczkę dla tamtejszego mnicha, rezydującego w niewielkiej wiosce, która leży tuż przy granicy z Dzikimi Pustkowiami.";
-
-/***/ }),
-/* 8 */
-/***/ (function(module, exports, __webpack_require__) {
-
-"use strict";
-
-
-var heroCreator = __webpack_require__(1);
+var heroCreator = __webpack_require__(0);
+var street = __webpack_require__(3);
 
 //zawartość zdarzenia dla przycisku rozejrzyj się
 module.exports.lookAround = function () {
@@ -1686,6 +1384,376 @@ module.exports.chest = function () {
     }
   }
 };
+
+//zdarzenie dla paczki
+module.exports.package = function () {
+  heroCreator.equip.push("paczka");
+  $("#outRoom").removeClass("bckgRed").addClass("bckgGreen").prop("disabled", false);
+  $("#package").remove();
+};
+
+//zdarzenie dla wyjścia z pokoju
+module.exports.outRoom = function () {
+  $("#mainPart").empty();
+  $("#outRoom, #wardrobe, #chest, #lookAroundRoom").hide();
+};
+
+/***/ }),
+/* 3 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+var heroCreator = __webpack_require__(0);
+var room = __webpack_require__(2);
+
+module.exports.showBtns = function () {
+  $("#lookAroundStreet, #inRoom, #toCaravans, #toMarket").show();
+  $("#lookAroundStreet, #inRoom, #toCaravans, #toMarket").addClass("basicBtn");
+  $("#inRoom, #toCaravans, #toMarket").addClass("bckgGreen medievalText marginTop4 shadowForBtn");
+  $("#lookAroundStreet").addClass("bckgBlue medievalText marginTop4 shadowForBtn fontSize09em paddingUpDown1");
+};
+
+module.exports.textStreet = function () {
+  //główny tekst opisowy dla paragrafu - ulica - paragraf drugi
+  $("#mainPart").html("<div class='basicText medievalText'>Stoisz przed domem. Aby udać się do wyznaczonego celu, najlepiej zabrać się z jakąś karawaną. Idziesz w kierunku bramy miasta. Przy bramie znajduje się targ. To dobry czas i miejsce, aby uzupełnić zapasy na dalszą podróż. Co robisz?</div><div id='description'></div>");
+};
+
+module.exports.lookAroundStreet = function () {
+  $("#description").html("<p class='basicText medievalText'>Typowa ulica dzielnicy Najemników, miasta Erharuf. Częściowo brukowana. Pobliskie budynki są niskie i drewniane, maksymalnie jednopiętrowe. Nic specjalnego.</p><button id='close' class='bckgRed fontSize12em width15 boldText medievalText whiteTextShadow11 paddingUpDown1 marginTop4'>zamknij</button>");
+  $("#close").on("click", function () {
+    $("#description").empty();
+  });
+};
+
+/***/ }),
+/* 4 */
+/***/ (function(module, exports, __webpack_require__) {
+
+module.exports = __webpack_require__(5);
+
+
+/***/ }),
+/* 5 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+//import z plików zewnętrznych
+var functions = __webpack_require__(1); //podstawowe funkcje
+var introFirstMenu = __webpack_require__(6); //plik z częścią intro oraz pierwszym menu
+var heroCreator = __webpack_require__(0);
+var introGame = __webpack_require__(9);
+
+document.addEventListener("DOMContentLoaded", function () {
+	console.log("NIEWIERNE PSY RULEZ!!!!");
+
+	//intro i pierwsze menu
+	introFirstMenu.gameTitle();
+
+	//przejście z nazwy gry do pierwszego toFirstMenu
+	introFirstMenu.toFirstMenu();
+
+	//utworzenie przycisków pierwszego menu
+	introFirstMenu.btnsMenuFirst();
+
+	//funkcje zdarzeń (kliknięcia w przyciski) dla pierwszego menu
+	introFirstMenu.clicksFirstMenu();
+}); //koniec DOMContentLoaded
+
+/***/ }),
+/* 6 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+//import funkcji z pliku zewnętrznego
+var functions = __webpack_require__(1); //podstawowe funkcje
+var heroCreator = __webpack_require__(0); //plik tworzenia postaci
+
+//funkcja tytuły gry
+module.exports.gameTitle = function () {
+  //utworzenie paragarafów dla tytułu gry
+  functions.newElement("p", "titleGameHeader", "AUDACES", $("header"));
+  functions.newElement("p", "subTitleGameHeader", "serce ze stali", $("#titleGameHeader"));
+
+  $("#titleGameHeader").hide();
+
+  //pokazanie tytułu i podtytułu gry
+  setTimeout(function () {
+    $("#studioTitle h2").replaceWith("<p class='medievalTextTitle gameTitle'>Audaces</p>");
+    $("#studioTitle h3").replaceWith("<p class='medievalTextTitle subGameTitle'>serce z żelaza</p>");
+    $("#studioTitle").fadeIn(6000);$("#studioTitle").delay(2000).fadeOut(6000);
+  }, 6200);
+};
+
+//przejście z nazwy gry do pierwszego toFirstMenu
+module.exports.toFirstMenu = function () {
+  //zmiana koloru tła na beżowy
+  setTimeout(function () {
+    $("body").css("backgroundColor", "beige");
+  }, 19000);
+
+  //usunięcie diva o id studioTitle
+  setTimeout(function () {
+    $("#studioTitle").remove();
+    $("#titleGameHeader, #subTitleGameHeader").fadeIn(1500);
+    $("#info, #licence, #tutorial, #newGame").delay(1500).show().addClass("basicBtn");
+    $("#info").addClass("btnInfo");
+    $("#licence").addClass("btnLicence");
+    $("#tutorial").addClass("btnTutorial");
+    $("#newGame").addClass("btnNewGame");
+    functions.newElement("p", "textHello", textHello, $("#mainPart"));
+    $("#textHello").addClass("basicText medievalText");
+  }, 20000);
+};
+
+//utworzenie przycisków pierwszego menu
+module.exports.btnsMenuFirst = function () {
+  functions.newElement("button", "info", "info", $("#mainBtns"));
+  functions.newElement("button", "licence", "licencja", $("#mainBtns"));
+  functions.newElement("button", "tutorial", "tutorial", $("#mainBtns"));
+  functions.newElement("button", "newGame", "Nowa Gra", $("#mainBtns"));
+  $("#info, #licence, #tutorial, #newGame").hide();
+};
+
+//tekst powitalny
+var textHello = "Witaj w grze 'Audaces - serce z żelaza', pierwszej grze tekstowej Niewiernych Psów. Poniżej znajdują się cztery przyciski, dzięki którym poznasz podsatwowe informacje o Niewiernych Psach, licencji gry, jsamouczka obsługi interfejsu gry oraz rozpoczniesz grę AUDACES - serce z żelaza. Także tego. Studio Niewiernych Psów, życzy miłej zabawy.";
+
+//tekst dla informacji w menu pierwszym
+var info = "Ta wersja gry została stworzona jako poprawiona wersja, projektu końcowego kursu front'endowego, a także jako modernizacja tej samej gry sprzed kursu. Gra ma także na celu przetestowanie mechaniki 'papierowej' wersji systemu gry Audaces. Projekt będzie rozwijalny także po skończeniu kursu. Wszystkie wersje tej gry zostały wydane przez niezależne studio Niewierne Psy. Gra powstała dzięki użytym technologiom: HTML5, SASS, jQuery, EcmaScript 6. Fonty pobrane z: fonts.google.com/.";
+
+//tekst dla licencji
+var licence = "UMOWA LICENCYJNA UŻYTKOWNIKA APLIKACJI AUDACES (oraz wszystkich jego wesji). POSIADAJĄC APLIKACJĘ AKCEPTUJESZ PONIŻSZE WARUNKI LICENCJI. Autor informuje, iż zawarte treści w aplikacji mogą być niestosowne dla osób niepełnoletnich, o innym światopoglądzie lub wyznawanej religii. Użytkownik używa aplikację na własne ryzyko. Twórca tej aplikacji infourmuje, iż aplikacja ta została stowrzona w celach hobbystycznych oraz w celu nauki programowania. Aplikacja ta może zawierać błędy, które niekoniecznie muszą być poprawione. Autor nie udziela żadnych gwarancji, obietnic oraz zapewnień na tą aplikację (i jej wersje) i nie odpowiada za błędne działanie lub użytkowanie programu. Autor aplikacji nie bierze na siebie żadnych reklamacji w sprawie wadliwego działania programu oraz nie poczuwa się do zadość uczynienia za spowodowane szkody. Prawa autorskie należą do Szymona Cendeckiego. Audaces jest rozprowadzany na zasadzie FREEWARE czyli: użytkownik dostaje aplikację za darmo, nie może w żaden sposób zmieniać aplikacji, może wykorzystywać aplikację na własny użytek, zabrnia się wykorzystywać aplikację w celach komercyjnych, zabrania się ujawniania kodu źródłowego.";
+
+//tekst dla tutorialu
+var tutorial = "Początek gry. Ekran składa się z powitania oraz czterech przycisków. Po wciśnięciu przycisku Info, Licencja lub Tutorial obok pojawi się odpowiednia informacja. Po wciśnięciu przycisku Nowa gra, użytkownik rozpocznie grę. Po rozpoczęciu gry, użytkownik będzie mógł stworzyć swoją. Po stworzeniu postaci, użytkownik przejdze do gry. Ekran będzie podzielony na część z przyciskami, główną, w której będzie rozgrywała się gra oraz na część z komunikatami. Część z przyciskami będzie posiadała przyciski umożliwiające dostęp do cech postaci, ekwipunku, umiejętności itd. oraz do opcji, które będzie mógł wybrać w trakcie gry. W głównej części pojawi się główna gra. Na jej podstawie gracz będzie mógł dokonywać wyborów z listy przycików. W części komunikatów będą pojawiać się komunikaty dotyczące podjętych działań.";
+
+//zdarzenia dla pierwszego menu
+module.exports.clicksFirstMenu = function () {
+  functions.clickFirstMenu($("#info"), $("#mainPart"), "textInfo", info);
+  functions.clickFirstMenu($("#licence"), $("#mainPart"), "textLicence", licence);
+  functions.clickFirstMenu($("#tutorial"), $("#mainPart"), "textTutorial", tutorial);
+
+  $("#newGame").on("click", function () {
+    $("#mainBtns, #mainPart").empty();
+    heroCreator.randomChooseHeroBtns();
+    heroCreator.textDescription();
+  });
+};
+
+/***/ }),
+/* 7 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+//import funkcji z pliku zewnętrznego
+var functions = __webpack_require__(1); //podstawowe funkcje
+var theGame = __webpack_require__(8); //gra
+var heroCreator = __webpack_require__(0);
+var room = __webpack_require__(2);
+var street = __webpack_require__(3);
+
+var text1 = "Mówią, że Dzikie Pustkowia to kraina opuszczona przez Bogów.";
+
+var text2 = "Pełna siedzib mrocznych kultów, wyrzutków społeczeństwa, krwiożerczych bestii i demonów, przywołanych czarną magią z innych wymiarów.";
+
+var text3 = " Krąży wiele legend o ukrytych, nieprzebranych skarbach, o herosach - smokobójcach.";
+
+var text4 = "Dzikie Pustkowia fascynuję i przerażają, jednak wielu śmiałków wędruje w tą część świata w poszukiwaniu bogactw i chwały.";
+
+var text5 = "Większość nie wraca... ";
+
+var text6 = "Twoja historia zaczyna się w mieście Erharuf.";
+
+var text7 = " W ostatnim bezpiecznym mieście przed Dzikimi Pustkowiami.";
+
+var text8 = "Na usilną prośbę znajomego kapłana zgadzasz się dostarczyć małą paczkę dla tamtejszego mnicha, rezydującego w niewielkiej wiosce, która leży tuż przy granicy z Dzikimi Pustkowiami.";
+
+module.exports.intro = function () {
+    setTimeout(function () {
+        functions.newElement("p", "text1", text1, $("#mainPart"));
+        functions.newElement("p", "text2", text2, $("#mainPart"));
+        functions.newElement("p", "text3", text3, $("#mainPart"));
+        functions.newElement("p", "text4", text4, $("#mainPart"));
+        functions.newElement("p", "text5", text5, $("#mainPart"));
+        functions.newElement("p", "text6", text6, $("#mainPart"));
+        functions.newElement("p", "text7", text7, $("#mainPart"));
+        functions.newElement("p", "text8", text8, $("#mainPart"));
+        $("#text1, #text2, #text3, #text4, #text5, #text6, #text7, #text8").addClass("basicText center width100 medievalText fontSize11em");
+    }, 100);
+
+    setTimeout(function () {
+        $("#text1, #text2, #text3, #text4, #text5, #text6, #text7, #text8").hide();
+
+        //utworzenie głownych przycisków: cechy, ekwipunek, umijętności i zadania
+        functions.newElement("button", "features", "cechy", $("#heroBtns"));
+        functions.newElement("button", "equip", "ekwipunek", $("#heroBtns"));
+        functions.newElement("button", "skills", "umiejętności", $("#heroBtns"));
+        functions.newElement("button", "tasks", "zadania", $("#heroBtns"));
+        $("#features, #equip, #skills, #tasks").addClass("basicBtn btnNewGame");
+        $("#equip, #skills").addClass("fontSize09em paddingUpDown1");
+
+        //utworzenie przyciku wyjdź dla paragrafu pierwszego - pokoju - w tym miejscu zablokowane odpalenie zdarzenia
+        functions.newElement("button", "outRoom", "wyjdź", $("#mainBtns"));
+        $("#outRoom").prop("disabled", true);
+
+        //utworzenie przycisków interakcji dla pierwszego paragrafu - pokoju
+        functions.newElement("button", "lookAroundRoom", "rozejrzyj się", $("#interactionsBtns"));
+        functions.newElement("button", "wardrobe", "szafa", $("#interactionsBtns"));
+        functions.newElement("button", "chest", "skrzynia", $("#interactionsBtns"));
+        functions.newElement("button", "package", "paczka", $("#interactionsBtns"));
+
+        //utworzenie przycisków interakcji dla drugiego paragrafu - ulicy
+        functions.newElement("button", "inRoom", "wejdź", $("#mainBtns"));
+        functions.newElement("button", "toCaravans", "karawany", $("#mainBtns"));
+        functions.newElement("button", "toMarket", "targ", $("#mainBtns"));
+        functions.newElement("button", "lookAroundStreet", "rozejrzyj się", $("#interactionsBtns"));
+
+        //ukrycie przycisków drugiego paragrafu
+        $("#lookAroundStreet, #inRoom, #toCaravans, #toMarket").hide();
+
+        //dodanie styli dla przycisów interakcji pierwszego paragrafu
+        $("#outRoom, #lookAroundRoom, #wardrobe, #chest, #package").addClass("basicBtn");
+        $("#outRoom").addClass("bckgRed medievalText marginTop4 shadowForBtn");
+        $("#lookAroundRoom").addClass("bckgBlue medievalText marginTop4 shadowForBtn fontSize09em paddingUpDown1");
+        $("#wardrobe, #chest").addClass("bckgGreen medievalText marginTop4 shadowForBtn");
+        $("#package").addClass("bckgYellow medievalText marginTop4 shadowForBtn marginTop4");
+
+        //główny tekst opisowy dla paragrafu - pokój - paragraf pierwszy
+        $("#mainPart").html("<div class='basicText medievalText'>Stoisz w swoim pokoju, w którym znajduje się tylko łóżko, szafa, mały stolik i drewniana skrzynia. Na stoliku leży zawniątko, które musisz oddać mnichowi w przygranicznej wiosce. Co robisz?</div>");
+
+        //utworzenie "okna dialogowego"
+        functions.newElement("div", "info", "", $("header"));
+
+        //utworzenie "pomocniczego" diva opisującego paragraf - lokację, w której znajduje się aktualnie gracz
+        functions.newElement("div", "description", "", $("#mainPart"));
+
+        //zdarzenie dla przycisków głownych: cechy, ekwipunek, umiejętności zadania
+        $("#features").on("click", function () {
+            theGame.btnFeatures();
+        });
+        $("#equip").on("click", function () {
+            theGame.btnEquip();
+        });
+        $("#skills").on("click", function () {
+            theGame.btnSkills();
+        });
+        $("#tasks").on("click", function () {
+            theGame.btnTasks();
+        });
+
+        //zdarzenia dla przycisków interakcji pierwszego paragrafu - pokój
+        //zdarzenie rozglądania się
+        $("#lookAroundRoom").on("click", function () {
+            room.lookAround();
+        });
+        //zdarzenie dla szafy
+        $("#wardrobe").on("click", function () {
+            room.wardrobe();
+        });
+        //zdarzenie dla skrzyni
+        $("#chest").on("click", function () {
+            room.chest();
+        });
+        //zdarzenie dla paczki
+        $("#package").on("click", function () {
+            room.package();
+        });
+        //zdarzenie dla wyjścia z pokoju
+        $("#outRoom").on("click", function () {
+            room.outRoom();street.showBtns();street.textStreet();
+        });
+
+        //zdarzenia dla przycisków interakcji drugiego paragrafu - ulica
+        $("#inRoom").on("click", function () {
+            $("#inRoom, #toCaravans, #toMarket, #lookAroundStreet").hide();
+            $("#wardrobe, #chest, #outRoom").show();
+        });
+        $("#lookAroundStreet").on("click", function () {
+            street.lookAroundStreet();
+        });
+    }, 30000);
+};
+
+/***/ }),
+/* 8 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+//import funkcji z pliku zewnętrznego
+var functions = __webpack_require__(1); //podstawowe funkcje
+var heroCreator = __webpack_require__(0);
+
+//zdarzenie dla przycisku "cechy"
+module.exports.btnFeatures = function () {
+  $("#info").html("<div class='width75 flexForBtns medievalText greenText, boldText fontSize1em zindex1 bckgGreen'><p class='width100 textUnderlineGold medievalText center paddingUpDown1 fontSize13em'>TWÓJ PROTAGONISTA</p><div class='width90 flexForBtns marginTop2'><p class='width24 navyText'>imię: <span class='blackText boldText fontSize12em'>" + heroCreator.hero[0] + "</span></p><p class='width24 navyText'>płeć: <span class='blackText boldText fontSize12em'>" + heroCreator.hero[1] + "</span></p><p class='width24 navyText'>rasa: <span class='blackText boldText fontSize12em'>" + heroCreator.hero[2] + "</span></p><p class='width24 navyText'>profesja: <span class='blackText fontSize12em'>" + heroCreator.hero[3] + "</p></div><div class='width90 flexForBtns marginTop2'><p class='width33 navyText'>siła: <span class='blackText boldText fontSize12em'>" + heroCreator.hero[4] + "</span></p><p class='width33 navyText'>wytrzymałość: <span class='blackText boldText fontSize12em'>" + heroCreator.hero[5] + "</span></p><p class='width33 navyText'>zręczność: <span class='blackText boldText fontSize12em'>" + heroCreator.hero[6] + "</span></p><p class='width33 navyText'>inteligencja: <span class='blackText boldText fontSize12em'>" + heroCreator.hero[7] + "</span></p><p class='width33 navyText'>charyzma: <span class='blackText boldText fontSize12em'>" + heroCreator.hero[8] + "</span></p></div><div class='width90 flexForBtns marginTop2'><p class='width33 navyText'>kolor oczu: <span class='blackText boldText fontSize12em'>" + heroCreator.hero[9] + "</span></p><p class='width33 navyText'>kolor włosów: <span class='blackText boldText fontSize12em'>" + heroCreator.hero[10] + "</span></p><p class='width33 navyText'>kolor skóry: <span class='blackText boldText fontSize12em'>" + heroCreator.hero[11] + "</span></p><p class='width33 navyText'>waga: <span class='blackText boldText fontSize12em'>" + heroCreator.hero[12] + "</span></p><p class='width33 navyText'>wzrost: <span class='blackText boldText fontSize12em'>" + heroCreator.hero[13] + "</span></p></div><button id='close' class='bckgRed fontSize12em width15 boldText medievalText whiteTextShadow11 paddingUpDown1 marginTop4'>zamknij</button></div>");
+  $("#features, #equip, #skills, #tasks, #lookAroundRoom, #wardrobe, #chest, #package, #inRoom, #toCaravans, #toMarket, #lookAroundStreet").prop("disabled", true);
+
+  $("#close").on("click", function () {
+    $("#info").empty();$("#features, #equip, #skills, #tasks, #lookAroundRoom, #wardrobe, #chest, #package, #inRoom, #toCaravans, #toMarket, #lookAroundStreet").prop("disabled", false);
+  });
+};
+
+//zdarzenie dla przycisku "ewipunku"
+module.exports.btnEquip = function () {
+  $("#info").html("<div class='width75 flexForBtns medievalText greenText, boldText fontSize1em zindex1 bckgGreen'><p class='width100 textUnderlineGold medievalText center paddingUpDown1 fontSize13em'>EKWIPUNEK</p><div class='width100 flexForBtns marginTop2'><p class='width90'><span class='blackText boldText fontSize12em'>" + heroCreator.equip + "</span></p><p class='width90 navyText'>złoto: <span class='blackText boldText fontSize12em'>" + heroCreator.gold + "</span></p</div></div><button id='close' class='bckgRed fontSize12em width15 boldText medievalText whiteTextShadow11 paddingUpDown1 marginTop4'>zamknij</button>");
+  $("#features, #equip, #skills, #tasks, #lookAroundRoom, #wardrobe, #chest, #package, #inRoom, #toCaravans, #toMarket, #lookAroundStreet").prop("disabled", true);
+
+  $("#close").on("click", function () {
+    $("#info").empty();$("#features, #equip, #skills, #tasks, #lookAroundRoom, #wardrobe, #chest, #package, #inRoom, #toCaravans, #toMarket, #lookAroundStreet").prop("disabled", false);
+  });
+};
+
+//zdarzenie dla przycisku "umiejętności"
+module.exports.btnSkills = function () {
+  $("#info").html("<div class='width75 flexForBtns medievalText greenText, boldText fontSize1em zindex1 bckgGreen'><p class='width100 textUnderlineGold medievalText center paddingUpDown1 fontSize13em'>UMIEJĘTNOŚCI</p><div class='width100 flexForBtns marginTop2'><p class='width90'><span class='blackText boldText fontSize12em'>" + heroCreator.skills + "</span></p></div><button id='close' class='bckgRed fontSize12em width15 boldText medievalText whiteTextShadow11 paddingUpDown1 marginTop4'>zamknij</button></div>");
+  $("#features, #equip, #skills, #tasks, #lookAroundRoom, #wardrobe, #chest, #package, #inRoom, #toCaravans, #toMarket, #lookAroundStreet").prop("disabled", true);
+
+  $("#close").on("click", function () {
+    $("#info").empty();$("#features, #equip, #skills, #tasks, #lookAroundRoom, #wardrobe, #chest, #package, #inRoom, #toCaravans, #toMarket, #lookAroundStreet").prop("disabled", false);
+  });
+};
+
+//zdarzenie dla przycisku "zadania"
+module.exports.btnTasks = function () {
+  $("#info").html("<div class='width75 flexForBtns medievalText greenText, boldText fontSize1em zindex1 bckgGreen'><p class='width100 textUnderlineGold medievalText center paddingUpDown1 fontSize13em'>ZADANIA</p><div class='width100 flexForBtns marginTop2'><p class='width90'><span class='blackText boldText fontSize12em'>" + heroCreator.tasks + "</span></p></div><button id='close' class='bckgRed fontSize12em width15 boldText medievalText whiteTextShadow11 paddingUpDown1 marginTop4'>zamknij</button></div>");
+  $("#features, #equip, #skills, #tasks, #lookAroundRoom, #wardrobe, #chest, #package, #inRoom, #toCaravans, #toMarket, #lookAroundStreet").prop("disabled", true);
+
+  $("#close").on("click", function () {
+    $("#info").empty();$("#features, #equip, #skills, #tasks, #lookAroundRoom, #wardrobe, #chest, #package, #inRoom, #toCaravans, #toMarket, #lookAroundStreet").prop("disabled", false);
+  });
+};
+
+/***/ }),
+/* 9 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+module.exports.text1 = "Mówią, że Dzikie Pustkowia to kraina opuszczona przez Bogów.";
+
+module.exports.text2 = "Pełna siedzib mrocznych kultów, wyrzutków społeczeństwa, krwiożerczych bestii i demonów, przywołanych czarną magią z innych wymiarów.";
+
+module.exports.text3 = " Krąży wiele legend o ukrytych, nieprzebranych skarbach, o herosach - smokobójcach.";
+
+module.exports.text4 = "Dzikie Pustkowia fascynuję i przerażają, jednak wielu śmiałków wędruje w tą część świata w poszukiwaniu bogactw i chwały.";
+
+module.exports.text5 = "Większość nie wraca... ";
+
+module.exports.text6 = "Twoja historia zaczyna się w mieście Erharuf.";
+
+module.exports.text7 = " W ostatnim bezpiecznym mieście przed Dzikimi Pustkowiami.";
+
+module.exports.text8 = "Na usilną prośbę znajomego kapłana zgadzasz się dostarczyć małą paczkę dla tamtejszego mnicha, rezydującego w niewielkiej wiosce, która leży tuż przy granicy z Dzikimi Pustkowiami.";
 
 /***/ })
 /******/ ]);

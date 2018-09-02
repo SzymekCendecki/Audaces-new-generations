@@ -3,6 +3,7 @@ let functions = require("./functions.js"); //podstawowe funkcje
 let theGame = require("./theGame.js"); //gra
 let heroCreator = require("./heroCreator.js");
 let room = require("./room.js");
+let street = require("./street.js");
 
 let text1 = "Mówią, że Dzikie Pustkowia to kraina opuszczona przez Bogów.";
 
@@ -54,6 +55,15 @@ module.exports.intro = function(){
     functions.newElement("button", "chest", "skrzynia", $("#interactionsBtns"));
     functions.newElement("button", "package", "paczka", $("#interactionsBtns"));
 
+    //utworzenie przycisków interakcji dla drugiego paragrafu - ulicy
+    functions.newElement("button", "inRoom", "wejdź", $("#mainBtns"));
+    functions.newElement("button", "toCaravans", "karawany", $("#mainBtns"));
+    functions.newElement("button", "toMarket", "targ", $("#mainBtns"));
+    functions.newElement("button", "lookAroundStreet", "rozejrzyj się", $("#interactionsBtns"));
+
+//ukrycie przycisków drugiego paragrafu
+    $("#lookAroundStreet, #inRoom, #toCaravans, #toMarket").hide();
+
     //dodanie styli dla przycisów interakcji pierwszego paragrafu
     $("#outRoom, #lookAroundRoom, #wardrobe, #chest, #package").addClass("basicBtn");
     $("#outRoom").addClass("bckgRed medievalText marginTop4 shadowForBtn");
@@ -65,7 +75,7 @@ module.exports.intro = function(){
     $("#mainPart").html("<div class='basicText medievalText'>Stoisz w swoim pokoju, w którym znajduje się tylko łóżko, szafa, mały stolik i drewniana skrzynia. Na stoliku leży zawniątko, które musisz oddać mnichowi w przygranicznej wiosce. Co robisz?</div>");
 
 //utworzenie "okna dialogowego"
-    functions.newElement("div", "info", "", $("#mainPart"));
+    functions.newElement("div", "info", "", $("header"));
 
 //utworzenie "pomocniczego" diva opisującego paragraf - lokację, w której znajduje się aktualnie gracz
     functions.newElement("div", "description", "", $("#mainPart"));
@@ -76,15 +86,24 @@ module.exports.intro = function(){
   $("#skills").on("click", ()=>{ theGame.btnSkills(); });
   $("#tasks").on("click", ()=>{ theGame.btnTasks(); });
 
-  //zdarzenia dla przycisków interakcji pierwszego paragrafu
+  //zdarzenia dla przycisków interakcji pierwszego paragrafu - pokój
   //zdarzenie rozglądania się
   $("#lookAroundRoom").on("click", ()=>{ room.lookAround(); });
-
   //zdarzenie dla szafy
   $("#wardrobe").on("click", ()=>{ room.wardrobe(); });
-
   //zdarzenie dla skrzyni
   $("#chest").on("click", ()=>{ room.chest(); });
+  //zdarzenie dla paczki
+  $("#package").on("click", ()=>{ room.package(); });
+  //zdarzenie dla wyjścia z pokoju
+  $("#outRoom").on("click", ()=> { room.outRoom(); street.showBtns(); street.textStreet(); });
+
+  //zdarzenia dla przycisków interakcji drugiego paragrafu - ulica
+  $("#inRoom").on("click", ()=>{
+    $("#inRoom, #toCaravans, #toMarket, #lookAroundStreet").hide();
+    $("#wardrobe, #chest, #outRoom").show();
+  });
+  $("#lookAroundStreet").on("click", ()=>{ street.lookAroundStreet(); });
 
   }, 30000);
 }

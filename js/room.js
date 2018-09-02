@@ -1,4 +1,5 @@
 let heroCreator = require("./heroCreator.js");
+let street = require("./street.js");
 
 //zawartość zdarzenia dla przycisku rozejrzyj się
 module.exports.lookAround = function(){
@@ -75,4 +76,17 @@ module.exports.chest = function(){
       $("#close").on("click", ()=>{ $("#description").empty(); });
     }
   }
+}
+
+//zdarzenie dla paczki
+module.exports.package = function(){
+ heroCreator.equip.push("paczka");
+ $("#outRoom").removeClass("bckgRed").addClass("bckgGreen").prop("disabled", false);
+ $("#package").remove();
+}
+
+//zdarzenie dla wyjścia z pokoju
+module.exports.outRoom = function(){
+  $("#mainPart").empty();
+  $("#outRoom, #wardrobe, #chest, #lookAroundRoom").hide();
 }

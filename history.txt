@@ -389,4 +389,12 @@ Drobna poprawka nazewnictwa diva "rozglądania" się po pokoju z lookAround na l
 Dodano trzy nowe style w main.scss marginLeft50, marginLeft75, marginLeft90 i marginLeft100 -  tóre dsuwają element w lewo o 50, 75, 90 i 100 procent;
  Dodano dwa nowe style marginTop10 i marginTop15 w pliku main.scss - które odsuwają element od góry o 10 i 15 procent.
 Dodano stan złota w ekwipunku.
-	Dodano zdarzenia dla przycisku skrzyni. 
+	Dodano zdarzenia dla przycisku skrzyni.
+
+3 sierpnia 2018 - wersja 0.6.63
+Dodano zdarzenie dla przycisku paczka.
+	Dodano przyciski dla drugiego paragrafu - ulicy.
+Dodano główny tekst opisowy paragrafu drugiego - ulicy.
+	Dodano zdarzenie dla przycisku rozejrzyj się (dla ulicy).
+Drobna poprawka dla diva "info", w którym wyświetlają cechy, ekwipunek, umiejętności i zadania.
+	Dodano blokowanie klawiszy interakcji drugiego paragrafu, gdy wcisńie się przycisk: "cechy", "ekwipunek", "umiejętności" i "zadania".
