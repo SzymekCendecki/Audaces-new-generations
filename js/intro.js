@@ -4,6 +4,7 @@ let theGame = require("./theGame.js"); //gra
 let heroCreator = require("./heroCreator.js");
 let room = require("./room.js");
 let street = require("./street.js");
+let caravans = require("./caravans.js");
 
 let text1 = "Mówią, że Dzikie Pustkowia to kraina opuszczona przez Bogów.";
 
@@ -61,8 +62,15 @@ module.exports.intro = function(){
     functions.newElement("button", "toMarket", "targ", $("#mainBtns"));
     functions.newElement("button", "lookAroundStreet", "rozejrzyj się", $("#interactionsBtns"));
 
-//ukrycie przycisków drugiego paragrafu
-    $("#lookAroundStreet, #inRoom, #toCaravans, #toMarket").hide();
+    //ukrycie przycisków drugiego paragrafu
+      $("#lookAroundStreet, #inRoom, #toCaravans, #toMarket").hide();
+
+  //utworzenie przycisków interakcji dla trzeciego paragrafu - postoju karawan
+    functions.newElement("button", "toStreet", "ulica", $("#mainBtns"));
+    functions.newElement("button", "lookAroundCaravans", "rozejrzyj się", $("#interactionsBtns"));
+    functions.newElement("button", "ask", "zapytaj", $("#interactionsBtns"));
+
+    $("#toStreet, #lookAroundCaravans, #ask").hide();
 
     //dodanie styli dla przycisów interakcji pierwszego paragrafu
     $("#outRoom, #lookAroundRoom, #wardrobe, #chest, #package").addClass("basicBtn");
@@ -104,6 +112,8 @@ module.exports.intro = function(){
     $("#wardrobe, #chest, #outRoom").show();
   });
   $("#lookAroundStreet").on("click", ()=>{ street.lookAroundStreet(); });
+
+  $("#toCaravans").on("click", ()=>{ caravans.showBtns(); caravans.textCaravans(); });
 
   }, 30000);
 }

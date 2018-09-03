@@ -398,3 +398,9 @@ Dodano główny tekst opisowy paragrafu drugiego - ulicy.
 	Dodano zdarzenie dla przycisku rozejrzyj się (dla ulicy).
 Drobna poprawka dla diva "info", w którym wyświetlają cechy, ekwipunek, umiejętności i zadania.
 	Dodano blokowanie klawiszy interakcji drugiego paragrafu, gdy wcisńie się przycisk: "cechy", "ekwipunek", "umiejętności" i "zadania".
+
+4 sierpnia 2018 - wersja 0.6.64
+Utworzenie dwóch, nowych plików: market.js oraz caravans.js - dla targu i postoju karavan.
+	Rozpoczęcie pracy nad przyciskiem "karawany".
+Utworzenie przycisków dla paragrafu karawany: "zapytaj", "targ", "ulica" oraz "rozejrzyj się"(dla miejsca postoju karawan).
+ 	Dodano główny tekst opisowy dla paragrafu karawany.
