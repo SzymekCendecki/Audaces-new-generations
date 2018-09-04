@@ -1297,6 +1297,11 @@ module.exports.acceptName = function (hero) {
 var heroCreator = __webpack_require__(0);
 var street = __webpack_require__(3);
 
+//głowny tekst opisowy dla paragrafu pierwszego (pokoju)
+module.exports.textRoom = function () {
+  $("#mainPart").html("<div class='basicText medievalText'>Stoisz w swoim pokoju, w którym znajduje się tylko łóżko, szafa, mały stolik i drewniana skrzynia. Na stoliku leży zawniątko, które musisz oddać mnichowi w przygranicznej wiosce. Co robisz?</div>");
+};
+
 //zawartość zdarzenia dla przycisku rozejrzyj się
 module.exports.lookAround = function () {
   $("#description").html("<p class='basicText medievalText'>Rozglądasz się po pokoju. Widzisz drewnianą szafę, stojącą w rogu pokoju. Pod oknem stoi niewielka, drewniana skrzynia. Naprzeciw drzwi stoi łóżko. W pomieszczeniu niemiłosiernie wali stęchlizną i kupą szczurów.</p><button id='close' class='bckgRed fontSize12em width15 boldText medievalText whiteTextShadow11 paddingUpDown1 marginTop4'>zamknij</button>");
@@ -1445,7 +1450,7 @@ module.exports = __webpack_require__(5);
 var functions = __webpack_require__(1); //podstawowe funkcje
 var introFirstMenu = __webpack_require__(6); //plik z częścią intro oraz pierwszym menu
 var heroCreator = __webpack_require__(0);
-var introGame = __webpack_require__(9);
+var introGame = __webpack_require__(10);
 
 document.addEventListener("DOMContentLoaded", function () {
 	console.log("NIEWIERNE PSY RULEZ!!!!");
@@ -1558,7 +1563,7 @@ var theGame = __webpack_require__(8); //gra
 var heroCreator = __webpack_require__(0);
 var room = __webpack_require__(2);
 var street = __webpack_require__(3);
-var caravans = __webpack_require__(10);
+var caravans = __webpack_require__(9);
 
 var text1 = "Mówią, że Dzikie Pustkowia to kraina opuszczona przez Bogów.";
 
@@ -1577,120 +1582,133 @@ var text7 = " W ostatnim bezpiecznym mieście przed Dzikimi Pustkowiami.";
 var text8 = "Na usilną prośbę znajomego kapłana zgadzasz się dostarczyć małą paczkę dla tamtejszego mnicha, rezydującego w niewielkiej wiosce, która leży tuż przy granicy z Dzikimi Pustkowiami.";
 
 module.exports.intro = function () {
-    setTimeout(function () {
-        functions.newElement("p", "text1", text1, $("#mainPart"));
-        functions.newElement("p", "text2", text2, $("#mainPart"));
-        functions.newElement("p", "text3", text3, $("#mainPart"));
-        functions.newElement("p", "text4", text4, $("#mainPart"));
-        functions.newElement("p", "text5", text5, $("#mainPart"));
-        functions.newElement("p", "text6", text6, $("#mainPart"));
-        functions.newElement("p", "text7", text7, $("#mainPart"));
-        functions.newElement("p", "text8", text8, $("#mainPart"));
-        $("#text1, #text2, #text3, #text4, #text5, #text6, #text7, #text8").addClass("basicText center width100 medievalText fontSize11em");
-    }, 100);
+  setTimeout(function () {
+    functions.newElement("p", "text1", text1, $("#mainPart"));
+    functions.newElement("p", "text2", text2, $("#mainPart"));
+    functions.newElement("p", "text3", text3, $("#mainPart"));
+    functions.newElement("p", "text4", text4, $("#mainPart"));
+    functions.newElement("p", "text5", text5, $("#mainPart"));
+    functions.newElement("p", "text6", text6, $("#mainPart"));
+    functions.newElement("p", "text7", text7, $("#mainPart"));
+    functions.newElement("p", "text8", text8, $("#mainPart"));
+    $("#text1, #text2, #text3, #text4, #text5, #text6, #text7, #text8").addClass("basicText center width100 medievalText fontSize11em");
+  }, 100);
 
-    setTimeout(function () {
-        $("#text1, #text2, #text3, #text4, #text5, #text6, #text7, #text8").hide();
+  setTimeout(function () {
+    $("#text1, #text2, #text3, #text4, #text5, #text6, #text7, #text8").hide();
 
-        //utworzenie głownych przycisków: cechy, ekwipunek, umijętności i zadania
-        functions.newElement("button", "features", "cechy", $("#heroBtns"));
-        functions.newElement("button", "equip", "ekwipunek", $("#heroBtns"));
-        functions.newElement("button", "skills", "umiejętności", $("#heroBtns"));
-        functions.newElement("button", "tasks", "zadania", $("#heroBtns"));
-        $("#features, #equip, #skills, #tasks").addClass("basicBtn btnNewGame");
-        $("#equip, #skills").addClass("fontSize09em paddingUpDown1");
+    //utworzenie głownych przycisków: cechy, ekwipunek, umijętności i zadania
+    functions.newElement("button", "features", "cechy", $("#heroBtns"));
+    functions.newElement("button", "equip", "ekwipunek", $("#heroBtns"));
+    functions.newElement("button", "skills", "umiejętności", $("#heroBtns"));
+    functions.newElement("button", "tasks", "zadania", $("#heroBtns"));
+    $("#features, #equip, #skills, #tasks").addClass("basicBtn btnNewGame");
+    $("#equip, #skills").addClass("fontSize09em paddingUpDown1");
 
-        //utworzenie przyciku wyjdź dla paragrafu pierwszego - pokoju - w tym miejscu zablokowane odpalenie zdarzenia
-        functions.newElement("button", "outRoom", "wyjdź", $("#mainBtns"));
-        $("#outRoom").prop("disabled", true);
+    //utworzenie przyciku wyjdź dla paragrafu pierwszego - pokoju - w tym miejscu zablokowane odpalenie zdarzenia
+    functions.newElement("button", "outRoom", "wyjdź", $("#mainBtns"));
+    $("#outRoom").prop("disabled", true);
 
-        //utworzenie przycisków interakcji dla pierwszego paragrafu - pokoju
-        functions.newElement("button", "lookAroundRoom", "rozejrzyj się", $("#interactionsBtns"));
-        functions.newElement("button", "wardrobe", "szafa", $("#interactionsBtns"));
-        functions.newElement("button", "chest", "skrzynia", $("#interactionsBtns"));
-        functions.newElement("button", "package", "paczka", $("#interactionsBtns"));
+    //utworzenie przycisków interakcji dla pierwszego paragrafu - pokoju
+    functions.newElement("button", "lookAroundRoom", "rozejrzyj się", $("#interactionsBtns"));
+    functions.newElement("button", "wardrobe", "szafa", $("#interactionsBtns"));
+    functions.newElement("button", "chest", "skrzynia", $("#interactionsBtns"));
+    functions.newElement("button", "package", "paczka", $("#interactionsBtns"));
 
-        //utworzenie przycisków interakcji dla drugiego paragrafu - ulicy
-        functions.newElement("button", "inRoom", "wejdź", $("#mainBtns"));
-        functions.newElement("button", "toCaravans", "karawany", $("#mainBtns"));
-        functions.newElement("button", "toMarket", "targ", $("#mainBtns"));
-        functions.newElement("button", "lookAroundStreet", "rozejrzyj się", $("#interactionsBtns"));
+    //utworzenie przycisków interakcji dla drugiego paragrafu - ulicy
+    functions.newElement("button", "inRoom", "wejdź", $("#mainBtns"));
+    functions.newElement("button", "toCaravans", "karawany", $("#mainBtns"));
+    functions.newElement("button", "toMarket", "targ", $("#mainBtns"));
+    functions.newElement("button", "lookAroundStreet", "rozejrzyj się", $("#interactionsBtns"));
 
-        //ukrycie przycisków drugiego paragrafu
-        $("#lookAroundStreet, #inRoom, #toCaravans, #toMarket").hide();
+    //ukrycie przycisków drugiego paragrafu
+    $("#lookAroundStreet, #inRoom, #toCaravans, #toMarket").hide();
 
-        //utworzenie przycisków interakcji dla trzeciego paragrafu - postoju karawan
-        functions.newElement("button", "toStreet", "ulica", $("#mainBtns"));
-        functions.newElement("button", "lookAroundCaravans", "rozejrzyj się", $("#interactionsBtns"));
-        functions.newElement("button", "ask", "zapytaj", $("#interactionsBtns"));
+    //utworzenie przycisków interakcji dla trzeciego paragrafu - postoju karawan
+    functions.newElement("button", "toStreet", "ulica", $("#mainBtns"));
+    functions.newElement("button", "lookAroundCaravans", "rozejrzyj się", $("#interactionsBtns"));
+    functions.newElement("button", "ask", "zapytaj", $("#interactionsBtns"));
 
-        $("#toStreet, #lookAroundCaravans, #ask").hide();
+    $("#toStreet, #lookAroundCaravans, #ask").hide();
 
-        //dodanie styli dla przycisów interakcji pierwszego paragrafu
-        $("#outRoom, #lookAroundRoom, #wardrobe, #chest, #package").addClass("basicBtn");
-        $("#outRoom").addClass("bckgRed medievalText marginTop4 shadowForBtn");
-        $("#lookAroundRoom").addClass("bckgBlue medievalText marginTop4 shadowForBtn fontSize09em paddingUpDown1");
-        $("#wardrobe, #chest").addClass("bckgGreen medievalText marginTop4 shadowForBtn");
-        $("#package").addClass("bckgYellow medievalText marginTop4 shadowForBtn marginTop4");
+    //dodanie styli dla przycisów interakcji pierwszego paragrafu
+    $("#outRoom, #lookAroundRoom, #wardrobe, #chest, #package").addClass("basicBtn");
+    $("#outRoom").addClass("bckgRed medievalText marginTop4 shadowForBtn");
+    $("#lookAroundRoom").addClass("bckgBlue medievalText marginTop4 shadowForBtn fontSize09em paddingUpDown1");
+    $("#wardrobe, #chest").addClass("bckgGreen medievalText marginTop4 shadowForBtn");
+    $("#package").addClass("bckgYellow medievalText marginTop4 shadowForBtn marginTop4");
 
-        //główny tekst opisowy dla paragrafu - pokój - paragraf pierwszy
-        $("#mainPart").html("<div class='basicText medievalText'>Stoisz w swoim pokoju, w którym znajduje się tylko łóżko, szafa, mały stolik i drewniana skrzynia. Na stoliku leży zawniątko, które musisz oddać mnichowi w przygranicznej wiosce. Co robisz?</div>");
+    //główny tekst opisowy dla paragrafu - pokój - paragraf pierwszy
+    room.textRoom();
 
-        //utworzenie "okna dialogowego"
-        functions.newElement("div", "info", "", $("header"));
+    //utworzenie "okna dialogowego"
+    functions.newElement("div", "info", "", $("header"));
 
-        //utworzenie "pomocniczego" diva opisującego paragraf - lokację, w której znajduje się aktualnie gracz
-        functions.newElement("div", "description", "", $("#mainPart"));
+    //utworzenie "pomocniczego" diva opisującego paragraf - lokację, w której znajduje się aktualnie gracz
+    functions.newElement("div", "description", "", $("#mainPart"));
 
-        //zdarzenie dla przycisków głownych: cechy, ekwipunek, umiejętności zadania
-        $("#features").on("click", function () {
-            theGame.btnFeatures();
-        });
-        $("#equip").on("click", function () {
-            theGame.btnEquip();
-        });
-        $("#skills").on("click", function () {
-            theGame.btnSkills();
-        });
-        $("#tasks").on("click", function () {
-            theGame.btnTasks();
-        });
+    //zdarzenie dla przycisków głownych: cechy, ekwipunek, umiejętności zadania
+    $("#features").on("click", function () {
+      theGame.btnFeatures();
+    });
+    $("#equip").on("click", function () {
+      theGame.btnEquip();
+    });
+    $("#skills").on("click", function () {
+      theGame.btnSkills();
+    });
+    $("#tasks").on("click", function () {
+      theGame.btnTasks();
+    });
 
-        //zdarzenia dla przycisków interakcji pierwszego paragrafu - pokój
-        //zdarzenie rozglądania się
-        $("#lookAroundRoom").on("click", function () {
-            room.lookAround();
-        });
-        //zdarzenie dla szafy
-        $("#wardrobe").on("click", function () {
-            room.wardrobe();
-        });
-        //zdarzenie dla skrzyni
-        $("#chest").on("click", function () {
-            room.chest();
-        });
-        //zdarzenie dla paczki
-        $("#package").on("click", function () {
-            room.package();
-        });
-        //zdarzenie dla wyjścia z pokoju
-        $("#outRoom").on("click", function () {
-            room.outRoom();street.showBtns();street.textStreet();
-        });
+    //zdarzenia dla przycisków interakcji pierwszego paragrafu - pokój
+    //zdarzenie rozglądania się
+    $("#lookAroundRoom").on("click", function () {
+      room.lookAround();
+    });
+    //zdarzenie dla szafy
+    $("#wardrobe").on("click", function () {
+      room.wardrobe();
+    });
+    //zdarzenie dla skrzyni
+    $("#chest").on("click", function () {
+      room.chest();
+    });
+    //zdarzenie dla paczki
+    $("#package").on("click", function () {
+      room.package();
+    });
+    //zdarzenie dla wyjścia z pokoju
+    $("#outRoom").on("click", function () {
+      room.outRoom();street.showBtns();street.textStreet();
+    });
 
-        //zdarzenia dla przycisków interakcji drugiego paragrafu - ulica
-        $("#inRoom").on("click", function () {
-            $("#inRoom, #toCaravans, #toMarket, #lookAroundStreet").hide();
-            $("#wardrobe, #chest, #outRoom").show();
-        });
-        $("#lookAroundStreet").on("click", function () {
-            street.lookAroundStreet();
-        });
+    //zdarzenia dla przycisków interakcji drugiego paragrafu - ulica
+    $("#inRoom").on("click", function () {
+      $("#inRoom, #toCaravans, #toMarket, #lookAroundStreet").hide();
+      $("#wardrobe, #chest, #outRoom").show();
+      room.textRoom();
+    });
+    $("#lookAroundStreet").on("click", function () {
+      street.lookAroundStreet();
+    });
 
-        $("#toCaravans").on("click", function () {
-            caravans.showBtns();caravans.textCaravans();
-        });
-    }, 30000);
+    //zdarzenia dla interakcji paragrafu - karawany
+    $("#toCaravans").on("click", function () {
+      caravans.showBtns();caravans.textCaravans();
+    });
+    $("#lookAroundCaravans").on("click", function () {
+      caravans.lookAroundCaravans();
+    });
+    $("#ask").on("click", function () {
+      caravans.ask();
+    });
+    $("#toStreet").on("click", function () {
+      $("#toStreet, #toMarket, #lookAroundCaravans, #ask, #agree").hide();
+      $("#inRoom, #toCaravans, #toMarket, #lookAroundStreet").show();
+      street.textStreet();
+    });
+  }, 30000);
 };
 
 /***/ }),
@@ -1751,6 +1769,48 @@ module.exports.btnTasks = function () {
 "use strict";
 
 
+var functions = __webpack_require__(1); //podstawowe funkcje
+
+module.exports.showBtns = function () {
+  $("#inRoom, #toCaravans, #toMarket, #lookAroundStreet").hide();
+
+  $("#toStreet, #toMarket, #lookAroundCaravans, #ask").show();
+
+  $("#toStreet, #toMarket, #lookAroundCaravans, #ask").addClass("basicBtn");
+  $("#lookAroundCaravans").addClass("bckgBlue medievalText marginTop4 shadowForBtn fontSize09em paddingUpDown1");
+  $("#ask, #toStreet").addClass("bckgGreen medievalText marginTop4 shadowForBtn");
+};
+
+module.exports.textCaravans = function () {
+  //główny tekst opisowy dla paragrafu - karawany - paragraf postoju karawan
+  $("#mainPart").html("<div class='basicText medievalText'>Idziesz w kierunku głównej bramy. Mijasz ludzi, zwierzęta i taplające się w błocie dzieci. Gdy dochodzisz do bramy robi się coraz tłoczniej. Przez bramę przejeżdżają wozy, ludzie łażą w każdą stronę, wartownicy na murach ziewają z nudów. W końcu udało się wyjść z miasta. Przed sobą widzisz wielki plac, na którym jakaś karawana szykuje się właśnie do odjazdu. Może warto spytać się, czy jedzie do przygranicznej wioski? Co robisz?</div><div id='description'></div>");
+};
+
+module.exports.lookAroundCaravans = function () {
+  $("#description").html("<p class='basicText medievalText'>Za sobą masz bramę do miasta oraz wysokie mury miasta Erharuf. Przed sobą widzisz wielki plac, na którym karawany mogą przygotować się do podróży. W dali widniej ciemna linia prastarego lasu.</p><button id='close' class='bckgRed fontSize12em width15 boldText medievalText whiteTextShadow11 paddingUpDown1 marginTop4'>zamknij</button>");
+  $("#close").on("click", function () {
+    $("#description").empty();
+  });
+};
+
+module.exports.ask = function () {
+  $("#description").html("<p class='basicText medievalText'>Podchodzisz bliżej. Widzisz postać krasnoluda, który wydziera się w niebo głosy i pogania wszystkich wokół. Gdy jesteś już blisko, pytasz: 'Mości krasnoludzie, czy ta karawana jedzie do wioski na pograniczu?' 'Że co? Aaaa... Tak! Jedziemy dalej, ale będziemy przez nią przejeżdżać. Jak chcesz się zabrać to musisz się pospiesz z wsiadaniem. Na ostatnim wozie jest jeszcze trochę miejsca.'- odpowiedział i wrócił do swoich obowiązków.</p><button id='close' class='bckgRed fontSize12em width15 boldText medievalText whiteTextShadow11 paddingUpDown1 marginTop4'>zamknij</button>");
+  $("#close").on("click", function () {
+    $("#description").empty();
+  });
+
+  $("#ask").remove();
+  functions.newElement("button", "agree", "zgódź się", $("#interactionsBtns"));
+  $("#agree").addClass("basicBtn bckgGreen medievalText marginTop4 shadowForBtn");
+};
+
+/***/ }),
+/* 10 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
 module.exports.text1 = "Mówią, że Dzikie Pustkowia to kraina opuszczona przez Bogów.";
 
 module.exports.text2 = "Pełna siedzib mrocznych kultów, wyrzutków społeczeństwa, krwiożerczych bestii i demonów, przywołanych czarną magią z innych wymiarów.";
@@ -1766,28 +1826,6 @@ module.exports.text6 = "Twoja historia zaczyna się w mieście Erharuf.";
 module.exports.text7 = " W ostatnim bezpiecznym mieście przed Dzikimi Pustkowiami.";
 
 module.exports.text8 = "Na usilną prośbę znajomego kapłana zgadzasz się dostarczyć małą paczkę dla tamtejszego mnicha, rezydującego w niewielkiej wiosce, która leży tuż przy granicy z Dzikimi Pustkowiami.";
-
-/***/ }),
-/* 10 */
-/***/ (function(module, exports, __webpack_require__) {
-
-"use strict";
-
-
-module.exports.showBtns = function () {
-    $("#inRoom, #toCaravans, #toMarket, #lookAroundStreet").hide();
-
-    $("#toStreet, #toMarket, #lookAroundCaravans, #ask").show();
-
-    $("#toStreet, #toMarket, #lookAroundCaravans, #ask").addClass("basicBtn");
-    $("#lookAroundCaravans").addClass("bckgBlue medievalText marginTop4 shadowForBtn fontSize09em paddingUpDown1");
-    $("#ask, #toStreet").addClass("bckgGreen medievalText marginTop4 shadowForBtn");
-};
-
-module.exports.textCaravans = function () {
-    //główny tekst opisowy dla paragrafu - karawany - paragraf postoju karawan
-    $("#mainPart").html("<div class='basicText medievalText'>Idziesz w kierunku głównej bramy. Mijasz ludzi, zwierzęta i taplające się w błocie dzieci. Gdy dochodzisz do bramy robi się coraz tłoczniej. Przez bramę przejeżdżają wozy, ludzie łażą w każdą stronę, wartownicy na murach ziewają z nudów. W końcu udało się wyjść z miasta. Przed sobą widzisz wielki plac, na którym jakaś karawana szykuje się właśnie do odjazdu. Może warto spytać się, czy jedzie do przygranicznej wioski? Co robisz?</div><div id='description'></div>");
-};
 
 /***/ })
 /******/ ]);

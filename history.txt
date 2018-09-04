@@ -404,3 +404,9 @@ Utworzenie dwóch, nowych plików: market.js oraz caravans.js - dla targu i post
 	Rozpoczęcie pracy nad przyciskiem "karawany".
 Utworzenie przycisków dla paragrafu karawany: "zapytaj", "targ", "ulica" oraz "rozejrzyj się"(dla miejsca postoju karawan).
  	Dodano główny tekst opisowy dla paragrafu karawany.
+
+5 sierpnia 2018 - wersja 0.6.65
+Dodano zdarzenie dla przycisku "rozejrzyj się" (karawany).
+ 	Dodano zdarzenie dla przycisku "zapytaj".
+Dodano zdarzenie dla przycisku "ulica" (karawany).
+	Drobna poprawka tekstu, gdy przechodzi się z ulicy do pokoju.

@@ -80,7 +80,7 @@ module.exports.intro = function(){
     $("#package").addClass("bckgYellow medievalText marginTop4 shadowForBtn marginTop4");
 
     //główny tekst opisowy dla paragrafu - pokój - paragraf pierwszy
-    $("#mainPart").html("<div class='basicText medievalText'>Stoisz w swoim pokoju, w którym znajduje się tylko łóżko, szafa, mały stolik i drewniana skrzynia. Na stoliku leży zawniątko, które musisz oddać mnichowi w przygranicznej wiosce. Co robisz?</div>");
+    room.textRoom();
 
 //utworzenie "okna dialogowego"
     functions.newElement("div", "info", "", $("header"));
@@ -110,10 +110,21 @@ module.exports.intro = function(){
   $("#inRoom").on("click", ()=>{
     $("#inRoom, #toCaravans, #toMarket, #lookAroundStreet").hide();
     $("#wardrobe, #chest, #outRoom").show();
+    room.textRoom();
   });
   $("#lookAroundStreet").on("click", ()=>{ street.lookAroundStreet(); });
 
+//zdarzenia dla interakcji paragrafu - karawany
   $("#toCaravans").on("click", ()=>{ caravans.showBtns(); caravans.textCaravans(); });
+  $("#lookAroundCaravans").on("click", ()=>{ caravans.lookAroundCaravans(); });
+  $("#ask").on("click", ()=>{ caravans.ask(); });
+$("#toStreet").on("click", ()=>{
+  $("#toStreet, #toMarket, #lookAroundCaravans, #ask, #agree").hide();
+  $("#inRoom, #toCaravans, #toMarket, #lookAroundStreet").show();
+  street.textStreet();
+
+});
+
 
   }, 30000);
 }

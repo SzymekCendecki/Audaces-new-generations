@@ -1,6 +1,11 @@
 let heroCreator = require("./heroCreator.js");
 let street = require("./street.js");
 
+//głowny tekst opisowy dla paragrafu pierwszego (pokoju)
+module.exports.textRoom = function(){
+  $("#mainPart").html("<div class='basicText medievalText'>Stoisz w swoim pokoju, w którym znajduje się tylko łóżko, szafa, mały stolik i drewniana skrzynia. Na stoliku leży zawniątko, które musisz oddać mnichowi w przygranicznej wiosce. Co robisz?</div>");
+}
+
 //zawartość zdarzenia dla przycisku rozejrzyj się
 module.exports.lookAround = function(){
   $("#description").html("<p class='basicText medievalText'>Rozglądasz się po pokoju. Widzisz drewnianą szafę, stojącą w rogu pokoju. Pod oknem stoi niewielka, drewniana skrzynia. Naprzeciw drzwi stoi łóżko. W pomieszczeniu niemiłosiernie wali stęchlizną i kupą szczurów.</p><button id='close' class='bckgRed fontSize12em width15 boldText medievalText whiteTextShadow11 paddingUpDown1 marginTop4'>zamknij</button>");
