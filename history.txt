@@ -410,3 +410,8 @@ Dodano zdarzenie dla przycisku "rozejrzyj się" (karawany).
  	Dodano zdarzenie dla przycisku "zapytaj".
 Dodano zdarzenie dla przycisku "ulica" (karawany).
 	Drobna poprawka tekstu, gdy przechodzi się z ulicy do pokoju.
+
+6 sierpnia 2018 - wersja 0.6.66
+Dodano "walidację" wciśnięcia przycisku "zapytaj" - po wciśnięciu tego przycisku, zmienia się on w przycisk "zgódź się", gdy wyjdzie się z tego paragrafu i wejdzie ponownie, to wyświetla się przycisk "zgódź się".
+	Dodano przyciski dla paragrafu targu.
+Poprawiono wyświetlanie się odpowiednich przycisków, dla konretnych paragrafów.

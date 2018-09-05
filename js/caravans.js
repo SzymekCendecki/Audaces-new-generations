@@ -1,13 +1,22 @@
 let functions = require("./functions.js"); //podstawowe funkcje
 
+//tablica, która pomaga przy sprawdzaniu czy został wciśnięty przycisk zapytaj (ask)
+let point = [0];
+
 module.exports.showBtns = function(){
+  if(point[0] == 0){
+  $("#inRoom, #toCaravans, #toMarket, #lookAroundStreet, #buy, #sell, #lookAroundMarket").hide();
+  $("#toStreet, #toMarket, #lookAroundCaravans, #ask").show();
+  $("#toStreet, #toMarket, #lookAroundCaravans, #ask").addClass("basicBtn");
+  $("#lookAroundCaravans").addClass("bckgBlue medievalText marginTop4 shadowForBtn fontSize09em paddingUpDown1");
+  $("#ask, #toStreet").addClass("bckgGreen medievalText marginTop4 shadowForBtn");
+}else{
   $("#inRoom, #toCaravans, #toMarket, #lookAroundStreet").hide();
-
-    $("#toStreet, #toMarket, #lookAroundCaravans, #ask").show();
-
-    $("#toStreet, #toMarket, #lookAroundCaravans, #ask").addClass("basicBtn");
-    $("#lookAroundCaravans").addClass("bckgBlue medievalText marginTop4 shadowForBtn fontSize09em paddingUpDown1");
-    $("#ask, #toStreet").addClass("bckgGreen medievalText marginTop4 shadowForBtn");
+  $("#toStreet, #toMarket, #lookAroundCaravans, #agree").show();
+  $("#toStreet, #toMarket, #lookAroundCaravans, #agree").addClass("basicBtn");
+  $("#lookAroundCaravans").addClass("bckgBlue medievalText marginTop4 shadowForBtn fontSize09em paddingUpDown1");
+  $("#ask, #toStreet").addClass("bckgGreen medievalText marginTop4 shadowForBtn");
+}
 }
 
 module.exports.textCaravans = function(){
@@ -27,4 +36,5 @@ module.exports.ask = function(){
   $("#ask").remove();
   functions.newElement("button", "agree", "zgódź się", $("#interactionsBtns"));
   $("#agree").addClass("basicBtn bckgGreen medievalText marginTop4 shadowForBtn");
+  point.splice(0, 1, 1);
 }

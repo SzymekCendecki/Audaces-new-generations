@@ -4,6 +4,7 @@ let theGame = require("./theGame.js"); //gra
 let heroCreator = require("./heroCreator.js");
 let room = require("./room.js");
 let street = require("./street.js");
+let market = require("./market.js");
 let caravans = require("./caravans.js");
 
 let text1 = "Mówią, że Dzikie Pustkowia to kraina opuszczona przez Bogów.";
@@ -56,6 +57,12 @@ module.exports.intro = function(){
     functions.newElement("button", "chest", "skrzynia", $("#interactionsBtns"));
     functions.newElement("button", "package", "paczka", $("#interactionsBtns"));
 
+    $("#outRoom, #lookAroundRoom, #wardrobe, #chest, #package").addClass("basicBtn");
+    $("#outRoom").addClass("bckgRed medievalText marginTop4 shadowForBtn");
+    $("#lookAroundRoom").addClass("bckgBlue medievalText marginTop4 shadowForBtn fontSize09em paddingUpDown1");
+    $("#wardrobe, #chest").addClass("bckgGreen medievalText marginTop4 shadowForBtn");
+    $("#package").addClass("bckgYellow medievalText marginTop4 shadowForBtn marginTop4");
+
     //utworzenie przycisków interakcji dla drugiego paragrafu - ulicy
     functions.newElement("button", "inRoom", "wejdź", $("#mainBtns"));
     functions.newElement("button", "toCaravans", "karawany", $("#mainBtns"));
@@ -65,19 +72,19 @@ module.exports.intro = function(){
     //ukrycie przycisków drugiego paragrafu
       $("#lookAroundStreet, #inRoom, #toCaravans, #toMarket").hide();
 
-  //utworzenie przycisków interakcji dla trzeciego paragrafu - postoju karawan
+  //utworzenie przycisków dla paragrafu targ
+    functions.newElement("button", "buy", "kup", $("#interactionsBtns"));
+    functions.newElement("button", "sell", "sprzedaj", $("#interactionsBtns"));
+    functions.newElement("button", "lookAroundMarket", "rozejrzyj się", $("#interactionsBtns"));
+
+    $("#buy, #sell, #lookAroundMarket").hide();
+
+  //utworzenie przycisków interakcji dla paragrafu - postoju karawan
     functions.newElement("button", "toStreet", "ulica", $("#mainBtns"));
     functions.newElement("button", "lookAroundCaravans", "rozejrzyj się", $("#interactionsBtns"));
     functions.newElement("button", "ask", "zapytaj", $("#interactionsBtns"));
 
     $("#toStreet, #lookAroundCaravans, #ask").hide();
-
-    //dodanie styli dla przycisów interakcji pierwszego paragrafu
-    $("#outRoom, #lookAroundRoom, #wardrobe, #chest, #package").addClass("basicBtn");
-    $("#outRoom").addClass("bckgRed medievalText marginTop4 shadowForBtn");
-    $("#lookAroundRoom").addClass("bckgBlue medievalText marginTop4 shadowForBtn fontSize09em paddingUpDown1");
-    $("#wardrobe, #chest").addClass("bckgGreen medievalText marginTop4 shadowForBtn");
-    $("#package").addClass("bckgYellow medievalText marginTop4 shadowForBtn marginTop4");
 
     //główny tekst opisowy dla paragrafu - pokój - paragraf pierwszy
     room.textRoom();
@@ -114,15 +121,23 @@ module.exports.intro = function(){
   });
   $("#lookAroundStreet").on("click", ()=>{ street.lookAroundStreet(); });
 
+//zdarzenia dla interakcji paragrafu - targ
+$("#toMarket").on("click", ()=>{
+  market.showBtns();
+  market.textMarket();
+});
+
 //zdarzenia dla interakcji paragrafu - karawany
-  $("#toCaravans").on("click", ()=>{ caravans.showBtns(); caravans.textCaravans(); });
+  $("#toCaravans").on("click", ()=>{
+    caravans.showBtns();
+    caravans.textCaravans();
+  });
   $("#lookAroundCaravans").on("click", ()=>{ caravans.lookAroundCaravans(); });
   $("#ask").on("click", ()=>{ caravans.ask(); });
 $("#toStreet").on("click", ()=>{
-  $("#toStreet, #toMarket, #lookAroundCaravans, #ask, #agree").hide();
+  $("#toStreet, #toMarket, #lookAroundCaravans, #ask, #agree, #buy, #sell, #lookAroundMarket").hide();
   $("#inRoom, #toCaravans, #toMarket, #lookAroundStreet").show();
   street.textStreet();
-
 });
 
 
