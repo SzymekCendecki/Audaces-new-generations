@@ -415,3 +415,6 @@ Dodano zdarzenie dla przycisku "ulica" (karawany).
 Dodano "walidację" wciśnięcia przycisku "zapytaj" - po wciśnięciu tego przycisku, zmienia się on w przycisk "zgódź się", gdy wyjdzie się z tego paragrafu i wejdzie ponownie, to wyświetla się przycisk "zgódź się".
 	Dodano przyciski dla paragrafu targu.
 Poprawiono wyświetlanie się odpowiednich przycisków, dla konretnych paragrafów.
+
+7 sierpnia 2018 - wersja 0.6.67
+Dodano przyciski i zdarzenia dla kupowania towarów.

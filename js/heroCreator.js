@@ -620,8 +620,7 @@ function chooseItem(whatClick, whatPush){
 });//koniec tworzenia ekwipunku
 
 //zdarzenie dla "ręcznego" wybierania umiejętności
-$("#createSkills").on("click", ()=>{
-	functions.clearStart("wybór umiejętności");
+$("#createSkills").on("click", ()=>{ functions.clearStart("wybór umiejętności");
 	functions.description("W tej części kreatora należy wybrać płeć, kolor włosów, oczu, skóry, wagę i wzrost. Poniżej są przyciski dzięki, którym należy to zrobić.");
 
 	functions.newElement("p", "titleWarrior", "wojownik", $("#interactionCreator"));
@@ -729,8 +728,7 @@ functions.skillsToRemove(skills);
 });//koniec zdarzenia dla "ręcznego" wybierania umiejętności
 
 //zdarzenie dla informacji zbiorczej wszystkich dokonanych wyborów
-$("#createInfo").on("click", ()=>{
-	functions.clearStart("Twoja postać.");
+$("#createInfo").on("click", ()=>{ functions.clearStart("Twoja postać.");
 	functions.description("Poniżej znajdują się Twoje wybory. W tej sekcji możesz je sprawdzić oraz zastanowić się nad ewentualnymi zmianami. Po dokonaniu wszystkich wyborów, to po lewej stronie pod przyciskami powinien ukazać się przycisk rozpoczynający grę.");
 
 	//funkcja do zliczania wszystkich punktów cech
@@ -793,7 +791,6 @@ hero.splice(4, 1, randomFeatures[0] + criminal[0]); hero.splice(5, 1, randomFeat
 }
 else if(hero[2] == "nie wybrano" && hero[3] == "czarodziej"){
 hero.splice(4, 1, randomFeatures[0] + wizard[0]); hero.splice(5, 1, randomFeatures[1] + wizard[1]); hero.splice(6, 1, randomFeatures[2] + wizard[2]); hero.splice(7, 1, randomFeatures[3] + wizard[3]); hero.splice(8, 1, randomFeatures[4] + wizard[4]); }
-	//0-imię, 1-płeć, 2-rasa, 3-profesja, 4-siła, 5-wytrzymałość, 6-zręczność, 7-inteligencja, 8-charyzma, 9-kolor oczu, 10-kolor włosów, 11-kolor skóry, 12 - waga, 13-wzrost
 
 functions.newElement("div", "first", "", $("#interactionCreator"));
 $("#first").addClass("flexForBtns");
@@ -829,16 +826,8 @@ $("#fifth").append("<p class='basicText center width100 medievalText fontSize11e
 //walidacja dokonanych wyborów
 if(hero[0] == "nie wybrano" || hero[1] == "nie wybrano" || hero[2] == "nie wybrano" || hero[3] == "nie wybrano" || hero[4] == 0 || hero[5] == 0 || hero[6] == 0 || hero[7] == 0 || hero[8] == 0 || hero[9] == "nie wybrano" || hero[10] == "nie wybrano" || hero[11] == "nie wybrano" || hero[12] == "nie wybrano" || hero[13] == "nie wybrano" || equip.length == 0 || skills.length == 0){
 	$("#playGame").remove();
-}else{
-	functions.newElement("button", "playGame", "GRA", $("#mainBtns"));
-	$("#playGame").addClass("basicBtn medievalText btnNewGame");
-  $("#playGame").on("click", ()=>{
-        $("#mainBtns, #interactionsBtns, #mainPart").empty();
-          intro.intro();
-  });
-}
+}else{ functions.newElement("button", "playGame", "GRA", $("#mainBtns")); $("#playGame").addClass("basicBtn medievalText btnNewGame"); $("#playGame").on("click", ()=>{ $("#mainBtns, #interactionsBtns, #mainPart").empty(); intro.intro(); }); }
 });//koniec zdarzenia dla informacji zbiorczej wszystkich dokonanych wyborów
-
 });//koniec ręcznego tworzenie postaci
 
 //eksport tablic do gry

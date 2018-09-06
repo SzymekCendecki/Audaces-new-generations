@@ -114,31 +114,19 @@ module.exports.intro = function(){
   $("#outRoom").on("click", ()=> { room.outRoom(); street.showBtns(); street.textStreet(); });
 
   //zdarzenia dla przycisków interakcji drugiego paragrafu - ulica
-  $("#inRoom").on("click", ()=>{
-    $("#inRoom, #toCaravans, #toMarket, #lookAroundStreet").hide();
-    $("#wardrobe, #chest, #outRoom").show();
-    room.textRoom();
-  });
+  $("#inRoom").on("click", ()=>{ $("#inRoom, #toCaravans, #toMarket, #lookAroundStreet").hide();    $("#wardrobe, #chest, #outRoom").show(); room.textRoom(); });
   $("#lookAroundStreet").on("click", ()=>{ street.lookAroundStreet(); });
 
 //zdarzenia dla interakcji paragrafu - targ
-$("#toMarket").on("click", ()=>{
-  market.showBtns();
-  market.textMarket();
-});
+$("#toMarket").on("click", ()=>{ market.showBtns(); market.textMarket(); });
+$("#buy").on("click", ()=>{ market.buy(); });
 
 //zdarzenia dla interakcji paragrafu - karawany
-  $("#toCaravans").on("click", ()=>{
-    caravans.showBtns();
-    caravans.textCaravans();
-  });
+  $("#toCaravans").on("click", ()=>{ caravans.showBtns(); caravans.textCaravans(); });
   $("#lookAroundCaravans").on("click", ()=>{ caravans.lookAroundCaravans(); });
   $("#ask").on("click", ()=>{ caravans.ask(); });
-$("#toStreet").on("click", ()=>{
-  $("#toStreet, #toMarket, #lookAroundCaravans, #ask, #agree, #buy, #sell, #lookAroundMarket").hide();
-  $("#inRoom, #toCaravans, #toMarket, #lookAroundStreet").show();
-  street.textStreet();
-});
+
+$("#toStreet").on("click", ()=>{ $("#toStreet, #toMarket, #lookAroundCaravans, #ask, #agree, #buy, #sell, #lookAroundMarket").hide(); $("#inRoom, #toCaravans, #toMarket, #lookAroundStreet").show(); street.textStreet(); });
 
 
   }, 30000);
