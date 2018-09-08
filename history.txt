@@ -418,3 +418,6 @@ Poprawiono wyświetlanie się odpowiednich przycisków, dla konretnych paragraf�
 
 7 sierpnia 2018 - wersja 0.6.67
 Dodano przyciski i zdarzenia dla kupowania towarów.
+
+8 sierpnia 2018 - wersja 0.6.68
+Dodano przyciski i zdarzenia dla sprzedawania rzeczy z ekwipunku na razie bez styli css.

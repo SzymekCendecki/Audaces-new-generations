@@ -120,6 +120,7 @@ module.exports.intro = function(){
 //zdarzenia dla interakcji paragrafu - targ
 $("#toMarket").on("click", ()=>{ market.showBtns(); market.textMarket(); });
 $("#buy").on("click", ()=>{ market.buy(); });
+$("#sell").on("click", ()=>{ market.btnsSell(); });
 
 //zdarzenia dla interakcji paragrafu - karawany
   $("#toCaravans").on("click", ()=>{ caravans.showBtns(); caravans.textCaravans(); });

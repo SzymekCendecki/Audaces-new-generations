@@ -1701,6 +1701,9 @@ module.exports.intro = function () {
         $("#buy").on("click", function () {
             market.buy();
         });
+        $("#sell").on("click", function () {
+            market.btnsSell();
+        });
 
         //zdarzenia dla interakcji paragrafu - karawany
         $("#toCaravans").on("click", function () {
@@ -1780,6 +1783,7 @@ module.exports.btnTasks = function () {
 var functions = __webpack_require__(0); //podstawowe funkcje
 var heroCreator = __webpack_require__(1);
 
+//funkcja kupowania przedmiotów
 function buyItem(item, price, gold, equip) {
   if (heroCreator.gold[0] >= price) {
     heroCreator.equip.push(item);
@@ -1799,6 +1803,31 @@ function buyItem(item, price, gold, equip) {
   }
 }
 
+//funkcja tworząca przyciski rzeczy, które można sprzedać
+module.exports.btnsSell = function (gold, equip) {
+  $("#description").empty();
+  functions.newElement("p", "sellItemMarket", "PRZEDMIOTY DO SPRZEDANIA", $("#description"));
+  $("#sellItemMarket").addClass("boldText medievalText textUnderlineGold center width100 marginTop3 fontSize12em");
+
+  for (var i = 0; i < heroCreator.equip.length; i++) {
+    functions.newElement("button", heroCreator.equip[i], heroCreator.equip[i], $("#description"));
+    document.querySelectorAll("#description button")[i].onclick = function () {
+      var newGold = heroCreator.gold[0] + 0.5;
+      heroCreator.gold.splice(0, 1, newGold);
+      var thisText = $(this).text();
+      if (heroCreator.equip.indexOf(thisText) !== -1) {
+        heroCreator.equip.splice(heroCreator.equip.indexOf(thisText), 1);
+      }
+
+      $("#alerts").html("<p id='itSell' class='redText medievalText boldText'>sprzedano: <span class='blueText'>" + thisText + " za 0,35 szt. zł.</span></p>");
+      $(this).remove();
+      setTimeout(function () {
+        $("#itSell").remove();
+      }, 5000);
+    };
+    $("#paczka").addClass("bckgRed").prop("disabled", true);
+  }
+};
 //pokazanie przycisków dla paragrafu targu
 module.exports.showBtns = function () {
   $("#lookAroundStreet, #toMarket, #inRoom, #lookAroundCaravans, #ask, #agree").hide();
