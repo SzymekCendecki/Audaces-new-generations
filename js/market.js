@@ -29,7 +29,8 @@ module.exports.btnsSell = function(gold, equip){
 
         for(let i=0; i<heroCreator.equip.length; i++){
           functions.newElement("button", heroCreator.equip[i], heroCreator.equip[i], $("#description"));
-            document.querySelectorAll("#description button")[i].onclick = function(){
+		  //.addClass("basicBtn width15 bckgGreen medievalText");
+		    document.querySelectorAll("#description button")[i].onclick = function(){
                 let newGold = (heroCreator.gold[0] + 0.5);
                 heroCreator.gold.splice(0, 1, newGold);
                 let thisText = $(this).text();
@@ -43,9 +44,13 @@ module.exports.btnsSell = function(gold, equip){
                     $("#itSell").remove();
                 }, 5000);
               }
-              $("#paczka").addClass("bckgRed").prop("disabled", true);
+				$("#description button").addClass("basicBtn width15 bckgGreen medievalText");
+				$("#paczka").addClass("bckgRed").prop("disabled", true);
           
             }
+			functions.newElement("button", "closeBuy", "zamknij", $("#description"));
+			$("#closeBuy").addClass("basicBtn bckgRed width15 bckgGreen medievalText").on("click", ()=>{ $("#description").empty(); });;
+			
 }
 //pokazanie przycisków dla paragrafu targu
 module.exports.showBtns = function(){

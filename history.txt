@@ -421,3 +421,7 @@ Dodano przyciski i zdarzenia dla kupowania towarów.
 
 8 sierpnia 2018 - wersja 0.6.68
 Dodano przyciski i zdarzenia dla sprzedawania rzeczy z ekwipunku na razie bez styli css.
+
+9 sierpnia 2018 - wersja 0.6.69
+Dodano przycisk "zamknij" dla zamykania sekcji sprzedawania.
+	Dodano style dla przycisków rzeczy ekwipunku, które można sprzedać.
