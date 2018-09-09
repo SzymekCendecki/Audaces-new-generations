@@ -44,11 +44,11 @@ module.exports.btnsSell = function(gold, equip){
 				$("#description").addClass("flexForBtns");
 				$("#description button").addClass("basicBtn bckgGreen medievalText marginTop4 shadowForBtn width15 fontSize09em paddingUpDown1");
 				$("#paczka").addClass("bckgRed").prop("disabled", true);
-          
+
             }
 			functions.newElement("button", "closeBuy", "zamknij", $("#description"));
 			$("#closeBuy").addClass("basicBtn bckgRed medievalText marginTop4 shadowForBtn width15 fontSize09em paddingUpDown1").on("click", ()=>{ $("#description").empty(); });
-			
+
 }
 //pokazanie przycisków dla paragrafu targu
 module.exports.showBtns = function(){
@@ -68,7 +68,8 @@ module.exports.textMarket = function(){
 
 //zdarzenie dla przyciku kup
 module.exports.buy = function(){
-  $("#description").html("<div class='basicText medievalText flexForBtns'><p class='boldText medievalText textUnderlineGold center width100'>TOWAR DO KUPIENIA</p><button id='tent' class='basicBtn bckgGreen medievalText marginTop4 shadowForBtn width15 fontSize08em paddingUpDown1'>namiot - 5szt.</button><button id='bag' class='basicBtn bckgGreen medievalText marginTop4 shadowForBtn width15 fontSize09em paddingUpDown1'>torba - 1szt.</button><button id='saddleCloth' class='basicBtn bckgGreen medievalText marginTop4 shadowForBtn width15 fontSize09em paddingUpDown1'>derka - 1szt.</button><button id='lamp' class='basicBtn bckgGreen medievalText marginTop4 shadowForBtn width15 fontSize09em paddingUpDown1'>lampa - 1szt.</button><button id='rope' class='basicBtn bckgGreen medievalText marginTop4 shadowForBtn width15 fontSize09em paddingUpDown1'>lina - 1szt.</button><button id='food' class='basicBtn bckgGreen medievalText marginTop4 shadowForBtn width15 fontSize08em paddingUpDown1'>racja żyw. - 1szt.</button><button id='dagger' class='basicBtn bckgGreen medievalText marginTop4 shadowForBtn width15 fontSize08em paddingUpDown1'>sztylet - 8szt.</button><button id='crossbow' class='basicBtn bckgGreen medievalText marginTop4 shadowForBtn width15 fontSize08em paddingUpDown1'>kusza - 12szt.</button><button id='saddle' class='basicBtn bckgGreen medievalText marginTop4 shadowForBtn width15 fontSize08em paddingUpDown1'>siodło - 10szt.</button><button id='wooddenStick' class='basicBtn bckgGreen medievalText marginTop4 shadowForBtn width15 fontSize08em paddingUpDown1'>drew. pałka - 4szt.</button><button id='buckler' class='basicBtn bckgGreen medievalText marginTop4 shadowForBtn width15 fontSize08em paddingUpDown1'>puklerz - 12szt.</button><button id='closeBuy' class='basicBtn bckgRed medievalText marginTop4 shadowForBtn width15 fontSize09em paddingUpDown1'>zamknij</button></div>");
+  $("#description").empty();
+  $("#description").html("<p class='boldText medievalText textUnderlineGold center width100'>TOWAR DO KUPIENIA</p><button id='tent' class='basicBtn bckgGreen medievalText marginTop4 shadowForBtn width15 fontSize08em paddingUpDown1'>namiot - 5szt.</button><button id='bag' class='basicBtn bckgGreen medievalText marginTop4 shadowForBtn width15 fontSize09em paddingUpDown1'>torba - 1szt.</button><button id='saddleCloth' class='basicBtn bckgGreen medievalText marginTop4 shadowForBtn width15 fontSize09em paddingUpDown1'>derka - 1szt.</button><button id='lamp' class='basicBtn bckgGreen medievalText marginTop4 shadowForBtn width15 fontSize09em paddingUpDown1'>lampa - 1szt.</button><button id='rope' class='basicBtn bckgGreen medievalText marginTop4 shadowForBtn width15 fontSize09em paddingUpDown1'>lina - 1szt.</button><button id='food' class='basicBtn bckgGreen medievalText marginTop4 shadowForBtn width15 fontSize08em paddingUpDown1'>racja żyw. - 1szt.</button><button id='dagger' class='basicBtn bckgGreen medievalText marginTop4 shadowForBtn width15 fontSize08em paddingUpDown1'>sztylet - 8szt.</button><button id='crossbow' class='basicBtn bckgGreen medievalText marginTop4 shadowForBtn width15 fontSize08em paddingUpDown1'>kusza - 12szt.</button><button id='saddle' class='basicBtn bckgGreen medievalText marginTop4 shadowForBtn width15 fontSize08em paddingUpDown1'>siodło - 10szt.</button><button id='wooddenStick' class='basicBtn bckgGreen medievalText marginTop4 shadowForBtn width15 fontSize08em paddingUpDown1'>drew. pałka - 4szt.</button><button id='buckler' class='basicBtn bckgGreen medievalText marginTop4 shadowForBtn width15 fontSize08em paddingUpDown1'>puklerz - 12szt.</button><button id='closeBuy' class='basicBtn bckgRed medievalText marginTop4 shadowForBtn width15 fontSize09em paddingUpDown1'>zamknij</button>");
 
   //zdarzenia dla przycisków kupowania
   $("#tent").on("click", function(){ buyItem("namiot", 5, heroCreator.gold, heroCreator.equip); });

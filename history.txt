@@ -425,6 +425,9 @@ Dodano przyciski i zdarzenia dla sprzedawania rzeczy z ekwipunku na razie bez st
 8 sierpnia 2018 - wersja 0.6.69
 Dodano przycisk "zamknij" dla zamykania sekcji sprzedawania.
 	Dodano style dla przycisków rzeczy ekwipunku, które można sprzedać.
-	
+
 9 sierpnia 2018 - wersja 0.6.70
-Poprawiono grifkę przycików dla rzeczy, które można sprzedać. 
+Poprawiono grifkę przycików dla rzeczy, które można sprzedać.
+
+9 sierpnia 2018 - wersja 0.6.71
+Poprawka wyświetlania przycisków kupowania towarów na targu.
