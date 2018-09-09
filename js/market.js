@@ -4,11 +4,9 @@ let heroCreator = require("./heroCreator.js");
 //funkcja kupowania przedmiotów
 function buyItem (item, price, gold, equip){
           if(heroCreator.gold[0] >= price){
-             heroCreator.equip.push(item);
-             let newGold = (gold[0] - price);
-             let newGoldFixed = newGold.toFixed(2);
-             heroCreator.gold.splice(0, 1, newGoldFixed);
-
+            heroCreator.equip.push(item);
+            let newGold = (heroCreator.gold[0] - price);
+			heroCreator.gold.splice(0, 1, newGold);
              $("#alerts").html("<p id='buyed' class='greenText medievalText boldText'>kupiono: <span class='blueText'>" + item + "</span></p>");
                setTimeout(function(){
                $("#buyed").remove();
@@ -29,7 +27,6 @@ module.exports.btnsSell = function(gold, equip){
 
         for(let i=0; i<heroCreator.equip.length; i++){
           functions.newElement("button", heroCreator.equip[i], heroCreator.equip[i], $("#description"));
-		  //.addClass("basicBtn width15 bckgGreen medievalText");
 		    document.querySelectorAll("#description button")[i].onclick = function(){
                 let newGold = (heroCreator.gold[0] + 0.5);
                 heroCreator.gold.splice(0, 1, newGold);
@@ -44,12 +41,13 @@ module.exports.btnsSell = function(gold, equip){
                     $("#itSell").remove();
                 }, 5000);
               }
-				$("#description button").addClass("basicBtn width15 bckgGreen medievalText");
+				$("#description").addClass("flexForBtns");
+				$("#description button").addClass("basicBtn bckgGreen medievalText marginTop4 shadowForBtn width15 fontSize09em paddingUpDown1");
 				$("#paczka").addClass("bckgRed").prop("disabled", true);
           
             }
 			functions.newElement("button", "closeBuy", "zamknij", $("#description"));
-			$("#closeBuy").addClass("basicBtn bckgRed width15 bckgGreen medievalText").on("click", ()=>{ $("#description").empty(); });;
+			$("#closeBuy").addClass("basicBtn bckgRed medievalText marginTop4 shadowForBtn width15 fontSize09em paddingUpDown1").on("click", ()=>{ $("#description").empty(); });
 			
 }
 //pokazanie przycisków dla paragrafu targu

@@ -1787,10 +1787,8 @@ var heroCreator = __webpack_require__(1);
 function buyItem(item, price, gold, equip) {
   if (heroCreator.gold[0] >= price) {
     heroCreator.equip.push(item);
-    var newGold = gold[0] - price;
-    var newGoldFixed = newGold.toFixed(2);
-    heroCreator.gold.splice(0, 1, newGoldFixed);
-
+    var newGold = heroCreator.gold[0] - price;
+    heroCreator.gold.splice(0, 1, newGold);
     $("#alerts").html("<p id='buyed' class='greenText medievalText boldText'>kupiono: <span class='blueText'>" + item + "</span></p>");
     setTimeout(function () {
       $("#buyed").remove();
@@ -1811,7 +1809,6 @@ module.exports.btnsSell = function (gold, equip) {
 
   for (var i = 0; i < heroCreator.equip.length; i++) {
     functions.newElement("button", heroCreator.equip[i], heroCreator.equip[i], $("#description"));
-    //.addClass("basicBtn width15 bckgGreen medievalText");
     document.querySelectorAll("#description button")[i].onclick = function () {
       var newGold = heroCreator.gold[0] + 0.5;
       heroCreator.gold.splice(0, 1, newGold);
@@ -1826,13 +1823,14 @@ module.exports.btnsSell = function (gold, equip) {
         $("#itSell").remove();
       }, 5000);
     };
-    $("#description button").addClass("basicBtn width15 bckgGreen medievalText");
+    $("#description").addClass("flexForBtns");
+    $("#description button").addClass("basicBtn bckgGreen medievalText marginTop4 shadowForBtn width15 fontSize09em paddingUpDown1");
     $("#paczka").addClass("bckgRed").prop("disabled", true);
   }
   functions.newElement("button", "closeBuy", "zamknij", $("#description"));
-  $("#closeBuy").addClass("basicBtn bckgRed width15 bckgGreen medievalText").on("click", function () {
+  $("#closeBuy").addClass("basicBtn bckgRed medievalText marginTop4 shadowForBtn width15 fontSize09em paddingUpDown1").on("click", function () {
     $("#description").empty();
-  });;
+  });
 };
 //pokazanie przycisków dla paragrafu targu
 module.exports.showBtns = function () {
