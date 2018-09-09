@@ -431,3 +431,6 @@ Poprawiono grifkę przycików dla rzeczy, które można sprzedać.
 
 9 sierpnia 2018 - wersja 0.6.71
 Poprawka wyświetlania przycisków kupowania towarów na targu.
+
+9 sierpnia 2018 - wersja 0.6.72
+Poprawa wyświetla opisowego tekstu zawartości skrzyni i szafy po ponownym wejsciu do pokoju.

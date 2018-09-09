@@ -3,7 +3,7 @@ let street = require("./street.js");
 
 //głowny tekst opisowy dla paragrafu pierwszego (pokoju)
 module.exports.textRoom = function(){
-  $("#mainPart").html("<div class='basicText medievalText'>Stoisz w swoim pokoju, w którym znajduje się tylko łóżko, szafa, mały stolik i drewniana skrzynia. Na stoliku leży zawniątko, które musisz oddać mnichowi w przygranicznej wiosce. Co robisz?</div>");
+  $("#mainPart").html("<div class='basicText medievalText'>Stoisz w swoim pokoju, w którym znajduje się tylko łóżko, szafa, mały stolik i drewniana skrzynia. Na stoliku leży zawniątko, które musisz oddać mnichowi w przygranicznej wiosce. Co robisz?</div><div id='description'></div>");
 }
 
 //zawartość zdarzenia dla przycisku rozejrzyj się
