@@ -434,3 +434,8 @@ Poprawka wyświetlania przycisków kupowania towarów na targu.
 
 9 sierpnia 2018 - wersja 0.6.72
 Poprawa wyświetla opisowego tekstu zawartości skrzyni i szafy po ponownym wejsciu do pokoju.
+
+10 sierpnia 2018 - wersja 0.6.73
+Poprawka wyświetlania przycisków "kupuj", "sprzedaj" i "rozejrzyj się" (dla targu), gdy gracz jest wyszedł z karawan do targu i z powrotem wszedł do karawan.
+	Poprawka wyświetlania przycisku "rozejrzyj się" (dla pokoju), gdy wejdzie się z ulicy do pokoju.
+Rozpoczęcie pracy nad wejściem na wóz.

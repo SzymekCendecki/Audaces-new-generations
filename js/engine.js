@@ -1641,6 +1641,11 @@ module.exports.intro = function () {
 
         $("#toStreet, #lookAroundCaravans, #ask").hide();
 
+        //przyciski, które pojawiają sie po wejściu na wóz
+        functions.newElement("button", "go", "dalej", $("#mainBtns"));
+        functions.newElement("button", "lookAroundWaggon", "rozejrzyj się", $("#interactionsBtns"));
+        $("#go, #lookAroundWaggon").hide();
+
         //główny tekst opisowy dla paragrafu - pokój - paragraf pierwszy
         room.textRoom();
 
@@ -1688,7 +1693,7 @@ module.exports.intro = function () {
 
         //zdarzenia dla przycisków interakcji drugiego paragrafu - ulica
         $("#inRoom").on("click", function () {
-            $("#inRoom, #toCaravans, #toMarket, #lookAroundStreet").hide();$("#wardrobe, #chest, #outRoom").show();room.textRoom();
+            $("#inRoom, #toCaravans, #toMarket, #lookAroundStreet").hide();$("#wardrobe, #chest, #outRoom, #lookAroundRoom").show();room.textRoom();
         });
         $("#lookAroundStreet").on("click", function () {
             street.lookAroundStreet();
@@ -1912,7 +1917,7 @@ module.exports.showBtns = function () {
     $("#lookAroundCaravans").addClass("bckgBlue medievalText marginTop4 shadowForBtn fontSize09em paddingUpDown1");
     $("#ask, #toStreet").addClass("bckgGreen medievalText marginTop4 shadowForBtn");
   } else {
-    $("#inRoom, #toCaravans, #toMarket, #lookAroundStreet").hide();
+    $("#inRoom, #toCaravans, #toMarket, #lookAroundStreet, #buy, #sell, #lookAroundMarket").hide();
     $("#toStreet, #toMarket, #lookAroundCaravans, #agree").show();
     $("#toStreet, #toMarket, #lookAroundCaravans, #agree").addClass("basicBtn");
     $("#lookAroundCaravans").addClass("bckgBlue medievalText marginTop4 shadowForBtn fontSize09em paddingUpDown1");
@@ -1942,6 +1947,14 @@ module.exports.ask = function () {
   functions.newElement("button", "agree", "zgódź się", $("#interactionsBtns"));
   $("#agree").addClass("basicBtn bckgGreen medievalText marginTop4 shadowForBtn");
   point.splice(0, 1, 1);
+
+  $("#agree").on("click", function () {
+    $("#mainPart").html("<div class='basicText medievalText'>Na ostatnim wozie okazało się, że jest jeszcze sporo miejsca, dzięki czemu będzie można podróżować dość wygodnie. Po kilkunastu minutach karawana ruszyła...</div><div id='description'></div>");
+    $("#toStreet, #toMarket, #lookAroundCaravans, #ask, #agree, #buy, #sell, #lookAroundMarket").hide();
+    $("#go, #lookAroundWaggon").show();
+    $("#go").addClass("basicBtn bckgGreen medievalText marginTop4 shadowForBtn");
+    $("#lookAroundWaggon").addClass("basicBtn bckgBlue medievalText marginTop4 shadowForBtn fontSize09em");
+  });
 };
 
 /***/ }),

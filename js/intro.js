@@ -86,6 +86,11 @@ module.exports.intro = function(){
 
     $("#toStreet, #lookAroundCaravans, #ask").hide();
 
+  //przyciski, które pojawiają sie po wejściu na wóz
+    functions.newElement("button", "go", "dalej", $("#mainBtns"));
+    functions.newElement("button", "lookAroundWaggon", "rozejrzyj się", $("#interactionsBtns"));
+    $("#go, #lookAroundWaggon").hide();
+
     //główny tekst opisowy dla paragrafu - pokój - paragraf pierwszy
     room.textRoom();
 
@@ -114,7 +119,7 @@ module.exports.intro = function(){
   $("#outRoom").on("click", ()=> { room.outRoom(); street.showBtns(); street.textStreet(); });
 
   //zdarzenia dla przycisków interakcji drugiego paragrafu - ulica
-  $("#inRoom").on("click", ()=>{ $("#inRoom, #toCaravans, #toMarket, #lookAroundStreet").hide();    $("#wardrobe, #chest, #outRoom").show(); room.textRoom(); });
+  $("#inRoom").on("click", ()=>{ $("#inRoom, #toCaravans, #toMarket, #lookAroundStreet").hide();    $("#wardrobe, #chest, #outRoom, #lookAroundRoom").show(); room.textRoom(); });
   $("#lookAroundStreet").on("click", ()=>{ street.lookAroundStreet(); });
 
 //zdarzenia dla interakcji paragrafu - targ
@@ -128,7 +133,6 @@ $("#sell").on("click", ()=>{ market.btnsSell(); });
   $("#ask").on("click", ()=>{ caravans.ask(); });
 
 $("#toStreet").on("click", ()=>{ $("#toStreet, #toMarket, #lookAroundCaravans, #ask, #agree, #buy, #sell, #lookAroundMarket").hide(); $("#inRoom, #toCaravans, #toMarket, #lookAroundStreet").show(); street.textStreet(); });
-
 
   }, 30000);
 }
