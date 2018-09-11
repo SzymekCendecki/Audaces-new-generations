@@ -439,3 +439,8 @@ Poprawa wyświetla opisowego tekstu zawartości skrzyni i szafy po ponownym wejs
 Poprawka wyświetlania przycisków "kupuj", "sprzedaj" i "rozejrzyj się" (dla targu), gdy gracz jest wyszedł z karawan do targu i z powrotem wszedł do karawan.
 	Poprawka wyświetlania przycisku "rozejrzyj się" (dla pokoju), gdy wejdzie się z ulicy do pokoju.
 Rozpoczęcie pracy nad wejściem na wóz.
+
+11 sierpnia 2018 - wersja 0.6.74
+Dodano tekst dla rozglądania się, gdy wejdzie się na wóz.
+	Dodanie do main.scss nowego stylu: italic - powodujący pochylenie tekstu.
+Rozpoczęcie pracy nad paragrafem, w którym broni sie karawany.

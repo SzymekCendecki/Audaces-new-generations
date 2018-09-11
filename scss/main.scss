@@ -66,6 +66,9 @@ nav, #mainPart, #alerts{ height: 78vh; }
 //tekst pogrubiony
 .boldText{ font-weight: bold; }
 
+//tekst normalny
+.normalText{font-weight: normal; }
+
 //wielkość liter w em' ach
 .fontSize08em{ font-size: 0.8em; } .fontSize09em{ font-size: 0.9em; }
 .fontSize1em{ font-size: 1em; } .fontSize11em{ font-size: 1.1em; }
@@ -124,6 +127,5 @@ nav, #mainPart, #alerts{ height: 78vh; }
   left: 12.5%;
 }
 
-
-
-
+//tekst kursywa
+.italic { font-style: italic; }

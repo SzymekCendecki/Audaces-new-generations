@@ -44,5 +44,10 @@ module.exports.ask = function(){
     $("#go, #lookAroundWaggon").show();
     $("#go").addClass("basicBtn bckgGreen medievalText marginTop4 shadowForBtn");
     $("#lookAroundWaggon").addClass("basicBtn bckgBlue medievalText marginTop4 shadowForBtn fontSize09em");
-  })
+
+    $("#lookAroundWaggon").on("click", () =>{
+      $("#description").html("<p class='basicText medievalText'>Wóz jak wóz. Kilka pakunków. Dwóch woźniców: krasnolud i człowiek.</p><button id='close' class='bckgRed fontSize12em width15 boldText medievalText whiteTextShadow11 paddingUpDown1 marginTop4'>zamknij</button>");
+      $("#close").on("click", ()=>{ $("#description").empty(); });
+    });
+  });
 }

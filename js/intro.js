@@ -6,6 +6,7 @@ let room = require("./room.js");
 let street = require("./street.js");
 let market = require("./market.js");
 let caravans = require("./caravans.js");
+let defenseCaravans = require("./defenseCaravans");
 
 let text1 = "Mówią, że Dzikie Pustkowia to kraina opuszczona przez Bogów.";
 
@@ -91,7 +92,12 @@ module.exports.intro = function(){
     functions.newElement("button", "lookAroundWaggon", "rozejrzyj się", $("#interactionsBtns"));
     $("#go, #lookAroundWaggon").hide();
 
-    //główny tekst opisowy dla paragrafu - pokój - paragraf pierwszy
+//przyciski dla paragrafu obrony karawany
+functions.newElement("button", "toVillage", "dalej", $("#mainBtns"));
+functions.newElement("button", "prepare", "przygotuj się", $("#interactionsBtns"));
+$("#toVillage, #prepare").hide();
+
+  //główny tekst opisowy dla paragrafu - pokój - paragraf pierwszy
     room.textRoom();
 
 //utworzenie "okna dialogowego"
@@ -133,6 +139,13 @@ $("#sell").on("click", ()=>{ market.btnsSell(); });
   $("#ask").on("click", ()=>{ caravans.ask(); });
 
 $("#toStreet").on("click", ()=>{ $("#toStreet, #toMarket, #lookAroundCaravans, #ask, #agree, #buy, #sell, #lookAroundMarket").hide(); $("#inRoom, #toCaravans, #toMarket, #lookAroundStreet").show(); street.textStreet(); });
+
+//zdarzenia dla paragrafu obrony karawany - defenseCaravans
+$("#go").on("click", ()=>{
+  $("#go, #lookAroundWaggon").hide();
+  $("#mainPart").empty();
+  defenseCaravans.textCaravans();
+});
 
   }, 30000);
 }
