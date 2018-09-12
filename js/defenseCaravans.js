@@ -1,7 +1,6 @@
 let heroCreator = require("./heroCreator.js");
 let functions = require("./functions.js"); //podstawowe funkcje
 
-
 module.exports.textCaravans = function(){
   //główny tekst opisowy dla paragrafu - karawany - paragraf postoju karawan
   $("#mainPart").html("<div class='basicText medievalText'>Jedziecie sobie spokojnie. Czas mija na oglądaniu pejzaży z jadącego wozu. Niestety ta sielanka skończyła się wieczorem drugiego dnia. Zaczęło się od zawalonej, przez drzewa drogi. Gdy uczestnicy, z pierwszych wozów karawany uprzątali drzewa, nastąpił atak. Wszyscy muszą walczyć!. Ciebie atakuje jeden bandyta z wielkim mieczem. <span class='normalText italic'>Po lewej stronie znajduje się przycisk <span class='blueText boldText'>'przygotuj się'</span>, aby wybrać ekwipunek.</span></div><div id='description'></div>");
@@ -10,4 +9,44 @@ module.exports.textCaravans = function(){
   $("#toVillage").addClass("bckgRed");
   $("#toVillage").prop("disabled", true);
   $("#prepare").addClass("bckgGreen fontSize08em paddingUpDown1");
+
+  $("#prepare").on("click", ()=>{
+    $("#description").html("<p class='textUnderlineGold boldText medievalText width100 center marginTop5 fontSize11em'>WYBIERZ EKWIPUNEK DO WALKI</p><div id='btnsWeapon' class='flexForBtns'></div>");
+    //wybór przedmiotów do walki
+    //przyciski z rzeczmi do wyboru
+          for(let i=0; i<heroCreator.equip.length; i++){
+              let weaponBtn = document.createElement("button");
+              weaponBtn.id = heroCreator.equip[i];
+              weaponBtn.innerText = heroCreator.equip[i];
+              $("#btnsWeapon").append(weaponBtn);
+         }
+
+      let allBtns = document.querySelectorAll("#description button");
+      let fightWeapon = []; //tablica pomocnicza, dzięki której jest możliwa walidacja wuboru 3 rzeczy do walki oraz oblicznia wartości bojowej
+
+             for (let i=0; i<allBtns.length; i++) {
+                   allBtns[i].onclick = function () {
+                     if(fightWeapon.length < 3 ){
+                       let item = $(this).text();
+                       fightWeapon.push(item);
+                       $(this).remove();
+                       $("#alerts").html("<p id='buyed' class='greenText medievalText boldText'>Został wybrany: <span class='blueText'>" + $(this).text() + "</span></p>");
+                         setTimeout(function(){
+                           $("#alerts").empty();
+                       }, 5000);
+                   }else if(fightWeapon.length >= 3){
+                      $("#alerts").html("<p id='buyed' class='redText medievalText boldText'>Nie możesz wybrać więcej rzeczy.</p>");
+                       setTimeout(function(){
+                         $("#alerts").empty();
+                     }, 5000);
+                         }
+                     }
+                   }
+                   //przycisk zakończający - zatwierdzający wybieranie
+                   let btnAccept = document.createElement("button");
+                   btnAccept.id = "chooseFinish";
+                   btnAccept.innerText = "zakończ wybieranie";
+                   $("#fightEquipBtnsLists").append(btnAccept);
+                   $("#chooseFinish").addClass("green");
+  });
 }

@@ -444,3 +444,6 @@ Rozpoczęcie pracy nad wejściem na wóz.
 Dodano tekst dla rozglądania się, gdy wejdzie się na wóz.
 	Dodanie do main.scss nowego stylu: italic - powodujący pochylenie tekstu.
 Rozpoczęcie pracy nad paragrafem, w którym broni sie karawany.
+
+12 sierpnia 2018 - wersja 0.6.75
+Dodano przyciski do wybierania ekwipunku do walki (bez css i zdarzeń).
