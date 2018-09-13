@@ -2008,6 +2008,7 @@ module.exports.textCaravans = function () {
     }
 
     var allBtns = document.querySelectorAll("#description button");
+    $("#btnsWeapon").find("button").addClass("basicBtn medievalText bckgGreen width20 marginTop4");
     var fightWeapon = []; //tablica pomocnicza, dzięki której jest możliwa walidacja wuboru 3 rzeczy do walki oraz oblicznia wartości bojowej
 
     for (var _i = 0; _i < allBtns.length; _i++) {
@@ -2032,8 +2033,9 @@ module.exports.textCaravans = function () {
     var btnAccept = document.createElement("button");
     btnAccept.id = "chooseFinish";
     btnAccept.innerText = "zakończ wybieranie";
-    $("#fightEquipBtnsLists").append(btnAccept);
-    $("#chooseFinish").addClass("green");
+    $("#btnsWeapon").append(btnAccept);
+    $("#chooseFinish").addClass("basicBtn medievalText bckgGreen width20 marginTop4");
+    $("#paczka").addClass("bckgRed").prop("disabled", true);
   });
 };
 

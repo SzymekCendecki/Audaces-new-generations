@@ -447,3 +447,8 @@ Rozpoczęcie pracy nad paragrafem, w którym broni sie karawany.
 
 12 sierpnia 2018 - wersja 0.6.75
 Dodano przyciski do wybierania ekwipunku do walki (bez css i zdarzeń).
+
+13 sierpnia 2018 - wersja 0.6.76
+Dodano style css do przycisków wybierania ekwipunku do pierwszej walki.
+	Poprawiono błąd, który nie wyśwetlał przycisku "zakończ wybieranie".
+Wykonany został test filtrowania tablicy - mający na celu sprawdzenie ewentualnej przydatności do dodawania/odejmowania puntktów do wartości bojowej bohatera - test wypadł obiecująco - test znajduje się w katalogu testy.
