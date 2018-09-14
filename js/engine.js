@@ -1750,6 +1750,7 @@ module.exports.intro = function () {
 //import funkcji z pliku zewnętrznego
 var functions = __webpack_require__(0); //podstawowe funkcje
 var heroCreator = __webpack_require__(1);
+var defenseCaravans = __webpack_require__(11);
 
 //zdarzenie dla przycisku "cechy"
 module.exports.btnFeatures = function () {
@@ -1784,6 +1785,21 @@ module.exports.btnSkills = function () {
 //zdarzenie dla przycisku "zadania"
 module.exports.btnTasks = function () {
   $("#info").html("<div class='width75 flexForBtns medievalText greenText, boldText fontSize1em zindex1 bckgGreen'><p class='width100 textUnderlineGold medievalText center paddingUpDown1 fontSize13em'>ZADANIA</p><div class='width100 flexForBtns marginTop2'><p class='width90'><span class='blackText boldText fontSize12em'>" + heroCreator.tasks + "</span></p></div><button id='close' class='bckgRed fontSize12em width15 boldText medievalText whiteTextShadow11 paddingUpDown1 marginTop4'>zamknij</button></div>");
+  $("#features, #equip, #skills, #tasks, #lookAroundRoom, #wardrobe, #chest, #package, #inRoom, #toCaravans, #toMarket, #lookAroundStreet, #ask, #lookAroundCaravans").prop("disabled", true);
+
+  $("#close").on("click", function () {
+    $("#info").empty();$("#features, #equip, #skills, #tasks, #lookAroundRoom, #wardrobe, #chest, #package, #inRoom, #toCaravans, #toMarket, #lookAroundStreet, #ask, #lookAroundCaravans").prop("disabled", false);
+  });
+};
+
+//zdarzenie dla przycisku "punkty bojowe"
+module.exports.powerHero = function () {
+
+  var suma = heroCreator.hero[4] + heroCreator.hero[5] + heroCreator.hero[6] + heroCreator.hero[7] + heroCreator.hero[8];
+  console.log(suma);
+
+  $("#info").html("<div class='width75 flexForBtns medievalText greenText, boldText fontSize1em zindex1 bckgGreen'><p class='width100 textUnderlineGold medievalText center paddingUpDown1 fontSize13em'>WARTOŚCI BOJOWE</p><div class='width100 flexForBtns marginTop2'><p class='width90'><span class='blackText boldText fontSize12em textUnderlineGold'>cechy</span></p><p class='width90'><span class='blackText boldText fontSize12em'>siła: <span class='blueText'>" + heroCreator.hero[4] + "</span></span></p><p class='width90'><span class='blackText boldText fontSize12em'>wytrzymałość: <span class='blueText'>" + heroCreator.hero[5] + "</span></span></p><p class='width90'><span class='blackText boldText fontSize12em'>zręczność: <span class='blueText'>" + heroCreator.hero[6] + "</span></span></p><p class='width90'><span class='blackText boldText fontSize12em'>inteligencja: <span class='blueText'>" + heroCreator.hero[7] + "</span></span></p><p class='width90'><span class='blackText boldText fontSize12em'>charyzma: <span class='blueText'>" + heroCreator.hero[8] + "</span></span></p><p class='width90'><span class='blackText boldText fontSize12em'>suma: <span class='blueText'>" + suma + "</span></span></p><p class='width90'><span class='blackText boldText fontSize12em'>wybrany sprzęt: <span class='blueText'>" + defenseCaravans.fightWeapon + "</span></span></p></div><button id='close' class='bckgRed fontSize12em width15 boldText medievalText whiteTextShadow11 paddingUpDown1 marginTop4'>zamknij</button></div>");
+
   $("#features, #equip, #skills, #tasks, #lookAroundRoom, #wardrobe, #chest, #package, #inRoom, #toCaravans, #toMarket, #lookAroundStreet, #ask, #lookAroundCaravans").prop("disabled", true);
 
   $("#close").on("click", function () {
@@ -1986,6 +2002,7 @@ module.exports.ask = function () {
 
 var heroCreator = __webpack_require__(1);
 var functions = __webpack_require__(0); //podstawowe funkcje
+var theGame = __webpack_require__(8);
 
 module.exports.textCaravans = function () {
   //główny tekst opisowy dla paragrafu - karawany - paragraf postoju karawan
@@ -2028,13 +2045,27 @@ module.exports.textCaravans = function () {
           }, 5000);
         }
       };
+      module.exports.fightWeapon = fightWeapon;
     }
-    //przycisk zakończający - zatwierdzający wybieranie
+
+    //przycisk sprawdzający punkty bojowe postaci
+    var powerHero = document.createElement("button");
+    powerHero.id = "powerHero";
+    powerHero.innerText = "punkty bojowe";
+    $("#btnsWeapon").append(powerHero);
+    $("#powerHero").addClass("basicBtn medievalText bckgGreen width20 marginTop4");
+
+    $("#powerHero").on("click", function () {
+      theGame.powerHero();
+    });
+
+    //przycisk kończący - zatwierdzający wybieranie
     var btnAccept = document.createElement("button");
     btnAccept.id = "chooseFinish";
     btnAccept.innerText = "zakończ wybieranie";
     $("#btnsWeapon").append(btnAccept);
     $("#chooseFinish").addClass("basicBtn medievalText bckgGreen width20 marginTop4");
+
     $("#paczka").addClass("bckgRed").prop("disabled", true);
   });
 };

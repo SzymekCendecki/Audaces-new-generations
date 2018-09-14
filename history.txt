@@ -452,3 +452,6 @@ Dodano przyciski do wybierania ekwipunku do walki (bez css i zdarzeń).
 Dodano style css do przycisków wybierania ekwipunku do pierwszej walki.
 	Poprawiono błąd, który nie wyśwetlał przycisku "zakończ wybieranie".
 Wykonany został test filtrowania tablicy - mający na celu sprawdzenie ewentualnej przydatności do dodawania/odejmowania puntktów do wartości bojowej bohatera - test wypadł obiecująco - test znajduje się w katalogu testy.
+
+14 sierpnia 2018 - wersja 0.6.77
+Dodano przycisk "punkty bojowe" oraz pierwsze funkcje, które mają sumować cechy oraz punkty bojowe wybranego ekwipunku.

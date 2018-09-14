@@ -1,6 +1,7 @@
 //import funkcji z pliku zewnętrznego
 let functions = require("./functions.js"); //podstawowe funkcje
 let heroCreator = require("./heroCreator.js");
+let defenseCaravans = require("./defenseCaravans.js");
 
 //zdarzenie dla przycisku "cechy"
 module.exports.btnFeatures = function(){
@@ -33,3 +34,17 @@ $("#features, #equip, #skills, #tasks, #lookAroundRoom, #wardrobe, #chest, #pack
 
       $("#close").on("click", ()=>{ $("#info").empty(); $("#features, #equip, #skills, #tasks, #lookAroundRoom, #wardrobe, #chest, #package, #inRoom, #toCaravans, #toMarket, #lookAroundStreet, #ask, #lookAroundCaravans").prop("disabled", false); });
     }
+
+//zdarzenie dla przycisku "punkty bojowe"
+module.exports.powerHero = function(){
+
+  let suma = (heroCreator.hero[4] + heroCreator.hero[5] + heroCreator.hero[6] + heroCreator.hero[7] + heroCreator.hero[8]);
+  console.log(suma);
+
+  $("#info").html("<div class='width75 flexForBtns medievalText greenText, boldText fontSize1em zindex1 bckgGreen'><p class='width100 textUnderlineGold medievalText center paddingUpDown1 fontSize13em'>WARTOŚCI BOJOWE</p><div class='width100 flexForBtns marginTop2'><p class='width90'><span class='blackText boldText fontSize12em textUnderlineGold'>cechy</span></p><p class='width90'><span class='blackText boldText fontSize12em'>siła: <span class='blueText'>" + heroCreator.hero[4] +  "</span></span></p><p class='width90'><span class='blackText boldText fontSize12em'>wytrzymałość: <span class='blueText'>" + heroCreator.hero[5] +  "</span></span></p><p class='width90'><span class='blackText boldText fontSize12em'>zręczność: <span class='blueText'>" + heroCreator.hero[6] +  "</span></span></p><p class='width90'><span class='blackText boldText fontSize12em'>inteligencja: <span class='blueText'>" + heroCreator.hero[7] +  "</span></span></p><p class='width90'><span class='blackText boldText fontSize12em'>charyzma: <span class='blueText'>" + heroCreator.hero[8] + "</span></span></p><p class='width90'><span class='blackText boldText fontSize12em'>suma: <span class='blueText'>" + suma +  "</span></span></p><p class='width90'><span class='blackText boldText fontSize12em'>wybrany sprzęt: <span class='blueText'>" + defenseCaravans.fightWeapon + "</span></span></p></div><button id='close' class='bckgRed fontSize12em width15 boldText medievalText whiteTextShadow11 paddingUpDown1 marginTop4'>zamknij</button></div>");
+
+$("#features, #equip, #skills, #tasks, #lookAroundRoom, #wardrobe, #chest, #package, #inRoom, #toCaravans, #toMarket, #lookAroundStreet, #ask, #lookAroundCaravans").prop("disabled", true);
+
+  $("#close").on("click", ()=>{ $("#info").empty(); $("#features, #equip, #skills, #tasks, #lookAroundRoom, #wardrobe, #chest, #package, #inRoom, #toCaravans, #toMarket, #lookAroundStreet, #ask, #lookAroundCaravans").prop("disabled", false); });
+
+  }

@@ -1,5 +1,6 @@
 let heroCreator = require("./heroCreator.js");
 let functions = require("./functions.js"); //podstawowe funkcje
+let theGame = require("./theGame.js");
 
 module.exports.textCaravans = function(){
   //główny tekst opisowy dla paragrafu - karawany - paragraf postoju karawan
@@ -25,7 +26,7 @@ module.exports.textCaravans = function(){
       $("#btnsWeapon").find("button").addClass("basicBtn medievalText bckgGreen width20 marginTop4");
       let fightWeapon = []; //tablica pomocnicza, dzięki której jest możliwa walidacja wuboru 3 rzeczy do walki oraz oblicznia wartości bojowej
 
-             for (let i=0; i<allBtns.length; i++) {
+             for(let i=0; i<allBtns.length; i++) {
                    allBtns[i].onclick = function () {
                      if(fightWeapon.length < 3 ){
                        let item = $(this).text();
@@ -42,13 +43,27 @@ module.exports.textCaravans = function(){
                      }, 5000);
                          }
                      }
+                       module.exports.fightWeapon = fightWeapon;
                    }
-                   //przycisk zakończający - zatwierdzający wybieranie
+
+                   //przycisk sprawdzający punkty bojowe postaci
+                   let powerHero = document.createElement("button");
+                   powerHero.id = "powerHero";
+                   powerHero.innerText = "punkty bojowe";
+                   $("#btnsWeapon").append(powerHero);
+                   $("#powerHero").addClass("basicBtn medievalText bckgGreen width20 marginTop4");
+
+                   $("#powerHero").on("click", ()=>{
+                      theGame.powerHero();
+                   });
+
+                   //przycisk kończący - zatwierdzający wybieranie
                    let btnAccept = document.createElement("button");
                    btnAccept.id = "chooseFinish";
                    btnAccept.innerText = "zakończ wybieranie";
                    $("#btnsWeapon").append(btnAccept);
                    $("#chooseFinish").addClass("basicBtn medievalText bckgGreen width20 marginTop4");
+
                    $("#paczka").addClass("bckgRed").prop("disabled", true);
   });
 }
