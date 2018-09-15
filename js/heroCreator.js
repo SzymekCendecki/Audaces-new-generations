@@ -84,9 +84,9 @@ let gold = [0];
 //utworzenie przycisków wylosuj i wybierz postać
 module.exports.randomChooseHeroBtns = function(){
 	//utworzenie przycisku wylosuj postać
-  functions.newElement("button", "randomHero", "wylosuj", $("#mainBtns"));
+  functions.newElement("button", "randomHero", "wylosuj", $("#heroBtns"));
 	//utworzenie przycisku wybierz postać
-  functions.newElement("button", "chooseHero", "wybierz", $("#mainBtns"));
+  functions.newElement("button", "chooseHero", "wybierz", $("#heroBtns"));
 	//nadanie styli dla przycisków wylosuj i wybierz
   $("#randomHero, #chooseHero").addClass("basicBtn medievalText btnNewGame");
 
@@ -520,7 +520,7 @@ function chooseItem(whatClick, whatPush){
 	functions.newElement("button", "shortSword", "krótki miecz", $("#interactionCreator"));
 	chooseItem($("#shortSword"), "krótki miecz");
 	functions.newElement("button", "sabre", "szabla", $("#interactionCreator"));
-	chooseItem($("#sabre"), "szable");
+	chooseItem($("#sabre"), "szabla");
 	functions.newElement("button", "spear", "włócznia", $("#interactionCreator"));
 	chooseItem($("#spear"), "włócznia");
 	functions.newElement("button", "slingshot", "proca", $("#interactionCreator"));
@@ -728,7 +728,9 @@ functions.skillsToRemove(skills);
 });//koniec zdarzenia dla "ręcznego" wybierania umiejętności
 
 //zdarzenie dla informacji zbiorczej wszystkich dokonanych wyborów
-$("#createInfo").on("click", ()=>{ functions.clearStart("Twoja postać.");
+$("#createInfo").on("click", ()=>{
+
+	functions.clearStart("Twoja postać.");
 	functions.description("Poniżej znajdują się Twoje wybory. W tej sekcji możesz je sprawdzić oraz zastanowić się nad ewentualnymi zmianami. Po dokonaniu wszystkich wyborów, to po lewej stronie pod przyciskami powinien ukazać się przycisk rozpoczynający grę.");
 
 	//funkcja do zliczania wszystkich punktów cech
@@ -752,7 +754,7 @@ hero.splice(4, 1, randomFeatures[0] + elv[0]); hero.splice(5, 1, randomFeatures[
 hero.splice(6, 1, randomFeatures[2] + elv[2]); hero.splice(7, 1, randomFeatures[3] + elv[3]);
 hero.splice(8, 1, randomFeatures[4] + elv[4]);
 }else if(hero[2] == "elf" && hero[3] == "wojownik"){
-hero.splice(4, 1, randomFeatures[0] + elv[0] + warrior[0]); hero.splice(5, 1, randomFeatures[1] + elv[1] + warrior[1]); hero.splice(6, 1, randomFeatures[2] + elv[2] + warrrior[2]); hero.splice(7, 1, randomFeatures[3] + elv[3] + warrrior[3]); hero.splice(8, 1, randomFeatures[4] + elv[4] + warrrior[4]);
+hero.splice(4, 1, randomFeatures[0] + elv[0] + warrior[0]); hero.splice(5, 1, randomFeatures[1] + elv[1] + warrior[1]); hero.splice(6, 1, randomFeatures[2] + elv[2] + warrior[2]); hero.splice(7, 1, randomFeatures[3] + elv[3] + warrior[3]); hero.splice(8, 1, randomFeatures[4] + elv[4] + warrior[4]);
 }else if(hero[2] == "elf" && hero[3] == "złoczyńca"){
 hero.splice(4, 1, randomFeatures[0] + elv[0] + criminal[0]); hero.splice(5, 1, randomFeatures[1] + elv[1] + criminal[1]); hero.splice(6, 1, randomFeatures[2] + elv[2] + criminal[2]);hero.splice(7, 1, randomFeatures[3] + elv[3] + criminal[3]);
 hero.splice(8, 1, randomFeatures[4] + elv[4] + criminal[4]);
@@ -826,7 +828,7 @@ $("#fifth").append("<p class='basicText center width100 medievalText fontSize11e
 //walidacja dokonanych wyborów
 if(hero[0] == "nie wybrano" || hero[1] == "nie wybrano" || hero[2] == "nie wybrano" || hero[3] == "nie wybrano" || hero[4] == 0 || hero[5] == 0 || hero[6] == 0 || hero[7] == 0 || hero[8] == 0 || hero[9] == "nie wybrano" || hero[10] == "nie wybrano" || hero[11] == "nie wybrano" || hero[12] == "nie wybrano" || hero[13] == "nie wybrano" || equip.length == 0 || skills.length == 0){
 	$("#playGame").remove();
-}else{ functions.newElement("button", "playGame", "GRA", $("#mainBtns")); $("#playGame").addClass("basicBtn medievalText btnNewGame"); $("#playGame").on("click", ()=>{ $("#mainBtns, #interactionsBtns, #mainPart").empty(); intro.intro(); }); }
+}else{ $("#mainBtns").empty(); functions.newElement("button", "playGame", "GRA", $("#mainBtns")); $("#playGame").addClass("basicBtn medievalText btnNewGame"); $("#playGame").on("click", ()=>{ $("#heroBtns, #mainBtns, #interactionsBtns, #mainPart").empty(); intro.intro(); }); }
 });//koniec zdarzenia dla informacji zbiorczej wszystkich dokonanych wyborów
 });//koniec ręcznego tworzenie postaci
 

@@ -31,7 +31,7 @@ module.exports.textCaravans = function(){
                      if(fightWeapon.length < 3 ){
                        let item = $(this).text();
                        fightWeapon.push(item);
-                       $(this).remove();
+                       $(this).prop("disabled", true);
                        $("#alerts").html("<p id='buyed' class='greenText medievalText boldText'>Został wybrany: <span class='blueText'>" + $(this).text() + "</span></p>");
                          setTimeout(function(){
                            $("#alerts").empty();
@@ -53,9 +53,7 @@ module.exports.textCaravans = function(){
                    $("#btnsWeapon").append(powerHero);
                    $("#powerHero").addClass("basicBtn medievalText bckgGreen width20 marginTop4");
 
-                   $("#powerHero").on("click", ()=>{
-                      theGame.powerHero();
-                   });
+                   $("#powerHero").on("click", ()=>{ theGame.powerHero(); });
 
                    //przycisk kończący - zatwierdzający wybieranie
                    let btnAccept = document.createElement("button");
@@ -64,6 +62,6 @@ module.exports.textCaravans = function(){
                    $("#btnsWeapon").append(btnAccept);
                    $("#chooseFinish").addClass("basicBtn medievalText bckgGreen width20 marginTop4");
 
-                   $("#paczka").addClass("bckgRed").prop("disabled", true);
+                   $("#paczka").remove();
   });
 }

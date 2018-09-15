@@ -455,3 +455,11 @@ Wykonany został test filtrowania tablicy - mający na celu sprawdzenie ewentual
 
 14 sierpnia 2018 - wersja 0.6.77
 Dodano przycisk "punkty bojowe" oraz pierwsze funkcje, które mają sumować cechy oraz punkty bojowe wybranego ekwipunku.
+
+15 sierpnia 2018 - wersja 0.6.78
+Poprawka wizualna dla podglądu dla informacji zbiorczej o punktach bojowych.
+	Poprawka dla przycisków wybierania ekwipunku do walki - są blokowane zamiast usuwane.
+Dodano wybieranie i usuwanie ekwipunu do walki oraz blokowanie przycisku wybranej rzeczy.
+	Dodano wstępne flitrowanie tablicy z wyborami ekwipunku do walki.
+Poprawka literówki w heroCreator.js.
+	Poprawka wyświetlania przycisku "GRA" - nie pojawia się dodatkowy przycisk, gdy zmieni się w "ręcznym wybieraniu" potaci.

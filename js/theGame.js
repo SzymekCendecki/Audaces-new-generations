@@ -39,12 +39,30 @@ $("#features, #equip, #skills, #tasks, #lookAroundRoom, #wardrobe, #chest, #pack
 module.exports.powerHero = function(){
 
   let suma = (heroCreator.hero[4] + heroCreator.hero[5] + heroCreator.hero[6] + heroCreator.hero[7] + heroCreator.hero[8]);
-  console.log(suma);
 
-  $("#info").html("<div class='width75 flexForBtns medievalText greenText, boldText fontSize1em zindex1 bckgGreen'><p class='width100 textUnderlineGold medievalText center paddingUpDown1 fontSize13em'>WARTOŚCI BOJOWE</p><div class='width100 flexForBtns marginTop2'><p class='width90'><span class='blackText boldText fontSize12em textUnderlineGold'>cechy</span></p><p class='width90'><span class='blackText boldText fontSize12em'>siła: <span class='blueText'>" + heroCreator.hero[4] +  "</span></span></p><p class='width90'><span class='blackText boldText fontSize12em'>wytrzymałość: <span class='blueText'>" + heroCreator.hero[5] +  "</span></span></p><p class='width90'><span class='blackText boldText fontSize12em'>zręczność: <span class='blueText'>" + heroCreator.hero[6] +  "</span></span></p><p class='width90'><span class='blackText boldText fontSize12em'>inteligencja: <span class='blueText'>" + heroCreator.hero[7] +  "</span></span></p><p class='width90'><span class='blackText boldText fontSize12em'>charyzma: <span class='blueText'>" + heroCreator.hero[8] + "</span></span></p><p class='width90'><span class='blackText boldText fontSize12em'>suma: <span class='blueText'>" + suma +  "</span></span></p><p class='width90'><span class='blackText boldText fontSize12em'>wybrany sprzęt: <span class='blueText'>" + defenseCaravans.fightWeapon + "</span></span></p></div><button id='close' class='bckgRed fontSize12em width15 boldText medievalText whiteTextShadow11 paddingUpDown1 marginTop4'>zamknij</button></div>");
+  $("#info").html("<div class='width75 flexForBtns medievalText greenText, boldText fontSize1em zindex1 bckgGreen'><p class='width100 textUnderlineGold medievalText center paddingUpDown1 fontSize13em'>WARTOŚCI BOJOWE</p><div class='width100 flexForBtns marginTop2'><p class='width90'><span class='blackText boldText fontSize12em textUnderlineGold'>cechy</span></p><p class='width33 center'><span class='blackText boldText fontSize12em'>siła: <span class='navyText'>" + heroCreator.hero[4] +  "</span></span></p><p class='width33 center'><span class='blackText boldText fontSize12em'>wytrzymałość: <span class='navyText'>" + heroCreator.hero[5] +  "</span></span></p><p class='width33 center'><span class='blackText boldText fontSize12em'>zręczność: <span class='navyText'>" + heroCreator.hero[6] +  "</span></span></p><p class='width33 center'><span class='blackText boldText fontSize12em'>inteligencja: <span class='navyText'>" + heroCreator.hero[7] +  "</span></span></p><p class='width33 center'><span class='blackText boldText fontSize12em'>charyzma: <span class='navyText'>" + heroCreator.hero[8] + "</span></span></p><p class='width90 center'><span class='blackText boldText fontSize12em textUnderlineGold'>suma punktów cech: <span class='navyText textUnderlineGold center'>" + suma +  "</span></span></p><p class='width90'><span class='blackText boldText fontSize12em textUnderlineGold'>wybrany sprzęt: </p><p id='equipToRemove' class='width90'><span class='navyText'>" + defenseCaravans.fightWeapon + "</span></span></p></div><button id='removeEquip' class='bckgRed fontSize12em width20 boldText medievalText whiteTextShadow11 paddingUpDown1 marginTop4'>usuń rzeczy</button><button id='close' class='bckgRed fontSize12em width15 boldText medievalText whiteTextShadow11 paddingUpDown1 marginTop4'>zamknij</button></div>");
 
 $("#features, #equip, #skills, #tasks, #lookAroundRoom, #wardrobe, #chest, #package, #inRoom, #toCaravans, #toMarket, #lookAroundStreet, #ask, #lookAroundCaravans").prop("disabled", true);
 
   $("#close").on("click", ()=>{ $("#info").empty(); $("#features, #equip, #skills, #tasks, #lookAroundRoom, #wardrobe, #chest, #package, #inRoom, #toCaravans, #toMarket, #lookAroundStreet, #ask, #lookAroundCaravans").prop("disabled", false); });
+
+$("#removeEquip").on("click", ()=>{
+  defenseCaravans.fightWeapon.splice(0, 3);
+  $("#equipToRemove").empty();
+  let przyciski = $("#btnsWeapon").find("button");
+  przyciski.attr("disabled", false);
+});
+
+  let equipPoints = defenseCaravans.fightWeapon.filter(function(el){
+      if(el == "sztylet"){
+        console.log("+5");
+      }else if(el == "krótki miecz" || el == "drewniana pałka"){
+        console.log("+10");
+      }else if(el == "szabla" || el == "włócznia"){
+        console.log("+15");
+      }else if(defenseCaravans.length == 0){
+        console.log("zero");
+      }
+  });
 
   }

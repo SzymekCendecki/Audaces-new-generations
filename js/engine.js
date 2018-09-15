@@ -60,7 +60,7 @@
 /******/ 	__webpack_require__.p = "";
 /******/
 /******/ 	// Load entry module and return exports
-/******/ 	return __webpack_require__(__webpack_require__.s = 4);
+/******/ 	return __webpack_require__(__webpack_require__.s = 6);
 /******/ })
 /************************************************************************/
 /******/ ([
@@ -316,7 +316,7 @@ module.exports.acceptName = function (hero) {
 
 //import funkcji z pliku zewnętrznego
 var functions = __webpack_require__(0); //podstawowe funkcje
-var intro = __webpack_require__(7); // intro gry (te po kreatorze postaci);
+var intro = __webpack_require__(9); // intro gry (te po kreatorze postaci);
 
 //tablica z imionami męskimi
 var namesMan = ["Wortigern", "Gintor", "Hegel", "Derig", "Diggramon", "Zengowetoryk", "Deggetm", "Zigamon", "Birduk", "Ardenor", "Winterks", "Joluntik", "Menigor", "Oltis", "Kurdir"];
@@ -400,9 +400,9 @@ var gold = [0];
 //utworzenie przycisków wylosuj i wybierz postać
 module.exports.randomChooseHeroBtns = function () {
 	//utworzenie przycisku wylosuj postać
-	functions.newElement("button", "randomHero", "wylosuj", $("#mainBtns"));
+	functions.newElement("button", "randomHero", "wylosuj", $("#heroBtns"));
 	//utworzenie przycisku wybierz postać
-	functions.newElement("button", "chooseHero", "wybierz", $("#mainBtns"));
+	functions.newElement("button", "chooseHero", "wybierz", $("#heroBtns"));
 	//nadanie styli dla przycisków wylosuj i wybierz
 	$("#randomHero, #chooseHero").addClass("basicBtn medievalText btnNewGame");
 
@@ -943,7 +943,7 @@ module.exports.randomChooseHeroBtns = function () {
 			functions.newElement("button", "shortSword", "krótki miecz", $("#interactionCreator"));
 			chooseItem($("#shortSword"), "krótki miecz");
 			functions.newElement("button", "sabre", "szabla", $("#interactionCreator"));
-			chooseItem($("#sabre"), "szable");
+			chooseItem($("#sabre"), "szabla");
 			functions.newElement("button", "spear", "włócznia", $("#interactionCreator"));
 			chooseItem($("#spear"), "włócznia");
 			functions.newElement("button", "slingshot", "proca", $("#interactionCreator"));
@@ -1156,6 +1156,7 @@ module.exports.randomChooseHeroBtns = function () {
 
 		//zdarzenie dla informacji zbiorczej wszystkich dokonanych wyborów
 		$("#createInfo").on("click", function () {
+
 			functions.clearStart("Twoja postać.");
 			functions.description("Poniżej znajdują się Twoje wybory. W tej sekcji możesz je sprawdzić oraz zastanowić się nad ewentualnymi zmianami. Po dokonaniu wszystkich wyborów, to po lewej stronie pod przyciskami powinien ukazać się przycisk rozpoczynający grę.");
 
@@ -1181,7 +1182,7 @@ module.exports.randomChooseHeroBtns = function () {
 						hero.splice(6, 1, randomFeatures[2] + elv[2]);hero.splice(7, 1, randomFeatures[3] + elv[3]);
 						hero.splice(8, 1, randomFeatures[4] + elv[4]);
 					} else if (hero[2] == "elf" && hero[3] == "wojownik") {
-						hero.splice(4, 1, randomFeatures[0] + elv[0] + warrior[0]);hero.splice(5, 1, randomFeatures[1] + elv[1] + warrior[1]);hero.splice(6, 1, randomFeatures[2] + elv[2] + warrrior[2]);hero.splice(7, 1, randomFeatures[3] + elv[3] + warrrior[3]);hero.splice(8, 1, randomFeatures[4] + elv[4] + warrrior[4]);
+						hero.splice(4, 1, randomFeatures[0] + elv[0] + warrior[0]);hero.splice(5, 1, randomFeatures[1] + elv[1] + warrior[1]);hero.splice(6, 1, randomFeatures[2] + elv[2] + warrior[2]);hero.splice(7, 1, randomFeatures[3] + elv[3] + warrior[3]);hero.splice(8, 1, randomFeatures[4] + elv[4] + warrior[4]);
 					} else if (hero[2] == "elf" && hero[3] == "złoczyńca") {
 						hero.splice(4, 1, randomFeatures[0] + elv[0] + criminal[0]);hero.splice(5, 1, randomFeatures[1] + elv[1] + criminal[1]);hero.splice(6, 1, randomFeatures[2] + elv[2] + criminal[2]);hero.splice(7, 1, randomFeatures[3] + elv[3] + criminal[3]);
 						hero.splice(8, 1, randomFeatures[4] + elv[4] + criminal[4]);
@@ -1259,8 +1260,8 @@ module.exports.randomChooseHeroBtns = function () {
 			if (hero[0] == "nie wybrano" || hero[1] == "nie wybrano" || hero[2] == "nie wybrano" || hero[3] == "nie wybrano" || hero[4] == 0 || hero[5] == 0 || hero[6] == 0 || hero[7] == 0 || hero[8] == 0 || hero[9] == "nie wybrano" || hero[10] == "nie wybrano" || hero[11] == "nie wybrano" || hero[12] == "nie wybrano" || hero[13] == "nie wybrano" || equip.length == 0 || skills.length == 0) {
 				$("#playGame").remove();
 			} else {
-				functions.newElement("button", "playGame", "GRA", $("#mainBtns"));$("#playGame").addClass("basicBtn medievalText btnNewGame");$("#playGame").on("click", function () {
-					$("#mainBtns, #interactionsBtns, #mainPart").empty();intro.intro();
+				$("#mainBtns").empty();functions.newElement("button", "playGame", "GRA", $("#mainBtns"));$("#playGame").addClass("basicBtn medievalText btnNewGame");$("#playGame").on("click", function () {
+					$("#heroBtns, #mainBtns, #interactionsBtns, #mainPart").empty();intro.intro();
 				});
 			}
 		}); //koniec zdarzenia dla informacji zbiorczej wszystkich dokonanych wyborów
@@ -1290,8 +1291,170 @@ module.exports.textDescription = function () {
 "use strict";
 
 
+//import funkcji z pliku zewnętrznego
+var functions = __webpack_require__(0); //podstawowe funkcje
 var heroCreator = __webpack_require__(1);
-var street = __webpack_require__(3);
+var defenseCaravans = __webpack_require__(3);
+
+//zdarzenie dla przycisku "cechy"
+module.exports.btnFeatures = function () {
+  $("#info").html("<div class='width75 flexForBtns medievalText greenText, boldText fontSize1em zindex1 bckgGreen'><p class='width100 textUnderlineGold medievalText center paddingUpDown1 fontSize13em'>TWÓJ PROTAGONISTA</p><div class='width90 flexForBtns marginTop2'><p class='width24 navyText'>imię: <span class='blackText boldText fontSize12em'>" + heroCreator.hero[0] + "</span></p><p class='width24 navyText'>płeć: <span class='blackText boldText fontSize12em'>" + heroCreator.hero[1] + "</span></p><p class='width24 navyText'>rasa: <span class='blackText boldText fontSize12em'>" + heroCreator.hero[2] + "</span></p><p class='width24 navyText'>profesja: <span class='blackText fontSize12em'>" + heroCreator.hero[3] + "</p></div><div class='width90 flexForBtns marginTop2'><p class='width33 navyText'>siła: <span class='blackText boldText fontSize12em'>" + heroCreator.hero[4] + "</span></p><p class='width33 navyText'>wytrzymałość: <span class='blackText boldText fontSize12em'>" + heroCreator.hero[5] + "</span></p><p class='width33 navyText'>zręczność: <span class='blackText boldText fontSize12em'>" + heroCreator.hero[6] + "</span></p><p class='width33 navyText'>inteligencja: <span class='blackText boldText fontSize12em'>" + heroCreator.hero[7] + "</span></p><p class='width33 navyText'>charyzma: <span class='blackText boldText fontSize12em'>" + heroCreator.hero[8] + "</span></p></div><div class='width90 flexForBtns marginTop2'><p class='width33 navyText'>kolor oczu: <span class='blackText boldText fontSize12em'>" + heroCreator.hero[9] + "</span></p><p class='width33 navyText'>kolor włosów: <span class='blackText boldText fontSize12em'>" + heroCreator.hero[10] + "</span></p><p class='width33 navyText'>kolor skóry: <span class='blackText boldText fontSize12em'>" + heroCreator.hero[11] + "</span></p><p class='width33 navyText'>waga: <span class='blackText boldText fontSize12em'>" + heroCreator.hero[12] + "</span></p><p class='width33 navyText'>wzrost: <span class='blackText boldText fontSize12em'>" + heroCreator.hero[13] + "</span></p></div><button id='close' class='bckgRed fontSize12em width15 boldText medievalText whiteTextShadow11 paddingUpDown1 marginTop4'>zamknij</button></div>");
+  $("#features, #equip, #skills, #tasks, #lookAroundRoom, #wardrobe, #chest, #package, #inRoom, #toCaravans, #toMarket, #lookAroundStreet, #ask, #lookAroundCaravans").prop("disabled", true);
+
+  $("#close").on("click", function () {
+    $("#info").empty();$("#features, #equip, #skills, #tasks, #lookAroundRoom, #wardrobe, #chest, #package, #inRoom, #toCaravans, #toMarket, #lookAroundStreet, #ask, #lookAroundCaravans").prop("disabled", false);
+  });
+};
+
+//zdarzenie dla przycisku "ewipunku"
+module.exports.btnEquip = function () {
+  $("#info").html("<div class='width75 flexForBtns medievalText greenText, boldText fontSize1em zindex1 bckgGreen'><p class='width100 textUnderlineGold medievalText center paddingUpDown1 fontSize13em'>EKWIPUNEK</p><div class='width100 flexForBtns marginTop2'><p class='width90'><span class='blackText boldText fontSize12em'>" + heroCreator.equip + "</span></p><p class='width90 navyText'>złoto: <span class='blackText boldText fontSize12em'>" + heroCreator.gold + "</span></p</div></div><button id='close' class='bckgRed fontSize12em width15 boldText medievalText whiteTextShadow11 paddingUpDown1 marginTop4'>zamknij</button>");
+  $("#features, #equip, #skills, #tasks, #lookAroundRoom, #wardrobe, #chest, #package, #inRoom, #toCaravans, #toMarket, #lookAroundStreet, #ask, #lookAroundCaravans").prop("disabled", true);
+
+  $("#close").on("click", function () {
+    $("#info").empty();$("#features, #equip, #skills, #tasks, #lookAroundRoom, #wardrobe, #chest, #package, #inRoom, #toCaravans, #toMarket, #lookAroundStreet, #ask, #lookAroundCaravans").prop("disabled", false);
+  });
+};
+
+//zdarzenie dla przycisku "umiejętności"
+module.exports.btnSkills = function () {
+  $("#info").html("<div class='width75 flexForBtns medievalText greenText, boldText fontSize1em zindex1 bckgGreen'><p class='width100 textUnderlineGold medievalText center paddingUpDown1 fontSize13em'>UMIEJĘTNOŚCI</p><div class='width100 flexForBtns marginTop2'><p class='width90'><span class='blackText boldText fontSize12em'>" + heroCreator.skills + "</span></p></div><button id='close' class='bckgRed fontSize12em width15 boldText medievalText whiteTextShadow11 paddingUpDown1 marginTop4'>zamknij</button></div>");
+  $("#features, #equip, #skills, #tasks, #lookAroundRoom, #wardrobe, #chest, #package, #inRoom, #toCaravans, #toMarket, #lookAroundStreet, #ask, #lookAroundCaravans").prop("disabled", true);
+
+  $("#close").on("click", function () {
+    $("#info").empty();$("#features, #equip, #skills, #tasks, #lookAroundRoom, #wardrobe, #chest, #package, #inRoom, #toCaravans, #toMarket, #lookAroundStreet, #ask, #lookAroundCaravans").prop("disabled", false);
+  });
+};
+
+//zdarzenie dla przycisku "zadania"
+module.exports.btnTasks = function () {
+  $("#info").html("<div class='width75 flexForBtns medievalText greenText, boldText fontSize1em zindex1 bckgGreen'><p class='width100 textUnderlineGold medievalText center paddingUpDown1 fontSize13em'>ZADANIA</p><div class='width100 flexForBtns marginTop2'><p class='width90'><span class='blackText boldText fontSize12em'>" + heroCreator.tasks + "</span></p></div><button id='close' class='bckgRed fontSize12em width15 boldText medievalText whiteTextShadow11 paddingUpDown1 marginTop4'>zamknij</button></div>");
+  $("#features, #equip, #skills, #tasks, #lookAroundRoom, #wardrobe, #chest, #package, #inRoom, #toCaravans, #toMarket, #lookAroundStreet, #ask, #lookAroundCaravans").prop("disabled", true);
+
+  $("#close").on("click", function () {
+    $("#info").empty();$("#features, #equip, #skills, #tasks, #lookAroundRoom, #wardrobe, #chest, #package, #inRoom, #toCaravans, #toMarket, #lookAroundStreet, #ask, #lookAroundCaravans").prop("disabled", false);
+  });
+};
+
+//zdarzenie dla przycisku "punkty bojowe"
+module.exports.powerHero = function () {
+
+  var suma = heroCreator.hero[4] + heroCreator.hero[5] + heroCreator.hero[6] + heroCreator.hero[7] + heroCreator.hero[8];
+
+  $("#info").html("<div class='width75 flexForBtns medievalText greenText, boldText fontSize1em zindex1 bckgGreen'><p class='width100 textUnderlineGold medievalText center paddingUpDown1 fontSize13em'>WARTOŚCI BOJOWE</p><div class='width100 flexForBtns marginTop2'><p class='width90'><span class='blackText boldText fontSize12em textUnderlineGold'>cechy</span></p><p class='width33 center'><span class='blackText boldText fontSize12em'>siła: <span class='navyText'>" + heroCreator.hero[4] + "</span></span></p><p class='width33 center'><span class='blackText boldText fontSize12em'>wytrzymałość: <span class='navyText'>" + heroCreator.hero[5] + "</span></span></p><p class='width33 center'><span class='blackText boldText fontSize12em'>zręczność: <span class='navyText'>" + heroCreator.hero[6] + "</span></span></p><p class='width33 center'><span class='blackText boldText fontSize12em'>inteligencja: <span class='navyText'>" + heroCreator.hero[7] + "</span></span></p><p class='width33 center'><span class='blackText boldText fontSize12em'>charyzma: <span class='navyText'>" + heroCreator.hero[8] + "</span></span></p><p class='width90 center'><span class='blackText boldText fontSize12em textUnderlineGold'>suma punktów cech: <span class='navyText textUnderlineGold center'>" + suma + "</span></span></p><p class='width90'><span class='blackText boldText fontSize12em textUnderlineGold'>wybrany sprzęt: </p><p id='equipToRemove' class='width90'><span class='navyText'>" + defenseCaravans.fightWeapon + "</span></span></p></div><button id='removeEquip' class='bckgRed fontSize12em width20 boldText medievalText whiteTextShadow11 paddingUpDown1 marginTop4'>usuń rzeczy</button><button id='close' class='bckgRed fontSize12em width15 boldText medievalText whiteTextShadow11 paddingUpDown1 marginTop4'>zamknij</button></div>");
+
+  $("#features, #equip, #skills, #tasks, #lookAroundRoom, #wardrobe, #chest, #package, #inRoom, #toCaravans, #toMarket, #lookAroundStreet, #ask, #lookAroundCaravans").prop("disabled", true);
+
+  $("#close").on("click", function () {
+    $("#info").empty();$("#features, #equip, #skills, #tasks, #lookAroundRoom, #wardrobe, #chest, #package, #inRoom, #toCaravans, #toMarket, #lookAroundStreet, #ask, #lookAroundCaravans").prop("disabled", false);
+  });
+
+  $("#removeEquip").on("click", function () {
+    defenseCaravans.fightWeapon.splice(0, 3);
+    $("#equipToRemove").empty();
+    var przyciski = $("#btnsWeapon").find("button");
+    przyciski.attr("disabled", false);
+  });
+
+  var equipPoints = defenseCaravans.fightWeapon.filter(function (el) {
+    if (el == "sztylet") {
+      console.log("+5");
+    } else if (el == "krótki miecz" || el == "drewniana pałka") {
+      console.log("+10");
+    } else if (el == "szabla" || el == "włócznia") {
+      console.log("+15");
+    } else if (defenseCaravans.length == 0) {
+      console.log("zero");
+    }
+  });
+};
+
+/***/ }),
+/* 3 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+var heroCreator = __webpack_require__(1);
+var functions = __webpack_require__(0); //podstawowe funkcje
+var theGame = __webpack_require__(2);
+
+module.exports.textCaravans = function () {
+  //główny tekst opisowy dla paragrafu - karawany - paragraf postoju karawan
+  $("#mainPart").html("<div class='basicText medievalText'>Jedziecie sobie spokojnie. Czas mija na oglądaniu pejzaży z jadącego wozu. Niestety ta sielanka skończyła się wieczorem drugiego dnia. Zaczęło się od zawalonej, przez drzewa drogi. Gdy uczestnicy, z pierwszych wozów karawany uprzątali drzewa, nastąpił atak. Wszyscy muszą walczyć!. Ciebie atakuje jeden bandyta z wielkim mieczem. <span class='normalText italic'>Po lewej stronie znajduje się przycisk <span class='blueText boldText'>'przygotuj się'</span>, aby wybrać ekwipunek.</span></div><div id='description'></div>");
+
+  $("#toVillage, #prepare").show().addClass("basicBtn medievalText shadowForBtn marginTop4");
+  $("#toVillage").addClass("bckgRed");
+  $("#toVillage").prop("disabled", true);
+  $("#prepare").addClass("bckgGreen fontSize08em paddingUpDown1");
+
+  $("#prepare").on("click", function () {
+    $("#description").html("<p class='textUnderlineGold boldText medievalText width100 center marginTop5 fontSize11em'>WYBIERZ EKWIPUNEK DO WALKI</p><div id='btnsWeapon' class='flexForBtns'></div>");
+    //wybór przedmiotów do walki
+    //przyciski z rzeczmi do wyboru
+    for (var i = 0; i < heroCreator.equip.length; i++) {
+      var weaponBtn = document.createElement("button");
+      weaponBtn.id = heroCreator.equip[i];
+      weaponBtn.innerText = heroCreator.equip[i];
+      $("#btnsWeapon").append(weaponBtn);
+    }
+
+    var allBtns = document.querySelectorAll("#description button");
+    $("#btnsWeapon").find("button").addClass("basicBtn medievalText bckgGreen width20 marginTop4");
+    var fightWeapon = []; //tablica pomocnicza, dzięki której jest możliwa walidacja wuboru 3 rzeczy do walki oraz oblicznia wartości bojowej
+
+    for (var _i = 0; _i < allBtns.length; _i++) {
+      allBtns[_i].onclick = function () {
+        if (fightWeapon.length < 3) {
+          var item = $(this).text();
+          fightWeapon.push(item);
+          $(this).prop("disabled", true);
+          $("#alerts").html("<p id='buyed' class='greenText medievalText boldText'>Został wybrany: <span class='blueText'>" + $(this).text() + "</span></p>");
+          setTimeout(function () {
+            $("#alerts").empty();
+          }, 5000);
+        } else if (fightWeapon.length >= 3) {
+          $("#alerts").html("<p id='buyed' class='redText medievalText boldText'>Nie możesz wybrać więcej rzeczy.</p>");
+          setTimeout(function () {
+            $("#alerts").empty();
+          }, 5000);
+        }
+      };
+      module.exports.fightWeapon = fightWeapon;
+    }
+
+    //przycisk sprawdzający punkty bojowe postaci
+    var powerHero = document.createElement("button");
+    powerHero.id = "powerHero";
+    powerHero.innerText = "punkty bojowe";
+    $("#btnsWeapon").append(powerHero);
+    $("#powerHero").addClass("basicBtn medievalText bckgGreen width20 marginTop4");
+
+    $("#powerHero").on("click", function () {
+      theGame.powerHero();
+    });
+
+    //przycisk kończący - zatwierdzający wybieranie
+    var btnAccept = document.createElement("button");
+    btnAccept.id = "chooseFinish";
+    btnAccept.innerText = "zakończ wybieranie";
+    $("#btnsWeapon").append(btnAccept);
+    $("#chooseFinish").addClass("basicBtn medievalText bckgGreen width20 marginTop4");
+
+    $("#paczka").remove();
+  });
+};
+
+/***/ }),
+/* 4 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+var heroCreator = __webpack_require__(1);
+var street = __webpack_require__(5);
 
 //głowny tekst opisowy dla paragrafu pierwszego (pokoju)
 module.exports.textRoom = function () {
@@ -1400,14 +1563,14 @@ module.exports.outRoom = function () {
 };
 
 /***/ }),
-/* 3 */
+/* 5 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
 
 
 var heroCreator = __webpack_require__(1);
-var room = __webpack_require__(2);
+var room = __webpack_require__(4);
 
 module.exports.showBtns = function () {
   $("#lookAroundStreet, #inRoom, #toCaravans, #toMarket").show();
@@ -1429,14 +1592,14 @@ module.exports.lookAroundStreet = function () {
 };
 
 /***/ }),
-/* 4 */
+/* 6 */
 /***/ (function(module, exports, __webpack_require__) {
 
-module.exports = __webpack_require__(5);
+module.exports = __webpack_require__(7);
 
 
 /***/ }),
-/* 5 */
+/* 7 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -1444,7 +1607,7 @@ module.exports = __webpack_require__(5);
 
 //import z plików zewnętrznych
 var functions = __webpack_require__(0); //podstawowe funkcje
-var introFirstMenu = __webpack_require__(6); //plik z częścią intro oraz pierwszym menu
+var introFirstMenu = __webpack_require__(8); //plik z częścią intro oraz pierwszym menu
 var heroCreator = __webpack_require__(1);
 var introGame = __webpack_require__(12);
 
@@ -1465,7 +1628,7 @@ document.addEventListener("DOMContentLoaded", function () {
 }); //koniec DOMContentLoaded
 
 /***/ }),
-/* 6 */
+/* 8 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -1547,7 +1710,7 @@ module.exports.clicksFirstMenu = function () {
 };
 
 /***/ }),
-/* 7 */
+/* 9 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -1555,13 +1718,13 @@ module.exports.clicksFirstMenu = function () {
 
 //import funkcji z pliku zewnętrznego
 var functions = __webpack_require__(0); //podstawowe funkcje
-var theGame = __webpack_require__(8); //gra
+var theGame = __webpack_require__(2); //gra
 var heroCreator = __webpack_require__(1);
-var room = __webpack_require__(2);
-var street = __webpack_require__(3);
-var market = __webpack_require__(9);
-var caravans = __webpack_require__(10);
-var defenseCaravans = __webpack_require__(11);
+var room = __webpack_require__(4);
+var street = __webpack_require__(5);
+var market = __webpack_require__(10);
+var caravans = __webpack_require__(11);
+var defenseCaravans = __webpack_require__(3);
 
 var text1 = "Mówią, że Dzikie Pustkowia to kraina opuszczona przez Bogów.";
 
@@ -1581,6 +1744,7 @@ var text8 = "Na usilną prośbę znajomego kapłana zgadzasz się dostarczyć ma
 
 module.exports.intro = function () {
   setTimeout(function () {
+    $("#mainPart").empty();
     functions.newElement("p", "text1", text1, $("#mainPart"));
     functions.newElement("p", "text2", text2, $("#mainPart"));
     functions.newElement("p", "text3", text3, $("#mainPart"));
@@ -1741,74 +1905,7 @@ module.exports.intro = function () {
 };
 
 /***/ }),
-/* 8 */
-/***/ (function(module, exports, __webpack_require__) {
-
-"use strict";
-
-
-//import funkcji z pliku zewnętrznego
-var functions = __webpack_require__(0); //podstawowe funkcje
-var heroCreator = __webpack_require__(1);
-var defenseCaravans = __webpack_require__(11);
-
-//zdarzenie dla przycisku "cechy"
-module.exports.btnFeatures = function () {
-  $("#info").html("<div class='width75 flexForBtns medievalText greenText, boldText fontSize1em zindex1 bckgGreen'><p class='width100 textUnderlineGold medievalText center paddingUpDown1 fontSize13em'>TWÓJ PROTAGONISTA</p><div class='width90 flexForBtns marginTop2'><p class='width24 navyText'>imię: <span class='blackText boldText fontSize12em'>" + heroCreator.hero[0] + "</span></p><p class='width24 navyText'>płeć: <span class='blackText boldText fontSize12em'>" + heroCreator.hero[1] + "</span></p><p class='width24 navyText'>rasa: <span class='blackText boldText fontSize12em'>" + heroCreator.hero[2] + "</span></p><p class='width24 navyText'>profesja: <span class='blackText fontSize12em'>" + heroCreator.hero[3] + "</p></div><div class='width90 flexForBtns marginTop2'><p class='width33 navyText'>siła: <span class='blackText boldText fontSize12em'>" + heroCreator.hero[4] + "</span></p><p class='width33 navyText'>wytrzymałość: <span class='blackText boldText fontSize12em'>" + heroCreator.hero[5] + "</span></p><p class='width33 navyText'>zręczność: <span class='blackText boldText fontSize12em'>" + heroCreator.hero[6] + "</span></p><p class='width33 navyText'>inteligencja: <span class='blackText boldText fontSize12em'>" + heroCreator.hero[7] + "</span></p><p class='width33 navyText'>charyzma: <span class='blackText boldText fontSize12em'>" + heroCreator.hero[8] + "</span></p></div><div class='width90 flexForBtns marginTop2'><p class='width33 navyText'>kolor oczu: <span class='blackText boldText fontSize12em'>" + heroCreator.hero[9] + "</span></p><p class='width33 navyText'>kolor włosów: <span class='blackText boldText fontSize12em'>" + heroCreator.hero[10] + "</span></p><p class='width33 navyText'>kolor skóry: <span class='blackText boldText fontSize12em'>" + heroCreator.hero[11] + "</span></p><p class='width33 navyText'>waga: <span class='blackText boldText fontSize12em'>" + heroCreator.hero[12] + "</span></p><p class='width33 navyText'>wzrost: <span class='blackText boldText fontSize12em'>" + heroCreator.hero[13] + "</span></p></div><button id='close' class='bckgRed fontSize12em width15 boldText medievalText whiteTextShadow11 paddingUpDown1 marginTop4'>zamknij</button></div>");
-  $("#features, #equip, #skills, #tasks, #lookAroundRoom, #wardrobe, #chest, #package, #inRoom, #toCaravans, #toMarket, #lookAroundStreet, #ask, #lookAroundCaravans").prop("disabled", true);
-
-  $("#close").on("click", function () {
-    $("#info").empty();$("#features, #equip, #skills, #tasks, #lookAroundRoom, #wardrobe, #chest, #package, #inRoom, #toCaravans, #toMarket, #lookAroundStreet, #ask, #lookAroundCaravans").prop("disabled", false);
-  });
-};
-
-//zdarzenie dla przycisku "ewipunku"
-module.exports.btnEquip = function () {
-  $("#info").html("<div class='width75 flexForBtns medievalText greenText, boldText fontSize1em zindex1 bckgGreen'><p class='width100 textUnderlineGold medievalText center paddingUpDown1 fontSize13em'>EKWIPUNEK</p><div class='width100 flexForBtns marginTop2'><p class='width90'><span class='blackText boldText fontSize12em'>" + heroCreator.equip + "</span></p><p class='width90 navyText'>złoto: <span class='blackText boldText fontSize12em'>" + heroCreator.gold + "</span></p</div></div><button id='close' class='bckgRed fontSize12em width15 boldText medievalText whiteTextShadow11 paddingUpDown1 marginTop4'>zamknij</button>");
-  $("#features, #equip, #skills, #tasks, #lookAroundRoom, #wardrobe, #chest, #package, #inRoom, #toCaravans, #toMarket, #lookAroundStreet, #ask, #lookAroundCaravans").prop("disabled", true);
-
-  $("#close").on("click", function () {
-    $("#info").empty();$("#features, #equip, #skills, #tasks, #lookAroundRoom, #wardrobe, #chest, #package, #inRoom, #toCaravans, #toMarket, #lookAroundStreet, #ask, #lookAroundCaravans").prop("disabled", false);
-  });
-};
-
-//zdarzenie dla przycisku "umiejętności"
-module.exports.btnSkills = function () {
-  $("#info").html("<div class='width75 flexForBtns medievalText greenText, boldText fontSize1em zindex1 bckgGreen'><p class='width100 textUnderlineGold medievalText center paddingUpDown1 fontSize13em'>UMIEJĘTNOŚCI</p><div class='width100 flexForBtns marginTop2'><p class='width90'><span class='blackText boldText fontSize12em'>" + heroCreator.skills + "</span></p></div><button id='close' class='bckgRed fontSize12em width15 boldText medievalText whiteTextShadow11 paddingUpDown1 marginTop4'>zamknij</button></div>");
-  $("#features, #equip, #skills, #tasks, #lookAroundRoom, #wardrobe, #chest, #package, #inRoom, #toCaravans, #toMarket, #lookAroundStreet, #ask, #lookAroundCaravans").prop("disabled", true);
-
-  $("#close").on("click", function () {
-    $("#info").empty();$("#features, #equip, #skills, #tasks, #lookAroundRoom, #wardrobe, #chest, #package, #inRoom, #toCaravans, #toMarket, #lookAroundStreet, #ask, #lookAroundCaravans").prop("disabled", false);
-  });
-};
-
-//zdarzenie dla przycisku "zadania"
-module.exports.btnTasks = function () {
-  $("#info").html("<div class='width75 flexForBtns medievalText greenText, boldText fontSize1em zindex1 bckgGreen'><p class='width100 textUnderlineGold medievalText center paddingUpDown1 fontSize13em'>ZADANIA</p><div class='width100 flexForBtns marginTop2'><p class='width90'><span class='blackText boldText fontSize12em'>" + heroCreator.tasks + "</span></p></div><button id='close' class='bckgRed fontSize12em width15 boldText medievalText whiteTextShadow11 paddingUpDown1 marginTop4'>zamknij</button></div>");
-  $("#features, #equip, #skills, #tasks, #lookAroundRoom, #wardrobe, #chest, #package, #inRoom, #toCaravans, #toMarket, #lookAroundStreet, #ask, #lookAroundCaravans").prop("disabled", true);
-
-  $("#close").on("click", function () {
-    $("#info").empty();$("#features, #equip, #skills, #tasks, #lookAroundRoom, #wardrobe, #chest, #package, #inRoom, #toCaravans, #toMarket, #lookAroundStreet, #ask, #lookAroundCaravans").prop("disabled", false);
-  });
-};
-
-//zdarzenie dla przycisku "punkty bojowe"
-module.exports.powerHero = function () {
-
-  var suma = heroCreator.hero[4] + heroCreator.hero[5] + heroCreator.hero[6] + heroCreator.hero[7] + heroCreator.hero[8];
-  console.log(suma);
-
-  $("#info").html("<div class='width75 flexForBtns medievalText greenText, boldText fontSize1em zindex1 bckgGreen'><p class='width100 textUnderlineGold medievalText center paddingUpDown1 fontSize13em'>WARTOŚCI BOJOWE</p><div class='width100 flexForBtns marginTop2'><p class='width90'><span class='blackText boldText fontSize12em textUnderlineGold'>cechy</span></p><p class='width90'><span class='blackText boldText fontSize12em'>siła: <span class='blueText'>" + heroCreator.hero[4] + "</span></span></p><p class='width90'><span class='blackText boldText fontSize12em'>wytrzymałość: <span class='blueText'>" + heroCreator.hero[5] + "</span></span></p><p class='width90'><span class='blackText boldText fontSize12em'>zręczność: <span class='blueText'>" + heroCreator.hero[6] + "</span></span></p><p class='width90'><span class='blackText boldText fontSize12em'>inteligencja: <span class='blueText'>" + heroCreator.hero[7] + "</span></span></p><p class='width90'><span class='blackText boldText fontSize12em'>charyzma: <span class='blueText'>" + heroCreator.hero[8] + "</span></span></p><p class='width90'><span class='blackText boldText fontSize12em'>suma: <span class='blueText'>" + suma + "</span></span></p><p class='width90'><span class='blackText boldText fontSize12em'>wybrany sprzęt: <span class='blueText'>" + defenseCaravans.fightWeapon + "</span></span></p></div><button id='close' class='bckgRed fontSize12em width15 boldText medievalText whiteTextShadow11 paddingUpDown1 marginTop4'>zamknij</button></div>");
-
-  $("#features, #equip, #skills, #tasks, #lookAroundRoom, #wardrobe, #chest, #package, #inRoom, #toCaravans, #toMarket, #lookAroundStreet, #ask, #lookAroundCaravans").prop("disabled", true);
-
-  $("#close").on("click", function () {
-    $("#info").empty();$("#features, #equip, #skills, #tasks, #lookAroundRoom, #wardrobe, #chest, #package, #inRoom, #toCaravans, #toMarket, #lookAroundStreet, #ask, #lookAroundCaravans").prop("disabled", false);
-  });
-};
-
-/***/ }),
-/* 9 */
+/* 10 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -1927,7 +2024,7 @@ module.exports.buy = function () {
 };
 
 /***/ }),
-/* 10 */
+/* 11 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -1990,83 +2087,6 @@ module.exports.ask = function () {
         $("#description").empty();
       });
     });
-  });
-};
-
-/***/ }),
-/* 11 */
-/***/ (function(module, exports, __webpack_require__) {
-
-"use strict";
-
-
-var heroCreator = __webpack_require__(1);
-var functions = __webpack_require__(0); //podstawowe funkcje
-var theGame = __webpack_require__(8);
-
-module.exports.textCaravans = function () {
-  //główny tekst opisowy dla paragrafu - karawany - paragraf postoju karawan
-  $("#mainPart").html("<div class='basicText medievalText'>Jedziecie sobie spokojnie. Czas mija na oglądaniu pejzaży z jadącego wozu. Niestety ta sielanka skończyła się wieczorem drugiego dnia. Zaczęło się od zawalonej, przez drzewa drogi. Gdy uczestnicy, z pierwszych wozów karawany uprzątali drzewa, nastąpił atak. Wszyscy muszą walczyć!. Ciebie atakuje jeden bandyta z wielkim mieczem. <span class='normalText italic'>Po lewej stronie znajduje się przycisk <span class='blueText boldText'>'przygotuj się'</span>, aby wybrać ekwipunek.</span></div><div id='description'></div>");
-
-  $("#toVillage, #prepare").show().addClass("basicBtn medievalText shadowForBtn marginTop4");
-  $("#toVillage").addClass("bckgRed");
-  $("#toVillage").prop("disabled", true);
-  $("#prepare").addClass("bckgGreen fontSize08em paddingUpDown1");
-
-  $("#prepare").on("click", function () {
-    $("#description").html("<p class='textUnderlineGold boldText medievalText width100 center marginTop5 fontSize11em'>WYBIERZ EKWIPUNEK DO WALKI</p><div id='btnsWeapon' class='flexForBtns'></div>");
-    //wybór przedmiotów do walki
-    //przyciski z rzeczmi do wyboru
-    for (var i = 0; i < heroCreator.equip.length; i++) {
-      var weaponBtn = document.createElement("button");
-      weaponBtn.id = heroCreator.equip[i];
-      weaponBtn.innerText = heroCreator.equip[i];
-      $("#btnsWeapon").append(weaponBtn);
-    }
-
-    var allBtns = document.querySelectorAll("#description button");
-    $("#btnsWeapon").find("button").addClass("basicBtn medievalText bckgGreen width20 marginTop4");
-    var fightWeapon = []; //tablica pomocnicza, dzięki której jest możliwa walidacja wuboru 3 rzeczy do walki oraz oblicznia wartości bojowej
-
-    for (var _i = 0; _i < allBtns.length; _i++) {
-      allBtns[_i].onclick = function () {
-        if (fightWeapon.length < 3) {
-          var item = $(this).text();
-          fightWeapon.push(item);
-          $(this).remove();
-          $("#alerts").html("<p id='buyed' class='greenText medievalText boldText'>Został wybrany: <span class='blueText'>" + $(this).text() + "</span></p>");
-          setTimeout(function () {
-            $("#alerts").empty();
-          }, 5000);
-        } else if (fightWeapon.length >= 3) {
-          $("#alerts").html("<p id='buyed' class='redText medievalText boldText'>Nie możesz wybrać więcej rzeczy.</p>");
-          setTimeout(function () {
-            $("#alerts").empty();
-          }, 5000);
-        }
-      };
-      module.exports.fightWeapon = fightWeapon;
-    }
-
-    //przycisk sprawdzający punkty bojowe postaci
-    var powerHero = document.createElement("button");
-    powerHero.id = "powerHero";
-    powerHero.innerText = "punkty bojowe";
-    $("#btnsWeapon").append(powerHero);
-    $("#powerHero").addClass("basicBtn medievalText bckgGreen width20 marginTop4");
-
-    $("#powerHero").on("click", function () {
-      theGame.powerHero();
-    });
-
-    //przycisk kończący - zatwierdzający wybieranie
-    var btnAccept = document.createElement("button");
-    btnAccept.id = "chooseFinish";
-    btnAccept.innerText = "zakończ wybieranie";
-    $("#btnsWeapon").append(btnAccept);
-    $("#chooseFinish").addClass("basicBtn medievalText bckgGreen width20 marginTop4");
-
-    $("#paczka").addClass("bckgRed").prop("disabled", true);
   });
 };
 
