@@ -463,3 +463,6 @@ Dodano wybieranie i usuwanie ekwipunu do walki oraz blokowanie przycisku wybrane
 	Dodano wstępne flitrowanie tablicy z wyborami ekwipunku do walki.
 Poprawka literówki w heroCreator.js.
 	Poprawka wyświetlania przycisku "GRA" - nie pojawia się dodatkowy przycisk, gdy zmieni się w "ręcznym wybieraniu" potaci.
+
+16 sierpnia 2018 - wersja 0.6.79
+Utworzono wstępnie sumowanie punktów bojowych (tylko z częściowym uzbrojeniem) i przeprowadzono wstępne testy, które przeszły na poziomie obiecującym (satysfakcjonującym na obecnym etapie).
