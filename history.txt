@@ -466,3 +466,6 @@ Poprawka literówki w heroCreator.js.
 
 16 sierpnia 2018 - wersja 0.6.79
 Utworzono wstępnie sumowanie punktów bojowych (tylko z częściowym uzbrojeniem) i przeprowadzono wstępne testy, które przeszły na poziomie obiecującym (satysfakcjonującym na obecnym etapie).
+
+17 sierpnia 2018 - wersja 0.6.80
+Dodano sumowanie punktów bojowych,  wszystich potencjalnych rzeczy z ekwipunku.
