@@ -37,20 +37,31 @@ $("#features, #equip, #skills, #tasks, #lookAroundRoom, #wardrobe, #chest, #pack
 
 //zdarzenie dla przycisku "punkty bojowe"
 module.exports.powerHero = function(){
-  //suma wszystkich puntktów bojowych
-     let allPoints = [];
+  //suma wszystkich puntktów bojowych 0 - cechy, 1 - ekwipunek, 2 - umiejętności
+     let allPoints = [0, 0, 0];
 
 //suma punktów z cech postaci
   let suma = (heroCreator.hero[4] + heroCreator.hero[5] + heroCreator.hero[6] + heroCreator.hero[7] + heroCreator.hero[8]);
-allPoints.push(suma);
+allPoints.splice(0, 1, suma);
 
 //suma punktów z wybranego ekwipunku
   let sumaEquip = [];
+
+//tablica dla punktów bojowych wynikających z umiejętności
+let pointsSkills = [];
 
 //filtrowanie ekqwipunu oraz przypisanie do rzeczy wartości punktowych
   let equipPoints = defenseCaravans.fightWeapon.filter(function(el){
       if(el == "sztylet" || el == "proca" || el == "przeszywanica" || el == "puklerz" || el == "kostur"){
         sumaEquip.push(5);
+
+if(heroCreator.skills.indexOf(el) !== -1){
+  pointsSkills.push(5);
+  console.log(el, pointsSkills);
+
+}
+
+
       }else if(el == "krótki miecz" || el == "drewniana pałka" || el == "łuk" || el == "zbroja skórzana" || el == "zbroja ćwiekowana" || el == "mała tarcza drewniana" || el == "mała tarcza drewniana"){
           sumaEquip.push(10);
       }else if(el == "szabla" || el == "włócznia"){
@@ -67,7 +78,18 @@ allPoints.push(suma);
      allPoints.splice(1, 1, sumaPointEquip);
    }
 
+   //zliczanie punktów z umiejętności
+    let sumaPointSkills = 0;
+     for(let i=0; i<pointsSkills.length; i++){
+       sumaPointSkills += pointsSkills[i];
+       allPoints.splice(2, 1, sumaPointSkills);
+     }
+
+
 console.log(allPoints);
+
+let allHeroPoints = allPoints[0] + allPoints[1] + allPoints[2];
+console.log(allHeroPoints);
 
 //informacja zbiorcza z ilością puntktów bojowych z rozbiciem na posczególne moduły: cechy, ekwipunek (ich sumy) oraz suma cech i ekwipunku
   $("#info").html("<div class='width75 flexForBtns medievalText greenText, boldText fontSize1em zindex1 bckgGreen'><p class='width100 textUnderlineGold medievalText center paddingUpDown1 fontSize13em'>WARTOŚCI BOJOWE</p><div class='width100 flexForBtns marginTop2'><p class='width90'><span class='blackText boldText fontSize12em textUnderlineGold'>cechy</span></p><p class='width33 center'><span class='blackText boldText fontSize12em'>siła: <span class='navyText'>" + heroCreator.hero[4] +  "</span></span></p><p class='width33 center'><span class='blackText boldText fontSize12em'>wytrzymałość: <span class='navyText'>" + heroCreator.hero[5] +  "</span></span></p><p class='width33 center'><span class='blackText boldText fontSize12em'>zręczność: <span class='navyText'>" + heroCreator.hero[6] +  "</span></span></p><p class='width33 center'><span class='blackText boldText fontSize12em'>inteligencja: <span class='navyText'>" + heroCreator.hero[7] +  "</span></span></p><p class='width33 center'><span class='blackText boldText fontSize12em'>charyzma: <span class='navyText'>" + heroCreator.hero[8] + "</span></span></p><p class='width90 center'><span class='blackText boldText fontSize12em textUnderlineGold'>suma punktów cech: <span class='navyText textUnderlineGold center'>" + suma +  "</span></span></p><p class='width90'><span class='blackText boldText fontSize12em textUnderlineGold'>wybrany sprzęt: </p><p id='equipToRemove' class='width90'><span class='navyText'>" + defenseCaravans.fightWeapon + "</span></span></p><p class='width90 center'><span class='blackText boldText fontSize12em textUnderlineGold'>suma punktów ekwipunku: <span class='navyText textUnderlineGold center'>" + sumaPointEquip +  "</span></span></p></div><button id='removeEquip' class='bckgRed fontSize12em width20 boldText medievalText whiteTextShadow11 paddingUpDown1 marginTop4'>usuń rzeczy</button><button id='close' class='bckgRed fontSize12em width15 boldText medievalText whiteTextShadow11 paddingUpDown1 marginTop4'>zamknij</button></div>");

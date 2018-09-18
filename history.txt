@@ -469,3 +469,6 @@ Utworzono wstępnie sumowanie punktów bojowych (tylko z częściowym uzbrojenie
 
 17 sierpnia 2018 - wersja 0.6.80
 Dodano sumowanie punktów bojowych,  wszystich potencjalnych rzeczy z ekwipunku.
+
+18 sierpnia 2018 - wersja 0.6.81
+Rozpoczęcie pracy nad dodawaniem punktów za umiejętności do punktów bojowych. Wstępne testy wyszły obiecująco.
