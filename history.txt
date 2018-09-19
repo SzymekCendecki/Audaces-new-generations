@@ -472,3 +472,8 @@ Dodano sumowanie punktów bojowych,  wszystich potencjalnych rzeczy z ekwipunku.
 
 18 sierpnia 2018 - wersja 0.6.81
 Rozpoczęcie pracy nad dodawaniem punktów za umiejętności do punktów bojowych. Wstępne testy wyszły obiecująco.
+
+19 sierpnia 2018 - wersja 0.6.82
+Ukończono wybieranie ekwipunku do walki oraz sumowanie punktów bojowych.
+	Poprawa literówki w market.js (chodzi o zdarzenie z drewnianą pałką).
+Poprawa literówki w heroCreator.js (chodzi o pergaminy 5szt.).

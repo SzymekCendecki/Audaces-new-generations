@@ -53,7 +53,7 @@ let equipShield = ["puklerz", "mała tarcza drewniana", "mała tarcza metalowa"]
 	let orc = [5, 5, 0, -5, -5];
 
 //inny ekwipunek
-let equipOther = ["kostur", "mieszek", "torba podróżna", "sakwa", "plecak", "manierka", "sagan", "koc", "tuba na perg.", "pęk piór do pis.", "pergamniny 5szt.", "zwykłe ubranie", "fikuśna czapka", "płaszcz", "skórzany pas",  "igły i nici", "derka", "namiot", "drewniana miska", "drewniana łyżka", "pochodnia", "lampa oliwna", "kaganek", "lina 5m", "hubka i krzesiwo"];
+let equipOther = ["kostur", "mieszek", "torba podróżna", "sakwa", "plecak", "manierka", "sagan", "koc", "tuba na perg.", "pęk piór do pis.", "pergaminy 5szt.", "zwykłe ubranie", "fikuśna czapka", "płaszcz", "skórzany pas",  "igły i nici", "derka", "namiot", "drewniana miska", "drewniana łyżka", "pochodnia", "lampa oliwna", "kaganek", "lina 5m", "hubka i krzesiwo"];
 
 //tablice z umiejętnościami
 //wojownika
@@ -103,7 +103,7 @@ module.exports.randomChooseHeroBtns = function(){
 		 $("#playGame").addClass("basicBtn medievalText btnNewGame");
 
      $("#playGame").on("click", ()=>{
-        $("#mainBtns, #interactionsBtns, #mainPart").empty();
+        $("#heroBtns, #mainBtns, #interactionsBtns, #mainPart").empty();
         intro.intro();
      });
 

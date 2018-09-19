@@ -81,7 +81,7 @@ module.exports.buy = function(){
   $("#dagger").on("click", function(){ buyItem("sztylet", 8, heroCreator.gold, heroCreator.equip); });
   $("#crossbow").on("click", function(){ buyItem("namiot", 10, heroCreator.gold, heroCreator.equip); });
   $("#saddle").on("click", function(){ buyItem("siodło", 12, heroCreator.gold, heroCreator.equip); });
-  $("#woodenStick").on("click", function(){ buyItem("drew. pałka", 4, heroCreator.gold, heroCreator.equip); });
+  $("#wooddenStick").on("click", function(){ buyItem("drewniana pałka", 4, heroCreator.gold, heroCreator.equip); });
   $("#buckler").on("click", function(){ buyItem("puklerz", 12, heroCreator.gold, heroCreator.equip); });
   $("#closeBuy").on("click", ()=>{ $("#description").empty(); });
 }
