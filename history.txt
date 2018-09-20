@@ -477,3 +477,6 @@ Rozpoczęcie pracy nad dodawaniem punktów za umiejętności do punktów bojowyc
 Ukończono wybieranie ekwipunku do walki oraz sumowanie punktów bojowych.
 	Poprawa literówki w market.js (chodzi o zdarzenie z drewnianą pałką).
 Poprawa literówki w heroCreator.js (chodzi o pergaminy 5szt.).
+
+20 sierpnia 2018 - wersja 0.6.83
+Dodano możliwoś wybierania stylu walki

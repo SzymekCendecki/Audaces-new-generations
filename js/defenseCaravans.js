@@ -63,5 +63,52 @@ module.exports.textCaravans = function(){
                    $("#chooseFinish").addClass("basicBtn medievalText bckgGreen width20 marginTop4");
 
                    $("#paczka").remove();
+
+//koniec wybierania ekwipunku oraz wybranie stylu walki
+                   $("#chooseFinish").on("click", ()=>{
+                     let fightStyle = ["brak"];
+                     $("#description").empty();
+                     $("#description").html("<p class='textUnderlineGold boldText medievalText width100 center marginTop5 fontSize11em'>WYBIERZ STYL WALKI</p><div id='btnsStyles' class='flexForBtns'></div>");
+
+                     functions.newElement("button", "none", "brak", $("#btnsStyles"));
+                     functions.newElement("button", "defensive", "defensywny", $("#btnsStyles"));
+                     functions.newElement("button", "agresive", "ofensywny", $("#btnsStyles"));
+                     functions.newElement("button", "finish", "zakończ wybieranie", $("#btnsStyles"));
+
+                     $("#none, #defensive, #agresive, #finish").addClass("basicBtn medievalText bckgGreen width20 marginTop4");
+
+//zdarzenie dla braku stylu
+                     $("#none").on("click", ()=>{
+                      fightStyle.splice(0, 1, "brak");
+
+                      $("#alerts").html("<p id='stylesFight' class='greenText medievalText boldText'>wybrany styl walki: <span class='blueText'>brak</span></p>");
+                        setTimeout(function(){
+                          $("#alerts").empty();
+                      }, 5000);
+                      console.log(fightStyle);
+                     });
+
+ //zdarzenie dla stylu defensywnego
+                    $("#defensive").on("click", ()=>{
+                      fightStyle.splice(0, 1, "defensywny");
+
+                      $("#alerts").html("<p id='stylesFight' class='greenText medievalText boldText'>wybrany styl walki: <span class='blueText'>defensywny</span></p>");
+                        setTimeout(function(){
+                          $("#alerts").empty();
+                      }, 5000);
+                      console.log(fightStyle);
+                    });
+
+//zdarzenie dla stylu ofensywnego
+                   $("#agresive").on("click", ()=>{
+                      fightStyle.splice(0, 1, "ofensywny");
+                      $("#alerts").html("<p id='stylesFight' class='greenText medievalText boldText'>wybrany styl walki: <span class='blueText'>ofensywny</span></p>");
+                        setTimeout(function(){
+                          $("#alerts").empty();
+                      }, 5000);
+                      console.log(fightStyle);
+                   });
+
+                   });
   });
 }
