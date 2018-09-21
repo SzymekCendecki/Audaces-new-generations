@@ -118,4 +118,6 @@ $("#removeEquip").on("click", ()=>{
   przyciski.attr("disabled", false);
 });
 
+  let a = suma + sumaPointEquip + sumaPointSkills;
+  module.exports.a = a;
   }

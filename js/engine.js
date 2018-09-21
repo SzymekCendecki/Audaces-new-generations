@@ -1420,6 +1420,9 @@ module.exports.powerHero = function () {
     var przyciski = $("#btnsWeapon").find("button");
     przyciski.attr("disabled", false);
   });
+
+  var a = suma + sumaPointEquip + sumaPointSkills;
+  module.exports.a = a;
 };
 
 /***/ }),
@@ -1432,6 +1435,9 @@ module.exports.powerHero = function () {
 var heroCreator = __webpack_require__(1);
 var functions = __webpack_require__(0); //podstawowe funkcje
 var theGame = __webpack_require__(2);
+
+//tablica dla ustalania stylu walki
+var fightStyle = ["brak"];
 
 module.exports.textCaravans = function () {
   //główny tekst opisowy dla paragrafu - karawany - paragraf postoju karawan
@@ -1499,7 +1505,6 @@ module.exports.textCaravans = function () {
 
     //koniec wybierania ekwipunku oraz wybranie stylu walki
     $("#chooseFinish").on("click", function () {
-      var fightStyle = ["brak"];
       $("#description").empty();
       $("#description").html("<p class='textUnderlineGold boldText medievalText width100 center marginTop5 fontSize11em'>WYBIERZ STYL WALKI</p><div id='btnsStyles' class='flexForBtns'></div>");
 
@@ -1518,7 +1523,6 @@ module.exports.textCaravans = function () {
         setTimeout(function () {
           $("#alerts").empty();
         }, 5000);
-        console.log(fightStyle);
       });
 
       //zdarzenie dla stylu defensywnego
@@ -1529,7 +1533,6 @@ module.exports.textCaravans = function () {
         setTimeout(function () {
           $("#alerts").empty();
         }, 5000);
-        console.log(fightStyle);
       });
 
       //zdarzenie dla stylu ofensywnego
@@ -1539,7 +1542,13 @@ module.exports.textCaravans = function () {
         setTimeout(function () {
           $("#alerts").empty();
         }, 5000);
+      });
+      //zakończenie wybierania stylu WALKI
+      $("#finish").on("click", function () {
+        $("#prepare").hide();
+        $("#description").empty();
         console.log(fightStyle);
+        console.log(theGame.a);
       });
     });
   });

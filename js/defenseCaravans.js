@@ -2,6 +2,9 @@ let heroCreator = require("./heroCreator.js");
 let functions = require("./functions.js"); //podstawowe funkcje
 let theGame = require("./theGame.js");
 
+//tablica dla ustalania stylu walki
+let fightStyle = ["brak"];
+
 module.exports.textCaravans = function(){
   //główny tekst opisowy dla paragrafu - karawany - paragraf postoju karawan
   $("#mainPart").html("<div class='basicText medievalText'>Jedziecie sobie spokojnie. Czas mija na oglądaniu pejzaży z jadącego wozu. Niestety ta sielanka skończyła się wieczorem drugiego dnia. Zaczęło się od zawalonej, przez drzewa drogi. Gdy uczestnicy, z pierwszych wozów karawany uprzątali drzewa, nastąpił atak. Wszyscy muszą walczyć!. Ciebie atakuje jeden bandyta z wielkim mieczem. <span class='normalText italic'>Po lewej stronie znajduje się przycisk <span class='blueText boldText'>'przygotuj się'</span>, aby wybrać ekwipunek.</span></div><div id='description'></div>");
@@ -66,7 +69,6 @@ module.exports.textCaravans = function(){
 
 //koniec wybierania ekwipunku oraz wybranie stylu walki
                    $("#chooseFinish").on("click", ()=>{
-                     let fightStyle = ["brak"];
                      $("#description").empty();
                      $("#description").html("<p class='textUnderlineGold boldText medievalText width100 center marginTop5 fontSize11em'>WYBIERZ STYL WALKI</p><div id='btnsStyles' class='flexForBtns'></div>");
 
@@ -85,7 +87,6 @@ module.exports.textCaravans = function(){
                         setTimeout(function(){
                           $("#alerts").empty();
                       }, 5000);
-                      console.log(fightStyle);
                      });
 
  //zdarzenie dla stylu defensywnego
@@ -96,7 +97,6 @@ module.exports.textCaravans = function(){
                         setTimeout(function(){
                           $("#alerts").empty();
                       }, 5000);
-                      console.log(fightStyle);
                     });
 
 //zdarzenie dla stylu ofensywnego
@@ -106,9 +106,14 @@ module.exports.textCaravans = function(){
                         setTimeout(function(){
                           $("#alerts").empty();
                       }, 5000);
+                   });
+  //zakończenie wybierania stylu WALKI
+                  $("#finish").on("click", ()=>{
+                      $("#prepare").hide();
+                      $("#description").empty();
                       console.log(fightStyle);
-                   });
-
-                   });
+                      console.log(theGame.a);
+                  });
+                 });
   });
 }

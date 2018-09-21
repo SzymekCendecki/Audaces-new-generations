@@ -479,4 +479,7 @@ Ukończono wybieranie ekwipunku do walki oraz sumowanie punktów bojowych.
 Poprawa literówki w heroCreator.js (chodzi o pergaminy 5szt.).
 
 20 sierpnia 2018 - wersja 0.6.83
-Dodano możliwoś wybierania stylu walki
+Dodano możliwość wybierania stylu walki.
+
+21 sierpnia 2018 - wersja 0.6.84
+Rozpoczęto pracę nad samą walką.
