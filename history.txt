@@ -483,3 +483,6 @@ Dodano możliwość wybierania stylu walki.
 
 21 sierpnia 2018 - wersja 0.6.84
 Rozpoczęto pracę nad samą walką.
+
+22 sierpnia 2018 - wersja 0.6.85
+Pierwsza walka prawie ukończona - brak opisu wyniku walki.

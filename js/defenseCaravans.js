@@ -109,10 +109,41 @@ module.exports.textCaravans = function(){
                    });
   //zakończenie wybierania stylu WALKI
                   $("#finish").on("click", ()=>{
+
+$("#toVillage").removeClass("bckgRed").addClass("bckgGreen").prop("disabled", false);
+
                       $("#prepare").hide();
+                      let hitting = 50 + (theGame.a/25);
+                      let hitting1 = 50 - (theGame.a/10);
+
+                      let randomHit = Math.round(Math.random()*100);
+                      let randomHit1 = Math.round(Math.random()*100);
+                      let randomHit2 = Math.round(Math.random()*100);
+
+                    let hits = [];
+
+                      if(randomHit < hitting ){
+                        hits.splice(0, 1, " trafiony");
+                      }else{
+                          hits.splice(0, 1, " nie trafiony");
+                      }
+
+                      if(randomHit1 < hitting ){
+                        hits.splice(1, 1, " trafiony");
+                      }else{
+                          hits.splice(1, 1, " nie trafiony");
+                      }
+
+
+                      if(randomHit2 < hitting ){
+                        hits.splice(2, 1, " trafiony");
+                      }else{
+                          hits.splice(2, 1, " nie trafiony");
+                      }
+
                       $("#description").empty();
-                      console.log(fightStyle);
-                      console.log(theGame.a);
+                      $("#description").html(`<div class='width75 flexForBtns medievalText greenText boldText fontSize1em marginTop4'><p class='width100 textUnderlineGold medievalText center paddingUpDown1 fontSize13em'>WALKA</p><p class='width100 center'><span class='blackText boldText fontSize12em textUnderlineGold'>Twoje trafienie</span></p><p class='width100 center'><span class='blackText boldText fontSize12em'><span class='navyText'> ${hitting} </span></span></p><p class='width100 center'><span class='blackText boldText fontSize12em'><span id='result' class='navyText'> ${hits}</span></span></p><p class='width100 center'><span class='blackText boldText fontSize12em textUnderlineGold'>Trafienie przeciwnika </span></p><p class='width100 center'><span class='blackText boldText fontSize12em'><span class='navyText'> ${hitting1} </span></span></p><p class='width100 center'><span class='blackText boldText fontSize12em'><span id='result' class='navyText'>nie trafiony, nie trafiony, nie trafiony</span></span></p></div>`);
+
                   });
                  });
   });
