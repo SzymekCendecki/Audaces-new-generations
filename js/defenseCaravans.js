@@ -113,14 +113,15 @@ module.exports.textCaravans = function(){
 $("#toVillage").removeClass("bckgRed").addClass("bckgGreen").prop("disabled", false);
 
                       $("#prepare").hide();
-                      let hitting = 50 + (theGame.a/25);
-                      let hitting1 = 50 - (theGame.a/10);
+                      let hitting = theGame.a - 50;
+                      let hitting1 = theGame.a - 100;
 
                       let randomHit = Math.round(Math.random()*100);
                       let randomHit1 = Math.round(Math.random()*100);
                       let randomHit2 = Math.round(Math.random()*100);
 
                     let hits = [];
+
 
                       if(randomHit < hitting ){
                         hits.splice(0, 1, " trafiony");
@@ -143,6 +144,38 @@ $("#toVillage").removeClass("bckgRed").addClass("bckgGreen").prop("disabled", fa
 
                       $("#description").empty();
                       $("#description").html(`<div class='width75 flexForBtns medievalText greenText boldText fontSize1em marginTop4'><p class='width100 textUnderlineGold medievalText center paddingUpDown1 fontSize13em'>WALKA</p><p class='width100 center'><span class='blackText boldText fontSize12em textUnderlineGold'>Twoje trafienie</span></p><p class='width100 center'><span class='blackText boldText fontSize12em'><span class='navyText'> ${hitting} </span></span></p><p class='width100 center'><span class='blackText boldText fontSize12em'><span id='result' class='navyText'> ${hits}</span></span></p><p class='width100 center'><span class='blackText boldText fontSize12em textUnderlineGold'>Trafienie przeciwnika </span></p><p class='width100 center'><span class='blackText boldText fontSize12em'><span class='navyText'> ${hitting1} </span></span></p><p class='width100 center'><span class='blackText boldText fontSize12em'><span id='result' class='navyText'>nie trafiony, nie trafiony, nie trafiony</span></span></p></div>`);
+
+
+                      $("#toVillage").on("click", ()=>{
+                        $("#toVillage").hide();
+                        $("#toVillage2").show().addClass("basicBtn medievalText bckgGreen width49 marginTop4");
+let text = [];
+
+//wyszkanie płci oraz przypisanie konkretnego słowa do zmiennej
+if(heroCreator.hero[1] == "kobieta"){
+  text.splice(0, 1, "przeżyłaś");
+}else if(heroCreator.hero[1] == "mężczyzna" || heroCreator.hero[1] == "nie wiadomo"){
+  text .splice(0, 1, "przeżyłeś");
+}
+
+//wyszukanie w tablicy trafienia (lub nie) i przypisanie go do zmiennej
+if(hits.indexOf(" trafiony") !== -1){
+  text.splice(1, 1, "Jednym z ciosów, trafiłeś swojego przeciwnika i wysłałeś go do piachu.");
+}else{
+  text.splice(1, 1, "Twój przeciwnik nagle odwrócił się i uciekł");
+}
+
+$("#mainPart").html(`<p class="basicText medievalText">Szczęśliwie ${text[0]} walkę. ${text[1]}. Rozejrzałeś się. Walka równie szybo się skończyła jak zaczęła Twoje cechy podniosły się.<p>`);
+
+//dodanie punktów do cech
+heroCreator.hero.splice(4, 1, heroCreator.hero[4] + 5);
+heroCreator.hero.splice(4, 1, heroCreator.hero[5] + 5);
+heroCreator.hero.splice(4, 1, heroCreator.hero[6] + 5);
+heroCreator.hero.splice(4, 1, heroCreator.hero[7] + 5);
+heroCreator.hero.splice(4, 1, heroCreator.hero[8] + 5);
+
+                      });
+
 
                   });
                  });

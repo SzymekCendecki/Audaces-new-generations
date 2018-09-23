@@ -486,3 +486,6 @@ Rozpoczęto pracę nad samą walką.
 
 22 sierpnia 2018 - wersja 0.6.85
 Pierwsza walka prawie ukończona - brak opisu wyniku walki.
+
+23 sierpnia 2018 - wersja 0.6.86
+Rozpoczęcie pracy nad opisem kończącym walkę.

@@ -1549,8 +1549,8 @@ module.exports.textCaravans = function () {
         $("#toVillage").removeClass("bckgRed").addClass("bckgGreen").prop("disabled", false);
 
         $("#prepare").hide();
-        var hitting = 50 + theGame.a / 25;
-        var hitting1 = 50 - theGame.a / 10;
+        var hitting = theGame.a - 50;
+        var hitting1 = theGame.a - 100;
 
         var randomHit = Math.round(Math.random() * 100);
         var randomHit1 = Math.round(Math.random() * 100);
@@ -1578,6 +1578,35 @@ module.exports.textCaravans = function () {
 
         $("#description").empty();
         $("#description").html("<div class='width75 flexForBtns medievalText greenText boldText fontSize1em marginTop4'><p class='width100 textUnderlineGold medievalText center paddingUpDown1 fontSize13em'>WALKA</p><p class='width100 center'><span class='blackText boldText fontSize12em textUnderlineGold'>Twoje trafienie</span></p><p class='width100 center'><span class='blackText boldText fontSize12em'><span class='navyText'> " + hitting + " </span></span></p><p class='width100 center'><span class='blackText boldText fontSize12em'><span id='result' class='navyText'> " + hits + "</span></span></p><p class='width100 center'><span class='blackText boldText fontSize12em textUnderlineGold'>Trafienie przeciwnika </span></p><p class='width100 center'><span class='blackText boldText fontSize12em'><span class='navyText'> " + hitting1 + " </span></span></p><p class='width100 center'><span class='blackText boldText fontSize12em'><span id='result' class='navyText'>nie trafiony, nie trafiony, nie trafiony</span></span></p></div>");
+
+        $("#toVillage").on("click", function () {
+          $("#toVillage").hide();
+          $("#toVillage2").show().addClass("basicBtn medievalText bckgGreen width49 marginTop4");
+          var text = [];
+
+          //wyszkanie płci oraz przypisanie konkretnego słowa do zmiennej
+          if (heroCreator.hero[1] == "kobieta") {
+            text.splice(0, 1, "przeżyłaś");
+          } else if (heroCreator.hero[1] == "mężczyzna" || heroCreator.hero[1] == "nie wiadomo") {
+            text.splice(0, 1, "przeżyłeś");
+          }
+
+          //wyszukanie w tablicy trafienia (lub nie) i przypisanie go do zmiennej
+          if (hits.indexOf(" trafiony") !== -1) {
+            text.splice(1, 1, "Jednym z ciosów, trafiłeś swojego przeciwnika i wysłałeś go do piachu.");
+          } else {
+            text.splice(1, 1, "Twój przeciwnik nagle odwrócił się i uciekł");
+          }
+
+          $("#mainPart").html("<p class=\"basicText medievalText\">Szcz\u0119\u015Bliwie " + text[0] + " walk\u0119. " + text[1] + ". Rozejrza\u0142e\u015B si\u0119. Walka r\xF3wnie szybo si\u0119 sko\u0144czy\u0142a jak zacz\u0119\u0142a Twoje cechy podnios\u0142y si\u0119.<p>");
+
+          //dodanie punktów do cech
+          heroCreator.hero.splice(4, 1, heroCreator.hero[4] + 5);
+          heroCreator.hero.splice(4, 1, heroCreator.hero[5] + 5);
+          heroCreator.hero.splice(4, 1, heroCreator.hero[6] + 5);
+          heroCreator.hero.splice(4, 1, heroCreator.hero[7] + 5);
+          heroCreator.hero.splice(4, 1, heroCreator.hero[8] + 5);
+        });
       });
     });
   });
@@ -1953,6 +1982,10 @@ module.exports.intro = function () {
     functions.newElement("button", "prepare", "przygotuj się", $("#interactionsBtns"));
     $("#toVillage, #prepare").hide();
 
+    //przycisk dla paragrafu po pierwszej bitwie
+    functions.newElement("button", "toVillage2", "dalej", $("#mainBtns"));
+    $("#toVillage2").hide();
+
     //główny tekst opisowy dla paragrafu - pokój - paragraf pierwszy
     room.textRoom();
 
@@ -2000,7 +2033,8 @@ module.exports.intro = function () {
 
     //zdarzenia dla przycisków interakcji drugiego paragrafu - ulica
     $("#inRoom").on("click", function () {
-      $("#inRoom, #toCaravans, #toMarket, #lookAroundStreet").hide();$("#wardrobe, #chest, #outRoom, #lookAroundRoom").show();room.textRoom();
+      $("#inRoom, #toCaravans, #toMarket, #lookAroundStreet").hide();
+      $("#wardrobe, #chest, #outRoom, #lookAroundRoom").show();room.textRoom();
     });
     $("#lookAroundStreet").on("click", function () {
       street.lookAroundStreet();
