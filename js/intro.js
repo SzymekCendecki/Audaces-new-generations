@@ -26,6 +26,7 @@ let text8 = "Na usilną prośbę znajomego kapłana zgadzasz się dostarczyć ma
 
 module.exports.intro = function(){
   setTimeout(function(){
+    $("#mainPart").empty();
     functions.newElement("p", "text1", text1, $("#mainPart"));
     functions.newElement("p", "text2", text2, $("#mainPart"));
     functions.newElement("p", "text3", text3, $("#mainPart"));
@@ -97,6 +98,11 @@ functions.newElement("button", "toVillage", "dalej", $("#mainBtns"));
 functions.newElement("button", "prepare", "przygotuj się", $("#interactionsBtns"));
 $("#toVillage, #prepare").hide();
 
+//przycisk dla paragrafu po pierwszej bitwie
+functions.newElement("button", "toVillage2", "dalej", $("#mainBtns"));
+$("#toVillage2").hide();
+
+
   //główny tekst opisowy dla paragrafu - pokój - paragraf pierwszy
     room.textRoom();
 
@@ -125,7 +131,8 @@ $("#toVillage, #prepare").hide();
   $("#outRoom").on("click", ()=> { room.outRoom(); street.showBtns(); street.textStreet(); });
 
   //zdarzenia dla przycisków interakcji drugiego paragrafu - ulica
-  $("#inRoom").on("click", ()=>{ $("#inRoom, #toCaravans, #toMarket, #lookAroundStreet").hide();    $("#wardrobe, #chest, #outRoom, #lookAroundRoom").show(); room.textRoom(); });
+  $("#inRoom").on("click", ()=>{ $("#inRoom, #toCaravans, #toMarket, #lookAroundStreet").hide();
+  $("#wardrobe, #chest, #outRoom, #lookAroundRoom").show(); room.textRoom(); });
   $("#lookAroundStreet").on("click", ()=>{ street.lookAroundStreet(); });
 
 //zdarzenia dla interakcji paragrafu - targ
@@ -148,4 +155,5 @@ $("#go").on("click", ()=>{
 });
 
   }, 30000);
+
 }

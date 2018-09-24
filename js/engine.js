@@ -1549,12 +1549,15 @@ module.exports.textCaravans = function () {
         $("#toVillage").removeClass("bckgRed").addClass("bckgGreen").prop("disabled", false);
 
         $("#prepare").hide();
-        var hitting = theGame.a - 50;
-        var hitting1 = theGame.a - 100;
 
-        var randomHit = Math.round(Math.random() * 100);
-        var randomHit1 = Math.round(Math.random() * 100);
-        var randomHit2 = Math.round(Math.random() * 100);
+        //wyliczanie trafienia dla gracza i przeciwnika
+        var hitting = theGame.a / 5;
+        var hitting1 = theGame.a / 5 / 2;
+
+        //losowanie czy gracz trafił
+        var randomHit = Math.round(Math.random() * hitting);
+        var randomHit1 = Math.round(Math.random() * hitting);
+        var randomHit2 = Math.round(Math.random() * hitting);
 
         var hits = [];
 
@@ -1587,18 +1590,22 @@ module.exports.textCaravans = function () {
           //wyszkanie płci oraz przypisanie konkretnego słowa do zmiennej
           if (heroCreator.hero[1] == "kobieta") {
             text.splice(0, 1, "przeżyłaś");
+            text.splice(1, 1, "Rozejrzałaś się");
           } else if (heroCreator.hero[1] == "mężczyzna" || heroCreator.hero[1] == "nie wiadomo") {
             text.splice(0, 1, "przeżyłeś");
+            text.splice(1, 1, "Rozejrzałeś się");
           }
 
           //wyszukanie w tablicy trafienia (lub nie) i przypisanie go do zmiennej
-          if (hits.indexOf(" trafiony") !== -1) {
-            text.splice(1, 1, "Jednym z ciosów, trafiłeś swojego przeciwnika i wysłałeś go do piachu.");
+          if (hits.indexOf(" trafiony") !== -1 && heroCreator.hero[1] == "mężczyzna" || heroCreator.hero[1] == "nie wiadomo") {
+            text.splice(2, 1, "Jednym z ciosów, trafiłeś swojego przeciwnika i wysłałeś go do piachu");
+          } else if (hits.indexOf(" trafiony") !== -1 && heroCreator.hero[1] == "kobieta") {
+            text.splice(2, 1, "Jednym z ciosów, trafiłaś swojego przeciwnika i wysłałaś go do piachu");
           } else {
-            text.splice(1, 1, "Twój przeciwnik nagle odwrócił się i uciekł");
+            text.splice(2, 1, "Twój przeciwnik nagle odwrócił się i uciekł");
           }
 
-          $("#mainPart").html("<p class=\"basicText medievalText\">Szcz\u0119\u015Bliwie " + text[0] + " walk\u0119. " + text[1] + ". Rozejrza\u0142e\u015B si\u0119. Walka r\xF3wnie szybo si\u0119 sko\u0144czy\u0142a jak zacz\u0119\u0142a Twoje cechy podnios\u0142y si\u0119.<p>");
+          $("#mainPart").html("<p class=\"basicText medievalText\">Szcz\u0119\u015Bliwie " + text[0] + " walk\u0119. " + text[2] + ". " + text[1] + ". Walka r\xF3wnie szybko si\u0119 sko\u0144czy\u0142a jak zacz\u0119\u0142a. Karawana odczea\u0142a w gotowo\u015Bci jescze kilka minut. Po nich pochowali\u015Bcie cia\u0142a poleg\u0142ych obro\u0144c\xF3w i atakuj\u0105cych w jednej, zbiorowej mogile, niedaleko drogi. Po kr\xF3tkich modlitwach odjechali\u015Bcie. Twoje cechy podnios\u0142y si\u0119.<p>");
 
           //dodanie punktów do cech
           heroCreator.hero.splice(4, 1, heroCreator.hero[4] + 5);
