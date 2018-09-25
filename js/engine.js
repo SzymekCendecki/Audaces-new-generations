@@ -1898,6 +1898,7 @@ var street = __webpack_require__(5);
 var market = __webpack_require__(10);
 var caravans = __webpack_require__(11);
 var defenseCaravans = __webpack_require__(3);
+var village = __webpack_require__(13);
 
 var text1 = "Mówią, że Dzikie Pustkowia to kraina opuszczona przez Bogów.";
 
@@ -1993,6 +1994,11 @@ module.exports.intro = function () {
     functions.newElement("button", "toVillage2", "dalej", $("#mainBtns"));
     $("#toVillage2").hide();
 
+    //przyciki dla wioski
+    functions.newElement("button", "enterVillage", "do wioski", $("#mainBtns"));
+    functions.newElement("button", "outVillageLookAround", "rozejrzyj się", $("#interactionsBtns"));
+    $("#enterVillage, #outVillageLookAround").hide();
+
     //główny tekst opisowy dla paragrafu - pokój - paragraf pierwszy
     room.textRoom();
 
@@ -2078,6 +2084,11 @@ module.exports.intro = function () {
       $("#go, #lookAroundWaggon").hide();
       $("#mainPart").empty();
       defenseCaravans.textCaravans();
+
+      $("#toVillage2").on("click", function () {
+        console.log("działa");
+        village.arriveVillage();
+      });
     });
   }, 30000);
 };
@@ -2290,6 +2301,26 @@ module.exports.text6 = "Twoja historia zaczyna się w mieście Erharuf.";
 module.exports.text7 = " W ostatnim bezpiecznym mieście przed Dzikimi Pustkowiami.";
 
 module.exports.text8 = "Na usilną prośbę znajomego kapłana zgadzasz się dostarczyć małą paczkę dla tamtejszego mnicha, rezydującego w niewielkiej wiosce, która leży tuż przy granicy z Dzikimi Pustkowiami.";
+
+/***/ }),
+/* 13 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+var heroCreator = __webpack_require__(1);
+var functions = __webpack_require__(0); //podstawowe funkcje
+
+module.exports.arriveVillage = function () {
+  //główny tekst opisowy dla paragrafu dojazd do wioski
+  $("#mainPart").empty();
+  $("#toVillage2").hide();
+  $("#enterVillage, #outVillageLookAround").show().addClass("basicBtn");
+  $("#enterVillage").addClass("bckgGreen medievalText marginTop4 shadowForBtn");
+  $("#outVillageLookAround").addClass("bckgBlue medievalText marginTop4 shadowForBtn fontSize09em paddingUpDown1");
+  $("#mainPart").html("<div class='basicText medievalText'>Po trzech dniach podróży dojeżdżacie w spokoju do przygranicznej wioski. Celu Twojej podróży. Co robisz?</div><div id='description'></div>");
+};
 
 /***/ })
 /******/ ]);

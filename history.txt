@@ -493,3 +493,6 @@ Rozpoczęcie pracy nad opisem kończącym walkę.
 24 sierpnia 2018 - wersja 0.6.87
 Poprawka trafienia bohatera i przeciwnika w trakcie pierwszej walki.
 	Poprawka opisu po pierwszej bitwie - uwzględnie płci oraz rozszerzenie opisu.
+
+25 sierpnia 2018 - wersja 0.6.88
+Rozpoczęcie pracy nad przyjazdem do wioski, oddaniem paczki i samą wioską.
