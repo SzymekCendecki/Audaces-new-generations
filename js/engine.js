@@ -1782,7 +1782,7 @@ module.exports = __webpack_require__(7);
 var functions = __webpack_require__(0); //podstawowe funkcje
 var introFirstMenu = __webpack_require__(8); //plik z częścią intro oraz pierwszym menu
 var heroCreator = __webpack_require__(1);
-var introGame = __webpack_require__(12);
+var introGame = __webpack_require__(13);
 
 document.addEventListener("DOMContentLoaded", function () {
 	console.log("NIEWIERNE PSY RULEZ!!!!");
@@ -1898,7 +1898,7 @@ var street = __webpack_require__(5);
 var market = __webpack_require__(10);
 var caravans = __webpack_require__(11);
 var defenseCaravans = __webpack_require__(3);
-var village = __webpack_require__(13);
+var village = __webpack_require__(12);
 
 var text1 = "Mówią, że Dzikie Pustkowia to kraina opuszczona przez Bogów.";
 
@@ -1997,7 +1997,10 @@ module.exports.intro = function () {
     //przyciki dla wioski
     functions.newElement("button", "enterVillage", "do wioski", $("#mainBtns"));
     functions.newElement("button", "outVillageLookAround", "rozejrzyj się", $("#interactionsBtns"));
-    $("#enterVillage, #outVillageLookAround").hide();
+    functions.newElement("button", "monk", "mnich", $("#mainBtns"));
+    functions.newElement("button", "tavern", "karczma", $("#mainBtns"));
+    functions.newElement("button", "lookAtVillage", "rozejrzyj się", $("interactionsBtns"));
+    $("#enterVillage, #outVillageLookAround, #monk, #tavern, #lookAtVillage").hide();
 
     //główny tekst opisowy dla paragrafu - pokój - paragraf pierwszy
     room.textRoom();
@@ -2086,8 +2089,16 @@ module.exports.intro = function () {
       defenseCaravans.textCaravans();
 
       $("#toVillage2").on("click", function () {
-        console.log("działa");
+        //przybycie do wioski
         village.arriveVillage();
+        $("#outVillageLookAround").on("click", function () {
+          village.outVillageLookAround();
+        });
+      });
+
+      //plac po środku woski
+      $("#enterVillage").on("click", function () {
+        village.enterVillage();
       });
     });
   }, 30000);
@@ -2286,6 +2297,43 @@ module.exports.ask = function () {
 "use strict";
 
 
+var heroCreator = __webpack_require__(1);
+var functions = __webpack_require__(0); //podstawowe funkcje
+
+module.exports.arriveVillage = function () {
+  //główny tekst opisowy dla paragrafu dojazd do wioski
+  $("#mainPart").empty();
+  $("#toVillage2").hide();
+  $("#enterVillage, #outVillageLookAround").show().addClass("basicBtn");
+  $("#enterVillage").addClass("bckgGreen medievalText marginTop4 shadowForBtn");
+  $("#outVillageLookAround").addClass("bckgBlue medievalText marginTop4 shadowForBtn fontSize09em paddingUpDown1");
+  $("#mainPart").html("<div class='basicText medievalText'>Po trzech dniach, dotarliście już bez przeszkód do Przygranicznej wioski. Rozbiliście obozowisko, przy starym młynie. Zaciekawieni mieszkańcy wyszli ze swych chałup i obleźli karawanę. Co robisz?</div><div id='description'></div>");
+};
+
+module.exports.outVillageLookAround = function () {
+  $("#description").html("<p class='basicText medievalText'>Wioska jest dość duża, składa się z prawie 40 chałup. Otoczona jest wałem ziemnym, z wbitymi w niego, zaostrzonymi palikami. To typowe umocnienie w tym rejonie. Przy rzece stoi stary młyn. Wokół wioski, jak okiem sięgnąć rozciągają się pola.</p><button id='close' class='bckgRed fontSize12em width15 boldText medievalText whiteTextShadow11 paddingUpDown1 marginTop4'>zamknij</button>");
+  $("#close").on("click", function () {
+    $("#description").empty();
+  });
+};
+//#monk, #tavern, #lookAtVillage").hide();
+module.exports.arriveVillage = function () {
+  //główny tekst opisowy dla paragrafu dojazd do wioski
+  $("#mainPart").empty();
+  $("#enterVillage, #outVillageLookAround").hide();
+  $("#monk, #tavern, #lookAtVillage").show().addClass("basicBtn");
+  $("#monk, #tavern").addClass("bckgGreen medievalText marginTop4 shadowForBtn");
+  $("#lookAtVillage").addClass("bckgBlue medievalText marginTop4 shadowForBtn");
+  $("#mainPart").html("<div class='basicText medievalText'>Stoisz na placu pośrodku wioski. Przed sobą widzisz kamienną karczmę. Po Twojej lewej stronie jest mały 'kościółek'. Pewnie tam jest mnich, któremu musisz odda paczkę. Co robisz?</div><div id='description'></div>");
+};
+
+/***/ }),
+/* 13 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
 module.exports.text1 = "Mówią, że Dzikie Pustkowia to kraina opuszczona przez Bogów.";
 
 module.exports.text2 = "Pełna siedzib mrocznych kultów, wyrzutków społeczeństwa, krwiożerczych bestii i demonów, przywołanych czarną magią z innych wymiarów.";
@@ -2301,26 +2349,6 @@ module.exports.text6 = "Twoja historia zaczyna się w mieście Erharuf.";
 module.exports.text7 = " W ostatnim bezpiecznym mieście przed Dzikimi Pustkowiami.";
 
 module.exports.text8 = "Na usilną prośbę znajomego kapłana zgadzasz się dostarczyć małą paczkę dla tamtejszego mnicha, rezydującego w niewielkiej wiosce, która leży tuż przy granicy z Dzikimi Pustkowiami.";
-
-/***/ }),
-/* 13 */
-/***/ (function(module, exports, __webpack_require__) {
-
-"use strict";
-
-
-var heroCreator = __webpack_require__(1);
-var functions = __webpack_require__(0); //podstawowe funkcje
-
-module.exports.arriveVillage = function () {
-  //główny tekst opisowy dla paragrafu dojazd do wioski
-  $("#mainPart").empty();
-  $("#toVillage2").hide();
-  $("#enterVillage, #outVillageLookAround").show().addClass("basicBtn");
-  $("#enterVillage").addClass("bckgGreen medievalText marginTop4 shadowForBtn");
-  $("#outVillageLookAround").addClass("bckgBlue medievalText marginTop4 shadowForBtn fontSize09em paddingUpDown1");
-  $("#mainPart").html("<div class='basicText medievalText'>Po trzech dniach podróży dojeżdżacie w spokoju do przygranicznej wioski. Celu Twojej podróży. Co robisz?</div><div id='description'></div>");
-};
 
 /***/ })
 /******/ ]);

@@ -106,7 +106,10 @@ $("#toVillage2").hide();
 //przyciki dla wioski
 functions.newElement("button", "enterVillage", "do wioski", $("#mainBtns"));
 functions.newElement("button", "outVillageLookAround", "rozejrzyj się", $("#interactionsBtns"));
-$("#enterVillage, #outVillageLookAround").hide();
+functions.newElement("button", "monk", "mnich", $("#mainBtns"));
+functions.newElement("button", "tavern", "karczma", $("#mainBtns"));
+functions.newElement("button", "lookAtVillage", "rozejrzyj się", $("interactionsBtns"));
+$("#enterVillage, #outVillageLookAround, #monk, #tavern, #lookAtVillage").hide();
 
   //główny tekst opisowy dla paragrafu - pokój - paragraf pierwszy
     room.textRoom();
@@ -159,9 +162,14 @@ $("#go").on("click", ()=>{
   defenseCaravans.textCaravans();
 
   $("#toVillage2").on("click", ()=>{
-      console.log("działa");
+    //przybycie do wioski
       village.arriveVillage();
-  });
+      $("#outVillageLookAround").on("click", ()=>{ village.outVillageLookAround(); });
+    });
+
+//plac po środku woski
+$("#enterVillage").on("click", ()=>{ village.enterVillage(); });
+
 });
 
   }, 30000);

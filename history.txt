@@ -496,3 +496,8 @@ Poprawka trafienia bohatera i przeciwnika w trakcie pierwszej walki.
 
 25 sierpnia 2018 - wersja 0.6.88
 Rozpoczęcie pracy nad przyjazdem do wioski, oddaniem paczki i samą wioską.
+
+26 sierpnia 2018 - wersja 0.6.89
+Poprawiono test dla przybcia do wioski.
+	Dodano tekst dla rozglądania się (przed wioską).
+Dodano opis, gdy wejdzie się do wioski oraz odpowiednie przyciski (na razie bez zdarzeń).
