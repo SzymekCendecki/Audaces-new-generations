@@ -501,3 +501,8 @@ Rozpoczęcie pracy nad przyjazdem do wioski, oddaniem paczki i samą wioską.
 Poprawiono test dla przybcia do wioski.
 	Dodano tekst dla rozglądania się (przed wioską).
 Dodano opis, gdy wejdzie się do wioski oraz odpowiednie przyciski (na razie bez zdarzeń).
+
+27 sierpnia 2018 - wersja 0.6.90
+Poprawka wyświetlania przycisku "dalej" o id "toVillage2".
+	Poprawka wyliczania trafienia dla bohatera (i przeciwnika?).
+Dodany został paragraf, w którym paczka jest oddawana mnichowi. 

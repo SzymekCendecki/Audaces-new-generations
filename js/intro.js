@@ -108,8 +108,11 @@ functions.newElement("button", "enterVillage", "do wioski", $("#mainBtns"));
 functions.newElement("button", "outVillageLookAround", "rozejrzyj się", $("#interactionsBtns"));
 functions.newElement("button", "monk", "mnich", $("#mainBtns"));
 functions.newElement("button", "tavern", "karczma", $("#mainBtns"));
-functions.newElement("button", "lookAtVillage", "rozejrzyj się", $("interactionsBtns"));
-$("#enterVillage, #outVillageLookAround, #monk, #tavern, #lookAtVillage").hide();
+functions.newElement("button", "lookAtVillage", "rozejrzyj się", $("#interactionsBtns"));
+functions.newElement("button", "outDoor", "wyjdź", $("#mainBtns"));
+functions.newElement("button", "lookAtChurch", "rozejrzyj się", $("#interactionsBtns"));
+functions.newElement("button", "give", "oddaj paczkę", $("#interactionsBtns"));
+$("#enterVillage, #outVillageLookAround, #monk, #tavern, #lookAtVillage, #outDoor, #lookAtChurch, #give").hide();
 
   //główny tekst opisowy dla paragrafu - pokój - paragraf pierwszy
     room.textRoom();
@@ -165,6 +168,7 @@ $("#go").on("click", ()=>{
     //przybycie do wioski
       village.arriveVillage();
       $("#outVillageLookAround").on("click", ()=>{ village.outVillageLookAround(); });
+      $("#monk").on("click", ()=>{ village.talkMonk(); });
     });
 
 //plac po środku woski

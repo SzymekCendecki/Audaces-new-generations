@@ -1551,13 +1551,13 @@ module.exports.textCaravans = function () {
         $("#prepare").hide();
 
         //wyliczanie trafienia dla gracza i przeciwnika
-        var hitting = theGame.a / 5;
+        var hitting = theGame.a / 10;
         var hitting1 = theGame.a / 5 / 2;
 
         //losowanie czy gracz trafił
-        var randomHit = Math.round(Math.random() * hitting);
-        var randomHit1 = Math.round(Math.random() * hitting);
-        var randomHit2 = Math.round(Math.random() * hitting);
+        var randomHit = Math.round(Math.random() * 50);
+        var randomHit1 = Math.round(Math.random() * 50);
+        var randomHit2 = Math.round(Math.random() * 50);
 
         var hits = [];
 
@@ -1999,8 +1999,11 @@ module.exports.intro = function () {
     functions.newElement("button", "outVillageLookAround", "rozejrzyj się", $("#interactionsBtns"));
     functions.newElement("button", "monk", "mnich", $("#mainBtns"));
     functions.newElement("button", "tavern", "karczma", $("#mainBtns"));
-    functions.newElement("button", "lookAtVillage", "rozejrzyj się", $("interactionsBtns"));
-    $("#enterVillage, #outVillageLookAround, #monk, #tavern, #lookAtVillage").hide();
+    functions.newElement("button", "lookAtVillage", "rozejrzyj się", $("#interactionsBtns"));
+    functions.newElement("button", "outDoor", "wyjdź", $("#mainBtns"));
+    functions.newElement("button", "lookAtChurch", "rozejrzyj się", $("#interactionsBtns"));
+    functions.newElement("button", "give", "oddaj paczkę", $("#interactionsBtns"));
+    $("#enterVillage, #outVillageLookAround, #monk, #tavern, #lookAtVillage, #outDoor, #lookAtChurch, #give").hide();
 
     //główny tekst opisowy dla paragrafu - pokój - paragraf pierwszy
     room.textRoom();
@@ -2093,6 +2096,9 @@ module.exports.intro = function () {
         village.arriveVillage();
         $("#outVillageLookAround").on("click", function () {
           village.outVillageLookAround();
+        });
+        $("#monk").on("click", function () {
+          village.talkMonk();
         });
       });
 
@@ -2320,11 +2326,42 @@ module.exports.outVillageLookAround = function () {
 module.exports.arriveVillage = function () {
   //główny tekst opisowy dla paragrafu dojazd do wioski
   $("#mainPart").empty();
-  $("#enterVillage, #outVillageLookAround").hide();
+  $("#enterVillage, #outVillageLookAround, #toVillage2").hide();
   $("#monk, #tavern, #lookAtVillage").show().addClass("basicBtn");
   $("#monk, #tavern").addClass("bckgGreen medievalText marginTop4 shadowForBtn");
-  $("#lookAtVillage").addClass("bckgBlue medievalText marginTop4 shadowForBtn");
+  $("#lookAtVillage").addClass("bckgBlue medievalText marginTop4 shadowForBtn fontSize09em");
   $("#mainPart").html("<div class='basicText medievalText'>Stoisz na placu pośrodku wioski. Przed sobą widzisz kamienną karczmę. Po Twojej lewej stronie jest mały 'kościółek'. Pewnie tam jest mnich, któremu musisz odda paczkę. Co robisz?</div><div id='description'></div>");
+};
+
+module.exports.talkMonk = function () {
+  $("#mainPart").empty();
+  $("#monk, #tavern, #lookAtVillage").hide();
+  $("#outDoor, #give").show().addClass("basicBtn bckgGreen medievalText marginTop4 shadowForBtn");
+  $("#give").addClass("fontSize08em paddingUpDown1");
+  $("#lookAtChurch").show().addClass("basicBtn bckgBlue medievalText marginTop4 shadowForBtn fontSize09em paddingUpDown1");
+
+  var text = [];
+  if (heroCreator.hero[1] == "kobieta") {
+    text.splice(0, 1, "Weszłaś do kościoła.");
+    text.splice(1, 1, "Podeszłaś ");
+  } else {
+    text.splice(0, 1, "Wszedłeś do kościoła.");
+    text.splice(1, 1, "Podszedłeś ");
+  }
+
+  $("#mainPart").html("<div class='basicText medievalText'>" + text[0] + " Panuje w nim lekki zaduch i niewielki p\xF3\u0142mrok. " + text[1] + " do stoj\u0105cego przy o\u0142tarzu mnicha. Mnich odwr\xF3ci\u0142 si\u0119 i powiedzia\u0142: <span class='italic blueText'>Witaj! Spodziewa\u0142em si\u0119 Ciebie. Pono\u0107 masz dla mnie przesy\u0142k\u0119?</span> Co robisz?</div><div id='description'></div>");
+
+  $("#give").on("click", function () {
+    if (heroCreator.equip.indexOf('paczka') !== -1) {
+      heroCreator.equip.splice(heroCreator.equip.indexOf('paczka'), 1);
+      $("#give").remove();
+
+      $("#alerts").html("<p id='noGold' class='greenText medievalText boldText'>Paczka została oddana.</p>");
+      setTimeout(function () {
+        $("#noGold").remove();
+      }, 5000);
+    }
+  });
 };
 
 /***/ }),
