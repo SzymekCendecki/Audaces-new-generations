@@ -115,13 +115,13 @@ $("#toVillage").removeClass("bckgRed").addClass("bckgGreen").prop("disabled", fa
                       $("#prepare").hide();
 
               //wyliczanie trafienia dla gracza i przeciwnika
-                      let hitting = theGame.a/5;
+                      let hitting = theGame.a/10;
                       let hitting1 = (theGame.a/5)/2;
 
 //losowanie czy gracz trafił
-                      let randomHit = Math.round(Math.random()*hitting);
-                      let randomHit1 = Math.round(Math.random()*hitting);
-                      let randomHit2 = Math.round(Math.random()*hitting);
+                      let randomHit = Math.round(Math.random()*50);
+                      let randomHit1 = Math.round(Math.random()*50);
+                      let randomHit2 = Math.round(Math.random()*50);
 
                   let hits = [];
 

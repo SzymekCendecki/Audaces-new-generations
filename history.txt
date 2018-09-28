@@ -505,4 +505,9 @@ Dodano opis, gdy wejdzie się do wioski oraz odpowiednie przyciski (na razie bez
 27 sierpnia 2018 - wersja 0.6.90
 Poprawka wyświetlania przycisku "dalej" o id "toVillage2".
 	Poprawka wyliczania trafienia dla bohatera (i przeciwnika?).
-Dodany został paragraf, w którym paczka jest oddawana mnichowi. 
+Dodany został paragraf, w którym paczka jest oddawana mnichowi.
+
+28 sierpnia 2018 - wersja 0.6.91
+Poprawka wyświetlania tekstu przybycia do wioski.
+	Dodano możliwość wchodzenia i wychodzenia do kościoła/mnicha.
+Dodano tekt dla rozglądania się po kościele, w wiosce.

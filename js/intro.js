@@ -174,6 +174,18 @@ $("#go").on("click", ()=>{
 //plac po środku woski
 $("#enterVillage").on("click", ()=>{ village.enterVillage(); });
 
+//wyjście z kościoła (od mnicha)
+$("#outDoor").on("click", ()=>{
+  $("#outDoor, #lookAtChurch, #give").hide();
+  $("#lookAtVillage, #monk, #tavern").show();
+  $("#outVillageLookAround").addClass("bckgBlue medievalText marginTop4 shadowForBtn fontSize09em whiteTextShadow11 paddingUpDown1 boldText");
+
+  village.enterVillage();
+
+});
+
+
+
 });
 
   }, 30000);

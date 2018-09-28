@@ -2106,6 +2106,15 @@ module.exports.intro = function () {
       $("#enterVillage").on("click", function () {
         village.enterVillage();
       });
+
+      //wyjście z kościoła (od mnicha)
+      $("#outDoor").on("click", function () {
+        $("#outDoor, #lookAtChurch, #give").hide();
+        $("#lookAtVillage, #monk, #tavern").show();
+        $("#outVillageLookAround").addClass("bckgBlue medievalText marginTop4 shadowForBtn fontSize09em whiteTextShadow11 paddingUpDown1 boldText");
+
+        village.enterVillage();
+      });
     });
   }, 30000);
 };
@@ -2323,7 +2332,7 @@ module.exports.outVillageLookAround = function () {
   });
 };
 //#monk, #tavern, #lookAtVillage").hide();
-module.exports.arriveVillage = function () {
+module.exports.enterVillage = function () {
   //główny tekst opisowy dla paragrafu dojazd do wioski
   $("#mainPart").empty();
   $("#enterVillage, #outVillageLookAround, #toVillage2").hide();
@@ -2331,11 +2340,19 @@ module.exports.arriveVillage = function () {
   $("#monk, #tavern").addClass("bckgGreen medievalText marginTop4 shadowForBtn");
   $("#lookAtVillage").addClass("bckgBlue medievalText marginTop4 shadowForBtn fontSize09em");
   $("#mainPart").html("<div class='basicText medievalText'>Stoisz na placu pośrodku wioski. Przed sobą widzisz kamienną karczmę. Po Twojej lewej stronie jest mały 'kościółek'. Pewnie tam jest mnich, któremu musisz odda paczkę. Co robisz?</div><div id='description'></div>");
+
+  $("#lookAtVillage").on("click", function () {
+    $("#description").html("<p class='basicText medievalText'>Wioska jakich wiele w regionie. Bydło i ptactwo jest wszędzie. W oddali słychać odgłosy kuźni. Uwagę przykuwa karczma, jedyny kamienny budynek we wiosce.</p><button id='close' class='bckgRed fontSize12em width15 boldText medievalText whiteTextShadow11 paddingUpDown1 marginTop4'>zamknij</button>");
+    $("#close").on("click", function () {
+      $("#description").empty();
+    });
+  });
 };
 
+// w kościele - rozmowa z mnichem
 module.exports.talkMonk = function () {
   $("#mainPart").empty();
-  $("#monk, #tavern, #lookAtVillage").hide();
+  $("#monk, #tavern, #lookAtVillage, #outVillageLookAround").hide();
   $("#outDoor, #give").show().addClass("basicBtn bckgGreen medievalText marginTop4 shadowForBtn");
   $("#give").addClass("fontSize08em paddingUpDown1");
   $("#lookAtChurch").show().addClass("basicBtn bckgBlue medievalText marginTop4 shadowForBtn fontSize09em paddingUpDown1");
@@ -2361,6 +2378,13 @@ module.exports.talkMonk = function () {
         $("#noGold").remove();
       }, 5000);
     }
+  });
+
+  $("#lookAtChurch").on("click", function () {
+    $("#description").html("<p class='basicText medievalText'>Jest to niewielki kościółek. Kilka prostych ław. Na końcu stoi niewielki ołtarz poświęcony lokalnemu Bogu.</p><button id='close' class='bckgRed fontSize12em width15 boldText medievalText whiteTextShadow11 paddingUpDown1 marginTop4'>zamknij</button>");
+    $("#close").on("click", function () {
+      $("#description").empty();
+    });
   });
 };
 
