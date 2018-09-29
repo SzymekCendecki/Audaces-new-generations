@@ -60,11 +60,40 @@ let text = [];
          $("#noGold").remove();
        }, 5000);
       }
+
+      if(heroCreator.tasks.indexOf('zanieś paczkę mnichowi') !== -1){
+        heroCreator.tasks.splice(heroCreator.tasks.indexOf('zanieś paczkę mnichowi'), 1);
+      }
     });
 
 $("#lookAtChurch").on("click", ()=>{
   $("#description").html("<p class='basicText medievalText'>Jest to niewielki kościółek. Kilka prostych ław. Na końcu stoi niewielki ołtarz poświęcony lokalnemu Bogu.</p><button id='close' class='bckgRed fontSize12em width15 boldText medievalText whiteTextShadow11 paddingUpDown1 marginTop4'>zamknij</button>");
   $("#close").on("click", ()=>{ $("#description").empty(); });
 });
+}
+
+module.exports.enterTavern = function(){
+  $("#mainPart").empty();
+  $("#monk, #lookAtVillage, #tavern").hide();
+  $("#lookAtTavern, #blackboard, #outTavern").show();
+  $("#blackboard, #outTavern").addClass("basicBtn bckgGreen medievalText marginTop4 shadowForBtn");
+  $("#lookAtTavern").addClass("basicBtn bckgBlue medievalText marginTop4 shadowForBtn fontSize09em paddingUpDown1");
+
+$("#mainPart").html(`<div class='basicText medievalText'>W karczmie jest dość przyjemnie. W powietrzu utrzymuje się zapach pieczonego mięsa. Kilku wieśniaków siedzi i popija z gąsiora. W kącie pomieszczenia siedzi niewielka trupa aktorska. Na ścianie obok kontuaru właściciela karczma jest tablica z ogłoszeniami. Co robisz?</div><div id='description'></div>`);
+
+  $("#lookAtTavern").on("click", ()=>{
+    $("#description").html("<p class='basicText medievalText'>Typowa karczma, w której można zjeść, wypić czy wynająć pokój.</p><button id='close' class='bckgRed fontSize12em width15 boldText medievalText whiteTextShadow11 paddingUpDown1 marginTop4'>zamknij</button>");
+    $("#close").on("click", ()=>{ $("#description").empty(); });
+  });
+
+  $("#blackboard").on("click", ()=>{
+    $("#description").html("<p class='basicText medievalText'>Podchodzisz do tablicy. Wiszą na nie trzy ogłoszenia. Dwa z nich to polowanie. Na zmutowanego pasikonika oraz na wściekłego wilka. Trzecie ogłoszenie jest w sprawie rozwiązania konfliktu z trolem, który blokuje most.<p class='flexForBtns marginTop4'><button id='task1' class='basicBtn bckgGreen medievalText marginTop4 shadowForBtn width24'>pasikonik</button><button id='task2' class='basicBtn bckgGreen medievalText marginTop4 shadowForBtn width24'>wilk</button><button id='task3' class='basicBtn bckgGreen medievalText marginTop4 shadowForBtn width24'>troll</button></p></p><button id='close' class='bckgRed fontSize12em width15 boldText medievalText whiteTextShadow11 paddingUpDown1 marginTop4'>zamknij</button>");
+    $("#close").on("click", ()=>{ $("#description").empty(); });
+
+//zdarzenia dla podjęcia się pracy
+    $("#task1").on("click", ()=>{ $("#task1").remove(); heroCreator.tasks.push(" ubij pasikonika"); });
+    $("#task2").on("click", ()=>{ $("#task2").remove(); heroCreator.tasks.push(" ubij wilka"); });
+    $("#task3").on("click", ()=>{ $("#task3").remove(); heroCreator.tasks.push(" rozwiąż konflikt z trolem"); });
+  });
 
 }

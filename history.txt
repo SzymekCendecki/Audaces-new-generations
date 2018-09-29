@@ -511,3 +511,7 @@ Dodany został paragraf, w którym paczka jest oddawana mnichowi.
 Poprawka wyświetlania tekstu przybycia do wioski.
 	Dodano możliwość wchodzenia i wychodzenia do kościoła/mnicha.
 Dodano tekt dla rozglądania się po kościele, w wiosce.
+
+29 sierpnia 2018 - wersja 0.6.92
+Poprawka wyświetlania zadania - gdy odda się paczkę mnichowi.
+	Rozpoczęcie pracy z interakcją dla karczmy - do zrobienia jeszcze relacja pomiędzy wybranym zleceniem a pojawieniem się przycisku do wybierania go.

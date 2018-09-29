@@ -2003,7 +2003,11 @@ module.exports.intro = function () {
     functions.newElement("button", "outDoor", "wyjdź", $("#mainBtns"));
     functions.newElement("button", "lookAtChurch", "rozejrzyj się", $("#interactionsBtns"));
     functions.newElement("button", "give", "oddaj paczkę", $("#interactionsBtns"));
-    $("#enterVillage, #outVillageLookAround, #monk, #tavern, #lookAtVillage, #outDoor, #lookAtChurch, #give").hide();
+    functions.newElement("button", "lookAtTavern", "rozejrzyj się", $("#interactionsBtns"));
+    functions.newElement("button", "blackboard", "tablica", $("#interactionsBtns"));
+    functions.newElement("button", "outTavern", "wyjdź", $("#mainBtns"));
+
+    $("#enterVillage, #outVillageLookAround, #monk, #tavern, #lookAtVillage, #outDoor, #lookAtChurch, #give, #lookAtTavern, #blackboard, #outTavern").hide();
 
     //główny tekst opisowy dla paragrafu - pokój - paragraf pierwszy
     room.textRoom();
@@ -2112,7 +2116,19 @@ module.exports.intro = function () {
         $("#outDoor, #lookAtChurch, #give").hide();
         $("#lookAtVillage, #monk, #tavern").show();
         $("#outVillageLookAround").addClass("bckgBlue medievalText marginTop4 shadowForBtn fontSize09em whiteTextShadow11 paddingUpDown1 boldText");
+        village.enterVillage();
+      });
 
+      //wejście do karczmy
+      $("#tavern").on("click", function () {
+        village.enterTavern();
+      });
+
+      //wyjście z karczmy
+      $("#outTavern").on("click", function () {
+        $("#blackboard, #lookAtTavern, #outTavern").hide();
+        $("#lookAtVillage, #monk, #tavern").show();
+        $("#outVillageLookAround").addClass("bckgBlue medievalText marginTop4 shadowForBtn fontSize09em whiteTextShadow11 paddingUpDown1 boldText");
         village.enterVillage();
       });
     });
@@ -2378,12 +2394,51 @@ module.exports.talkMonk = function () {
         $("#noGold").remove();
       }, 5000);
     }
+
+    if (heroCreator.tasks.indexOf('zanieś paczkę mnichowi') !== -1) {
+      heroCreator.tasks.splice(heroCreator.tasks.indexOf('zanieś paczkę mnichowi'), 1);
+    }
   });
 
   $("#lookAtChurch").on("click", function () {
     $("#description").html("<p class='basicText medievalText'>Jest to niewielki kościółek. Kilka prostych ław. Na końcu stoi niewielki ołtarz poświęcony lokalnemu Bogu.</p><button id='close' class='bckgRed fontSize12em width15 boldText medievalText whiteTextShadow11 paddingUpDown1 marginTop4'>zamknij</button>");
     $("#close").on("click", function () {
       $("#description").empty();
+    });
+  });
+};
+
+module.exports.enterTavern = function () {
+  $("#mainPart").empty();
+  $("#monk, #lookAtVillage, #tavern").hide();
+  $("#lookAtTavern, #blackboard, #outTavern").show();
+  $("#blackboard, #outTavern").addClass("basicBtn bckgGreen medievalText marginTop4 shadowForBtn");
+  $("#lookAtTavern").addClass("basicBtn bckgBlue medievalText marginTop4 shadowForBtn fontSize09em paddingUpDown1");
+
+  $("#mainPart").html("<div class='basicText medievalText'>W karczmie jest do\u015B\u0107 przyjemnie. W powietrzu utrzymuje si\u0119 zapach pieczonego mi\u0119sa. Kilku wie\u015Bniak\xF3w siedzi i popija z g\u0105siora. W k\u0105cie pomieszczenia siedzi niewielka trupa aktorska. Na \u015Bcianie obok kontuaru w\u0142a\u015Bciciela karczma jest tablica z og\u0142oszeniami. Co robisz?</div><div id='description'></div>");
+
+  $("#lookAtTavern").on("click", function () {
+    $("#description").html("<p class='basicText medievalText'>Typowa karczma, w której można zjeść, wypić czy wynająć pokój.</p><button id='close' class='bckgRed fontSize12em width15 boldText medievalText whiteTextShadow11 paddingUpDown1 marginTop4'>zamknij</button>");
+    $("#close").on("click", function () {
+      $("#description").empty();
+    });
+  });
+
+  $("#blackboard").on("click", function () {
+    $("#description").html("<p class='basicText medievalText'>Podchodzisz do tablicy. Wiszą na nie trzy ogłoszenia. Dwa z nich to polowanie. Na zmutowanego pasikonika oraz na wściekłego wilka. Trzecie ogłoszenie jest w sprawie rozwiązania konfliktu z trolem, który blokuje most.<p class='flexForBtns marginTop4'><button id='task1' class='basicBtn bckgGreen medievalText marginTop4 shadowForBtn width24'>pasikonik</button><button id='task2' class='basicBtn bckgGreen medievalText marginTop4 shadowForBtn width24'>wilk</button><button id='task3' class='basicBtn bckgGreen medievalText marginTop4 shadowForBtn width24'>troll</button></p></p><button id='close' class='bckgRed fontSize12em width15 boldText medievalText whiteTextShadow11 paddingUpDown1 marginTop4'>zamknij</button>");
+    $("#close").on("click", function () {
+      $("#description").empty();
+    });
+
+    //zdarzenia dla podjęcia się pracy
+    $("#task1").on("click", function () {
+      $("#task1").remove();heroCreator.tasks.push(" ubij pasikonika");
+    });
+    $("#task2").on("click", function () {
+      $("#task2").remove();heroCreator.tasks.push(" ubij wilka");
+    });
+    $("#task3").on("click", function () {
+      $("#task3").remove();heroCreator.tasks.push(" rozwiąż konflikt z trolem");
     });
   });
 };

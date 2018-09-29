@@ -112,7 +112,11 @@ functions.newElement("button", "lookAtVillage", "rozejrzyj się", $("#interactio
 functions.newElement("button", "outDoor", "wyjdź", $("#mainBtns"));
 functions.newElement("button", "lookAtChurch", "rozejrzyj się", $("#interactionsBtns"));
 functions.newElement("button", "give", "oddaj paczkę", $("#interactionsBtns"));
-$("#enterVillage, #outVillageLookAround, #monk, #tavern, #lookAtVillage, #outDoor, #lookAtChurch, #give").hide();
+functions.newElement("button", "lookAtTavern", "rozejrzyj się", $("#interactionsBtns"));
+functions.newElement("button", "blackboard", "tablica", $("#interactionsBtns"));
+functions.newElement("button", "outTavern", "wyjdź", $("#mainBtns"));
+
+$("#enterVillage, #outVillageLookAround, #monk, #tavern, #lookAtVillage, #outDoor, #lookAtChurch, #give, #lookAtTavern, #blackboard, #outTavern").hide();
 
   //główny tekst opisowy dla paragrafu - pokój - paragraf pierwszy
     room.textRoom();
@@ -179,16 +183,26 @@ $("#outDoor").on("click", ()=>{
   $("#outDoor, #lookAtChurch, #give").hide();
   $("#lookAtVillage, #monk, #tavern").show();
   $("#outVillageLookAround").addClass("bckgBlue medievalText marginTop4 shadowForBtn fontSize09em whiteTextShadow11 paddingUpDown1 boldText");
-
   village.enterVillage();
+});
 
+//wejście do karczmy
+$("#tavern").on("click", ()=>{ village.enterTavern(); });
+
+//wyjście z karczmy
+$("#outTavern").on("click", ()=>{
+  $("#blackboard, #lookAtTavern, #outTavern").hide();
+  $("#lookAtVillage, #monk, #tavern").show();
+  $("#outVillageLookAround").addClass("bckgBlue medievalText marginTop4 shadowForBtn fontSize09em whiteTextShadow11 paddingUpDown1 boldText");
+  village.enterVillage();
 });
 
 
 
-});
 
+
+
+
+});
   }, 30000);
-
-
 }
