@@ -86,8 +86,54 @@ $("#mainPart").html(`<div class='basicText medievalText'>W karczmie jest dość 
     $("#close").on("click", ()=>{ $("#description").empty(); });
   });
 
+  let text = ["", "", ""];
+
   $("#blackboard").on("click", ()=>{
-    $("#description").html("<p class='basicText medievalText'>Podchodzisz do tablicy. Wiszą na nie trzy ogłoszenia. Dwa z nich to polowanie. Na zmutowanego pasikonika oraz na wściekłego wilka. Trzecie ogłoszenie jest w sprawie rozwiązania konfliktu z trolem, który blokuje most.<p class='flexForBtns marginTop4'><button id='task1' class='basicBtn bckgGreen medievalText marginTop4 shadowForBtn width24'>pasikonik</button><button id='task2' class='basicBtn bckgGreen medievalText marginTop4 shadowForBtn width24'>wilk</button><button id='task3' class='basicBtn bckgGreen medievalText marginTop4 shadowForBtn width24'>troll</button></p></p><button id='close' class='bckgRed fontSize12em width15 boldText medievalText whiteTextShadow11 paddingUpDown1 marginTop4'>zamknij</button>");
+      if(heroCreator.tasks.indexOf(" ubij pasikonika") !== -1 && heroCreator.tasks.indexOf(" ubij wilka") !== -1 && heroCreator.tasks.indexOf(" rozwiąż konflikt z trolem") !== -1){
+        text.splice(0, 1, "");
+        text.splice(1, 1, "");
+        text.splice(2, 1, "");
+        text.splice(3, 1, "Brak ogłoszeń.");
+      }else if(heroCreator.tasks.indexOf(" ubij pasikonika") !== -1){
+        text.splice(0, 1, "");
+        text.splice(1, 1, "<button id='task2' class='basicBtn medievalText width24 bckgGreen'>wilk</button>");
+        text.splice(2, 1, "<button id='task3' class='basicBtn medievalText width24 bckgGreen'>trol</button>");
+        text.splice(3, 1, "Wiszą na niej ogłoszenia.");
+      }else if(heroCreator.tasks.indexOf(" ubij wilka") !== -1){
+        text.splice(0, 1, "<button id='task1' class='basicBtn medievalText width24 bckgGreen'>pasikonik</button>");
+        text.splice(1, 1, "");
+        text.splice(2, 1, "<button id='task3' class='basicBtn medievalText width24 bckgGreen'>trol</button>");
+        text.splice(3, 1, "Wiszą na niej ogłoszenia.");
+      }else if(heroCreator.tasks.indexOf(" rozwiąż konflikt z trolem") !== -1){
+        text.splice(0, 1, "<button id='task1' class='basicBtn medievalText width24 bckgGreen'>pasikonik</button>");
+        text.splice(1, 1, "<button id='task2' class='basicBtn medievalText width24 bckgGreen'>wilk</button>");
+        text.splice(2, 1, "");
+        text.splice(3, 1, "Wiszą na niej ogłoszenia.");
+      }else if(heroCreator.tasks.indexOf(" ubij pasikonika") !== -1 && heroCreator.tasks.indexOf(" ubij wilka") !== -1){
+        text.splice(0, 1, "");
+        text.splice(1, 1, "");
+        text.splice(2, 1, "<button id='task3' class='basicBtn medievalText width24 bckgGreen'>trol</button>");
+        text.splice(3, 1, "Wiszą na niej ogłoszenia.");
+      }else if(heroCreator.tasks.indexOf(" ubij pasikonika") !== -1 && heroCreator.tasks.indexOf(" rozwiąż konflikt z trolem") !== -1){
+        text.splice(0, 1, "");
+        text.splice(1, 1, "<button id='task2' class='basicBtn medievalText width24 bckgGreen'>wilk</button>");
+        text.splice(2, 1, "");
+        text.splice(3, 1, "Wiszą na niej ogłoszenia.");
+      }else if(heroCreator.tasks.indexOf(" ubij wilka") !== -1 && heroCreator.tasks.indexOf(" rozwiąż konflikt z trolem") !== -1){
+        text.splice(0, 1, "<button id='task1' class='basicBtn medievalText width24 bckgGreen'>pasikonik</button>");
+        text.splice(1, 1, "");
+        text.splice(2, 1, "");
+        text.splice(3, 1, "Wiszą na niej ogłoszenia.");
+      }else{
+        text.splice(0, 1, "<button id='task1' class='basicBtn medievalText width24 bckgGreen'>pasikonik</button>");
+        text.splice(1, 1, "<button id='task2' class='basicBtn medievalText width24 bckgGreen'>wilk</button>");
+        text.splice(2, 1, "<button id='task3' class='basicBtn medievalText width24 bckgGreen'>trol</button>");
+        text.splice(3, 1, "Wiszą na niej ogłoszenia.");
+      }
+
+
+
+    $("#description").html(`<p class='basicText medievalText'>Podchodzisz do tablicy. ${text[3]} <p id='taskBtn' class='flexForBtns marginTop4'>${text[0]} ${text[1]} ${text[2]}</p></p><button id='close' class='bckgRed fontSize12em width15 boldText medievalText whiteTextShadow11 paddingUpDown1 marginTop4'>zamknij</button>`);
     $("#close").on("click", ()=>{ $("#description").empty(); });
 
 //zdarzenia dla podjęcia się pracy
