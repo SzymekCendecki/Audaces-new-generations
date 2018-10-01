@@ -8,6 +8,9 @@ let market = require("./market.js");
 let caravans = require("./caravans.js");
 let defenseCaravans = require("./defenseCaravans");
 let village = require("./village.js");
+let grasshopper = require("./grasshopper.js");
+let wolf = require("./wolf.js");
+let troll = require("./troll.js");
 
 let text1 = "Mówią, że Dzikie Pustkowia to kraina opuszczona przez Bogów.";
 
@@ -118,6 +121,13 @@ functions.newElement("button", "outTavern", "wyjdź", $("#mainBtns"));
 
 $("#enterVillage, #outVillageLookAround, #monk, #tavern, #lookAtVillage, #outDoor, #lookAtChurch, #give, #lookAtTavern, #blackboard, #outTavern").hide();
 
+//przyciski do zadań
+functions.newElement("button", "goTask1", "pasikonik", $("#mainBtns"));
+functions.newElement("button", "goTask2", "wilk", $("#mainBtns"));
+functions.newElement("button", "goTask3", "troll", $("#mainBtns"));
+
+$("#goTask1, #goTask2, #goTask3").hide();
+
   //główny tekst opisowy dla paragrafu - pokój - paragraf pierwszy
     room.textRoom();
 
@@ -197,10 +207,17 @@ $("#outTavern").on("click", ()=>{
   village.enterVillage();
 });
 
+$("#goTask1").on("click", ()=>{
+  grasshopper.toGrasshopper();
+});
 
+$("#goTask2").on("click", ()=>{
+  wolf.toWolf();
+});
 
-
-
+$("#goTask3").on("click", ()=>{
+    troll.toTroll();
+});
 
 
 });

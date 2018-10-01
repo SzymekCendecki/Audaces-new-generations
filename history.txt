@@ -518,3 +518,6 @@ Poprawka wyświetlania zadania - gdy odda się paczkę mnichowi.
 
 30 sierpnia 2018 - wersja 0.6.93
 Poprawka wyświetlania ogłoszeń z pracą - do doszlifowania.
+
+1 października 2018 - werja 0.6.94
+Rozpoczęto pracę nad zadaniami (pasikonik, wilk i troll).

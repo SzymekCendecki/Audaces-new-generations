@@ -1899,6 +1899,9 @@ var market = __webpack_require__(10);
 var caravans = __webpack_require__(11);
 var defenseCaravans = __webpack_require__(3);
 var village = __webpack_require__(12);
+var grasshopper = __webpack_require__(14);
+var wolf = __webpack_require__(15);
+var troll = __webpack_require__(16);
 
 var text1 = "Mówią, że Dzikie Pustkowia to kraina opuszczona przez Bogów.";
 
@@ -2008,6 +2011,13 @@ module.exports.intro = function () {
     functions.newElement("button", "outTavern", "wyjdź", $("#mainBtns"));
 
     $("#enterVillage, #outVillageLookAround, #monk, #tavern, #lookAtVillage, #outDoor, #lookAtChurch, #give, #lookAtTavern, #blackboard, #outTavern").hide();
+
+    //przyciski do zadań
+    functions.newElement("button", "goTask1", "pasikonik", $("#mainBtns"));
+    functions.newElement("button", "goTask2", "wilk", $("#mainBtns"));
+    functions.newElement("button", "goTask3", "troll", $("#mainBtns"));
+
+    $("#goTask1, #goTask2, #goTask3").hide();
 
     //główny tekst opisowy dla paragrafu - pokój - paragraf pierwszy
     room.textRoom();
@@ -2130,6 +2140,18 @@ module.exports.intro = function () {
         $("#lookAtVillage, #monk, #tavern").show();
         $("#outVillageLookAround").addClass("bckgBlue medievalText marginTop4 shadowForBtn fontSize09em whiteTextShadow11 paddingUpDown1 boldText");
         village.enterVillage();
+      });
+
+      $("#goTask1").on("click", function () {
+        grasshopper.toGrasshopper();
+      });
+
+      $("#goTask2").on("click", function () {
+        wolf.toWolf();
+      });
+
+      $("#goTask3").on("click", function () {
+        troll.toTroll();
       });
     });
   }, 30000);
@@ -2476,13 +2498,20 @@ module.exports.enterTavern = function () {
 
     //zdarzenia dla podjęcia się pracy
     $("#task1").on("click", function () {
-      $("#task1").remove();heroCreator.tasks.push(" ubij pasikonika");
+      $("#task1").remove();
+      heroCreator.tasks.push(" ubij pasikonika");
+      $("#goTask1").show().addClass("basicBtn bckgGreen medievalText marginTop4 shadowForBtn");
     });
+
     $("#task2").on("click", function () {
-      $("#task2").remove();heroCreator.tasks.push(" ubij wilka");
+      $("#task2").remove();
+      heroCreator.tasks.push(" ubij wilka");
+      $("#goTask2").show().addClass("basicBtn bckgGreen medievalText marginTop4 shadowForBtn");
     });
     $("#task3").on("click", function () {
-      $("#task3").remove();heroCreator.tasks.push(" rozwiąż konflikt z trolem");
+      $("#task3").remove();
+      heroCreator.tasks.push(" rozwiąż konflikt z trolem");
+      $("#goTask3").show().addClass("basicBtn bckgGreen medievalText marginTop4 shadowForBtn");
     });
   });
 };
@@ -2509,6 +2538,78 @@ module.exports.text6 = "Twoja historia zaczyna się w mieście Erharuf.";
 module.exports.text7 = " W ostatnim bezpiecznym mieście przed Dzikimi Pustkowiami.";
 
 module.exports.text8 = "Na usilną prośbę znajomego kapłana zgadzasz się dostarczyć małą paczkę dla tamtejszego mnicha, rezydującego w niewielkiej wiosce, która leży tuż przy granicy z Dzikimi Pustkowiami.";
+
+/***/ }),
+/* 14 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+var heroCreator = __webpack_require__(1);
+var room = __webpack_require__(4);
+
+module.exports.toGrasshopper = function () {
+  if (heroCreator.equip.indexOf("paczka") !== -1) {
+    $("#description").html("<p class='basicText medievalText'>Oddaj najpierw paczkę !!!!.</p><button id='close' class='bckgRed fontSize12em width15 boldText medievalText whiteTextShadow11 paddingUpDown1 marginTop4'>zamknij</button>");
+
+    $("#close").on("click", function () {
+      $("#description").empty();
+    });
+  } else {
+    $("#mainBtns button").hide();
+    $("#interactionsBtns button").hide();
+    $("#goTask2, #goTask3").show();
+  }
+};
+
+/***/ }),
+/* 15 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+var heroCreator = __webpack_require__(1);
+var room = __webpack_require__(4);
+
+module.exports.toWolf = function () {
+  if (heroCreator.equip.indexOf("paczka") !== -1) {
+    $("#description").html("<p class='basicText medievalText'>Oddaj najpierw paczkę !!!!.</p><button id='close' class='bckgRed fontSize12em width15 boldText medievalText whiteTextShadow11 paddingUpDown1 marginTop4'>zamknij</button>");
+
+    $("#close").on("click", function () {
+      $("#description").empty();
+    });
+  } else {
+    $("#mainBtns button").hide();
+    $("#interactionsBtns button").hide();
+    $("#goTask1, #goTask3").show();
+  }
+};
+
+/***/ }),
+/* 16 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+var heroCreator = __webpack_require__(1);
+var room = __webpack_require__(4);
+
+module.exports.toTroll = function () {
+  if (heroCreator.equip.indexOf("paczka") !== -1) {
+    $("#description").html("<p class='basicText medievalText'>Oddaj najpierw paczkę !!!!.</p><button id='close' class='bckgRed fontSize12em width15 boldText medievalText whiteTextShadow11 paddingUpDown1 marginTop4'>zamknij</button>");
+
+    $("#close").on("click", function () {
+      $("#description").empty();
+    });
+  } else {
+    $("#mainBtns button").hide();
+    $("#interactionsBtns button").hide();
+    $("#goTask1, #goTask2").show();
+  }
+};
 
 /***/ })
 /******/ ]);
