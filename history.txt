@@ -521,3 +521,6 @@ Poprawka wyświetlania ogłoszeń z pracą - do doszlifowania.
 
 1 października 2018 - werja 0.6.94
 Rozpoczęto pracę nad zadaniami (pasikonik, wilk i troll).
+
+2 października 2018 - wersja 0.6.95
+Dodano paragraf dla zadania z pasikonikiem.
