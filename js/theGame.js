@@ -45,42 +45,42 @@ module.exports.powerHero = function(){
 allPoints.splice(0, 1, suma);
 
 //suma punktów z wybranego ekwipunku
-  let sumaEquip = [];
+  let sumaEquip = [0];
 
   //tablica dla posiadanych umiejętnościach
-  let activeSkills = [];
+  let activeSkills = [0];
 
 //tablica dla punktów bojowych wynikających z umiejętności
-let pointsSkills = [];
+let pointsSkills = [0];
 
 //filtrowanie ekqwipunu oraz przypisanie do rzeczy wartości punktowych
   let equipPoints = defenseCaravans.fightWeapon.filter(function(el){
       if(el == "sztylet" || el == "proca" || el == "przeszywanica" || el == "puklerz" || el == "kostur"){
-        sumaEquip.push(5);
+        sumaEquip.splice(0, 1, 5);
 
         if(heroCreator.skills.indexOf(el) !== -1){
-            pointsSkills.push(5);
+            pointsSkills.splice(0, 1, 5);
             activeSkills.push(el);
           }
       }else if(el == "krótki miecz" || el == "drewniana pałka" || el == "łuk" || el == "zbroja skórzana" || el == "zbroja ćwiekowana" || el == "mała tarcza drewniana" || el == "mała tarcza drewniana"){
           sumaEquip.push(10);
 
           if(heroCreator.skills.indexOf(el) !== -1){
-            pointsSkills.push(10);
+            pointsSkills.splice(0, 1, 10);
             activeSkills.push(el);
           }
       }else if(el == "szabla" || el == "włócznia"){
-          sumaEquip.push(15);
+          sumaEquip.splice(0, 1, 15);
 
           if(heroCreator.skills.indexOf(el) !== -1){
-            pointsSkills.push(15);
+            pointsSkills.splice(0, 1, 15);
             activeSkills.push(el);
         }
       }else if(el == "mieszek" || el == "torba podróżna" || el == "sakwa" || el == "plecak" || el == "manierka" || el == "sagan" || el == "koc" || el == "tuba na perg." || el == "pęk piór do pis." || el == "pergaminy 5szt." || el == "zwykłe ubranie" || el == "fikuśna czapka" || el == "płaszcz" || el == "skórzany płaszcz" || el == "igły i nici" || el == "derka" || el == "namiot" || el == "drewniana miska" || el == "drewniana łyżka" || el == "pochodnia" || el == "lampa oliwna" || el == "kaganek" || el == "lina 5m" || el == "hubka i krzesiwo"){
         sumaEquip.push(-10);
 
         if(heroCreator.skills.indexOf(el) !== -1){
-          pointsSkills.push(-10);
+          pointsSkills.splice(0, 1, -10);
           activeSkills.push(el);
         }
       }

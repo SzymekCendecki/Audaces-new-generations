@@ -136,18 +136,15 @@ $("#mainPart").html(`<div class='basicText medievalText'>W karczmie jest dość 
 
 //zdarzenia dla podjęcia się pracy
     $("#task1").on("click", ()=>{
-      $("#task1").remove();
       heroCreator.tasks.push(" ubij pasikonika");
       $("#goTask1").show().addClass("basicBtn bckgGreen medievalText marginTop4 shadowForBtn");
     });
 
     $("#task2").on("click", ()=>{
-      $("#task2").remove();
       heroCreator.tasks.push(" ubij wilka");
       $("#goTask2").show().addClass("basicBtn bckgGreen medievalText marginTop4 shadowForBtn");
     });
     $("#task3").on("click", ()=>{
-      $("#task3").remove();
       heroCreator.tasks.push(" rozwiąż konflikt z trolem");
       $("#goTask3").show().addClass("basicBtn bckgGreen medievalText marginTop4 shadowForBtn");
     });

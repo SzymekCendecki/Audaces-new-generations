@@ -1462,42 +1462,42 @@ module.exports.powerHero = function () {
   allPoints.splice(0, 1, suma);
 
   //suma punktów z wybranego ekwipunku
-  var sumaEquip = [];
+  var sumaEquip = [0];
 
   //tablica dla posiadanych umiejętnościach
-  var activeSkills = [];
+  var activeSkills = [0];
 
   //tablica dla punktów bojowych wynikających z umiejętności
-  var pointsSkills = [];
+  var pointsSkills = [0];
 
   //filtrowanie ekqwipunu oraz przypisanie do rzeczy wartości punktowych
   var equipPoints = defenseCaravans.fightWeapon.filter(function (el) {
     if (el == "sztylet" || el == "proca" || el == "przeszywanica" || el == "puklerz" || el == "kostur") {
-      sumaEquip.push(5);
+      sumaEquip.splice(0, 1, 5);
 
       if (heroCreator.skills.indexOf(el) !== -1) {
-        pointsSkills.push(5);
+        pointsSkills.splice(0, 1, 5);
         activeSkills.push(el);
       }
     } else if (el == "krótki miecz" || el == "drewniana pałka" || el == "łuk" || el == "zbroja skórzana" || el == "zbroja ćwiekowana" || el == "mała tarcza drewniana" || el == "mała tarcza drewniana") {
       sumaEquip.push(10);
 
       if (heroCreator.skills.indexOf(el) !== -1) {
-        pointsSkills.push(10);
+        pointsSkills.splice(0, 1, 10);
         activeSkills.push(el);
       }
     } else if (el == "szabla" || el == "włócznia") {
-      sumaEquip.push(15);
+      sumaEquip.splice(0, 1, 15);
 
       if (heroCreator.skills.indexOf(el) !== -1) {
-        pointsSkills.push(15);
+        pointsSkills.splice(0, 1, 15);
         activeSkills.push(el);
       }
     } else if (el == "mieszek" || el == "torba podróżna" || el == "sakwa" || el == "plecak" || el == "manierka" || el == "sagan" || el == "koc" || el == "tuba na perg." || el == "pęk piór do pis." || el == "pergaminy 5szt." || el == "zwykłe ubranie" || el == "fikuśna czapka" || el == "płaszcz" || el == "skórzany płaszcz" || el == "igły i nici" || el == "derka" || el == "namiot" || el == "drewniana miska" || el == "drewniana łyżka" || el == "pochodnia" || el == "lampa oliwna" || el == "kaganek" || el == "lina 5m" || el == "hubka i krzesiwo") {
       sumaEquip.push(-10);
 
       if (heroCreator.skills.indexOf(el) !== -1) {
-        pointsSkills.push(-10);
+        pointsSkills.splice(0, 1, -10);
         activeSkills.push(el);
       }
     }
@@ -1661,42 +1661,29 @@ module.exports.textCaravans = function () {
       });
       //zakończenie wybierania stylu WALKI
       $("#finish").on("click", function () {
-
+        theGame.powerHero();
+        $("#features, #equip, #skills, #tasks").prop("disabled", false);
+        $("#info").hide();
         $("#toVillage").removeClass("bckgRed").addClass("bckgGreen").prop("disabled", false);
 
         $("#prepare").hide();
 
         //wyliczanie trafienia dla gracza i przeciwnika
-        var hitting = theGame.a / 10;
-        var hitting1 = theGame.a / 5 / 2;
+        var hitting = theGame.a;
+        var hitting1 = theGame.a / 2;
 
         //losowanie czy gracz trafił
-        var randomHit = Math.round(Math.random() * 50);
-        var randomHit1 = Math.round(Math.random() * 50);
-        var randomHit2 = Math.round(Math.random() * 50);
 
         var hits = [];
 
-        if (randomHit < hitting) {
+        if (hitting1 < hitting) {
           hits.splice(0, 1, " trafiony");
         } else {
           hits.splice(0, 1, " nie trafiony");
         }
 
-        if (randomHit1 < hitting) {
-          hits.splice(1, 1, " trafiony");
-        } else {
-          hits.splice(1, 1, " nie trafiony");
-        }
-
-        if (randomHit2 < hitting) {
-          hits.splice(2, 1, " trafiony");
-        } else {
-          hits.splice(2, 1, " nie trafiony");
-        }
-
         $("#description").empty();
-        $("#description").html("<div class='width75 flexForBtns medievalText greenText boldText fontSize1em marginTop4'><p class='width100 textUnderlineGold medievalText center paddingUpDown1 fontSize13em'>WALKA</p><p class='width100 center'><span class='blackText boldText fontSize12em textUnderlineGold'>Twoje trafienie</span></p><p class='width100 center'><span class='blackText boldText fontSize12em'><span class='navyText'> " + hitting + " </span></span></p><p class='width100 center'><span class='blackText boldText fontSize12em'><span id='result' class='navyText'> " + hits + "</span></span></p><p class='width100 center'><span class='blackText boldText fontSize12em textUnderlineGold'>Trafienie przeciwnika </span></p><p class='width100 center'><span class='blackText boldText fontSize12em'><span class='navyText'> " + hitting1 + " </span></span></p><p class='width100 center'><span class='blackText boldText fontSize12em'><span id='result' class='navyText'>nie trafiony, nie trafiony, nie trafiony</span></span></p></div>");
+        $("#description").html("<div class='width75 flexForBtns medievalText greenText boldText fontSize1em marginTop4'><p class='width100 textUnderlineGold medievalText center paddingUpDown1 fontSize13em'>WALKA</p><p class='width100 center'><span class='blackText boldText fontSize12em textUnderlineGold'>Twoje trafienie</span></p><p class='width100 center'><span class='blackText boldText fontSize12em'><span class='navyText'> " + hitting + " </span></span></p><p class='width100 center'><span class='blackText boldText fontSize12em'><span id='result' class='navyText'> " + hits + "</span></span></p><p class='width100 center'><span class='blackText boldText fontSize12em textUnderlineGold'>Trafienie przeciwnika </span></p><p class='width100 center'><span class='blackText boldText fontSize12em'><span class='navyText'> " + hitting1 + " </span></span></p><p class='width100 center'><span class='blackText boldText fontSize12em'><span id='result' class='navyText'>nie trafiony</span></span></p></div>");
 
         $("#toVillage").on("click", function () {
           $("#toVillage").hide();
@@ -1725,10 +1712,10 @@ module.exports.textCaravans = function () {
 
           //dodanie punktów do cech
           heroCreator.hero.splice(4, 1, heroCreator.hero[4] + 5);
-          heroCreator.hero.splice(4, 1, heroCreator.hero[5] + 5);
-          heroCreator.hero.splice(4, 1, heroCreator.hero[6] + 5);
-          heroCreator.hero.splice(4, 1, heroCreator.hero[7] + 5);
-          heroCreator.hero.splice(4, 1, heroCreator.hero[8] + 5);
+          heroCreator.hero.splice(5, 1, heroCreator.hero[5] + 5);
+          heroCreator.hero.splice(6, 1, heroCreator.hero[6] + 5);
+          heroCreator.hero.splice(7, 1, heroCreator.hero[7] + 5);
+          heroCreator.hero.splice(8, 1, heroCreator.hero[8] + 5);
         });
       });
     });
@@ -2498,18 +2485,15 @@ module.exports.enterTavern = function () {
 
     //zdarzenia dla podjęcia się pracy
     $("#task1").on("click", function () {
-      $("#task1").remove();
       heroCreator.tasks.push(" ubij pasikonika");
       $("#goTask1").show().addClass("basicBtn bckgGreen medievalText marginTop4 shadowForBtn");
     });
 
     $("#task2").on("click", function () {
-      $("#task2").remove();
       heroCreator.tasks.push(" ubij wilka");
       $("#goTask2").show().addClass("basicBtn bckgGreen medievalText marginTop4 shadowForBtn");
     });
     $("#task3").on("click", function () {
-      $("#task3").remove();
       heroCreator.tasks.push(" rozwiąż konflikt z trolem");
       $("#goTask3").show().addClass("basicBtn bckgGreen medievalText marginTop4 shadowForBtn");
     });
@@ -2527,38 +2511,43 @@ var heroCreator = __webpack_require__(0);
 var room = __webpack_require__(2);
 
 module.exports.toGrasshopper = function () {
-  if (heroCreator.equip.indexOf("paczka") !== -1) {
-    $("#description").html("<p class='basicText medievalText'>Oddaj najpierw paczkę !!!!.</p><button id='close' class='bckgRed fontSize12em width15 boldText medievalText whiteTextShadow11 paddingUpDown1 marginTop4'>zamknij</button>");
+      if (heroCreator.equip.indexOf("paczka") !== -1) {
+            $("#description").html("<p class='basicText medievalText'>Oddaj najpierw paczkę !!!!.</p><button id='close' class='bckgRed fontSize12em width15 boldText medievalText whiteTextShadow11 paddingUpDown1 marginTop4'>zamknij</button>");
 
-    $("#close").on("click", function () {
-      $("#description").empty();
-    });
-  } else {
-    $("#mainBtns button").hide();
-    $("#interactionsBtns button").hide();
-    $("#goTask2, #goTask3").show();
+            $("#close").on("click", function () {
+                  $("#description").empty();
+            });
+      } else {
+            $("#mainBtns button").hide();
+            $("#interactionsBtns button").hide();
+            $("#goTask1, #goTask2, #goTask3").show();
 
-    var text = [];
+            $("#goTask1").prop("disabled", true);
 
-    //wyszkanie płci oraz przypisanie konkretnego słowa do zmiennej
-    if (heroCreator.hero[1] == "kobieta") {
-      text.splice(0, 1, "Doszłaś");
-      text.splice(1, 1, "niedostrzegłaś");
-      text.splice(2, 1, "Uznałaś");
-      text.splice(3, 1, "uszłyszałaś");
-      text.splice(4, 1, "Zaczęłaś");
-      text.splice(5, 1, "ujrzałaś");
-    } else if (heroCreator.hero[1] == "mężczyzna" || heroCreator.hero[1] == "nie wiadomo") {
-      text.splice(0, 1, "Doszedłeś");
-      text.splice(1, 1, "niedostrzegłeś");
-      text.splice(2, 1, "Uznałeś");
-      text.splice(3, 1, "uszłyszałeś");
-      text.splice(4, 1, "Zacząłeś");
-      text.splice(5, 1, "ujrzałeś");
-    }
+            var text = [];
 
-    $("#mainPart").html("<div class='basicText medievalText'>Idziesz na pola. Jest ciep\u0142o, \u0142any zb\xF3\u017C ko\u0142ysz\u0105 si\u0119 na wietrze. Jest spok\xF3j. Zastanawiasz si\u0119 czy ten polny stw\xF3r to nie majaki pijanych farmer\xF3w. Jednak dla \u015Bwi\u0119tego spokoju idziesz dalej i rozgl\u0105dasz si\u0119 po okolicy. " + text[0] + " prawie do ko\u0144ca p\xF3l. Niczego niepokoj\u0105cego " + text[1] + ". " + text[2] + ", \u017Ce trzeba si\u0119 zaj\u0105\u0107 nast\u0119pnym zadaniem. Wtem " + text[3] + " dziwne, suche trzaski. " + text[4] + " si\u0119 rozgl\u0105da\u0107 i " + text[5] + " jak z pobliskiego rowu zacz\u0105\u0142 wstawa\u0107 stw\xF3r, wielki jak dorodny baw\xF3\u0142. Przecierasz oczy ze zdumienia i nie wierzysz. Ten potw\xF3r wygl\u0105da jak gigantyczny PASIKONIK!!!!</div><div id='description'></div>");
-  }
+            //wyszkanie płci oraz przypisanie konkretnego słowa do zmiennej
+            if (heroCreator.hero[1] == "kobieta") {
+                  text.splice(0, 1, "Doszłaś");
+                  text.splice(1, 1, "niedostrzegłaś");
+                  text.splice(2, 1, "Uznałaś");
+                  text.splice(3, 1, "uszłyszałaś");
+                  text.splice(4, 1, "Zaczęłaś");
+                  text.splice(5, 1, "ujrzałaś");
+            } else if (heroCreator.hero[1] == "mężczyzna" || heroCreator.hero[1] == "nie wiadomo") {
+                  text.splice(0, 1, "Doszedłeś");
+                  text.splice(1, 1, "niedostrzegłeś");
+                  text.splice(2, 1, "Uznałeś");
+                  text.splice(3, 1, "uszłyszałeś");
+                  text.splice(4, 1, "Zacząłeś");
+                  text.splice(5, 1, "ujrzałeś");
+            }
+
+            $("#mainPart").html("<div class='basicText medievalText'>Idziesz na pola. Jest ciep\u0142o, \u0142any zb\xF3\u017C ko\u0142ysz\u0105 si\u0119 na wietrze. Jest spok\xF3j. Zastanawiasz si\u0119 czy ten polny stw\xF3r to nie majaki pijanych farmer\xF3w. Jednak dla \u015Bwi\u0119tego spokoju idziesz dalej i rozgl\u0105dasz si\u0119 po okolicy. " + text[0] + " prawie do ko\u0144ca p\xF3l. Niczego niepokoj\u0105cego " + text[1] + ". " + text[2] + ", \u017Ce trzeba si\u0119 zaj\u0105\u0107 nast\u0119pnym zadaniem. Wtem " + text[3] + " dziwne, suche trzaski. " + text[4] + " si\u0119 rozgl\u0105da\u0107 i " + text[5] + " jak z pobliskiego rowu zacz\u0105\u0142 wstawa\u0107 stw\xF3r, wielki jak dorodny baw\xF3\u0142. Przecierasz oczy ze zdumienia i nie wierzysz. Ten potw\xF3r wygl\u0105da jak gigantyczny PASIKONIK!!!!</div><div id='description'></div>");
+
+            $("#prepare").show();
+            $("#prepare").addClass("bckgGreen fontSize08em paddingUpDown1");
+      }
 };
 
 /***/ }),
@@ -2581,7 +2570,9 @@ module.exports.toWolf = function () {
   } else {
     $("#mainBtns button").hide();
     $("#interactionsBtns button").hide();
-    $("#goTask1, #goTask3").show();
+    $("#goTask1, #goTask2, #goTask3").show();
+
+    $("#goTask2").prop("disabled", true);
   }
 };
 
@@ -2605,7 +2596,9 @@ module.exports.toTroll = function () {
   } else {
     $("#mainBtns button").hide();
     $("#interactionsBtns button").hide();
-    $("#goTask1, #goTask2").show();
+    $("#goTask1, #goTask2, #goTask3").show();
+
+    $("#goTask3").prop("disabled", true);
   }
 };
 

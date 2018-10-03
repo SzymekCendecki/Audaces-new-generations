@@ -7,8 +7,11 @@ module.exports.toTroll = function(){
 
      $("#close").on("click", ()=>{ $("#description").empty();  });
    }else{
-      $("#mainBtns button").hide();
-      $("#interactionsBtns button").hide();
-      $("#goTask1, #goTask2").show();
+     $("#mainBtns button").hide();
+     $("#interactionsBtns button").hide();
+     $("#goTask1, #goTask2, #goTask3").show();
+
+     $("#goTask3").prop("disabled", true);
+
   }
 }

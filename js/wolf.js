@@ -7,8 +7,11 @@ module.exports.toWolf = function(){
 
      $("#close").on("click", ()=>{ $("#description").empty();  });
    }else{
-      $("#mainBtns button").hide();
-      $("#interactionsBtns button").hide();
-      $("#goTask1, #goTask3").show();
+     $("#mainBtns button").hide();
+     $("#interactionsBtns button").hide();
+     $("#goTask1, #goTask2, #goTask3").show();
+
+     $("#goTask2").prop("disabled", true);
+
   }
 }
