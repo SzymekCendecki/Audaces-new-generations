@@ -1,5 +1,6 @@
 let heroCreator = require("./heroCreator.js");
-let room = require("./room.js");
+let functions = require("./functions.js"); //podstawowe funkcje
+let theGame = require("./theGame.js");
 
 module.exports.toGrasshopper = function(){
    if(heroCreator.equip.indexOf("paczka") !== -1){
@@ -32,9 +33,16 @@ module.exports.toGrasshopper = function(){
         text.splice(5, 1, "ujrzałeś");
       }
 
+
+theGame.taskArray.splice(0, 1, 1);
       $("#mainPart").html(`<div class='basicText medievalText'>Idziesz na pola. Jest ciepło, łany zbóż kołyszą się na wietrze. Jest spokój. Zastanawiasz się czy ten polny stwór to nie majaki pijanych farmerów. Jednak dla świętego spokoju idziesz dalej i rozglądasz się po okolicy. ${text[0]} prawie do końca pól. Niczego niepokojącego ${text[1]}. ${text[2]}, że trzeba się zająć następnym zadaniem. Wtem ${text[3]} dziwne, suche trzaski. ${text[4]} się rozglądać i ${text[5]} jak z pobliskiego rowu zaczął wstawać stwór, wielki jak dorodny bawół. Przecierasz oczy ze zdumienia i nie wierzysz. Ten potwór wygląda jak gigantyczny PASIKONIK!!!!</div><div id='description'></div>`);
 
       $("#prepare").show();
       $("#prepare").addClass("bckgGreen fontSize08em paddingUpDown1");
+
+      if(theGame.taskArray[3] == 1){
+        $("#finishTask1").show();
+      }
+
   }
 }

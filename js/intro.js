@@ -128,6 +128,10 @@ functions.newElement("button", "goTask3", "troll", $("#mainBtns"));
 
 $("#goTask1, #goTask2, #goTask3").hide();
 
+//przycisk kończący zadanie pierwsze
+functions.newElement("button", "finishTask1", "zakończ", $("#interactionsBtns"));
+$("#finishTask1").hide();
+
   //główny tekst opisowy dla paragrafu - pokój - paragraf pierwszy
     room.textRoom();
 

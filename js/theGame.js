@@ -120,4 +120,7 @@ $("#removeEquip").on("click", ()=>{
 
   let a = suma + sumaPointEquip + sumaPointSkills;
   module.exports.a = a;
-  }
+}
+
+//tablica dla sprawdzania wykonania zadania. wartość 0 - niewykonane, 1 - w trakcie wykonania, 2 - wykonane, index 0 - pasikonik, 1 - wilk, 2 - troll, 3 - ilość kliknięcia w przycisk o id="finish" - zakończ wybieranie(ekwpipuny i stylu do walki)
+module.exports.taskArray = [0, 0, 0, 0];

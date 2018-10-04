@@ -131,20 +131,22 @@ $("#mainPart").html(`<div class='basicText medievalText'>W karczmie jest dość 
         text.splice(3, 1, "Wiszą na niej ogłoszenia.");
       }
 
-    $("#description").html(`<p class='basicText medievalText'>Podchodzisz do tablicy. ${text[3]} <p id='taskBtn' class='flexForBtns marginTop4'>${text[0]} ${text[1]} ${text[2]}</p></p><button id='close' class='bckgRed fontSize12em width15 boldText medievalText whiteTextShadow11 paddingUpDown1 marginTop4'>zamknij</button>`);
-    $("#close").on("click", ()=>{ $("#description").empty(); });
-
+    $("#description").html(`<p class='basicText medievalText'>Podchodzisz do tablicy. ${text[3]} <p id='taskBtn' class='flexForBtns marginTop4'>${text[0]} ${text[1]} ${text[2]}</p></p>`);
+  
 //zdarzenia dla podjęcia się pracy
     $("#task1").on("click", ()=>{
+      $("#task1").remove();
       heroCreator.tasks.push(" ubij pasikonika");
       $("#goTask1").show().addClass("basicBtn bckgGreen medievalText marginTop4 shadowForBtn");
     });
 
     $("#task2").on("click", ()=>{
+      $("#task2").remove();
       heroCreator.tasks.push(" ubij wilka");
       $("#goTask2").show().addClass("basicBtn bckgGreen medievalText marginTop4 shadowForBtn");
     });
     $("#task3").on("click", ()=>{
+      $("#task3").remove();
       heroCreator.tasks.push(" rozwiąż konflikt z trolem");
       $("#goTask3").show().addClass("basicBtn bckgGreen medievalText marginTop4 shadowForBtn");
     });

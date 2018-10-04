@@ -110,6 +110,7 @@ module.exports.textCaravans = function(){
   //zakończenie wybierania stylu WALKI
                   $("#finish").on("click", ()=>{
                        theGame.powerHero();
+                       theGame.taskArray.splice(3, 1, 1);
                         $("#features, #equip, #skills, #tasks").prop("disabled", false);
                        $("#info").hide();
                       $("#toVillage").removeClass("bckgRed").addClass("bckgGreen").prop("disabled", false);

@@ -1541,6 +1541,9 @@ module.exports.powerHero = function () {
   module.exports.a = a;
 };
 
+//tablica dla sprawdzania wykonania zadania. wartość 0 - niewykonane, 1 - w trakcie wykonania, 2 - wykonane, index 0 - pasikonik, 1 - wilk, 2 - troll, 3 - ilość kliknięcia w przycisk o id="finish" - zakończ wybieranie(ekwpipuny i stylu do walki)
+module.exports.taskArray = [0, 0, 0, 0];
+
 /***/ }),
 /* 4 */
 /***/ (function(module, exports, __webpack_require__) {
@@ -1662,6 +1665,7 @@ module.exports.textCaravans = function () {
       //zakończenie wybierania stylu WALKI
       $("#finish").on("click", function () {
         theGame.powerHero();
+        theGame.taskArray.splice(3, 1, 1);
         $("#features, #equip, #skills, #tasks").prop("disabled", false);
         $("#info").hide();
         $("#toVillage").removeClass("bckgRed").addClass("bckgGreen").prop("disabled", false);
@@ -2005,6 +2009,10 @@ module.exports.intro = function () {
     functions.newElement("button", "goTask3", "troll", $("#mainBtns"));
 
     $("#goTask1, #goTask2, #goTask3").hide();
+
+    //przycisk kończący zadanie pierwsze
+    functions.newElement("button", "finishTask1", "zakończ", $("#interactionsBtns"));
+    $("#finishTask1").hide();
 
     //główny tekst opisowy dla paragrafu - pokój - paragraf pierwszy
     room.textRoom();
@@ -2478,22 +2486,22 @@ module.exports.enterTavern = function () {
       text.splice(3, 1, "Wiszą na niej ogłoszenia.");
     }
 
-    $("#description").html("<p class='basicText medievalText'>Podchodzisz do tablicy. " + text[3] + " <p id='taskBtn' class='flexForBtns marginTop4'>" + text[0] + " " + text[1] + " " + text[2] + "</p></p><button id='close' class='bckgRed fontSize12em width15 boldText medievalText whiteTextShadow11 paddingUpDown1 marginTop4'>zamknij</button>");
-    $("#close").on("click", function () {
-      $("#description").empty();
-    });
+    $("#description").html("<p class='basicText medievalText'>Podchodzisz do tablicy. " + text[3] + " <p id='taskBtn' class='flexForBtns marginTop4'>" + text[0] + " " + text[1] + " " + text[2] + "</p></p>");
 
     //zdarzenia dla podjęcia się pracy
     $("#task1").on("click", function () {
+      $("#task1").remove();
       heroCreator.tasks.push(" ubij pasikonika");
       $("#goTask1").show().addClass("basicBtn bckgGreen medievalText marginTop4 shadowForBtn");
     });
 
     $("#task2").on("click", function () {
+      $("#task2").remove();
       heroCreator.tasks.push(" ubij wilka");
       $("#goTask2").show().addClass("basicBtn bckgGreen medievalText marginTop4 shadowForBtn");
     });
     $("#task3").on("click", function () {
+      $("#task3").remove();
       heroCreator.tasks.push(" rozwiąż konflikt z trolem");
       $("#goTask3").show().addClass("basicBtn bckgGreen medievalText marginTop4 shadowForBtn");
     });
@@ -2508,7 +2516,8 @@ module.exports.enterTavern = function () {
 
 
 var heroCreator = __webpack_require__(0);
-var room = __webpack_require__(2);
+var functions = __webpack_require__(1); //podstawowe funkcje
+var theGame = __webpack_require__(3);
 
 module.exports.toGrasshopper = function () {
       if (heroCreator.equip.indexOf("paczka") !== -1) {
@@ -2543,10 +2552,15 @@ module.exports.toGrasshopper = function () {
                   text.splice(5, 1, "ujrzałeś");
             }
 
+            theGame.taskArray.splice(0, 1, 1);
             $("#mainPart").html("<div class='basicText medievalText'>Idziesz na pola. Jest ciep\u0142o, \u0142any zb\xF3\u017C ko\u0142ysz\u0105 si\u0119 na wietrze. Jest spok\xF3j. Zastanawiasz si\u0119 czy ten polny stw\xF3r to nie majaki pijanych farmer\xF3w. Jednak dla \u015Bwi\u0119tego spokoju idziesz dalej i rozgl\u0105dasz si\u0119 po okolicy. " + text[0] + " prawie do ko\u0144ca p\xF3l. Niczego niepokoj\u0105cego " + text[1] + ". " + text[2] + ", \u017Ce trzeba si\u0119 zaj\u0105\u0107 nast\u0119pnym zadaniem. Wtem " + text[3] + " dziwne, suche trzaski. " + text[4] + " si\u0119 rozgl\u0105da\u0107 i " + text[5] + " jak z pobliskiego rowu zacz\u0105\u0142 wstawa\u0107 stw\xF3r, wielki jak dorodny baw\xF3\u0142. Przecierasz oczy ze zdumienia i nie wierzysz. Ten potw\xF3r wygl\u0105da jak gigantyczny PASIKONIK!!!!</div><div id='description'></div>");
 
             $("#prepare").show();
             $("#prepare").addClass("bckgGreen fontSize08em paddingUpDown1");
+
+            if (theGame.taskArray[3] == 1) {
+                  $("#finishTask1").show();
+            }
       }
 };
 

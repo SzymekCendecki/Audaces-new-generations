@@ -530,3 +530,8 @@ Poprawka zliczania punktów cech po walce (dodawanie dodatkowych punktów - "awa
  	Wstępna poprawka wyliczania trafienia.
 Poprawka wyświetlania trafienia.
 	Wstępna poprawka wyświetlania przycisków zadań.
+
+4 października 2018 - wersja 0.6.97
+Poprawka wyświetlania przycisków podczas wybierania zadań (po kilknięciu, przycisk jest usuwany).
+	Usunięcie przycisku "zamknij" dla tablicy z zadaniami.
+Kontynuacja pracy nad zadaniami.
