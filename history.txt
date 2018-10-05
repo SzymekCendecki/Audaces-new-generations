@@ -535,3 +535,6 @@ Poprawka wyświetlania trafienia.
 Poprawka wyświetlania przycisków podczas wybierania zadań (po kilknięciu, przycisk jest usuwany).
 	Usunięcie przycisku "zamknij" dla tablicy z zadaniami.
 Kontynuacja pracy nad zadaniami.
+
+5 października 2018 - wersja 0.6.98
+Usprawnienie wyświetlania przycisku zakończ dla zadania pierwszego.

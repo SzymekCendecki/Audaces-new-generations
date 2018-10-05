@@ -1541,8 +1541,8 @@ module.exports.powerHero = function () {
   module.exports.a = a;
 };
 
-//tablica dla sprawdzania wykonania zadania. wartość 0 - niewykonane, 1 - w trakcie wykonania, 2 - wykonane, index 0 - pasikonik, 1 - wilk, 2 - troll, 3 - ilość kliknięcia w przycisk o id="finish" - zakończ wybieranie(ekwpipuny i stylu do walki)
-module.exports.taskArray = [0, 0, 0, 0];
+//tablica dla sprawdzania wykonania zadania. index 0 - oznacza zadanie, więc wartość 1 to pasikonik, 2 - wilk, 3-trol
+module.exports.taskArray = [0, 0];
 
 /***/ }),
 /* 4 */
@@ -1665,7 +1665,16 @@ module.exports.textCaravans = function () {
       //zakończenie wybierania stylu WALKI
       $("#finish").on("click", function () {
         theGame.powerHero();
-        theGame.taskArray.splice(3, 1, 1);
+
+        if (theGame.taskArray[0] == 1) {
+          theGame.taskArray.splice(1, 1, 1);
+        }
+        console.log(theGame.taskArray);
+
+        if (theGame.taskArray[0] == 1 && theGame.taskArray[1] == 1) {
+          $("#finishTask1").show();
+        }
+
         $("#features, #equip, #skills, #tasks").prop("disabled", false);
         $("#info").hide();
         $("#toVillage").removeClass("bckgRed").addClass("bckgGreen").prop("disabled", false);
@@ -2520,48 +2529,48 @@ var functions = __webpack_require__(1); //podstawowe funkcje
 var theGame = __webpack_require__(3);
 
 module.exports.toGrasshopper = function () {
-      if (heroCreator.equip.indexOf("paczka") !== -1) {
-            $("#description").html("<p class='basicText medievalText'>Oddaj najpierw paczkę !!!!.</p><button id='close' class='bckgRed fontSize12em width15 boldText medievalText whiteTextShadow11 paddingUpDown1 marginTop4'>zamknij</button>");
+  if (heroCreator.equip.indexOf("paczka") !== -1) {
+    $("#description").html("<p class='basicText medievalText'>Oddaj najpierw paczkę !!!!.</p><button id='close' class='bckgRed fontSize12em width15 boldText medievalText whiteTextShadow11 paddingUpDown1 marginTop4'>zamknij</button>");
 
-            $("#close").on("click", function () {
-                  $("#description").empty();
-            });
-      } else {
-            $("#mainBtns button").hide();
-            $("#interactionsBtns button").hide();
-            $("#goTask1, #goTask2, #goTask3").show();
+    $("#close").on("click", function () {
+      $("#description").empty();
+    });
+  } else {
+    $("#mainBtns button").hide();
+    $("#interactionsBtns button").hide();
+    $("#goTask1, #goTask2, #goTask3").show();
 
-            $("#goTask1").prop("disabled", true);
+    $("#goTask1").prop("disabled", true);
 
-            var text = [];
+    var text = [];
 
-            //wyszkanie płci oraz przypisanie konkretnego słowa do zmiennej
-            if (heroCreator.hero[1] == "kobieta") {
-                  text.splice(0, 1, "Doszłaś");
-                  text.splice(1, 1, "niedostrzegłaś");
-                  text.splice(2, 1, "Uznałaś");
-                  text.splice(3, 1, "uszłyszałaś");
-                  text.splice(4, 1, "Zaczęłaś");
-                  text.splice(5, 1, "ujrzałaś");
-            } else if (heroCreator.hero[1] == "mężczyzna" || heroCreator.hero[1] == "nie wiadomo") {
-                  text.splice(0, 1, "Doszedłeś");
-                  text.splice(1, 1, "niedostrzegłeś");
-                  text.splice(2, 1, "Uznałeś");
-                  text.splice(3, 1, "uszłyszałeś");
-                  text.splice(4, 1, "Zacząłeś");
-                  text.splice(5, 1, "ujrzałeś");
-            }
+    //wyszkanie płci oraz przypisanie konkretnego słowa do zmiennej
+    if (heroCreator.hero[1] == "kobieta") {
+      text.splice(0, 1, "Doszłaś");
+      text.splice(1, 1, "niedostrzegłaś");
+      text.splice(2, 1, "Uznałaś");
+      text.splice(3, 1, "uszłyszałaś");
+      text.splice(4, 1, "Zaczęłaś");
+      text.splice(5, 1, "ujrzałaś");
+    } else if (heroCreator.hero[1] == "mężczyzna" || heroCreator.hero[1] == "nie wiadomo") {
+      text.splice(0, 1, "Doszedłeś");
+      text.splice(1, 1, "niedostrzegłeś");
+      text.splice(2, 1, "Uznałeś");
+      text.splice(3, 1, "uszłyszałeś");
+      text.splice(4, 1, "Zacząłeś");
+      text.splice(5, 1, "ujrzałeś");
+    }
 
-            theGame.taskArray.splice(0, 1, 1);
-            $("#mainPart").html("<div class='basicText medievalText'>Idziesz na pola. Jest ciep\u0142o, \u0142any zb\xF3\u017C ko\u0142ysz\u0105 si\u0119 na wietrze. Jest spok\xF3j. Zastanawiasz si\u0119 czy ten polny stw\xF3r to nie majaki pijanych farmer\xF3w. Jednak dla \u015Bwi\u0119tego spokoju idziesz dalej i rozgl\u0105dasz si\u0119 po okolicy. " + text[0] + " prawie do ko\u0144ca p\xF3l. Niczego niepokoj\u0105cego " + text[1] + ". " + text[2] + ", \u017Ce trzeba si\u0119 zaj\u0105\u0107 nast\u0119pnym zadaniem. Wtem " + text[3] + " dziwne, suche trzaski. " + text[4] + " si\u0119 rozgl\u0105da\u0107 i " + text[5] + " jak z pobliskiego rowu zacz\u0105\u0142 wstawa\u0107 stw\xF3r, wielki jak dorodny baw\xF3\u0142. Przecierasz oczy ze zdumienia i nie wierzysz. Ten potw\xF3r wygl\u0105da jak gigantyczny PASIKONIK!!!!</div><div id='description'></div>");
+    theGame.taskArray.splice(0, 1, 1);
+    $("#mainPart").html("<div class='basicText medievalText'>Idziesz na pola. Jest ciep\u0142o, \u0142any zb\xF3\u017C ko\u0142ysz\u0105 si\u0119 na wietrze. Jest spok\xF3j. Zastanawiasz si\u0119 czy ten polny stw\xF3r to nie majaki pijanych farmer\xF3w. Jednak dla \u015Bwi\u0119tego spokoju idziesz dalej i rozgl\u0105dasz si\u0119 po okolicy. " + text[0] + " prawie do ko\u0144ca p\xF3l. Niczego niepokoj\u0105cego " + text[1] + ". " + text[2] + ", \u017Ce trzeba si\u0119 zaj\u0105\u0107 nast\u0119pnym zadaniem. Wtem " + text[3] + " dziwne, suche trzaski. " + text[4] + " si\u0119 rozgl\u0105da\u0107 i " + text[5] + " jak z pobliskiego rowu zacz\u0105\u0142 wstawa\u0107 stw\xF3r, wielki jak dorodny baw\xF3\u0142. Przecierasz oczy ze zdumienia i nie wierzysz. Ten potw\xF3r wygl\u0105da jak gigantyczny PASIKONIK!!!!</div><div id='description'></div>");
 
-            $("#prepare").show();
-            $("#prepare").addClass("bckgGreen fontSize08em paddingUpDown1");
+    $("#prepare").show();
+    $("#prepare").addClass("bckgGreen fontSize08em paddingUpDown1");
 
-            if (theGame.taskArray[3] == 1) {
-                  $("#finishTask1").show();
-            }
-      }
+    $("#finishTask1").on("click", function () {
+      $("#description").html("<p class='basicText medievalText'>Pasikoni wykończony. Wybierz kolejne zadanie</p>");
+    });
+  }
 };
 
 /***/ }),

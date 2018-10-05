@@ -40,9 +40,9 @@ theGame.taskArray.splice(0, 1, 1);
       $("#prepare").show();
       $("#prepare").addClass("bckgGreen fontSize08em paddingUpDown1");
 
-      if(theGame.taskArray[3] == 1){
-        $("#finishTask1").show();
-      }
-
+    $("#finishTask1").on("click", ()=>{
+      $("#description").html("<p class='basicText medievalText'>Pasikoni wykończony. Wybierz kolejne zadanie</p>");
+    });
+    
   }
 }
