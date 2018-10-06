@@ -538,3 +538,12 @@ Kontynuacja pracy nad zadaniami.
 
 5 października 2018 - wersja 0.6.98
 Usprawnienie wyświetlania przycisku zakończ dla zadania pierwszego.
+
+6 październia 2018 - wersja 0.6.99
+Dodano styl dla przyciku "zakończ" dla zadania pierwszego.
+	Dodano blokowanie/odblokowanie przycisków zadań, gdy wybrane zadanie jest wykonywane.
+Dodano zadanie drugie.
+
+***********************************************************************************************************************
+	Do poprawy będą przycisi wyświetlające cechym ekwipune, umiejętności i zadania oraz przyciski zamykające rozglądanie się - gdyż dziwnie są blokowane lub nie działąją. Trzeba będzie także dodać usuwanie zadań z tabeli heroCreator.tasks, aby nie wyświetlały się pod głównym przyciskiem.
+************************************************************************************************************************

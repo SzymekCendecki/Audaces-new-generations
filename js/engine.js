@@ -1544,6 +1544,9 @@ module.exports.powerHero = function () {
 //tablica dla sprawdzania wykonania zadania. index 0 - oznacza zadanie, więc wartość 1 to pasikonik, 2 - wilk, 3-trol
 module.exports.taskArray = [0, 0];
 
+//tablica dla zrobionych zadań
+module.exports.taskDone = [0, 0, 0];
+
 /***/ }),
 /* 4 */
 /***/ (function(module, exports, __webpack_require__) {
@@ -1666,14 +1669,19 @@ module.exports.textCaravans = function () {
       $("#finish").on("click", function () {
         theGame.powerHero();
 
+        //część kodu walki umożliwiająca walkę podczas wyonywania zadań: pasikonik, wilk i troll
         if (theGame.taskArray[0] == 1) {
           theGame.taskArray.splice(1, 1, 1);
+        } else if (theGame.taskArray[0] == 2) {
+          theGame.taskArray.splice(1, 1, 2);
         }
-        console.log(theGame.taskArray);
 
         if (theGame.taskArray[0] == 1 && theGame.taskArray[1] == 1) {
-          $("#finishTask1").show();
+          $("#finishTask1").show().addClass("basicBtn bckgGreen medievalText marginTop4 shadowForBtn");
+        } else if (theGame.taskArray[0] == 2 && theGame.taskArray[1] == 2) {
+          $("#finishTask2").show().addClass("basicBtn bckgGreen medievalText marginTop4 shadowForBtn");
         }
+        //koniec części kodu walki umożliwiająca walkę podczas wyonywania zadań: pasikonik, wilk i troll
 
         $("#features, #equip, #skills, #tasks").prop("disabled", false);
         $("#info").hide();
@@ -1724,11 +1732,13 @@ module.exports.textCaravans = function () {
           $("#mainPart").html("<p class=\"basicText medievalText\">Szcz\u0119\u015Bliwie " + text[0] + " walk\u0119. " + text[2] + ". " + text[1] + ". Walka r\xF3wnie szybko si\u0119 sko\u0144czy\u0142a jak zacz\u0119\u0142a. Karawana odczea\u0142a w gotowo\u015Bci jescze kilka minut. Po nich pochowali\u015Bcie cia\u0142a poleg\u0142ych obro\u0144c\xF3w i atakuj\u0105cych w jednej, zbiorowej mogile, niedaleko drogi. Po kr\xF3tkich modlitwach odjechali\u015Bcie. Twoje cechy podnios\u0142y si\u0119.<p>");
 
           //dodanie punktów do cech
+          console.log(heroCreator.hero[4], heroCreator.hero[5], heroCreator.hero[6], heroCreator.hero[7], heroCreator.hero[8]);
           heroCreator.hero.splice(4, 1, heroCreator.hero[4] + 5);
           heroCreator.hero.splice(5, 1, heroCreator.hero[5] + 5);
           heroCreator.hero.splice(6, 1, heroCreator.hero[6] + 5);
           heroCreator.hero.splice(7, 1, heroCreator.hero[7] + 5);
           heroCreator.hero.splice(8, 1, heroCreator.hero[8] + 5);
+          console.log(heroCreator.hero[4], heroCreator.hero[5], heroCreator.hero[6], heroCreator.hero[7], heroCreator.hero[8]);
         });
       });
     });
@@ -2019,9 +2029,11 @@ module.exports.intro = function () {
 
     $("#goTask1, #goTask2, #goTask3").hide();
 
-    //przycisk kończący zadanie pierwsze
+    //przycisk kończący zadanie pierwsze, drugie i trzecie
     functions.newElement("button", "finishTask1", "zakończ", $("#interactionsBtns"));
-    $("#finishTask1").hide();
+    functions.newElement("button", "finishTask2", "zakończ", $("#interactionsBtns"));
+    functions.newElement("button", "finishTask3", "zakończ", $("#interactionsBtns"));
+    $("#finishTask1, #finishTask2, #finishTask3").hide();
 
     //główny tekst opisowy dla paragrafu - pokój - paragraf pierwszy
     room.textRoom();
@@ -2148,10 +2160,12 @@ module.exports.intro = function () {
 
       $("#goTask1").on("click", function () {
         grasshopper.toGrasshopper();
+        $("#goTask2, #goTask3").prop("disabled", true);
       });
 
       $("#goTask2").on("click", function () {
         wolf.toWolf();
+        $("#goTask1, #goTask3").prop("disabled", true);
       });
 
       $("#goTask3").on("click", function () {
@@ -2568,7 +2582,32 @@ module.exports.toGrasshopper = function () {
     $("#prepare").addClass("bckgGreen fontSize08em paddingUpDown1");
 
     $("#finishTask1").on("click", function () {
-      $("#description").html("<p class='basicText medievalText'>Pasikoni wykończony. Wybierz kolejne zadanie</p>");
+      $("#description").html("<p class='basicText medievalText'>Pasikonik wykończony. Twoje cechy podniosły się. Wybierz kolejne zadanie.</p>");
+      theGame.taskDone.splice(0, 1, 1);
+      console.log(theGame.taskDone);
+
+      //dodanie punktów do cech
+      console.log(heroCreator.hero[4], heroCreator.hero[5], heroCreator.hero[6], heroCreator.hero[7], heroCreator.hero[8]);
+      heroCreator.hero.splice(4, 1, heroCreator.hero[4] + 5);
+      heroCreator.hero.splice(5, 1, heroCreator.hero[5] + 5);
+      heroCreator.hero.splice(6, 1, heroCreator.hero[6] + 5);
+      heroCreator.hero.splice(7, 1, heroCreator.hero[7] + 5);
+      heroCreator.hero.splice(8, 1, heroCreator.hero[8] + 5);
+      console.log(heroCreator.hero[4], heroCreator.hero[5], heroCreator.hero[6], heroCreator.hero[7], heroCreator.hero[8]);
+
+      if (theGame.taskDone[1] == 0) {
+        $("#goTask2").prop("disabled", false);
+      } else {
+        $("#goTask2").prop("disabled", true);
+      }
+
+      if (theGame.taskDone[2] == 0) {
+        $("#goTask3").prop("disabled", false);
+      } else {
+        $("#goTask3").prop("disabled", true);
+      }
+
+      $("#finishTask1").remove();
     });
   }
 };
@@ -2581,7 +2620,8 @@ module.exports.toGrasshopper = function () {
 
 
 var heroCreator = __webpack_require__(0);
-var room = __webpack_require__(2);
+var functions = __webpack_require__(1); //podstawowe funkcje
+var theGame = __webpack_require__(3);
 
 module.exports.toWolf = function () {
   if (heroCreator.equip.indexOf("paczka") !== -1) {
@@ -2596,6 +2636,53 @@ module.exports.toWolf = function () {
     $("#goTask1, #goTask2, #goTask3").show();
 
     $("#goTask2").prop("disabled", true);
+
+    var text = [];
+
+    //wyszkanie płci oraz przypisanie konkretnego słowa do zmiennej
+    if (heroCreator.hero[1] == "kobieta") {
+      text.splice(0, 1, "wykorzystałaś");
+      text.splice(0, 1, "trafiłaś");
+    } else if (heroCreator.hero[1] == "mężczyzna" || heroCreator.hero[1] == "nie wiadomo") {
+      text.splice(0, 1, "Wykorzystałeś");
+      text.splice(0, 1, "trafiłeś");
+    }
+
+    theGame.taskArray.splice(0, 1, 2);
+
+    $("#mainPart").html("<div class='basicText medievalText'>Id\u0105c drog\u0105 w stron\u0119 kolejnego zadania, wchodzisz w las. Pachnie igliwiem, ptaki \u015Bpiewaj\u0105. Przechodzisz ko\u0142o sporej polany. Na jej ko\u0144cu widzisz \u0142anie z m\u0142odymi. Spostrzeg\u0142a Ci\u0119 i szybkimi susami znikn\u0119\u0142a z m\u0142odymi w lesie. Idziesz dalej. W ko\u0144cu docieraszdo pieczary. Przed ni\u0105 widzisz resztki zwierz\u0105t. W powietrzu unosi si\u0119 zapach gnij\u0105cego mi\u0119sa, kt\xF3ry potrafi zemdli\u0107 nawet takiego twardziela jak Ty. 'No c\xF3\u017C. Zadanie trzeba wykona\u0107, pomimo zapachu. Tego dziwnego pasikonika w sumie si\u0119 pokona\u0142o.' - przemkn\u0119\u0142a my\u015B w Twojej g\u0142owie. Jaskinia jest wi\u0119ksza i do\u015B\u0107 dobrze o\u015Bwietlona ni\u017C wydawa\u0142o si\u0119 to z zewn\u0105trz. Po kilku krokach dochodzisz prawie do jej \u015Brodka. Wtem, zza sporego g\u0142azu, kt\xF3ry sta\u0142 przy wej\u015Bciu wyszed\u0142 bardzo du\u017Cy wilk i tarasuje wyj\u015Bcie. Nie mo\u017Cesz ucie\u0107. Musisz walczy\u0107.Wchodzisz do jaskini.</div><div id='description'></div>");
+
+    $("#prepare").show();
+    $("#prepare").addClass("bckgGreen fontSize08em paddingUpDown1");
+
+    $("#finishTask2").on("click", function () {
+      $("#description").html("<p class='basicText medievalText'>To by\u0142a dzika walka. Nie by\u0142o 'zlituj si\u0119'. Niestety wilk pope\u0142ni\u0142 b\u0142\u0105d. Fatalny dla niego w skutkach. \u0179le si\u0119 ustawi\u0142, a Ty bez skrup\xF3\u0142\xF3w " + text[0] + " jego b\u0142\u0105d i z ca\u0142ej si\u0142y " + text[1] + " w jego kr\u0119gos\u0142up. Tylko gruchn\u0119\u0142o. Wilk momentalnie pad\u0142 i zgin\u0105\u0142 w konwulsjach, z pian\u0105 na pysku. Po odpoczynku czas na kolejne zadanie</p>");
+      theGame.taskDone.splice(1, 1, 1);
+      console.log(theGame.taskDone);
+
+      //dodanie punktów do cech
+      console.log(heroCreator.hero[4], heroCreator.hero[5], heroCreator.hero[6], heroCreator.hero[7], heroCreator.hero[8]);
+      heroCreator.hero.splice(4, 1, heroCreator.hero[4] + 5);
+      heroCreator.hero.splice(5, 1, heroCreator.hero[5] + 5);
+      heroCreator.hero.splice(6, 1, heroCreator.hero[6] + 5);
+      heroCreator.hero.splice(7, 1, heroCreator.hero[7] + 5);
+      heroCreator.hero.splice(8, 1, heroCreator.hero[8] + 5);
+      console.log(heroCreator.hero[4], heroCreator.hero[5], heroCreator.hero[6], heroCreator.hero[7], heroCreator.hero[8]);
+
+      if (theGame.taskDone[0] == 0) {
+        $("#goTask1").prop("disabled", false);
+      } else {
+        $("#goTask1").prop("disabled", true);
+      }
+
+      if (theGame.taskDone[2] == 0) {
+        $("#goTask3").prop("disabled", false);
+      } else {
+        $("#goTask3").prop("disabled", true);
+      }
+
+      $("#finishTask2").remove();
+    });
   }
 };
 

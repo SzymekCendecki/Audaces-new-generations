@@ -124,3 +124,6 @@ $("#removeEquip").on("click", ()=>{
 
 //tablica dla sprawdzania wykonania zadania. index 0 - oznacza zadanie, więc wartość 1 to pasikonik, 2 - wilk, 3-trol
 module.exports.taskArray = [0, 0];
+
+//tablica dla zrobionych zadań
+module.exports.taskDone = [0, 0, 0];

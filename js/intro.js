@@ -128,9 +128,11 @@ functions.newElement("button", "goTask3", "troll", $("#mainBtns"));
 
 $("#goTask1, #goTask2, #goTask3").hide();
 
-//przycisk kończący zadanie pierwsze
+//przycisk kończący zadanie pierwsze, drugie i trzecie
 functions.newElement("button", "finishTask1", "zakończ", $("#interactionsBtns"));
-$("#finishTask1").hide();
+functions.newElement("button", "finishTask2", "zakończ", $("#interactionsBtns"));
+functions.newElement("button", "finishTask3", "zakończ", $("#interactionsBtns"));
+$("#finishTask1, #finishTask2, #finishTask3").hide();
 
   //główny tekst opisowy dla paragrafu - pokój - paragraf pierwszy
     room.textRoom();
@@ -213,10 +215,12 @@ $("#outTavern").on("click", ()=>{
 
 $("#goTask1").on("click", ()=>{
   grasshopper.toGrasshopper();
+  $("#goTask2, #goTask3").prop("disabled", true);
 });
 
 $("#goTask2").on("click", ()=>{
   wolf.toWolf();
+  $("#goTask1, #goTask3").prop("disabled", true);
 });
 
 $("#goTask3").on("click", ()=>{
