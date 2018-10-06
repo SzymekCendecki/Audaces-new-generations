@@ -545,5 +545,5 @@ Dodano styl dla przyciku "zakończ" dla zadania pierwszego.
 Dodano zadanie drugie.
 
 ***********************************************************************************************************************
-	Do poprawy będą przycisi wyświetlające cechym ekwipune, umiejętności i zadania oraz przyciski zamykające rozglądanie się - gdyż dziwnie są blokowane lub nie działąją. Trzeba będzie także dodać usuwanie zadań z tabeli heroCreator.tasks, aby nie wyświetlały się pod głównym przyciskiem.
+ Trzeba będzie dodać usuwanie zadań z tabeli heroCreator.tasks, aby nie wyświetlały się pod głównym przyciskiem.
 ************************************************************************************************************************

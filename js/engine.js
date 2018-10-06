@@ -1291,122 +1291,6 @@ module.exports.acceptName = function (hero) {
 "use strict";
 
 
-var heroCreator = __webpack_require__(0);
-var street = __webpack_require__(5);
-
-//głowny tekst opisowy dla paragrafu pierwszego (pokoju)
-module.exports.textRoom = function () {
-  $("#mainPart").html("<div class='basicText medievalText'>Stoisz w swoim pokoju, w którym znajduje się tylko łóżko, szafa, mały stolik i drewniana skrzynia. Na stoliku leży zawniątko, które musisz oddać mnichowi w przygranicznej wiosce. Co robisz?</div><div id='description'></div>");
-};
-
-//zawartość zdarzenia dla przycisku rozejrzyj się
-module.exports.lookAround = function () {
-  $("#description").html("<p class='basicText medievalText'>Rozglądasz się po pokoju. Widzisz drewnianą szafę, stojącą w rogu pokoju. Pod oknem stoi niewielka, drewniana skrzynia. Naprzeciw drzwi stoi łóżko. W pomieszczeniu niemiłosiernie wali stęchlizną i kupą szczurów.</p><button id='close' class='bckgRed fontSize12em width15 boldText medievalText whiteTextShadow11 paddingUpDown1 marginTop4'>zamknij</button>");
-  $("#close").on("click", function () {
-    $("#description").empty();
-  });
-};
-
-//zawartość zdarzenia dla przycisku szafa
-module.exports.wardrobe = function () {
-  if (heroCreator.equip.indexOf('płaszcz') !== -1) {
-    if (heroCreator.hero[1] === "kobieta") {
-      $("#description").html("<p class='basicText medievalText boldText'>Otworzyłaś szafę. Jest pusta.</p><button id='close' class='bckgRed fontSize12em width15 boldText medievalText whiteTextShadow11 paddingUpDown1 marginLeft10 marginTop4'>zamknij</button>");
-      $("#close").on("click", function () {
-        $("#description").empty();
-      });
-    } else if (heroCreator.hero[1] === "mężczyzna" || heroCreator.hero[1] === "nie wiadomo") {
-      $("#description").html("<p class='basicText medievalText boldText'>Otworzyłeś szafę. Jest pusta.</p><button id='close' class='bckgRed fontSize12em width15 boldText medievalText whiteTextShadow11 paddingUpDown1 marginLeft10 marginTop4'>zamknij</button>");
-      $("#close").on("click", function () {
-        $("#description").empty();
-      });
-    }
-  } else {
-    if (heroCreator.hero[1] === "kobieta") {
-      $("#description").html("<p class='basicText medievalText boldText'>Otworzyłaś szafę, w której wisi płaszcz.</p><button id='coat' class='basicBtn bckgGreen medievalText whiteTextShadow11 width15 boldText'>weź płaszcz</button><button id='close' class='bckgRed fontSize12em width15 boldText medievalText whiteTextShadow11 paddingUpDown1 marginLeft10 marginTop4'>zamknij</button>");
-      $("#coat").on("click", function () {
-        heroCreator.equip.push("płaszcz");
-        $("#coat").remove();
-      });
-      $("#close").on("click", function () {
-        $("#description").empty();
-      });
-    } else if (heroCreator.hero[1] === "mężczyzna" || heroCreator.hero[1] === "nie wiadomo") {
-      $("#description").html("<p class='basicText medievalText boldText'>Otworzyłeś szafę, w której wisi płaszcz.</p><button id='coat' class='basicBtn bckgGreen medievalText whiteTextShadow11 width15 boldText'>weź płaszcz</button><button id='close' class='bckgRed fontSize12em width15 boldText medievalText whiteTextShadow11 paddingUpDown1 marginLeft10 marginTop4'>zamknij</button>");
-      $("#coat").on("click", function () {
-        heroCreator.equip.push("płaszcz");
-        $("#coat").remove();
-      });
-      $("#close").on("click", function () {
-        $("#description").empty();
-      });
-    }
-  }
-};
-
-//zdarzenia dla przycisku skrzynia
-module.exports.chest = function () {
-  if (heroCreator.gold[0] > 0) {
-    if (heroCreator.hero[1] === "kobieta") {
-      $("#description").html("<p class='basicText medievalText boldText'>Otworzyłaś skrzynię. Jest pusta.</p><button id='close' class='bckgRed fontSize12em width15 boldText medievalText whiteTextShadow11 paddingUpDown1 marginLeft10 marginTop4'>zamknij</button>");
-      $("#close").on("click", function () {
-        $("#description").empty();
-      });
-    } else if (heroCreator.hero[1] === "mężczyzna" || heroCreator.hero[1] === "nie wiadomo") {
-      $("#description").html("<p class='basicText medievalText boldText'>Otworzyłeś skrzynię. Jest pusta.</p><button id='close' class='bckgRed fontSize12em width15 boldText medievalText whiteTextShadow11 paddingUpDown1 marginLeft10 marginTop4'>zamknij</button>");
-      $("#close").on("click", function () {
-        $("#description").empty();
-      });
-    }
-  } else {
-    if (heroCreator.hero[1] === "kobieta") {
-      $("#description").html("<p class='basicText medievalText boldText'>Otworzyłaś skrzynię, w której znajduje się 12 sztuk złota.</p><button id='coat' class='basicBtn bckgGreen medievalText whiteTextShadow11 width15 boldText'>weź złoto</button><button id='close' class='bckgRed fontSize12em width15 boldText medievalText whiteTextShadow11 paddingUpDown1 marginLeft10 marginTop4'>zamknij</button>");
-      $("#coat").on("click", function () {
-        heroCreator.gold.splice(0, 1, 12);
-        $("#description").html("<p class='basicText medievalText boldText'>Skrzynia jest pusta.</p><button id='close' class='bckgRed fontSize12em width15 boldText medievalText whiteTextShadow11 paddingUpDown1 marginLeft10 marginTop4'>zamknij</button>");
-        $("#close").on("click", function () {
-          $("#description").empty();
-        });
-      });
-      $("#close").on("click", function () {
-        $("#description").empty();
-      });
-    } else if (heroCreator.hero[1] === "mężczyzna" || heroCreator.hero[1] === "nie wiadomo") {
-      $("#description").html("<p class='basicText medievalText boldText'>Otworzyłeś skrzynię, w której znajduje się 12 sztuk złota.</p><button id='coat' class='basicBtn bckgGreen medievalText whiteTextShadow11 width15 boldText'>weź złoto</button><button id='close' class='bckgRed fontSize12em width15 boldText medievalText whiteTextShadow11 paddingUpDown1 marginLeft10 marginTop4'>zamknij</button>");
-      $("#coat").on("click", function () {
-        heroCreator.gold.splice(0, 1, 12);
-        $("#description").html("<p class='basicText medievalText boldText'>Skrzynia jest pusta.</p><button id='close' class='bckgRed fontSize12em width15 boldText medievalText whiteTextShadow11 paddingUpDown1 marginLeft10 marginTop4'>zamknij</button>");
-        $("#close").on("click", function () {
-          $("#description").empty();
-        });
-      });
-      $("#close").on("click", function () {
-        $("#description").empty();
-      });
-    }
-  }
-};
-
-//zdarzenie dla paczki
-module.exports.package = function () {
-  heroCreator.equip.push("paczka");
-  $("#outRoom").removeClass("bckgRed").addClass("bckgGreen").prop("disabled", false);
-  $("#package").remove();
-};
-
-//zdarzenie dla wyjścia z pokoju
-module.exports.outRoom = function () {
-  $("#mainPart").empty();
-  $("#outRoom, #wardrobe, #chest, #lookAroundRoom").hide();
-};
-
-/***/ }),
-/* 3 */
-/***/ (function(module, exports, __webpack_require__) {
-
-"use strict";
-
-
 //import funkcji z pliku zewnętrznego
 var functions = __webpack_require__(1); //podstawowe funkcje
 var heroCreator = __webpack_require__(0);
@@ -1548,6 +1432,122 @@ module.exports.taskArray = [0, 0];
 module.exports.taskDone = [0, 0, 0];
 
 /***/ }),
+/* 3 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+var heroCreator = __webpack_require__(0);
+var street = __webpack_require__(5);
+
+//głowny tekst opisowy dla paragrafu pierwszego (pokoju)
+module.exports.textRoom = function () {
+  $("#mainPart").html("<div class='basicText medievalText'>Stoisz w swoim pokoju, w którym znajduje się tylko łóżko, szafa, mały stolik i drewniana skrzynia. Na stoliku leży zawniątko, które musisz oddać mnichowi w przygranicznej wiosce. Co robisz?</div><div id='description'></div>");
+};
+
+//zawartość zdarzenia dla przycisku rozejrzyj się
+module.exports.lookAround = function () {
+  $("#description").html("<p class='basicText medievalText'>Rozglądasz się po pokoju. Widzisz drewnianą szafę, stojącą w rogu pokoju. Pod oknem stoi niewielka, drewniana skrzynia. Naprzeciw drzwi stoi łóżko. W pomieszczeniu niemiłosiernie wali stęchlizną i kupą szczurów.</p><button id='close' class='bckgRed fontSize12em width15 boldText medievalText whiteTextShadow11 paddingUpDown1 marginTop4'>zamknij</button>");
+  $("#close").on("click", function () {
+    $("#description").empty();
+  });
+};
+
+//zawartość zdarzenia dla przycisku szafa
+module.exports.wardrobe = function () {
+  if (heroCreator.equip.indexOf('płaszcz') !== -1) {
+    if (heroCreator.hero[1] === "kobieta") {
+      $("#description").html("<p class='basicText medievalText boldText'>Otworzyłaś szafę. Jest pusta.</p><button id='close' class='bckgRed fontSize12em width15 boldText medievalText whiteTextShadow11 paddingUpDown1 marginLeft10 marginTop4'>zamknij</button>");
+      $("#close").on("click", function () {
+        $("#description").empty();
+      });
+    } else if (heroCreator.hero[1] === "mężczyzna" || heroCreator.hero[1] === "nie wiadomo") {
+      $("#description").html("<p class='basicText medievalText boldText'>Otworzyłeś szafę. Jest pusta.</p><button id='close' class='bckgRed fontSize12em width15 boldText medievalText whiteTextShadow11 paddingUpDown1 marginLeft10 marginTop4'>zamknij</button>");
+      $("#close").on("click", function () {
+        $("#description").empty();
+      });
+    }
+  } else {
+    if (heroCreator.hero[1] === "kobieta") {
+      $("#description").html("<p class='basicText medievalText boldText'>Otworzyłaś szafę, w której wisi płaszcz.</p><button id='coat' class='basicBtn bckgGreen medievalText whiteTextShadow11 width15 boldText'>weź płaszcz</button><button id='close' class='bckgRed fontSize12em width15 boldText medievalText whiteTextShadow11 paddingUpDown1 marginLeft10 marginTop4'>zamknij</button>");
+      $("#coat").on("click", function () {
+        heroCreator.equip.push("płaszcz");
+        $("#coat").remove();
+      });
+      $("#close").on("click", function () {
+        $("#description").empty();
+      });
+    } else if (heroCreator.hero[1] === "mężczyzna" || heroCreator.hero[1] === "nie wiadomo") {
+      $("#description").html("<p class='basicText medievalText boldText'>Otworzyłeś szafę, w której wisi płaszcz.</p><button id='coat' class='basicBtn bckgGreen medievalText whiteTextShadow11 width15 boldText'>weź płaszcz</button><button id='close' class='bckgRed fontSize12em width15 boldText medievalText whiteTextShadow11 paddingUpDown1 marginLeft10 marginTop4'>zamknij</button>");
+      $("#coat").on("click", function () {
+        heroCreator.equip.push("płaszcz");
+        $("#coat").remove();
+      });
+      $("#close").on("click", function () {
+        $("#description").empty();
+      });
+    }
+  }
+};
+
+//zdarzenia dla przycisku skrzynia
+module.exports.chest = function () {
+  if (heroCreator.gold[0] > 0) {
+    if (heroCreator.hero[1] === "kobieta") {
+      $("#description").html("<p class='basicText medievalText boldText'>Otworzyłaś skrzynię. Jest pusta.</p><button id='close' class='bckgRed fontSize12em width15 boldText medievalText whiteTextShadow11 paddingUpDown1 marginLeft10 marginTop4'>zamknij</button>");
+      $("#close").on("click", function () {
+        $("#description").empty();
+      });
+    } else if (heroCreator.hero[1] === "mężczyzna" || heroCreator.hero[1] === "nie wiadomo") {
+      $("#description").html("<p class='basicText medievalText boldText'>Otworzyłeś skrzynię. Jest pusta.</p><button id='close' class='bckgRed fontSize12em width15 boldText medievalText whiteTextShadow11 paddingUpDown1 marginLeft10 marginTop4'>zamknij</button>");
+      $("#close").on("click", function () {
+        $("#description").empty();
+      });
+    }
+  } else {
+    if (heroCreator.hero[1] === "kobieta") {
+      $("#description").html("<p class='basicText medievalText boldText'>Otworzyłaś skrzynię, w której znajduje się 12 sztuk złota.</p><button id='coat' class='basicBtn bckgGreen medievalText whiteTextShadow11 width15 boldText'>weź złoto</button><button id='close' class='bckgRed fontSize12em width15 boldText medievalText whiteTextShadow11 paddingUpDown1 marginLeft10 marginTop4'>zamknij</button>");
+      $("#coat").on("click", function () {
+        heroCreator.gold.splice(0, 1, 12);
+        $("#description").html("<p class='basicText medievalText boldText'>Skrzynia jest pusta.</p><button id='close' class='bckgRed fontSize12em width15 boldText medievalText whiteTextShadow11 paddingUpDown1 marginLeft10 marginTop4'>zamknij</button>");
+        $("#close").on("click", function () {
+          $("#description").empty();
+        });
+      });
+      $("#close").on("click", function () {
+        $("#description").empty();
+      });
+    } else if (heroCreator.hero[1] === "mężczyzna" || heroCreator.hero[1] === "nie wiadomo") {
+      $("#description").html("<p class='basicText medievalText boldText'>Otworzyłeś skrzynię, w której znajduje się 12 sztuk złota.</p><button id='coat' class='basicBtn bckgGreen medievalText whiteTextShadow11 width15 boldText'>weź złoto</button><button id='close' class='bckgRed fontSize12em width15 boldText medievalText whiteTextShadow11 paddingUpDown1 marginLeft10 marginTop4'>zamknij</button>");
+      $("#coat").on("click", function () {
+        heroCreator.gold.splice(0, 1, 12);
+        $("#description").html("<p class='basicText medievalText boldText'>Skrzynia jest pusta.</p><button id='close' class='bckgRed fontSize12em width15 boldText medievalText whiteTextShadow11 paddingUpDown1 marginLeft10 marginTop4'>zamknij</button>");
+        $("#close").on("click", function () {
+          $("#description").empty();
+        });
+      });
+      $("#close").on("click", function () {
+        $("#description").empty();
+      });
+    }
+  }
+};
+
+//zdarzenie dla paczki
+module.exports.package = function () {
+  heroCreator.equip.push("paczka");
+  $("#outRoom").removeClass("bckgRed").addClass("bckgGreen").prop("disabled", false);
+  $("#package").remove();
+};
+
+//zdarzenie dla wyjścia z pokoju
+module.exports.outRoom = function () {
+  $("#mainPart").empty();
+  $("#outRoom, #wardrobe, #chest, #lookAroundRoom").hide();
+};
+
+/***/ }),
 /* 4 */
 /***/ (function(module, exports, __webpack_require__) {
 
@@ -1556,7 +1556,7 @@ module.exports.taskDone = [0, 0, 0];
 
 var heroCreator = __webpack_require__(0);
 var functions = __webpack_require__(1); //podstawowe funkcje
-var theGame = __webpack_require__(3);
+var theGame = __webpack_require__(2);
 
 //tablica dla ustalania stylu walki
 var fightStyle = ["brak"];
@@ -1683,8 +1683,9 @@ module.exports.textCaravans = function () {
         }
         //koniec części kodu walki umożliwiająca walkę podczas wyonywania zadań: pasikonik, wilk i troll
 
+        $("#info").empty();
         $("#features, #equip, #skills, #tasks").prop("disabled", false);
-        $("#info").hide();
+
         $("#toVillage").removeClass("bckgRed").addClass("bckgGreen").prop("disabled", false);
 
         $("#prepare").hide();
@@ -1753,7 +1754,7 @@ module.exports.textCaravans = function () {
 
 
 var heroCreator = __webpack_require__(0);
-var room = __webpack_require__(2);
+var room = __webpack_require__(3);
 
 module.exports.showBtns = function () {
   $("#lookAroundStreet, #inRoom, #toCaravans, #toMarket").show();
@@ -1901,9 +1902,9 @@ module.exports.clicksFirstMenu = function () {
 
 //import funkcji z pliku zewnętrznego
 var functions = __webpack_require__(1); //podstawowe funkcje
-var theGame = __webpack_require__(3); //gra
+var theGame = __webpack_require__(2); //gra
 var heroCreator = __webpack_require__(0);
-var room = __webpack_require__(2);
+var room = __webpack_require__(3);
 var street = __webpack_require__(5);
 var market = __webpack_require__(10);
 var caravans = __webpack_require__(11);
@@ -2540,7 +2541,7 @@ module.exports.enterTavern = function () {
 
 var heroCreator = __webpack_require__(0);
 var functions = __webpack_require__(1); //podstawowe funkcje
-var theGame = __webpack_require__(3);
+var theGame = __webpack_require__(2);
 
 module.exports.toGrasshopper = function () {
   if (heroCreator.equip.indexOf("paczka") !== -1) {
@@ -2621,7 +2622,7 @@ module.exports.toGrasshopper = function () {
 
 var heroCreator = __webpack_require__(0);
 var functions = __webpack_require__(1); //podstawowe funkcje
-var theGame = __webpack_require__(3);
+var theGame = __webpack_require__(2);
 
 module.exports.toWolf = function () {
   if (heroCreator.equip.indexOf("paczka") !== -1) {
@@ -2694,7 +2695,7 @@ module.exports.toWolf = function () {
 
 
 var heroCreator = __webpack_require__(0);
-var room = __webpack_require__(2);
+var room = __webpack_require__(3);
 
 module.exports.toTroll = function () {
   if (heroCreator.equip.indexOf("paczka") !== -1) {

@@ -126,8 +126,9 @@ if(theGame.taskArray[0] == 1 && theGame.taskArray[1] == 1){
 }
 //koniec części kodu walki umożliwiająca walkę podczas wyonywania zadań: pasikonik, wilk i troll
 
-                      $("#features, #equip, #skills, #tasks").prop("disabled", false);
-                       $("#info").hide();
+                    $("#info").empty();
+                    $("#features, #equip, #skills, #tasks").prop("disabled", false);
+
                       $("#toVillage").removeClass("bckgRed").addClass("bckgGreen").prop("disabled", false);
 
                       $("#prepare").hide();
