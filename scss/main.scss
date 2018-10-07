@@ -129,3 +129,11 @@ nav, #mainPart, #alerts{ height: 78vh; }
 
 //tekst kursywa
 .italic { font-style: italic; }
+
+//styl dla napisu game over
+.gameOver{
+  text-decoration: none;
+  font-weight: bold;
+  font-size: 300%;
+  color: black;
+}

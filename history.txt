@@ -547,3 +547,9 @@ Dodano zadanie drugie.
 ***********************************************************************************************************************
  Trzeba będzie dodać usuwanie zadań z tabeli heroCreator.tasks, aby nie wyświetlały się pod głównym przyciskiem.
 ************************************************************************************************************************
+
+7 październia 2018 - wersja 0.7.0
+Dodano trzecie zadanie.
+	Dodano usuwanie wykonanych zadań z listy zadań.
+Dodano ostatni paragraf - powrót do wioski.
+	Dodano napis game over, który odświeża stronę, aby zaczą grę od nowa.

@@ -112,17 +112,17 @@ module.exports.textCaravans = function(){
                        theGame.powerHero();
 
 //część kodu walki umożliwiająca walkę podczas wyonywania zadań: pasikonik, wilk i troll
-                        if(theGame.taskArray[0] == 1){
-                          theGame.taskArray.splice(1, 1, 1);
-                        }else if(theGame.taskArray[0] == 2){
-                          theGame.taskArray.splice(1, 1, 2);
+                        if(theGame.taskArray[0] == 1){ theGame.taskArray.splice(1, 1, 1);
+                        }else if(theGame.taskArray[0] == 2){ theGame.taskArray.splice(1, 1, 2);
+                        }else if(theGame.taskArray[0] == 3){ theGame.taskArray.splice(1, 1, 3);
                         }
-
 
 if(theGame.taskArray[0] == 1 && theGame.taskArray[1] == 1){
   $("#finishTask1").show().addClass("basicBtn bckgGreen medievalText marginTop4 shadowForBtn");
 }else if(theGame.taskArray[0] == 2 && theGame.taskArray[1] == 2){
   $("#finishTask2").show().addClass("basicBtn bckgGreen medievalText marginTop4 shadowForBtn");
+}else if(theGame.taskArray[0] == 3 && theGame.taskArray[1] == 3){
+  $("#finishTask3").show().addClass("basicBtn bckgGreen medievalText marginTop4 shadowForBtn");
 }
 //koniec części kodu walki umożliwiająca walkę podczas wyonywania zadań: pasikonik, wilk i troll
 

@@ -1431,6 +1431,11 @@ module.exports.taskArray = [0, 0];
 //tablica dla zrobionych zadań
 module.exports.taskDone = [0, 0, 0];
 
+//ostatni paragraf
+module.exports.gameOver = function () {
+  $("#mainPart").html("<div class='basicText medievalText'> Zako\u0144czy\u0142e\u015B trzecie zadanie. Zm\u0119czony i poobijany wr\xF3ci\u0142e\u015B do osady. Gdy tylko wszed\u0142e\u015B do osady zobaczy\u0142e\u015B jak mieszka\u0144cy oraz uczestnicy karawany \u015Bwi\u0119towali. Kap\u0142an uleczy\u0142 Twoje rany, dzi\u0119ki temu mog\u0142e\u015B bawi\u0107 si\u0119 z innymi. Nast\u0119pnego dnia obudzi\u0142e\u015B si\u0119 potwornym kacem, na kopie siana w szczerym polu. I tak nast\u0105pi\u0142 szcz\u0119\u015Bliwy koniec tej przygody z dostarczeniem paczki. Jednak\u017Ce nasta\u0142 nowy dzie\u0144... ale to ju\u017C inna historia.</div><div id='description' class='center medievalText marginTop15 whiteTextShadow11 gameOver'><a href=\"javascript:location.reload()\">GAME OVER</div></a>");
+};
+
 /***/ }),
 /* 3 */
 /***/ (function(module, exports, __webpack_require__) {
@@ -1674,12 +1679,16 @@ module.exports.textCaravans = function () {
           theGame.taskArray.splice(1, 1, 1);
         } else if (theGame.taskArray[0] == 2) {
           theGame.taskArray.splice(1, 1, 2);
+        } else if (theGame.taskArray[0] == 3) {
+          theGame.taskArray.splice(1, 1, 3);
         }
 
         if (theGame.taskArray[0] == 1 && theGame.taskArray[1] == 1) {
           $("#finishTask1").show().addClass("basicBtn bckgGreen medievalText marginTop4 shadowForBtn");
         } else if (theGame.taskArray[0] == 2 && theGame.taskArray[1] == 2) {
           $("#finishTask2").show().addClass("basicBtn bckgGreen medievalText marginTop4 shadowForBtn");
+        } else if (theGame.taskArray[0] == 3 && theGame.taskArray[1] == 3) {
+          $("#finishTask3").show().addClass("basicBtn bckgGreen medievalText marginTop4 shadowForBtn");
         }
         //koniec części kodu walki umożliwiająca walkę podczas wyonywania zadań: pasikonik, wilk i troll
 
@@ -2036,6 +2045,10 @@ module.exports.intro = function () {
     functions.newElement("button", "finishTask3", "zakończ", $("#interactionsBtns"));
     $("#finishTask1, #finishTask2, #finishTask3").hide();
 
+    //przycisk dalej dla przejścia do ostatniego paragrafu - game over
+    functions.newElement("button", "toGameOver", "dalej", $("#interactionsBtns"));
+    $("#toGameOver").hide();
+
     //główny tekst opisowy dla paragrafu - pokój - paragraf pierwszy
     room.textRoom();
 
@@ -2171,6 +2184,11 @@ module.exports.intro = function () {
 
       $("#goTask3").on("click", function () {
         troll.toTroll();
+        $("#goTask1, #goTask2").prop("disabled", true);
+      });
+
+      $("#toGameOver").on("click", function () {
+        theGame.gameOver();
       });
     });
   }, 30000);
@@ -2544,73 +2562,84 @@ var functions = __webpack_require__(1); //podstawowe funkcje
 var theGame = __webpack_require__(2);
 
 module.exports.toGrasshopper = function () {
-  if (heroCreator.equip.indexOf("paczka") !== -1) {
-    $("#description").html("<p class='basicText medievalText'>Oddaj najpierw paczkę !!!!.</p><button id='close' class='bckgRed fontSize12em width15 boldText medievalText whiteTextShadow11 paddingUpDown1 marginTop4'>zamknij</button>");
+      if (heroCreator.equip.indexOf("paczka") !== -1) {
+            $("#description").html("<p class='basicText medievalText'>Oddaj najpierw paczkę !!!!.</p><button id='close' class='bckgRed fontSize12em width15 boldText medievalText whiteTextShadow11 paddingUpDown1 marginTop4'>zamknij</button>");
 
-    $("#close").on("click", function () {
-      $("#description").empty();
-    });
-  } else {
-    $("#mainBtns button").hide();
-    $("#interactionsBtns button").hide();
-    $("#goTask1, #goTask2, #goTask3").show();
-
-    $("#goTask1").prop("disabled", true);
-
-    var text = [];
-
-    //wyszkanie płci oraz przypisanie konkretnego słowa do zmiennej
-    if (heroCreator.hero[1] == "kobieta") {
-      text.splice(0, 1, "Doszłaś");
-      text.splice(1, 1, "niedostrzegłaś");
-      text.splice(2, 1, "Uznałaś");
-      text.splice(3, 1, "uszłyszałaś");
-      text.splice(4, 1, "Zaczęłaś");
-      text.splice(5, 1, "ujrzałaś");
-    } else if (heroCreator.hero[1] == "mężczyzna" || heroCreator.hero[1] == "nie wiadomo") {
-      text.splice(0, 1, "Doszedłeś");
-      text.splice(1, 1, "niedostrzegłeś");
-      text.splice(2, 1, "Uznałeś");
-      text.splice(3, 1, "uszłyszałeś");
-      text.splice(4, 1, "Zacząłeś");
-      text.splice(5, 1, "ujrzałeś");
-    }
-
-    theGame.taskArray.splice(0, 1, 1);
-    $("#mainPart").html("<div class='basicText medievalText'>Idziesz na pola. Jest ciep\u0142o, \u0142any zb\xF3\u017C ko\u0142ysz\u0105 si\u0119 na wietrze. Jest spok\xF3j. Zastanawiasz si\u0119 czy ten polny stw\xF3r to nie majaki pijanych farmer\xF3w. Jednak dla \u015Bwi\u0119tego spokoju idziesz dalej i rozgl\u0105dasz si\u0119 po okolicy. " + text[0] + " prawie do ko\u0144ca p\xF3l. Niczego niepokoj\u0105cego " + text[1] + ". " + text[2] + ", \u017Ce trzeba si\u0119 zaj\u0105\u0107 nast\u0119pnym zadaniem. Wtem " + text[3] + " dziwne, suche trzaski. " + text[4] + " si\u0119 rozgl\u0105da\u0107 i " + text[5] + " jak z pobliskiego rowu zacz\u0105\u0142 wstawa\u0107 stw\xF3r, wielki jak dorodny baw\xF3\u0142. Przecierasz oczy ze zdumienia i nie wierzysz. Ten potw\xF3r wygl\u0105da jak gigantyczny PASIKONIK!!!!</div><div id='description'></div>");
-
-    $("#prepare").show();
-    $("#prepare").addClass("bckgGreen fontSize08em paddingUpDown1");
-
-    $("#finishTask1").on("click", function () {
-      $("#description").html("<p class='basicText medievalText'>Pasikonik wykończony. Twoje cechy podniosły się. Wybierz kolejne zadanie.</p>");
-      theGame.taskDone.splice(0, 1, 1);
-      console.log(theGame.taskDone);
-
-      //dodanie punktów do cech
-      console.log(heroCreator.hero[4], heroCreator.hero[5], heroCreator.hero[6], heroCreator.hero[7], heroCreator.hero[8]);
-      heroCreator.hero.splice(4, 1, heroCreator.hero[4] + 5);
-      heroCreator.hero.splice(5, 1, heroCreator.hero[5] + 5);
-      heroCreator.hero.splice(6, 1, heroCreator.hero[6] + 5);
-      heroCreator.hero.splice(7, 1, heroCreator.hero[7] + 5);
-      heroCreator.hero.splice(8, 1, heroCreator.hero[8] + 5);
-      console.log(heroCreator.hero[4], heroCreator.hero[5], heroCreator.hero[6], heroCreator.hero[7], heroCreator.hero[8]);
-
-      if (theGame.taskDone[1] == 0) {
-        $("#goTask2").prop("disabled", false);
+            $("#close").on("click", function () {
+                  $("#description").empty();
+            });
       } else {
-        $("#goTask2").prop("disabled", true);
-      }
+            $("#mainBtns button").hide();
+            $("#interactionsBtns button").hide();
+            $("#goTask1, #goTask2, #goTask3").show();
 
-      if (theGame.taskDone[2] == 0) {
-        $("#goTask3").prop("disabled", false);
-      } else {
-        $("#goTask3").prop("disabled", true);
-      }
+            $("#goTask1").prop("disabled", true);
 
-      $("#finishTask1").remove();
-    });
-  }
+            var text = [];
+
+            //wyszkanie płci oraz przypisanie konkretnego słowa do zmiennej
+            if (heroCreator.hero[1] == "kobieta") {
+                  text.splice(0, 1, "Doszłaś");
+                  text.splice(1, 1, "niedostrzegłaś");
+                  text.splice(2, 1, "Uznałaś");
+                  text.splice(3, 1, "uszłyszałaś");
+                  text.splice(4, 1, "Zaczęłaś");
+                  text.splice(5, 1, "ujrzałaś");
+            } else if (heroCreator.hero[1] == "mężczyzna" || heroCreator.hero[1] == "nie wiadomo") {
+                  text.splice(0, 1, "Doszedłeś");
+                  text.splice(1, 1, "niedostrzegłeś");
+                  text.splice(2, 1, "Uznałeś");
+                  text.splice(3, 1, "uszłyszałeś");
+                  text.splice(4, 1, "Zacząłeś");
+                  text.splice(5, 1, "ujrzałeś");
+            }
+
+            theGame.taskArray.splice(0, 1, 1);
+            $("#mainPart").html("<div class='basicText medievalText'>Idziesz na pola. Jest ciep\u0142o, \u0142any zb\xF3\u017C ko\u0142ysz\u0105 si\u0119 na wietrze. Jest spok\xF3j. Zastanawiasz si\u0119 czy ten polny stw\xF3r to nie majaki pijanych farmer\xF3w. Jednak dla \u015Bwi\u0119tego spokoju idziesz dalej i rozgl\u0105dasz si\u0119 po okolicy. " + text[0] + " prawie do ko\u0144ca p\xF3l. Niczego niepokoj\u0105cego " + text[1] + ". " + text[2] + ", \u017Ce trzeba si\u0119 zaj\u0105\u0107 nast\u0119pnym zadaniem. Wtem " + text[3] + " dziwne, suche trzaski. " + text[4] + " si\u0119 rozgl\u0105da\u0107 i " + text[5] + " jak z pobliskiego rowu zacz\u0105\u0142 wstawa\u0107 stw\xF3r, wielki jak dorodny baw\xF3\u0142. Przecierasz oczy ze zdumienia i nie wierzysz. Ten potw\xF3r wygl\u0105da jak gigantyczny PASIKONIK!!!!</div><div id='description'></div>");
+
+            $("#prepare").show();
+            $("#prepare").addClass("bckgGreen fontSize08em paddingUpDown1");
+
+            $("#finishTask1").on("click", function () {
+                  $("#description").html("<p class='basicText medievalText'>Pasikonik wykończony. Twoje cechy podniosły się. Wybierz kolejne zadanie.</p>");
+                  theGame.taskDone.splice(0, 1, 1);
+
+                  if (heroCreator.tasks.indexOf(' ubij pasikonika') !== -1) {
+                        heroCreator.tasks.splice(heroCreator.tasks.indexOf(' ubij pasikonika'), 1);
+                        console.log(heroCreator.tasks);
+                  }
+
+                  console.log(theGame.taskDone);
+
+                  //dodanie punktów do cech
+                  console.log(heroCreator.hero[4], heroCreator.hero[5], heroCreator.hero[6], heroCreator.hero[7], heroCreator.hero[8]);
+                  heroCreator.hero.splice(4, 1, heroCreator.hero[4] + 5);
+                  heroCreator.hero.splice(5, 1, heroCreator.hero[5] + 5);
+                  heroCreator.hero.splice(6, 1, heroCreator.hero[6] + 5);
+                  heroCreator.hero.splice(7, 1, heroCreator.hero[7] + 5);
+                  heroCreator.hero.splice(8, 1, heroCreator.hero[8] + 5);
+                  console.log(heroCreator.hero[4], heroCreator.hero[5], heroCreator.hero[6], heroCreator.hero[7], heroCreator.hero[8]);
+
+                  if (theGame.taskDone[1] == 0) {
+                        $("#goTask2").prop("disabled", false);
+                  } else {
+                        $("#goTask2").prop("disabled", true);
+                  }
+
+                  if (theGame.taskDone[2] == 0) {
+                        $("#goTask3").prop("disabled", false);
+                  } else {
+                        $("#goTask3").prop("disabled", true);
+                  }
+
+                  $("#finishTask1").remove();
+
+                  if (theGame.taskDone[0] == 1 && theGame.taskDone[1] == 1 && theGame.taskDone[2] == 1) {
+                        console.log("game over");
+                        $("#toGameOver").show().addClass("basicBtn bckgGreen medievalText marginTop4 shadowForBtn");
+                  }
+            });
+      }
 };
 
 /***/ }),
@@ -2659,6 +2688,12 @@ module.exports.toWolf = function () {
     $("#finishTask2").on("click", function () {
       $("#description").html("<p class='basicText medievalText'>To by\u0142a dzika walka. Nie by\u0142o 'zlituj si\u0119'. Niestety wilk pope\u0142ni\u0142 b\u0142\u0105d. Fatalny dla niego w skutkach. \u0179le si\u0119 ustawi\u0142, a Ty bez skrup\xF3\u0142\xF3w " + text[0] + " jego b\u0142\u0105d i z ca\u0142ej si\u0142y " + text[1] + " w jego kr\u0119gos\u0142up. Tylko gruchn\u0119\u0142o. Wilk momentalnie pad\u0142 i zgin\u0105\u0142 w konwulsjach, z pian\u0105 na pysku. Po odpoczynku czas na kolejne zadanie</p>");
       theGame.taskDone.splice(1, 1, 1);
+
+      if (heroCreator.tasks.indexOf(' ubij wilka') !== -1) {
+        heroCreator.tasks.splice(heroCreator.tasks.indexOf(' ubij wilka'), 1);
+        console.log(heroCreator.tasks);
+      }
+
       console.log(theGame.taskDone);
 
       //dodanie punktów do cech
@@ -2683,6 +2718,10 @@ module.exports.toWolf = function () {
       }
 
       $("#finishTask2").remove();
+      if (theGame.taskDone[0] == 1 && theGame.taskDone[1] == 1 && theGame.taskDone[2] == 1) {
+        console.log("game over");
+        $("#toGameOver").show().addClass("basicBtn bckgGreen medievalText marginTop4 shadowForBtn");
+      }
     });
   }
 };
@@ -2695,7 +2734,8 @@ module.exports.toWolf = function () {
 
 
 var heroCreator = __webpack_require__(0);
-var room = __webpack_require__(3);
+var functions = __webpack_require__(1); //podstawowe funkcje
+var theGame = __webpack_require__(2);
 
 module.exports.toTroll = function () {
   if (heroCreator.equip.indexOf("paczka") !== -1) {
@@ -2710,6 +2750,62 @@ module.exports.toTroll = function () {
     $("#goTask1, #goTask2, #goTask3").show();
 
     $("#goTask3").prop("disabled", true);
+
+    var text = [];
+
+    //wyszkanie płci oraz przypisanie konkretnego słowa do zmiennej
+    if (heroCreator.hero[1] == "kobieta") {
+      text.splice(0, 1, "wykorzystałaś");
+      text.splice(0, 1, "trafiłaś");
+    } else if (heroCreator.hero[1] == "mężczyzna" || heroCreator.hero[1] == "nie wiadomo") {
+      text.splice(0, 1, "Wykorzystałeś");
+      text.splice(0, 1, "trafiłeś");
+    }
+    theGame.taskArray.splice(0, 1, 3);
+
+    $("#mainPart").html("<div class='basicText medievalText'>Idziesz w stron\u0119 mostu. Przez las, w\u0105w\xF3z. Wychodzisz na du\u017C\u0105 polan\u0119. Na drugim ko\u0144cu widzisz ju\u017C zarysy mostu. Z trudem dostrzegasz du\u017C\u0105 posta\u0107 - to chyba ten trol. Podchodzisz bli\u017Cej i widzisz jak jakie\u015B osoby co\u015B wykrzykuj\u0105 i machaj\u0105 r\u0119kami. Po chwili wszystko ucicha. Du\u017Ca posta\u0107 nadal stoi przy mo\u015Bcie, reszta przechodzi. Jeste\u015B ju\u017C blisko mostu. Widzisz ogromnego trola siedz\u0105cego na kamieniu, wspartego o du\u017Cych rozmiar\xF3w maczug\u0119. Gdy ju\u017C jeste\u015B ca\u0142kiem blisko trol m\xF3wi do Ciebie: 'Op\u0142ata za przej\u015Bcie, albo zje\u017Cd\u017Caj!!'. 'Nie mam zamiaru p\u0142aci\u0107m, ani przechodzi\u0107. Jestem tutaj z twojego powodu.' -    odpowiadasz. 'Chce, \u017Ceby\u015B zaprzesta\u0142 pobierania nielegalnego myta. Je\u017Celi tego nie zrobisz b\u0119d\u0119 musia\u0142 Ci\u0119 zabi\u0107.' - m\xF3wisz dalej. 'Nic z Tego. To jest m\xF3j most i b\u0119d\u0119 pobiera\u0142 myto za jego przej\u015Bcie.' - odpar\u0142. Dyplomacja nie wysz\u0142a. Musisz z nim walczy\u0107.</div><div id='description'></div>");
+
+    $("#prepare").show();
+    $("#prepare").addClass("bckgGreen fontSize08em paddingUpDown1");
+    $("#finishTask3").on("click", function () {
+      $("#description").html("<p class='basicText medievalText'>Walka nie by\u0142a d\u0142uga. Mia\u0142e\u015B szcz\u0119\u015Bcie. Uda\u0142o Ci si\u0119 go zrani\u0107 pod pach\u0105. Trol zawy\u0142 dziko. Przechyli\u0142 si\u0119 i straci\u0142 r\xF3wnowag\u0119 i stoczy\u0142 si\u0119 ze skarpy do rzeki.    Spojrza\u0142e\u015B w d\xF3\u0142 i ujrza\u0142e\u015B go martwego z roztrzaskan\u0105 g\u0142ow\u0105. Czas na kolejne zadanaie.</p>");
+      theGame.taskDone.splice(2, 1, 1);
+
+      if (heroCreator.tasks.indexOf(' rozwiąż konflikt z trolem') !== -1) {
+        heroCreator.tasks.splice(heroCreator.tasks.indexOf(' rozwiąż konflikt z trolem'), 1);
+        console.log(heroCreator.tasks);
+      }
+
+      console.log(theGame.taskDone);
+
+      //dodanie punktów do cech
+      console.log(heroCreator.hero[4], heroCreator.hero[5], heroCreator.hero[6], heroCreator.hero[7], heroCreator.hero[8]);
+      heroCreator.hero.splice(4, 1, heroCreator.hero[4] + 5);
+      heroCreator.hero.splice(5, 1, heroCreator.hero[5] + 5);
+      heroCreator.hero.splice(6, 1, heroCreator.hero[6] + 5);
+      heroCreator.hero.splice(7, 1, heroCreator.hero[7] + 5);
+      heroCreator.hero.splice(8, 1, heroCreator.hero[8] + 5);
+      console.log(heroCreator.hero[4], heroCreator.hero[5], heroCreator.hero[6], heroCreator.hero[7], heroCreator.hero[8]);
+
+      if (theGame.taskDone[0] == 0) {
+        $("#goTask1").prop("disabled", false);
+      } else {
+        $("#goTask1").prop("disabled", true);
+      }
+
+      if (theGame.taskDone[1] == 0) {
+        $("#goTask2").prop("disabled", false);
+      } else {
+        $("#goTask2").prop("disabled", true);
+      }
+
+      $("#finishTask3").remove();
+
+      if (theGame.taskDone[0] == 1 && theGame.taskDone[1] == 1 && theGame.taskDone[2] == 1) {
+        console.log("game over");
+        $("#toGameOver").show().addClass("basicBtn bckgGreen medievalText marginTop4 shadowForBtn");
+      }
+    });
   }
 };
 

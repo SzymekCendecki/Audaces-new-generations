@@ -127,3 +127,8 @@ module.exports.taskArray = [0, 0];
 
 //tablica dla zrobionych zadań
 module.exports.taskDone = [0, 0, 0];
+
+//ostatni paragraf
+module.exports.gameOver = function(){
+  $("#mainPart").html(`<div class='basicText medievalText'> Zakończyłeś trzecie zadanie. Zmęczony i poobijany wróciłeś do osady. Gdy tylko wszedłeś do osady zobaczyłeś jak mieszkańcy oraz uczestnicy karawany świętowali. Kapłan uleczył Twoje rany, dzięki temu mogłeś bawić się z innymi. Następnego dnia obudziłeś się potwornym kacem, na kopie siana w szczerym polu. I tak nastąpił szczęśliwy koniec tej przygody z dostarczeniem paczki. Jednakże nastał nowy dzień... ale to już inna historia.</div><div id='description' class='center medievalText marginTop15 whiteTextShadow11 gameOver'><a href="javascript:location.reload()">GAME OVER</div></a>`);
+}

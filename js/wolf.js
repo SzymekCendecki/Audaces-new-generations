@@ -35,6 +35,12 @@ module.exports.toWolf = function(){
            $("#finishTask2").on("click", ()=>{
              $("#description").html(`<p class='basicText medievalText'>To była dzika walka. Nie było 'zlituj się'. Niestety wilk popełnił błąd. Fatalny dla niego w skutkach. Źle się ustawił, a Ty bez skrupółów ${text[0]} jego błąd i z całej siły ${text[1]} w jego kręgosłup. Tylko gruchnęło. Wilk momentalnie padł i zginął w konwulsjach, z pianą na pysku. Po odpoczynku czas na kolejne zadanie</p>`);
              theGame.taskDone.splice(1, 1, 1);
+
+             if (heroCreator.tasks.indexOf(' ubij wilka') !== -1) {
+                   heroCreator.tasks.splice(heroCreator.tasks.indexOf(' ubij wilka'), 1);
+                   console.log(heroCreator.tasks);
+             }
+
              console.log(theGame.taskDone);
 
              //dodanie punktów do cech
@@ -59,6 +65,11 @@ module.exports.toWolf = function(){
              }
 
        $("#finishTask2").remove();
+       if(theGame.taskDone[0] == 1 && theGame.taskDone[1] == 1 && theGame.taskDone[2] == 1){
+         console.log("game over");
+         $("#toGameOver").show().addClass("basicBtn bckgGreen medievalText marginTop4 shadowForBtn");
+       }
+
            });
 
   }

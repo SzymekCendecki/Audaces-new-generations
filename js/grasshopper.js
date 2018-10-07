@@ -42,6 +42,12 @@ theGame.taskArray.splice(0, 1, 1);
     $("#finishTask1").on("click", ()=>{
       $("#description").html("<p class='basicText medievalText'>Pasikonik wykończony. Twoje cechy podniosły się. Wybierz kolejne zadanie.</p>");
       theGame.taskDone.splice(0, 1, 1);
+
+      if (heroCreator.tasks.indexOf(' ubij pasikonika') !== -1) {
+            heroCreator.tasks.splice(heroCreator.tasks.indexOf(' ubij pasikonika'), 1);
+            console.log(heroCreator.tasks);
+      }
+
       console.log(theGame.taskDone);
 
       //dodanie punktów do cech
@@ -66,6 +72,11 @@ theGame.taskArray.splice(0, 1, 1);
       }
 
 $("#finishTask1").remove();
+
+if(theGame.taskDone[0] == 1 && theGame.taskDone[1] == 1 && theGame.taskDone[2] == 1){
+  console.log("game over");
+  $("#toGameOver").show().addClass("basicBtn bckgGreen medievalText marginTop4 shadowForBtn");
+}
     });
 
   }

@@ -134,6 +134,10 @@ functions.newElement("button", "finishTask2", "zakończ", $("#interactionsBtns")
 functions.newElement("button", "finishTask3", "zakończ", $("#interactionsBtns"));
 $("#finishTask1, #finishTask2, #finishTask3").hide();
 
+//przycisk dalej dla przejścia do ostatniego paragrafu - game over
+functions.newElement("button", "toGameOver", "dalej", $("#interactionsBtns"));
+$("#toGameOver").hide();
+
   //główny tekst opisowy dla paragrafu - pokój - paragraf pierwszy
     room.textRoom();
 
@@ -225,8 +229,10 @@ $("#goTask2").on("click", ()=>{
 
 $("#goTask3").on("click", ()=>{
     troll.toTroll();
+    $("#goTask1, #goTask2").prop("disabled", true);
 });
 
+$("#toGameOver").on("click", ()=>{ theGame.gameOver(); });
 
 });
   }, 30000);
