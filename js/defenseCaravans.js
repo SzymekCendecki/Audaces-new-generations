@@ -128,10 +128,8 @@ if(theGame.taskArray[0] == 1 && theGame.taskArray[1] == 1){
 
                     $("#info").empty();
                     $("#features, #equip, #skills, #tasks").prop("disabled", false);
-
-                      $("#toVillage").removeClass("bckgRed").addClass("bckgGreen").prop("disabled", false);
-
-                      $("#prepare").hide();
+                    $("#toVillage").removeClass("bckgRed").addClass("bckgGreen").prop("disabled", false);
+                    $("#prepare").hide();
 
               //wyliczanie trafienia dla gracza i przeciwnika
                       let hitting = theGame.a;
@@ -141,10 +139,8 @@ if(theGame.taskArray[0] == 1 && theGame.taskArray[1] == 1){
 
                   let hits = [];
 
-                      if(hitting1 < hitting ){
-                        hits.splice(0, 1, " trafiony");
-                      }else{
-                          hits.splice(0, 1, " nie trafiony");
+                      if(hitting1 < hitting ){ hits.splice(0, 1, " trafiony");
+                      }else{ hits.splice(0, 1, " nie trafiony");
                       }
 
                     $("#description").empty();
@@ -176,17 +172,13 @@ if(hits.indexOf(" trafiony") !== -1 && heroCreator.hero[1] == "mężczyzna" || h
 $("#mainPart").html(`<p class="basicText medievalText">Szczęśliwie ${text[0]} walkę. ${text[2]}. ${text[1]}. Walka równie szybko się skończyła jak zaczęła. Karawana odczeała w gotowości jescze kilka minut. Po nich pochowaliście ciała poległych obrońców i atakujących w jednej, zbiorowej mogile, niedaleko drogi. Po krótkich modlitwach odjechaliście. Twoje cechy podniosły się.<p>`);
 
 //dodanie punktów do cech
-console.log(heroCreator.hero[4], heroCreator.hero[5], heroCreator.hero[6], heroCreator.hero[7], heroCreator.hero[8]);
 heroCreator.hero.splice(4, 1, (heroCreator.hero[4] + 5));
 heroCreator.hero.splice(5, 1, (heroCreator.hero[5] + 5));
 heroCreator.hero.splice(6, 1, (heroCreator.hero[6] + 5));
 heroCreator.hero.splice(7, 1, (heroCreator.hero[7] + 5));
 heroCreator.hero.splice(8, 1, (heroCreator.hero[8] + 5));
-console.log(heroCreator.hero[4], heroCreator.hero[5], heroCreator.hero[6], heroCreator.hero[7], heroCreator.hero[8]);
                       });
-
-
-                  });
-                 });
+                });
+         });
   });
 }

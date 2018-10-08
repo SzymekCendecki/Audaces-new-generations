@@ -34,47 +34,37 @@ module.exports.toGrasshopper = function(){
       }
 
 theGame.taskArray.splice(0, 1, 1);
-      $("#mainPart").html(`<div class='basicText medievalText'>Idziesz na pola. Jest ciepło, łany zbóż kołyszą się na wietrze. Jest spokój. Zastanawiasz się czy ten polny stwór to nie majaki pijanych farmerów. Jednak dla świętego spokoju idziesz dalej i rozglądasz się po okolicy. ${text[0]} prawie do końca pól. Niczego niepokojącego ${text[1]}. ${text[2]}, że trzeba się zająć następnym zadaniem. Wtem ${text[3]} dziwne, suche trzaski. ${text[4]} się rozglądać i ${text[5]} jak z pobliskiego rowu zaczął wstawać stwór, wielki jak dorodny bawół. Przecierasz oczy ze zdumienia i nie wierzysz. Ten potwór wygląda jak gigantyczny PASIKONIK!!!!</div><div id='description'></div>`);
+      $("#mainPart").html(`<div class='basicText medievalText'>Idziesz na pola. Jest ciepło, łany zbóż kołyszą się na wietrze. Jest spokój. Zastanawiasz się czy ten polny stwór to nie majaki pijanych farmerów. Jednak dla świętego spokoju idziesz dalej i rozglądasz się po okolicy. ${text[0]} prawie do końca pól. Niczego niepokojącego ${text[1]}. ${text[2]}, że trzeba się zająć następnym zadaniem. Wtem ${text[3]} dziwne, suche trzaski. ${text[4]} się rozglądać i ${text[5]} jak z pobliskiego rowu zaczął wstawać stwór, wielki jak dorodny bawół. Przecierasz oczy ze zdumienia i nie wierzysz. Ten potwór wygląda jak gigantyczny PASIKONIK!!!!</div><div id='description' ></div>`);
 
       $("#prepare").show();
       $("#prepare").addClass("bckgGreen fontSize08em paddingUpDown1");
 
     $("#finishTask1").on("click", ()=>{
-      $("#description").html("<p class='basicText medievalText'>Pasikonik wykończony. Twoje cechy podniosły się. Wybierz kolejne zadanie.</p>");
       theGame.taskDone.splice(0, 1, 1);
+      $("#description").html(`<div class='basicText medievalText'>Pasikonik wykończony. Twoje cechy podniosły się.</div>`);
 
       if (heroCreator.tasks.indexOf(' ubij pasikonika') !== -1) {
             heroCreator.tasks.splice(heroCreator.tasks.indexOf(' ubij pasikonika'), 1);
-            console.log(heroCreator.tasks);
       }
 
-      console.log(theGame.taskDone);
-
       //dodanie punktów do cech
-      console.log(heroCreator.hero[4], heroCreator.hero[5], heroCreator.hero[6], heroCreator.hero[7], heroCreator.hero[8]);
       heroCreator.hero.splice(4, 1, (heroCreator.hero[4] + 5));
       heroCreator.hero.splice(5, 1, (heroCreator.hero[5] + 5));
       heroCreator.hero.splice(6, 1, (heroCreator.hero[6] + 5));
       heroCreator.hero.splice(7, 1, (heroCreator.hero[7] + 5));
       heroCreator.hero.splice(8, 1, (heroCreator.hero[8] + 5));
-      console.log(heroCreator.hero[4], heroCreator.hero[5], heroCreator.hero[6], heroCreator.hero[7], heroCreator.hero[8]);
 
-      if(theGame.taskDone[1] == 0){
-        $("#goTask2").prop("disabled", false);
-      }else{
-        $("#goTask2").prop("disabled", true);
+      if(theGame.taskDone[1] == 0){ $("#goTask2").prop("disabled", false);
+      }else{ $("#goTask2").prop("disabled", true);
       }
 
-      if(theGame.taskDone[2] == 0){
-        $("#goTask3").prop("disabled", false);
-      }else{
-        $("#goTask3").prop("disabled", true);
+      if(theGame.taskDone[2] == 0){ $("#goTask3").prop("disabled", false);
+      }else{ $("#goTask3").prop("disabled", true);
       }
 
 $("#finishTask1").remove();
 
 if(theGame.taskDone[0] == 1 && theGame.taskDone[1] == 1 && theGame.taskDone[2] == 1){
-  console.log("game over");
   $("#toGameOver").show().addClass("basicBtn bckgGreen medievalText marginTop4 shadowForBtn");
 }
     });

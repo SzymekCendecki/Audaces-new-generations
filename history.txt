@@ -553,3 +553,7 @@ Dodano trzecie zadanie.
 	Dodano usuwanie wykonanych zadań z listy zadań.
 Dodano ostatni paragraf - powrót do wioski.
 	Dodano napis game over, który odświeża stronę, aby zaczą grę od nowa.
+
+8 października 2018 - wersja 0.7.1
+Usunięto niepotrzbne console.log.
+	Poprawiono napis GAME OVER.

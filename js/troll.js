@@ -26,54 +26,39 @@ module.exports.toTroll = function(){
      }
      theGame.taskArray.splice(0, 1, 3);
 
-           $("#mainPart").html(`<div class='basicText medievalText'>Idziesz w stronę mostu. Przez las, wąwóz. Wychodzisz na dużą polanę. Na drugim końcu widzisz już zarysy mostu. Z trudem dostrzegasz dużą postać - to chyba ten trol. Podchodzisz bliżej i widzisz jak jakieś osoby coś wykrzykują i machają rękami. Po chwili wszystko ucicha. Duża postać nadal stoi przy moście, reszta przechodzi. Jesteś już blisko mostu. Widzisz ogromnego trola siedzącego na kamieniu, wspartego o dużych rozmiarów maczugę. Gdy już jesteś całkiem blisko trol mówi do Ciebie: 'Opłata za przejście, albo zjeżdżaj!!'. 'Nie mam zamiaru płacićm, ani przechodzić. Jestem tutaj z twojego powodu.' -    odpowiadasz. 'Chce, żebyś zaprzestał pobierania nielegalnego myta. Jeżeli tego nie zrobisz będę musiał Cię zabić.' - mówisz dalej. 'Nic z Tego. To jest mój most i będę pobierał myto za jego przejście.' - odparł. Dyplomacja nie wyszła. Musisz z nim walczyć.</div><div id='description'></div>`);
+       $("#mainPart").html(`<div class='basicText medievalText'>Idziesz w stronę mostu. Przez las, wąwóz. Wychodzisz na dużą polanę. Na drugim końcu widzisz już zarysy mostu. Z trudem dostrzegasz dużą postać - to chyba ten trol. Podchodzisz bliżej i widzisz jak jakieś osoby coś wykrzykują i machają rękami. Po chwili wszystko ucicha. Duża postać nadal stoi przy moście, reszta przechodzi. Jesteś już blisko mostu. Widzisz ogromnego trola siedzącego na kamieniu, wspartego o dużych rozmiarów maczugę. Gdy już jesteś całkiem blisko trol mówi do Ciebie: 'Opłata za przejście, albo zjeżdżaj!!'. 'Nie mam zamiaru płacićm, ani przechodzić. Jestem tutaj z twojego powodu.' -    odpowiadasz. 'Chce, żebyś zaprzestał pobierania nielegalnego myta. Jeżeli tego nie zrobisz będę musiał Cię zabić.' - mówisz dalej. 'Nic z Tego. To jest mój most i będę pobierał myto za jego przejście.' - odparł. Dyplomacja nie wyszła. Musisz z nim walczyć.</div><div id='description'></div>`);
 
            $("#prepare").show();
            $("#prepare").addClass("bckgGreen fontSize08em paddingUpDown1");
            $("#finishTask3").on("click", ()=>{
-             $("#description").html(`<p class='basicText medievalText'>Walka nie była długa. Miałeś szczęście. Udało Ci się go zranić pod pachą. Trol zawył dziko. Przechylił się i stracił równowagę i stoczył się ze skarpy do rzeki.    Spojrzałeś w dół i ujrzałeś go martwego z roztrzaskaną głową. Czas na kolejne zadanaie.</p>`);
-             theGame.taskDone.splice(2, 1, 1);
 
+            theGame.taskDone.splice(2, 1, 1);
+           $("#description").html(`<div class='basicText medievalText'>Walka nie była długa. Miałeś szczęście. Udało Ci się go zranić pod pachą. Trol zawył dziko. Przechylił się i stracił równowagę i stoczył się ze skarpy do rzeki. Spojrzałeś w dół i ujrzałeś go martwego z roztrzaskaną głową.</div>`);
 
              if (heroCreator.tasks.indexOf(' rozwiąż konflikt z trolem') !== -1) {
                    heroCreator.tasks.splice(heroCreator.tasks.indexOf(' rozwiąż konflikt z trolem'), 1);
-                   console.log(heroCreator.tasks);
              }
 
-
-             console.log(theGame.taskDone);
-
              //dodanie punktów do cech
-             console.log(heroCreator.hero[4], heroCreator.hero[5], heroCreator.hero[6], heroCreator.hero[7], heroCreator.hero[8]);
              heroCreator.hero.splice(4, 1, (heroCreator.hero[4] + 5));
              heroCreator.hero.splice(5, 1, (heroCreator.hero[5] + 5));
              heroCreator.hero.splice(6, 1, (heroCreator.hero[6] + 5));
              heroCreator.hero.splice(7, 1, (heroCreator.hero[7] + 5));
              heroCreator.hero.splice(8, 1, (heroCreator.hero[8] + 5));
-             console.log(heroCreator.hero[4], heroCreator.hero[5], heroCreator.hero[6], heroCreator.hero[7], heroCreator.hero[8]);
 
-             if(theGame.taskDone[0] == 0){
-               $("#goTask1").prop("disabled", false);
-             }else{
-               $("#goTask1").prop("disabled", true);
+             if(theGame.taskDone[0] == 0){ $("#goTask1").prop("disabled", false);
+             }else{ $("#goTask1").prop("disabled", true);
              }
 
-             if(theGame.taskDone[1] == 0){
-               $("#goTask2").prop("disabled", false);
-             }else{
-               $("#goTask2").prop("disabled", true);
+             if(theGame.taskDone[1] == 0){ $("#goTask2").prop("disabled", false);
+             }else{ $("#goTask2").prop("disabled", true);
              }
 
        $("#finishTask3").remove();
 
-
           if(theGame.taskDone[0] == 1 && theGame.taskDone[1] == 1 && theGame.taskDone[2] == 1){
-            console.log("game over");
-            $("#toGameOver").show().addClass("basicBtn bckgGreen medievalText marginTop4 shadowForBtn");
+                $("#toGameOver").show().addClass("basicBtn bckgGreen medievalText marginTop4 shadowForBtn");
           }
-
            });
-
-
   }
 }
