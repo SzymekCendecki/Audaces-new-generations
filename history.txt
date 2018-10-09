@@ -557,3 +557,6 @@ Dodano ostatni paragraf - powrót do wioski.
 8 października 2018 - wersja 0.7.1
 Usunięto niepotrzbne console.log.
 	Poprawiono napis GAME OVER.
+
+9 października 2018 - wersja 0.7.2
+Poprawka słów w tekście po walce, dla zadania z trolem.

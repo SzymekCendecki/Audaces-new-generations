@@ -18,11 +18,13 @@ module.exports.toTroll = function(){
 
      //wyszkanie płci oraz przypisanie konkretnego słowa do zmiennej
      if(heroCreator.hero[1] == "kobieta"){
-       text.splice(0, 1, "wykorzystałaś");
-       text.splice(0, 1, "trafiłaś");
+       text.splice(0, 1, "Miałaś");
+       text.splice(1, 1, "Spojrzałaś");
+       text.splice(2, 1, "ujrzałaś");
      }else if(heroCreator.hero[1] == "mężczyzna" || heroCreator.hero[1] == "nie wiadomo"){
-       text.splice(0, 1, "Wykorzystałeś");
-       text.splice(0, 1, "trafiłeś");
+       text.splice(0, 1, "Miałeś");
+       text.splice(1, 1, "Spojrzałeś");
+       text.splice(2, 1, "ujrzałeś")
      }
      theGame.taskArray.splice(0, 1, 3);
 
@@ -33,7 +35,7 @@ module.exports.toTroll = function(){
            $("#finishTask3").on("click", ()=>{
 
             theGame.taskDone.splice(2, 1, 1);
-           $("#description").html(`<div class='basicText medievalText'>Walka nie była długa. Miałeś szczęście. Udało Ci się go zranić pod pachą. Trol zawył dziko. Przechylił się i stracił równowagę i stoczył się ze skarpy do rzeki. Spojrzałeś w dół i ujrzałeś go martwego z roztrzaskaną głową.</div>`);
+           $("#description").html(`<div class='basicText medievalText'>Walka nie była długa. ${text[0]} szczęście. Udało Ci się go zranić pod pachą. Trol zawył dziko. Przechylił się i stracił równowagę i stoczył się ze skarpy do rzeki. ${text[1]} w dół i ${text[2]} go martwego z roztrzaskaną głową.</div>`);
 
              if (heroCreator.tasks.indexOf(' rozwiąż konflikt z trolem') !== -1) {
                    heroCreator.tasks.splice(heroCreator.tasks.indexOf(' rozwiąż konflikt z trolem'), 1);

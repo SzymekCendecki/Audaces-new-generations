@@ -2738,11 +2738,13 @@ module.exports.toTroll = function () {
 
                           //wyszkanie płci oraz przypisanie konkretnego słowa do zmiennej
                           if (heroCreator.hero[1] == "kobieta") {
-                                       text.splice(0, 1, "wykorzystałaś");
-                                       text.splice(0, 1, "trafiłaś");
+                                       text.splice(0, 1, "Miałaś");
+                                       text.splice(1, 1, "Spojrzałaś");
+                                       text.splice(2, 1, "ujrzałaś");
                           } else if (heroCreator.hero[1] == "mężczyzna" || heroCreator.hero[1] == "nie wiadomo") {
-                                       text.splice(0, 1, "Wykorzystałeś");
-                                       text.splice(0, 1, "trafiłeś");
+                                       text.splice(0, 1, "Miałeś");
+                                       text.splice(1, 1, "Spojrzałeś");
+                                       text.splice(2, 1, "ujrzałeś");
                           }
                           theGame.taskArray.splice(0, 1, 3);
 
@@ -2753,7 +2755,7 @@ module.exports.toTroll = function () {
                           $("#finishTask3").on("click", function () {
 
                                        theGame.taskDone.splice(2, 1, 1);
-                                       $("#description").html("<div class='basicText medievalText'>Walka nie by\u0142a d\u0142uga. Mia\u0142e\u015B szcz\u0119\u015Bcie. Uda\u0142o Ci si\u0119 go zrani\u0107 pod pach\u0105. Trol zawy\u0142 dziko. Przechyli\u0142 si\u0119 i straci\u0142 r\xF3wnowag\u0119 i stoczy\u0142 si\u0119 ze skarpy do rzeki. Spojrza\u0142e\u015B w d\xF3\u0142 i ujrza\u0142e\u015B go martwego z roztrzaskan\u0105 g\u0142ow\u0105.</div>");
+                                       $("#description").html("<div class='basicText medievalText'>Walka nie by\u0142a d\u0142uga. " + text[0] + " szcz\u0119\u015Bcie. Uda\u0142o Ci si\u0119 go zrani\u0107 pod pach\u0105. Trol zawy\u0142 dziko. Przechyli\u0142 si\u0119 i straci\u0142 r\xF3wnowag\u0119 i stoczy\u0142 si\u0119 ze skarpy do rzeki. " + text[1] + " w d\xF3\u0142 i " + text[2] + " go martwego z roztrzaskan\u0105 g\u0142ow\u0105.</div>");
 
                                        if (heroCreator.tasks.indexOf(' rozwiąż konflikt z trolem') !== -1) {
                                                     heroCreator.tasks.splice(heroCreator.tasks.indexOf(' rozwiąż konflikt z trolem'), 1);
