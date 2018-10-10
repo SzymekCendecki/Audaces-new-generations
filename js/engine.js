@@ -1582,28 +1582,41 @@ module.exports.textCaravans = function () {
         $("#prepare").hide();
 
         //wyliczanie trafienia dla gracza i przeciwnika
-        var hitting = theGame.a;
-        var hitting1 = theGame.a / 2;
+        var hitting = theGame.a / 10;
+        var hitting1 = (theGame.a - 20) / 10;
+
+        var hit = Math.round(Math.random() * 50);
+        console.log(hitting, hit);
+
+        var hit1 = Math.round(Math.random() * 50);
+        console.log(hitting1, hit1);
 
         //losowanie czy gracz trafił
 
         var hits = [];
 
-        if (hitting1 < hitting) {
+        if (hitting > hit) {
           hits.splice(0, 1, " trafiony");
         } else {
           hits.splice(0, 1, " nie trafiony");
         }
 
+        if (hitting1 > hit1) {
+          hits.splice(1, 1, " trafiony");
+        } else {
+          hits.splice(1, 1, " nie trafiony");
+        }
+        console.log(hits);
+
         $("#description").empty();
-        $("#description").html("<div class='width75 flexForBtns medievalText greenText boldText fontSize1em marginTop4'><p class='width100 textUnderlineGold medievalText center paddingUpDown1 fontSize13em'>WALKA</p><p class='width100 center'><span class='blackText boldText fontSize12em textUnderlineGold'>Twoje trafienie</span></p><p class='width100 center'><span class='blackText boldText fontSize12em'><span class='navyText'> " + hitting + " </span></span></p><p class='width100 center'><span class='blackText boldText fontSize12em'><span id='result' class='navyText'> " + hits + "</span></span></p><p class='width100 center'><span class='blackText boldText fontSize12em textUnderlineGold'>Trafienie przeciwnika </span></p><p class='width100 center'><span class='blackText boldText fontSize12em'><span class='navyText'> " + hitting1 + " </span></span></p><p class='width100 center'><span class='blackText boldText fontSize12em'><span id='result' class='navyText'>nie trafiony</span></span></p></div>");
+        $("#description").html("<div class='width75 flexForBtns medievalText greenText boldText fontSize1em marginTop4'><p class='width100 textUnderlineGold medievalText center paddingUpDown1 fontSize13em'>WALKA</p><p class='width100 center'><span class='blackText boldText fontSize12em textUnderlineGold'>Twoje trafienie</span></p><p class='width100 center'><span class='blackText boldText fontSize12em'><span class='navyText'> " + hitting + " </span></span></p><p class='width100 center'><span class='blackText boldText fontSize12em'><span id='result' class='navyText'> " + hits[0] + "</span></span></p><p class='width100 center'><span class='blackText boldText fontSize12em textUnderlineGold'>Trafienie przeciwnika </span></p><p class='width100 center'><span class='blackText boldText fontSize12em'><span class='navyText'> " + hitting1 + " </span></span></p><p class='width100 center'><span class='blackText boldText fontSize12em'><span id='result' class='navyText'>" + hits[1] + "</span></span></p></div>");
 
         $("#toVillage").on("click", function () {
           $("#toVillage").hide();
           $("#toVillage2").show().addClass("basicBtn medievalText bckgGreen width49 marginTop4");
           var text = [];
 
-          //wyszkanie płci oraz przypisanie konkretnego słowa do zmiennej
+          //wyszukanie płci oraz przypisanie konkretnego słowa do zmiennej
           if (heroCreator.hero[1] == "kobieta") {
             text.splice(0, 1, "przeżyłaś");
             text.splice(1, 1, "Rozejrzałaś się");
@@ -1613,15 +1626,15 @@ module.exports.textCaravans = function () {
           }
 
           //wyszukanie w tablicy trafienia (lub nie) i przypisanie go do zmiennej
-          if (hits.indexOf(" trafiony") !== -1 && heroCreator.hero[1] == "mężczyzna" || heroCreator.hero[1] == "nie wiadomo") {
+          if (hits[0] == " trafiony" && heroCreator.hero[1] == "mężczyzna" || heroCreator.hero[1] == "nie wiadomo") {
             text.splice(2, 1, "Jednym z ciosów, trafiłeś swojego przeciwnika i wysłałeś go do piachu");
-          } else if (hits.indexOf(" trafiony") !== -1 && heroCreator.hero[1] == "kobieta") {
+          } else if (hits[0] == " trafiony" && heroCreator.hero[1] == "kobieta") {
             text.splice(2, 1, "Jednym z ciosów, trafiłaś swojego przeciwnika i wysłałaś go do piachu");
-          } else {
-            text.splice(2, 1, "Twój przeciwnik nagle odwrócił się i uciekł");
+          } else if (hits[0] == " nie trafiony") {
+            text.splice(2, 1, "Co za pech. Przeciwnik nie został trafiony i uciekł");
           }
 
-          $("#mainPart").html("<p class=\"basicText medievalText\">Szcz\u0119\u015Bliwie " + text[0] + " walk\u0119. " + text[2] + ". " + text[1] + ". Walka r\xF3wnie szybko si\u0119 sko\u0144czy\u0142a jak zacz\u0119\u0142a. Karawana odczea\u0142a w gotowo\u015Bci jescze kilka minut. Po nich pochowali\u015Bcie cia\u0142a poleg\u0142ych obro\u0144c\xF3w i atakuj\u0105cych w jednej, zbiorowej mogile, niedaleko drogi. Po kr\xF3tkich modlitwach odjechali\u015Bcie. Twoje cechy podnios\u0142y si\u0119.<p>");
+          $("#mainPart").html("<p class=\"basicText medievalText\">" + text[2] + ". Szcz\u0119\u015Bliwie " + text[0] + " walk\u0119. " + text[1] + ". Walka r\xF3wnie szybko si\u0119 sko\u0144czy\u0142a jak zacz\u0119\u0142a. Karawana odczea\u0142a w gotowo\u015Bci jescze kilka minut. Po nich pochowali\u015Bcie cia\u0142a poleg\u0142ych obro\u0144c\xF3w i atakuj\u0105cych w jednej, zbiorowej mogile, niedaleko drogi. Po kr\xF3tkich modlitwach odjechali\u015Bcie. Twoje cechy podnios\u0142y si\u0119.<p>");
 
           //dodanie punktów do cech
           heroCreator.hero.splice(4, 1, heroCreator.hero[4] + 5);

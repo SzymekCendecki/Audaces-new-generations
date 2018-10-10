@@ -132,26 +132,43 @@ if(theGame.taskArray[0] == 1 && theGame.taskArray[1] == 1){
                     $("#prepare").hide();
 
               //wyliczanie trafienia dla gracza i przeciwnika
-                      let hitting = theGame.a;
-                      let hitting1 = theGame.a/2;
+                      let hitting = theGame.a/10;
+                      let hitting1 = (theGame.a - 20)/10;
+
+                      let hit = Math.round(Math.random()*50);
+                      console.log(hitting, hit);
+
+                      let hit1 = Math.round(Math.random()*50);
+                      console.log(hitting1, hit1);
 
                 //losowanie czy gracz trafił
 
                   let hits = [];
 
-                      if(hitting1 < hitting ){ hits.splice(0, 1, " trafiony");
-                      }else{ hits.splice(0, 1, " nie trafiony");
+                      if(hitting > hit ){
+                        hits.splice(0, 1, " trafiony");
+                      }else{
+                        hits.splice(0, 1, " nie trafiony");
                       }
 
+                      if(hitting1 > hit1){
+                        hits.splice(1, 1, " trafiony");
+                    }else{
+                      hits.splice(1, 1, " nie trafiony");
+                      }
+                        console.log(hits);
+
+
+
                     $("#description").empty();
-                      $("#description").html(`<div class='width75 flexForBtns medievalText greenText boldText fontSize1em marginTop4'><p class='width100 textUnderlineGold medievalText center paddingUpDown1 fontSize13em'>WALKA</p><p class='width100 center'><span class='blackText boldText fontSize12em textUnderlineGold'>Twoje trafienie</span></p><p class='width100 center'><span class='blackText boldText fontSize12em'><span class='navyText'> ${hitting} </span></span></p><p class='width100 center'><span class='blackText boldText fontSize12em'><span id='result' class='navyText'> ${hits}</span></span></p><p class='width100 center'><span class='blackText boldText fontSize12em textUnderlineGold'>Trafienie przeciwnika </span></p><p class='width100 center'><span class='blackText boldText fontSize12em'><span class='navyText'> ${hitting1} </span></span></p><p class='width100 center'><span class='blackText boldText fontSize12em'><span id='result' class='navyText'>nie trafiony</span></span></p></div>`);
+                      $("#description").html(`<div class='width75 flexForBtns medievalText greenText boldText fontSize1em marginTop4'><p class='width100 textUnderlineGold medievalText center paddingUpDown1 fontSize13em'>WALKA</p><p class='width100 center'><span class='blackText boldText fontSize12em textUnderlineGold'>Twoje trafienie</span></p><p class='width100 center'><span class='blackText boldText fontSize12em'><span class='navyText'> ${hitting} </span></span></p><p class='width100 center'><span class='blackText boldText fontSize12em'><span id='result' class='navyText'> ${hits[0]}</span></span></p><p class='width100 center'><span class='blackText boldText fontSize12em textUnderlineGold'>Trafienie przeciwnika </span></p><p class='width100 center'><span class='blackText boldText fontSize12em'><span class='navyText'> ${hitting1} </span></span></p><p class='width100 center'><span class='blackText boldText fontSize12em'><span id='result' class='navyText'>${hits[1]}</span></span></p></div>`);
 
                       $("#toVillage").on("click", ()=>{
                         $("#toVillage").hide();
                         $("#toVillage2").show().addClass("basicBtn medievalText bckgGreen width49 marginTop4");
 let text = [];
 
-//wyszkanie płci oraz przypisanie konkretnego słowa do zmiennej
+//wyszukanie płci oraz przypisanie konkretnego słowa do zmiennej
 if(heroCreator.hero[1] == "kobieta"){
   text.splice(0, 1, "przeżyłaś");
   text.splice(1, 1, "Rozejrzałaś się");
@@ -161,15 +178,15 @@ if(heroCreator.hero[1] == "kobieta"){
 }
 
 //wyszukanie w tablicy trafienia (lub nie) i przypisanie go do zmiennej
-if(hits.indexOf(" trafiony") !== -1 && heroCreator.hero[1] == "mężczyzna" || heroCreator.hero[1] == "nie wiadomo"){
+if(hits[0] == " trafiony" && heroCreator.hero[1] == "mężczyzna" || heroCreator.hero[1] == "nie wiadomo"){
   text.splice(2, 1, "Jednym z ciosów, trafiłeś swojego przeciwnika i wysłałeś go do piachu");
-}else if(hits.indexOf(" trafiony") !== -1 && heroCreator.hero[1] == "kobieta"){
+}else if(hits[0] == " trafiony" && heroCreator.hero[1] == "kobieta"){
     text.splice(2, 1, "Jednym z ciosów, trafiłaś swojego przeciwnika i wysłałaś go do piachu");
-}else{
-  text.splice(2, 1, "Twój przeciwnik nagle odwrócił się i uciekł");
+}else if(hits[0] == " nie trafiony"){
+  text.splice(2, 1, "Co za pech. Przeciwnik nie został trafiony i uciekł");
 }
 
-$("#mainPart").html(`<p class="basicText medievalText">Szczęśliwie ${text[0]} walkę. ${text[2]}. ${text[1]}. Walka równie szybko się skończyła jak zaczęła. Karawana odczeała w gotowości jescze kilka minut. Po nich pochowaliście ciała poległych obrońców i atakujących w jednej, zbiorowej mogile, niedaleko drogi. Po krótkich modlitwach odjechaliście. Twoje cechy podniosły się.<p>`);
+$("#mainPart").html(`<p class="basicText medievalText">${text[2]}. Szczęśliwie ${text[0]} walkę. ${text[1]}. Walka równie szybko się skończyła jak zaczęła. Karawana odczeała w gotowości jescze kilka minut. Po nich pochowaliście ciała poległych obrońców i atakujących w jednej, zbiorowej mogile, niedaleko drogi. Po krótkich modlitwach odjechaliście. Twoje cechy podniosły się.<p>`);
 
 //dodanie punktów do cech
 heroCreator.hero.splice(4, 1, (heroCreator.hero[4] + 5));

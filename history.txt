@@ -560,3 +560,7 @@ Usunięto niepotrzbne console.log.
 
 9 października 2018 - wersja 0.7.2
 Poprawka słów w tekście po walce, dla zadania z trolem.
+
+10 październia 2018 - wersja 0.7.3
+Poprawka tekstu po pierwszej walce.
+	Początek zmian w walce - inne  obliczanie wartości bojowej oraz wyliczanie na podstawie wartości bojowej trafienia/ nie trafienia.
