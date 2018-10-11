@@ -85,3 +85,8 @@ module.exports.buy = function(){
   $("#buckler").on("click", function(){ buyItem("puklerz", 12, heroCreator.gold, heroCreator.equip); });
   $("#closeBuy").on("click", ()=>{ $("#description").empty(); });
 }
+
+module.exports.lookAround = function(){
+  $("#description").html("<p class='basicText medievalText'>Rozglądasz się po targowisku. Sporo straganów i jeszcze więcej chętnych do zakupu czegokolwiek.</p><button id='close' class='bckgRed fontSize12em width15 boldText medievalText whiteTextShadow11 paddingUpDown1 marginTop4'>zamknij</button>");
+  $("#close").on("click", ()=>{ $("#description").empty(); });
+}

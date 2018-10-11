@@ -132,36 +132,22 @@ if(theGame.taskArray[0] == 1 && theGame.taskArray[1] == 1){
                     $("#prepare").hide();
 
               //wyliczanie trafienia dla gracza i przeciwnika
-                      let hitting = theGame.a/10;
-                      let hitting1 = (theGame.a - 20)/10;
+                      let hitting = theGame.a/5;
+                      let hitting1 = (theGame.a - 20)/20;
 
-                      let hit = Math.round(Math.random()*50);
-                      console.log(hitting, hit);
-
-                      let hit1 = Math.round(Math.random()*50);
-                      console.log(hitting1, hit1);
-
-                //losowanie czy gracz trafił
-
+                      let hit = Math.round(Math.random()*40);
+              
+              //losowanie czy gracz trafił
                   let hits = [];
 
-                      if(hitting > hit ){
+                      if(hitting >= hit ){
                         hits.splice(0, 1, " trafiony");
                       }else{
                         hits.splice(0, 1, " nie trafiony");
                       }
 
-                      if(hitting1 > hit1){
-                        hits.splice(1, 1, " trafiony");
-                    }else{
-                      hits.splice(1, 1, " nie trafiony");
-                      }
-                        console.log(hits);
-
-
-
                     $("#description").empty();
-                      $("#description").html(`<div class='width75 flexForBtns medievalText greenText boldText fontSize1em marginTop4'><p class='width100 textUnderlineGold medievalText center paddingUpDown1 fontSize13em'>WALKA</p><p class='width100 center'><span class='blackText boldText fontSize12em textUnderlineGold'>Twoje trafienie</span></p><p class='width100 center'><span class='blackText boldText fontSize12em'><span class='navyText'> ${hitting} </span></span></p><p class='width100 center'><span class='blackText boldText fontSize12em'><span id='result' class='navyText'> ${hits[0]}</span></span></p><p class='width100 center'><span class='blackText boldText fontSize12em textUnderlineGold'>Trafienie przeciwnika </span></p><p class='width100 center'><span class='blackText boldText fontSize12em'><span class='navyText'> ${hitting1} </span></span></p><p class='width100 center'><span class='blackText boldText fontSize12em'><span id='result' class='navyText'>${hits[1]}</span></span></p></div>`);
+                      $("#description").html(`<div class='width75 flexForBtns medievalText greenText boldText fontSize1em marginTop4'><p class='width100 textUnderlineGold medievalText center paddingUpDown1 fontSize13em'>WALKA</p><p class='width100 center'><span class='blackText boldText fontSize12em textUnderlineGold'>Twoje trafienie</span></p><p class='width100 center'><span class='blackText boldText fontSize12em'><span class='navyText'> ${hitting} </span></span></p><p class='width100 center'><span class='blackText boldText fontSize12em'><span id='result' class='navyText'> ${hits[0]}</span></span></p><p class='width100 center'><span class='blackText boldText fontSize12em textUnderlineGold'>Trafienie przeciwnika </span></p><p class='width100 center'><span class='blackText boldText fontSize12em'><span class='navyText'> ${hitting1} </span></span></p><p class='width100 center'><span class='blackText boldText fontSize12em'><span id='result' class='navyText'>nie trafiony</span></span></p></div>`);
 
                       $("#toVillage").on("click", ()=>{
                         $("#toVillage").hide();

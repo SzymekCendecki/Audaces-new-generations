@@ -1582,34 +1582,22 @@ module.exports.textCaravans = function () {
         $("#prepare").hide();
 
         //wyliczanie trafienia dla gracza i przeciwnika
-        var hitting = theGame.a / 10;
-        var hitting1 = (theGame.a - 20) / 10;
+        var hitting = theGame.a / 5;
+        var hitting1 = (theGame.a - 20) / 20;
 
-        var hit = Math.round(Math.random() * 50);
-        console.log(hitting, hit);
-
-        var hit1 = Math.round(Math.random() * 50);
-        console.log(hitting1, hit1);
+        var hit = Math.round(Math.random() * 40);
 
         //losowanie czy gracz trafił
-
         var hits = [];
 
-        if (hitting > hit) {
+        if (hitting >= hit) {
           hits.splice(0, 1, " trafiony");
         } else {
           hits.splice(0, 1, " nie trafiony");
         }
 
-        if (hitting1 > hit1) {
-          hits.splice(1, 1, " trafiony");
-        } else {
-          hits.splice(1, 1, " nie trafiony");
-        }
-        console.log(hits);
-
         $("#description").empty();
-        $("#description").html("<div class='width75 flexForBtns medievalText greenText boldText fontSize1em marginTop4'><p class='width100 textUnderlineGold medievalText center paddingUpDown1 fontSize13em'>WALKA</p><p class='width100 center'><span class='blackText boldText fontSize12em textUnderlineGold'>Twoje trafienie</span></p><p class='width100 center'><span class='blackText boldText fontSize12em'><span class='navyText'> " + hitting + " </span></span></p><p class='width100 center'><span class='blackText boldText fontSize12em'><span id='result' class='navyText'> " + hits[0] + "</span></span></p><p class='width100 center'><span class='blackText boldText fontSize12em textUnderlineGold'>Trafienie przeciwnika </span></p><p class='width100 center'><span class='blackText boldText fontSize12em'><span class='navyText'> " + hitting1 + " </span></span></p><p class='width100 center'><span class='blackText boldText fontSize12em'><span id='result' class='navyText'>" + hits[1] + "</span></span></p></div>");
+        $("#description").html("<div class='width75 flexForBtns medievalText greenText boldText fontSize1em marginTop4'><p class='width100 textUnderlineGold medievalText center paddingUpDown1 fontSize13em'>WALKA</p><p class='width100 center'><span class='blackText boldText fontSize12em textUnderlineGold'>Twoje trafienie</span></p><p class='width100 center'><span class='blackText boldText fontSize12em'><span class='navyText'> " + hitting + " </span></span></p><p class='width100 center'><span class='blackText boldText fontSize12em'><span id='result' class='navyText'> " + hits[0] + "</span></span></p><p class='width100 center'><span class='blackText boldText fontSize12em textUnderlineGold'>Trafienie przeciwnika </span></p><p class='width100 center'><span class='blackText boldText fontSize12em'><span class='navyText'> " + hitting1 + " </span></span></p><p class='width100 center'><span class='blackText boldText fontSize12em'><span id='result' class='navyText'>nie trafiony</span></span></p></div>");
 
         $("#toVillage").on("click", function () {
           $("#toVillage").hide();
@@ -2122,6 +2110,9 @@ module.exports.intro = function () {
     $("#sell").on("click", function () {
       market.btnsSell();
     });
+    $("#lookAroundMarket").on("click", function () {
+      market.lookAround();
+    });
 
     //zdarzenia dla interakcji paragrafu - karawany
     $("#toCaravans").on("click", function () {
@@ -2318,6 +2309,13 @@ module.exports.buy = function () {
     buyItem("puklerz", 12, heroCreator.gold, heroCreator.equip);
   });
   $("#closeBuy").on("click", function () {
+    $("#description").empty();
+  });
+};
+
+module.exports.lookAround = function () {
+  $("#description").html("<p class='basicText medievalText'>Rozglądasz się po targowisku. Sporo straganów i jeszcze więcej chętnych do zakupu czegokolwiek.</p><button id='close' class='bckgRed fontSize12em width15 boldText medievalText whiteTextShadow11 paddingUpDown1 marginTop4'>zamknij</button>");
+  $("#close").on("click", function () {
     $("#description").empty();
   });
 };

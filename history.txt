@@ -564,3 +564,7 @@ Poprawka słów w tekście po walce, dla zadania z trolem.
 10 październia 2018 - wersja 0.7.3
 Poprawka tekstu po pierwszej walce.
 	Początek zmian w walce - inne  obliczanie wartości bojowej oraz wyliczanie na podstawie wartości bojowej trafienia/ nie trafienia.
+
+11 października 2018 - wersja 0.7.4
+Poprawa wyświetlania tekstu rozglądania się po targu - było brak tekstu, zostało naprawione.
+	Kolejna wersja wyliczania trafienia.
