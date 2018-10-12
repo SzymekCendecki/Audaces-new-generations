@@ -26,7 +26,7 @@ module.exports.wardrobe = function(){
         $("#description").empty();
      });
     }
-  }else{
+  }else if(heroCreator.equip.indexOf('płaszcz') == -1){
     if(heroCreator.hero[1] === "kobieta"){
       $("#description").html("<p class='basicText medievalText boldText'>Otworzyłaś szafę, w której wisi płaszcz.</p><button id='coat' class='basicBtn bckgGreen medievalText whiteTextShadow11 width15 boldText'>weź płaszcz</button><button id='close' class='bckgRed fontSize12em width15 boldText medievalText whiteTextShadow11 paddingUpDown1 marginLeft10 marginTop4'>zamknij</button>");
       $("#coat").on("click", ()=>{
