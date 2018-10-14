@@ -678,6 +678,12 @@ module.exports.randomChooseHeroBtns = function () {
 		functions.newElement("button", "createInfo", "info", $("#interactionsBtns"));
 		$("#createName, #createRace, #createOccupation, #createFeatures, #createFeatures2, #createEquip, #createSkills, #createInfo").addClass("basicBtn btnNewGame");
 
+		if (screen.width == 800) {
+			$("#createSkills").text("umiejętn.");
+		} else if (screen.width == 1366) {
+			$("#createSkills").text("umiejętności");
+		}
+
 		$("#createName, #createRace").addClass("marginTop4vh");
 		$("#createEquip, #createSkills").addClass("fontSize08em paddingUpDown1");
 
@@ -1862,6 +1868,14 @@ module.exports.toFirstMenu = function () {
     $("#newGame").addClass("btnNewGame");
     functions.newElement("p", "textHello", textHello, $("#mainPart"));
     $("#textHello").addClass("basicText medievalText");
+
+    if (screen.width == 800) {
+      $("#newGame").text("Gra");
+      $("#createSkills").text("umiejętn.");
+    } else if (screen.width == 1366) {
+      $("#newGame").text("Nowa Gra");
+      $("#createSkills").text("umiejętności");
+    }
   }, 20000);
 };
 

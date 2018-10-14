@@ -90,6 +90,7 @@ module.exports.randomChooseHeroBtns = function(){
 	//nadanie styli dla przycisków wylosuj i wybierz
   $("#randomHero, #chooseHero").addClass("basicBtn medievalText btnNewGame");
 
+
 //losowanie postaci
   $("#randomHero").on("click", ()=>{
 	  $("#drawnCharacter, #interactionsBtns").empty();
@@ -322,6 +323,12 @@ equip.splice(0, 5);
 	functions.newElement("button", "createSkills", "umiejętności", $("#interactionsBtns"));
 	functions.newElement("button", "createInfo", "info", $("#interactionsBtns"));
 	$("#createName, #createRace, #createOccupation, #createFeatures, #createFeatures2, #createEquip, #createSkills, #createInfo").addClass("basicBtn btnNewGame");
+
+	if(screen.width == 800){
+	  $("#createSkills").text("umiejętn.");
+	}else if(screen.width == 1366){
+	  $("#createSkills").text("umiejętności");
+	}
 
 	$("#createName, #createRace").addClass("marginTop4vh");
 	$("#createEquip, #createSkills").addClass("fontSize08em paddingUpDown1");

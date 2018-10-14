@@ -171,4 +171,13 @@ nav, #mainPart, #alerts{ height: 78vh; }
     width: 800px; margin: 0 auto; display: flex; justify-content: space-between; flex-wrap: wrap;
   }
 
+  #studioTitle{
+    h2{ font-size: 3em; }
+    p:first-child{ font-size: 4em;}
+    p:last-child{ font-size: 2em; }
+  }
+
+  #mainPart, #mainBtns{ font-size: 0.9em; }
+  #randomHero, #chooseHero, #interactionsBtns{ font-size: 0.8em; }
+
  }

@@ -573,4 +573,7 @@ Poprawa wyświetlania tekstu rozglądania się po targu - było brak tekstu, zos
 Poprawione wyświetlanie zawartości szafy (nie zawsze wyświetlany był płaszcz w szafie przed zabraniem) - zdaje się, że już działa.
 
 13 października 2018 - wersja 0.7.6
-Rozpoczęcia pracy nad wersją gry dla rozdzielczości 800x600 px.
+Rozpoczęcia pracy nad dostosowaniem gry dla rozdzielczości 800x600 px.
+
+14 października 2018 - wersja 0.7.61
+Kontynuacja pracy nad dostosowaniem gry dla rozdzielczości 800x600 px (kreator postaci).
