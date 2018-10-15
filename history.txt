@@ -577,3 +577,6 @@ Rozpoczęcia pracy nad dostosowaniem gry dla rozdzielczości 800x600 px.
 
 14 października 2018 - wersja 0.7.61
 Kontynuacja pracy nad dostosowaniem gry dla rozdzielczości 800x600 px (kreator postaci).
+
+15 października 2018 - wersja 0.7.62
+Kontynuacja pracy nad dostosowaniem gry dla rozdzielczości 800x600 px (pokój).

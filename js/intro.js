@@ -138,6 +138,17 @@ $("#finishTask1, #finishTask2, #finishTask3").hide();
 functions.newElement("button", "toGameOver", "dalej", $("#interactionsBtns"));
 $("#toGameOver").hide();
 
+if(screen.width == 800){
+  $("#equip").text("ekwip.");
+  $("#skills").removeClass("fontSize09em").text("umiejętn.").addClass("fontSize08em");
+  $("#tasks, #chest").addClass("fontSize08em paddingUpDown1");
+  $("#lookAroundRoom").text("popatrz");
+}else if(screen.width == 1366){
+  $("#equip").text("ekwipunek");
+  $("#skills").removeClass("fontSize08em").text("umiejętności").addClass("fontSize09em");
+  $("#tasks, #chest").removeClass("fontSize08em paddingUpDown1");
+}
+
   //główny tekst opisowy dla paragrafu - pokój - paragraf pierwszy
     room.textRoom();
 
