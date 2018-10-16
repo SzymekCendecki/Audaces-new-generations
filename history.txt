@@ -580,3 +580,6 @@ Kontynuacja pracy nad dostosowaniem gry dla rozdzielczości 800x600 px (kreator 
 
 15 października 2018 - wersja 0.7.62
 Kontynuacja pracy nad dostosowaniem gry dla rozdzielczości 800x600 px (pokój).
+
+16 października 2018
+Oficjalne zakończenie pracy nad tą wersją gry, spowodowane jest tym, iż wiele uznano, że już niewiele jest do poprawy, a ewentualne zmiany będą dotyczyły gruntownej zmiany kodu, która nastąpi z kolejną wersją gry, w momencie, gry studio stworzy swoje "biblioteki" scss/css oraz js/jq.
