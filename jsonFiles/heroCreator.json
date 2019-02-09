@@ -1,0 +1,7 @@
+{
+  "heroCreator": [{
+    "firstText": "<p class='width100p'>Wybierz sposób tworzenia postaci.</p><p class='width100p'><span class='textColorRandom'>wylosuj</span> - automatycznie stworzy losową postać.</p><p class='width100p'><span class='textColorManual'>stwórz</span> - stworzysz własnoręcznie swoją postać.</p>",
+    "name": "`<p>imię</p><p>${hero.name}</p>`",
+    "sex": "`<p>płeć</p><p>${hero.sex}</p>`"
+  }]
+}
